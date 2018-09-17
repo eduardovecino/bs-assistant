@@ -1,0 +1,24 @@
+{
+  "name": "dialogflow-bs",
+  "version": "1.0.0",
+  "main": "dist/index-dialogflow.js",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/mocha": "^5.2.5",
+    "actions-on-google": "^2.3.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "scripts": {
+    "start": "node dist/index-dialogflow.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/actions-on-google": "^1.10.2",
+    "typescript": "^3.0.3"
+  },
+  "description": ""
+}

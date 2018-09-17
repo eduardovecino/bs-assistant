@@ -1,5 +1,6 @@
 {
-  "name": "bs-assistant",
+  "name": "bs-assistant-production",
+  "description": "",
   "scripts": {
   },
   "env": {
