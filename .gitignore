@@ -40,7 +40,7 @@ typings/
 .next
 
 # Compiler output directory.
-dist
+# dist
 
 # VSCode artifact directory
 .vscode
