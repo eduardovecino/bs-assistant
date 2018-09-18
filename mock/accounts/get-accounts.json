@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "propietario": "&UPJURID - &LPJURID",
+            "disponibilidad": null,
+            "descripcion": "CUENTA CORRIENTE",
+            "usuario": "00000001R",
+            "iban": "ES00810000000000000000",
+            "balance": "123.915,06",
+            "producto": "CC",
+            "numeroProducto": "00810000000000000000",
+            "numeroProductoCodificado": "00810000000000000000"
+        },
+        {
+            "propietario": "&RNOMBRE &DPRIAPE I &. &MPRIAPE",
+            "disponibilidad": null,
+            "descripcion": "CUENTA EXPANSIÓN",
+            "usuario": "00000001R ",
+            "iban": "ES00810000000000000001",
+            "balance": "27.912,74",
+            "producto": "CC",
+            "numeroProducto": "00810000000000000000",
+            "numeroProductoCodificado": "00810000000000000000"
+        }
+    ],
+    "head": {
+        "fechaOperacion": "2014-03-25 11:00:05",
+        "descripcionError": null,
+        "informacionAdicional": null,
+        "codigoServicio": "SERV_CUE01",
+        "errorCode": null,
+        "warnCode": null
+    }
+}

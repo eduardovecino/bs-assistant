@@ -2,12 +2,16 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { ProductRoutes } from "./rest/routes/products";
 import { CardRoutes } from "./rest/routes/cards";
+import { AccountRoutes } from "./rest/routes/accounts";
+
 
 class AppRest {
 
     public app: express.Application;
     public productRoutes: ProductRoutes = new ProductRoutes();
     public cardRoutes: CardRoutes = new CardRoutes();
+    public accountRoutes: AccountRoutes = new AccountRoutes();
+
 
 
     constructor() {
@@ -15,8 +19,8 @@ class AppRest {
         this.app = express();
         this.config();
         this.productRoutes.routes(this.app);
-        this.cardRoutes.routes(this.app); 
-
+        this.cardRoutes.routes(this.app);
+        this.accountRoutes.routes(this.app); 
     }
 
     private config(): void {
