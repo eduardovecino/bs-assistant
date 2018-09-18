@@ -50,13 +50,12 @@ class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
             cards.forEach((cards) => {
-                conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + ' ');
-                conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + ' Puedes obtener el listado de movimientos o bloquear una tarjeta');
                 conv.ask(new actions_on_google_1.BasicCard({
                     title: cards.contracto,
                     image: {
                         url: cardUrlImage,
-                        accessibilityText: cards.contracto
+                        accessibilityText: 'Abrir APP'
                     },
                     text: cards.cuentaRelacionada,
                     buttons: new actions_on_google_1.Button({
