@@ -14,7 +14,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
-            conv.ask('la tarjetas es' + cards.contrato)
+            conv.ask('la tarjetas es' + cards[0].contrato)
 
         //    if (cards.length > 1) {
         //         var voice = 'Tus tarjetas son' + ' '
