@@ -80,7 +80,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Saldo cuenta', (conv, { last4numbers }) => {
             // accounts.forEach((account) => {
                 // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
-                const iban4Numbers = accounts[0].iban.charAt(accounts[0].iban.length - 2) + accounts[0].iban.charAt(accounts[0].iban.length - 1) + accounts[0].iban.charAt(accounts[0].iban.length) + accounts[0].iban.charAt(accounts[0].iban.length+1)
+                const iban4Numbers = accounts[0].iban.charAt(accounts[0].iban.length - 3) + accounts[0].iban.charAt(accounts[0].iban.length - 2) + accounts[0].iban.charAt(accounts[0].iban.length-1) + accounts[0].iban.charAt(accounts[0].iban.length)
 
                 // if (last4numbers) {
                 // conv.ask(iban4Numbers + ' ' + last4numbers);
