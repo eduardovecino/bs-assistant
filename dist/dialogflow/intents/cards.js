@@ -11,7 +11,7 @@ class CardIntents /*extends BaseIntent*/ {
         const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
-            conv.ask('la tarjetas es' + cards.contrato);
+            conv.ask('la tarjetas es' + cards[0].contrato);
             //    if (cards.length > 1) {
             //         var voice = 'Tus tarjetas son' + ' '
             //         const tmp = {
