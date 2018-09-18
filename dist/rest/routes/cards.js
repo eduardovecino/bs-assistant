@@ -10,7 +10,7 @@ class CardRoutes {
             .get((req, res) => {
             // Intercalar el servicio para recuperar los datos del servidor de sabadell
             const data = this.cardService.getCard();
-            res.status(200).send(data);
+            res.status(200).send(data.data);
         });
     }
 }
