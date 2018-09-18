@@ -55,14 +55,14 @@ export class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
                 cards.forEach((cards) => {
-                    if (cards.contracto === option) {
-                        conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                    if (cards.contrato === option) {
+                        conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask(new BasicCard({
-                            title: cards.contracto,
+                            title: cards.contrato,
                             image: {
                                 url: cardUrlImage,
-                                accessibilityText: cards.contracto
+                                accessibilityText: cards.contrato
                             },
                             text: cards.cuentaRelacionada,
                             buttons: new Button({
