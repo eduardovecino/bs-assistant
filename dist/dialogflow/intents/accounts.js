@@ -11,6 +11,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const accounts = this.accountService.getAccounts();
         //Lista cuentas
         app.intent('Cuentas', (conv) => {
+            conv.ask('blablabla' + accounts.getLength);
             if (accounts.getLength > 1) {
                 var voice = 'Tus cuentas son' + ' ';
                 const tmp = {
