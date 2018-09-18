@@ -50,22 +50,20 @@ class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
             cards.forEach((cards) => {
-                if (cards.contracto === option) {
-                    conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
-                    conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
-                    conv.ask(new actions_on_google_1.BasicCard({
-                        title: cards.contracto,
-                        image: {
-                            url: cardUrlImage,
-                            accessibilityText: cards.contracto
-                        },
-                        text: cards.cuentaRelacionada,
-                        buttons: new actions_on_google_1.Button({
-                            title: 'Abrir APP',
-                            url: 'http://www.eduvecino.com/GA_BMA/app.php',
-                        })
-                    }));
-                }
+                conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
+                conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                conv.ask(new actions_on_google_1.BasicCard({
+                    title: cards.contracto,
+                    image: {
+                        url: cardUrlImage,
+                        accessibilityText: cards.contracto
+                    },
+                    text: cards.cuentaRelacionada,
+                    buttons: new actions_on_google_1.Button({
+                        title: 'Abrir APP',
+                        url: 'http://www.eduvecino.com/GA_BMA/app.php',
+                    })
+                }));
             });
         });
         // //BLOQUEAR TARJETA

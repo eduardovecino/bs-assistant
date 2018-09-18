@@ -54,7 +54,6 @@ export class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
                 cards.forEach((cards) => {
-                    if (cards.contracto === option) {
                         conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
                         conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask(new BasicCard({
@@ -70,7 +69,6 @@ export class CardIntents /*extends BaseIntent*/ {
                             })
                         })
                         );
-                    }
                 });
         });
 
