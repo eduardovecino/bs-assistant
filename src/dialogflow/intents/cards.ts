@@ -14,67 +14,65 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
-            conv.ask('la tarjetas es' + cards[0].contrato)
+           if (cards.length > 1) {
+                var voice = 'Tus tarjetas son' + ' '
+                const tmp = {
+                    title: 'Mis Tarjetas',
+                    items: {}
+                };
+                cards.forEach((cards) => {
+                    voice = voice + ' ' + cards.contrato + ',';
+                    tmp.items[cards.contrato] = {
+                        title: cards.contrato,
+                        description: cards.cuentaRelacionada,
+                        image: {
+                            url: cardUrlImage,
+                            accessibilityText: cards.contrato
+                        }
+                    };
+                });
+                conv.ask(new Carousel(tmp));
+                conv.ask(voice);
 
-        //    if (cards.length > 1) {
-        //         var voice = 'Tus tarjetas son' + ' '
-        //         const tmp = {
-        //             title: 'Mis Tarjetas',
-        //             items: {}
-        //         };
-        //         cards.forEach((cards) => {
-        //             voice = voice + ' ' + cards.contrato + ',';
-        //             tmp.items[cards.contrato] = {
-        //                 title: cards.contrato,
-        //                 description: cards.cuentaRelacionada,
-        //                 image: {
-        //                     url: cardUrlImage,
-        //                     accessibilityText: cards.contrato
-        //                 }
-        //             };
-        //         });
-        //         conv.ask(new Carousel(tmp));
-        //         conv.ask(voice);
-
-        //     } else {
-        //        conv.ask(new BasicCard({
-        //            title: cards.contrato,
-        //            text: 'Información básica de la Tarjeta',
-        //            image: {
-        //                url: cardUrlImage,
-        //                accessibilityText: cards.contrato
-        //            },
-        //            buttons: new Button({
-        //                title: 'Abrir APP',
-        //                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
-        //            })
-        //        }));
-        //     }
+            } else {
+               conv.ask(new BasicCard({
+                   title: cards.contrato,
+                   text: 'Información básica de la Tarjeta',
+                   image: {
+                       url: cardUrlImage,
+                       accessibilityText: cards.contrato
+                   },
+                   buttons: new Button({
+                       title: 'Abrir APP',
+                       url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+                   })
+               }));
+            }
         });  
         
 
         // //TARJETA SELECCIONADA
-        // app.intent('Tarjeta seleccionada', (conv, input, option) => {
-        //         cards.forEach((cards) => {
-        //             if (cards.contracto === option) {
-        //                 conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
-        //                 conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
-        //                 conv.ask(new BasicCard({
-        //                     title: cards.contracto,
-        //                     image: {
-        //                         url: cardUrlImage,
-        //                         accessibilityText: cards.contracto
-        //                     },
-        //                     text: cards.cuentaRelacionada,
-        //                     buttons: new Button({
-        //                         title: 'Abrir APP',
-        //                         url: 'http://www.eduvecino.com/GA_BMA/app.php',
-        //                     })
-        //                 })
-        //                 );
-        //             }
-        //         });
-        // });
+        app.intent('Tarjeta seleccionada', (conv, input, option) => {
+                cards.forEach((cards) => {
+                    if (cards.contracto === option) {
+                        conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
+                        conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                        conv.ask(new BasicCard({
+                            title: cards.contracto,
+                            image: {
+                                url: cardUrlImage,
+                                accessibilityText: cards.contracto
+                            },
+                            text: cards.cuentaRelacionada,
+                            buttons: new Button({
+                                title: 'Abrir APP',
+                                url: 'http://www.eduvecino.com/GA_BMA/app.php',
+                            })
+                        })
+                        );
+                    }
+                });
+        });
 
 
         // //BLOQUEAR TARJETA
