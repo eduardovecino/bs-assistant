@@ -14,7 +14,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         //Lista cuentas
         app.intent('Cuentas', (conv) => {
-            conv.ask('blablabla' + accounts.length);
+            conv.ask('blablabla' + accounts[0].description);
             // if (accounts.length > 1) {
             //     var voice = 'Tus cuentas son' + ' ';
             //     const tmp = {
