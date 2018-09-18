@@ -75,7 +75,8 @@ class AccountIntents /*extends BaseIntent*/ {
             accounts.forEach((account) => {
                 const iban4Numbers = account.iban.charAt(account.iban.length - 3) + account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1) + account.iban.charAt(account.iban.length);
                 // if (parseInt(iban4Numbers) === last4numbers) {
-                conv.ask(iban4Numbers + ' ' + last4numbers);
+                // conv.ask(iban4Numbers + ' ' + last4numbers);
+                conv.ask(iban4Numbers);
                 // conv.ask('El saldo  de la ' + account.descripcion + ' es de ' + account.balance);
                 //  }
             });
