@@ -9,7 +9,10 @@ export class AccountService extends RestManager {
             const jsonData = JSON.parse(data.toString());
             return jsonData.data;
         } else {
-            return this.get();
+            // return this.get();
+            const data = fs.readFileSync('mock/accounts/get-accounts.json');
+            const jsonData = JSON.parse(data.toString());
+            return jsonData.data;
         }
     }
 }
