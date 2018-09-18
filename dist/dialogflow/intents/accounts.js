@@ -73,15 +73,16 @@ class AccountIntents /*extends BaseIntent*/ {
         // Saldo cuenta
         app.intent('Saldo cuenta', (conv, { last4numbers }) => {
             accounts.forEach((account) => {
-                const iban4Numbers = account.iban.charAt(account.iban.length - 3) + account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1) + account.iban.charAt(account.iban.length);
+                // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
+                const iban4Numbers = account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1) + account.iban.charAt(account.iban.length) + account.iban.charAt(account.iban.length + 1);
                 // if (parseInt(iban4Numbers) === last4numbers) {
                 // conv.ask(iban4Numbers + ' ' + last4numbers);
                 conv.ask(iban4Numbers);
                 // conv.ask('El saldo  de la ' + account.descripcion + ' es de ' + account.balance);
-                //  }
             });
         });
     }
+    ;
 }
 exports.AccountIntents = AccountIntents;
 //# sourceMappingURL=accounts.js.map
