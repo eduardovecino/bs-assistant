@@ -54,7 +54,7 @@ export class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
                 cards.forEach((cards) => {
-                        conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + ' ');
+                        conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + ' ');
                         conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask(new BasicCard({
                             title: cards.contracto,
@@ -68,7 +68,7 @@ export class CardIntents /*extends BaseIntent*/ {
                                 url: 'http://www.eduvecino.com/GA_BMA/app.php',
                             })
                         })
-                        );
+                    );
                 });
         });
 
