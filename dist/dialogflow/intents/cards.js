@@ -12,7 +12,7 @@ class CardIntents /*extends BaseIntent*/ {
         const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
-            if (cards.getLength > 1) {
+            if (cards.length > 1) {
                 var voice = 'Tus tarjetas son' + ' ';
                 const tmp = {
                     title: 'Mis Tarjetas',

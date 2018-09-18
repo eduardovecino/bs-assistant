@@ -11,50 +11,49 @@ class AccountIntents /*extends BaseIntent*/ {
         const accounts = this.accountService.getAccounts();
         //Lista cuentas
         app.intent('Cuentas', (conv) => {
-            conv.ask('blablabla' + accounts[0].descripcion);
-            // if (accounts.length > 1) {
-            //     var voice = 'Tus cuentas son' + ' ';
-            //     const tmp = {
-            //         title: 'Mis Cuentas' + ' ',
-            //         items: {}
-            //     };
-            //     accounts.forEach((account) => {
-            //         voice = voice + ' ' + account.description + ',';
-            //         tmp.items[account.iban] = {
-            //             title: account.description,
-            //             description: account.iban,
-            //             image: {
-            //                 url: accountImage,
-            //                 accessibilityText: account.description
-            //             }
-            //         };
-            //     });
-            //     conv.ask(new List(tmp));
-            //     conv.ask(voice);
-            //     conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
-            // } else {
-            //     conv.ask('Dispones de la cuenta ' + accounts[0].description + ' ');
-            //     conv.ask('Puedes obtener el saldo de la cuenta o el listado de movimientos');
-            //     conv.ask(new BasicCard({
-            //         title: 'Abrir App',
-            //         image: {
-            //             url: accountImage,
-            //             accessibilityText: 'Abrir APP'
-            //         },
-            //         text: '',
-            //         buttons: new Button({
-            //             title: 'Abrir APP',
-            //             url: 'http://eduvecino.com/GA_BMA/app_saba.php',
-            //         })
-            //     })
-            //     );
-            // }
+            if (accounts.length > 1) {
+                var voice = 'Tus cuentas son' + ' ';
+                const tmp = {
+                    title: 'Mis Cuentas' + ' ',
+                    items: {}
+                };
+                accounts.forEach((account) => {
+                    voice = voice + ' ' + account.descripcion + ',';
+                    tmp.items[account.iban] = {
+                        title: account.descripcion,
+                        descripcion: account.iban,
+                        image: {
+                            url: accountImage,
+                            accessibilityText: account.descripcion
+                        }
+                    };
+                });
+                conv.ask(new actions_on_google_1.List(tmp));
+                conv.ask(voice);
+                conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
+            }
+            else {
+                conv.ask('Dispones de la cuenta ' + accounts[0].descripcion + ' ');
+                conv.ask('Puedes obtener el saldo de la cuenta o el listado de movimientos');
+                conv.ask(new actions_on_google_1.BasicCard({
+                    title: 'Abrir App',
+                    image: {
+                        url: accountImage,
+                        accessibilityText: 'Abrir APP'
+                    },
+                    text: '',
+                    buttons: new actions_on_google_1.Button({
+                        title: 'Abrir APP',
+                        url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+                    })
+                }));
+            }
         });
         //Detalle cuenta seleccionada
         app.intent('Cuenta seleccionada', (conv, input, option) => {
             accounts.forEach((account) => {
                 if (account.iban === option) {
-                    conv.ask('Has seleccionado la cuenta ' + account.description + ' ');
+                    conv.ask('Has seleccionado la cuenta ' + account.descripcion + ' ');
                     conv.ask('Puedes obtener el saldo de la cuenta o el listado de movimientos');
                     conv.ask(new actions_on_google_1.BasicCard({
                         title: 'Abrir App',
@@ -75,7 +74,7 @@ class AccountIntents /*extends BaseIntent*/ {
         app.intent('Saldo cuenta', (conv, { tipo_cuenta }) => {
             accounts.forEach((account) => {
                 if (account.iban === tipo_cuenta) {
-                    conv.ask('El saldo  de la cuenta ' + account.description + ' es de ' + account.balance);
+                    conv.ask('El saldo  de la cuenta ' + account.descripcion + ' es de ' + account.balance);
                 }
             });
         });
