@@ -79,10 +79,10 @@ class AccountIntents /*extends BaseIntent*/ {
                 // conv.ask(iban4Numbers + ' ' + last4numbers);
                 conv.ask(iban4Numbers);
                 // conv.ask('El saldo  de la ' + account.descripcion + ' es de ' + account.balance);
+                //  }
             });
         });
     }
-    ;
 }
 exports.AccountIntents = AccountIntents;
 //# sourceMappingURL=accounts.js.map
