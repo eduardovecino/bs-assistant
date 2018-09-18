@@ -14,40 +14,42 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
-           if (cards.length > 1) {
-                var voice = 'Tus tarjetas son' + ' '
-                const tmp = {
-                    title: 'Mis Tarjetas',
-                    items: {}
-                };
-                cards.forEach((cards) => {
-                    voice = voice + ' ' + cards.contrato + ',';
-                    tmp.items[cards.contrato] = {
-                        title: cards.contrato,
-                        description: cards.cuentaRelacionada,
-                        image: {
-                            url: cardUrlImage,
-                            accessibilityText: cards.contrato
-                        }
-                    };
-                });
-                conv.ask(new Carousel(tmp));
-                conv.ask(voice);
+            conv.ask('la tarjetas es' + cards.contrato)
 
-            } else {
-               conv.ask(new BasicCard({
-                   title: cards.contrato,
-                   text: 'Información básica de la Tarjeta',
-                   image: {
-                       url: cardUrlImage,
-                       accessibilityText: cards.contrato
-                   },
-                   buttons: new Button({
-                       title: 'Abrir APP',
-                       url: 'http://eduvecino.com/GA_BMA/app_saba.php',
-                   })
-               }));
-            }
+        //    if (cards.length > 1) {
+        //         var voice = 'Tus tarjetas son' + ' '
+        //         const tmp = {
+        //             title: 'Mis Tarjetas',
+        //             items: {}
+        //         };
+        //         cards.forEach((cards) => {
+        //             voice = voice + ' ' + cards.contrato + ',';
+        //             tmp.items[cards.contrato] = {
+        //                 title: cards.contrato,
+        //                 description: cards.cuentaRelacionada,
+        //                 image: {
+        //                     url: cardUrlImage,
+        //                     accessibilityText: cards.contrato
+        //                 }
+        //             };
+        //         });
+        //         conv.ask(new Carousel(tmp));
+        //         conv.ask(voice);
+
+        //     } else {
+        //        conv.ask(new BasicCard({
+        //            title: cards.contrato,
+        //            text: 'Información básica de la Tarjeta',
+        //            image: {
+        //                url: cardUrlImage,
+        //                accessibilityText: cards.contrato
+        //            },
+        //            buttons: new Button({
+        //                title: 'Abrir APP',
+        //                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+        //            })
+        //        }));
+        //     }
         });  
         
 
