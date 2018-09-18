@@ -2,6 +2,9 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { ProductIntents } from "./dialogflow/intents/products";
 import { AccountIntents } from "./dialogflow/intents/accounts";
+import { CardIntents } from "./dialogflow/intents/cards";
+import { InfoIntents } from "./dialogflow/intents/info";
+
 import { dialogflow } from "actions-on-google";
 
 class AppDialogFlow {
@@ -10,7 +13,10 @@ class AppDialogFlow {
     public app;
     public productIntents: ProductIntents = new ProductIntents();
     public accountIntents: AccountIntents = new AccountIntents();
+    public cardIntents: CardIntents = new CardIntents();
+    public infoIntents: InfoIntents = new InfoIntents();
 
+    
 
     constructor() {
         console.log('AppDialogFlow constructor');
@@ -21,6 +27,9 @@ class AppDialogFlow {
 
         this.productIntents.intents(this.app);
         this.accountIntents.intents(this.app);
+        this.cardIntents.intents(this.app);
+        this.infoIntents.intents(this.app);
+
 
     }
 
