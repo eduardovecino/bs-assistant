@@ -77,9 +77,9 @@ export class AccountIntents /*extends BaseIntent*/ {
         });
 
         // Saldo cuenta
-        app.intent('Saldo cuenta', (conv, { tipo_cuenta }) => {
+        app.intent('Saldo cuenta', (conv, { last4numbers }) => {
             accounts.forEach((account) => {
-                if (account.iban === tipo_cuenta) {
+                if (last4numbers) {
                     conv.ask('El saldo  de la cuenta ' + account.descripcion + ' es de ' + account.balance);
                 }
             });
