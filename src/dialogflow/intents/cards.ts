@@ -48,7 +48,7 @@ export class CardIntents /*extends BaseIntent*/ {
                    })
                }));
             }
-        }); 
+        });  
         
 
         // //TARJETA SELECCIONADA
