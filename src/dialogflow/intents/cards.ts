@@ -14,6 +14,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
+
            if (cards.length > 1) {
                 var voice = 'Tus tarjetas son' + ' '
                 const tmp = {
@@ -53,8 +54,9 @@ export class CardIntents /*extends BaseIntent*/ {
 
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
-                //cards.forEach((cards) => {
-                    conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + ' Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                cards.forEach((cards) => {
+                    if (cards.contracto === option) {
+                        conv.ask('Has seleccionado la ' + cards.contracto + ' con ' + cards.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
                         conv.ask(new BasicCard({
                             title: cards.contracto,
@@ -68,8 +70,9 @@ export class CardIntents /*extends BaseIntent*/ {
                                 url: 'http://www.eduvecino.com/GA_BMA/app.php',
                             })
                         })
-                    );
-               // });
+                        );
+                    }
+                });
         });
 
 
