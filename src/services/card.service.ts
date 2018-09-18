@@ -7,12 +7,12 @@ export class CardService extends RestManager {
         if(this.isMock) {
             const data = fs.readFileSync('mock/card/get-card.json');
             const jsonData = JSON.parse(data.toString());
-            return jsonData;
+            return jsonData.data;
         } else {
             // return this.get();
             const data = fs.readFileSync('mock/card/get-card.json');
             const jsonData = JSON.parse(data.toString());
-            return jsonData;
+            return jsonData.data;
         }
     }
 }
