@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const card_service_1 = require("../../services/card.service");
 const actions_on_google_1 = require("actions-on-google");
+const card_manager_1 = require("../../managers/card.manager");
 class CardIntents /*extends BaseIntent*/ {
     constructor() {
         this.cardService = new card_service_1.CardService();
@@ -92,32 +93,23 @@ class CardIntents /*extends BaseIntent*/ {
             }
         });
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            for (let i = 0; i < cards.length; i++) {
-                const card4Numbers = cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 4) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 3) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 2) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 1);
-                if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
-                    const tmp = {
-                        dividers: true,
-                        columns: ['header 1', 'header 2', 'header 3'],
-                        rows: []
-                    };
-                    cards.detalleMesActual.forEach((detail) => {
-                        tmp.rows.push([detail.concepto, detail.fecha, detail.importe]);
+            const card = card_manager_1.CardManager.getCardByLast4(cards, last4CardNumbers);
+            if (card) {
+                const tmp = {
+                    dividers: true,
+                    columns: ['Concepto', 'Fecha', 'Importe'],
+                    rows: []
+                };
+                card.detalleMesActual.forEach((detail) => {
+                    tmp.rows.push({
+                        cells: [detail.concepto, detail.fecha, detail.importe],
+                        dividerAfter: true
                     });
-                    conv.ask(new actions_on_google_1.Table(tmp));
-                    // conv.ask('Simple Response')
-                    //     conv.ask(new Table({
-                    //         dividers: true,
-                    //         columns: ['header 1', 'header 2', 'header 3'],
-                    //         rows: [
-                    //             [cards[0].detalleMesActual[1].concepto, cards[0].detalleMesActual[1].fecha, cards[0].detalleMesActual[1].importe],
-                    //             ['row 2 item 1', 'row 2 item 2', 'row 2 item 3'],
-                    //         ],
-                    //     }))
-                    break;
-                }
-                else if (cards.length - 1 === i) {
-                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
-                }
+                });
+                conv.ask(new actions_on_google_1.Table(tmp));
+            }
+            else {
+                conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
             }
         });
     }

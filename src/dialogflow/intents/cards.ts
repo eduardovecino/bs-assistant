@@ -1,5 +1,6 @@
 import { CardService } from '../../services/card.service';
 import { BasicCard, Carousel, Button, Table, Image, TableOptions } from 'actions-on-google';
+import { CardManager } from '../../managers/card.manager';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -100,37 +101,26 @@ export class CardIntents /*extends BaseIntent*/ {
         });
 
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
+            const card = CardManager.getCardByLast4(cards, last4CardNumbers);
 
-            for (let i = 0; i < cards.length; i++) {
-                const card4Numbers = cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 4) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 3) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 2) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 1);
-                if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
-                    const tmp:TableOptions ={
-                        dividers: true,
-                        columns: ['header 1', 'header 2', 'header 3'],
-                        rows: []
-                    };
-                    cards.detalleMesActual.forEach((detail) => {
-                        tmp.rows.push(
-                             [detail.concepto, detail.fecha, detail.importe]
-                        );
-                    });
-                    conv.ask(new Table(tmp));
-                  
-                
-                // conv.ask('Simple Response')
-                //     conv.ask(new Table({
-                //         dividers: true,
-                //         columns: ['header 1', 'header 2', 'header 3'],
-                //         rows: [
-                //             [cards[0].detalleMesActual[1].concepto, cards[0].detalleMesActual[1].fecha, cards[0].detalleMesActual[1].importe],
-                //             ['row 2 item 1', 'row 2 item 2', 'row 2 item 3'],
-                //         ],
-                //     }))
-                    break;
-                  } else if (cards.length -1 === i ) {
-                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros')
-                }
-             } 
+            if (card) {
+                const tmp: TableOptions = {
+                    dividers: true,
+                    columns: ['Concepto', 'Fecha', 'Importe'],
+                    rows: []
+                };
+                card.detalleMesActual.forEach((detail) => {
+                    tmp.rows.push(
+                        {
+                            cells: [detail.concepto, detail.fecha, detail.importe],
+                            dividerAfter: true
+                        }
+                    );
+                });
+                conv.ask(new Table(tmp));
+            } else {
+                conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros')
+            }
         });
     }
 }
