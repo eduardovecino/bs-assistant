@@ -110,18 +110,15 @@ class CardIntents /*extends BaseIntent*/ {
                         header: 'header 3', align: 'TRAILING'
                     },
                 ],
-                items: {}
+                rows: []
             };
-            conv.ask(new actions_on_google_1.Table({
-                rows: [
-                    cards.forEach((card) => {
-                        tmp.items[card.detalleMesActual] = {
-                            cells: [cards.detalleMesActual.concepto, cards.detalleMesActual.fecha, cards.detalleMesActual.importe],
-                            dividerAfter: true,
-                        };
-                    })
-                ]
-            }));
+            cards.forEach((card) => {
+                tmp.rows.push({
+                    cells: [cards.detalleMesActual.concepto, cards.detalleMesActual.fecha, cards.detalleMesActual.importe],
+                    dividerAfter: true
+                });
+            });
+            conv.ask(new actions_on_google_1.Table(tmp));
         });
     }
 }
