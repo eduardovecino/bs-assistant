@@ -86,7 +86,7 @@ class CardIntents /*extends BaseIntent*/ {
                         conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible);
                     }
                     else /*if (encontrada === 0 && cards.length + 1 === index)*/ {
-                        conv.ask("hola");
+                        conv.ask("hola" + index);
                         // conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
