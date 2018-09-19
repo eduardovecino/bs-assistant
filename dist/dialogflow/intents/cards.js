@@ -74,15 +74,15 @@ class CardIntents /*extends BaseIntent*/ {
         });
         //Saldo Tarjeta
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            let encontrada = 0;
             if (cards.length === 1) {
                 conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible);
             }
             else {
-                const encontrada = 0;
                 cards.forEach((card, i) => {
                     const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
                     if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
-                        const encontrada = 1;
+                        encontrada = 1;
                         conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible);
                     }
                     else if (encontrada === 0 && cards.length + 1 === i) {
