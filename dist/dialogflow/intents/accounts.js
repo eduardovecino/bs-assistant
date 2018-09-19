@@ -66,16 +66,18 @@ class AccountIntents /*extends BaseIntent*/ {
         });
         // Saldo cuenta
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+            let encontrada = 0;
             if (accounts.length === 1) {
                 conv.ask('El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance);
             }
             else {
-                accounts.forEach((account) => {
+                accounts.forEach((account, index) => {
                     const iban4Numbers = account.iban.charAt(account.iban.length - 4) + account.iban.charAt(account.iban.length - 3) + account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1);
                     if (parseInt(last4numbers) === parseInt(iban4Numbers) || tipo_cuenta === account.descripcion) {
+                        encontrada = 1;
                         conv.ask('El saldo  de tu ' + account.descripcion + ' es de ' + account.balance);
                     }
-                    else {
+                    else if (encontrada === 0 && accounts.length - 1 === index) {
                         conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
