@@ -84,7 +84,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //Saldo Tarjeta
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers },  { tipo_tarjeta }) => {
-            accounts.forEach((account) => {
+            cards.forEach((cards) => {
                 // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
                 const card4Numbers = cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 4) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 3) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 2) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 1);
                 if (parseInt(last4CardNumbers) === parseInt(card4Numbers)) {
