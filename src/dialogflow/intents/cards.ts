@@ -104,12 +104,40 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Movimientos', (conv) => {
             conv.ask('hola hola');
             conv.ask(new Table({
-                dividers: true,
-                columns: ['header 1', 'header 2', 'header 3'],
-                rows: [
-                    ['row 1 item 1', 'row 1 item 2', 'row 1 item 3'],
-                    ['row 2 item 1', 'row 2 item 2', 'row 2 item 3'],
+                title: 'Cuenta/Tarjeta X',
+                subtitle: 'Últimos movimientos:',
+                image: {
+                    url: 'https://www.vectorlogo.es/wp-content/uploads/2015/10/logo-vector-banco-mediolanum.jpg',
+                    accessibilityText: 'Actions on Google'
+                },
+                columns: [
+                    {
+                        header: 'Concepto',
+                        align: 'CENTER',
+                    },
+                    {
+                        header: 'Fecha',
+                        align: 'LEADING',
+                    },
+                    {
+                        header: 'Importe',
+                        align: 'TRAILING',
+                    },
                 ],
+                rows: [
+                    {
+                        cells: ['Amazon', '16/07/2018', '234€'],
+                        dividerAfter: false,
+                    },
+                    {
+                        cells: ['Farmacia Pepita', '15/07/2018', '6€'],
+                        dividerAfter: true,
+                    },
+                    {
+                        cells: ['Txocoa', '15/07/2018', '14€'],
+                    },
+                ],
+
             }))
         });
 
