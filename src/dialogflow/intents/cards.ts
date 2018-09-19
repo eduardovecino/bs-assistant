@@ -102,12 +102,12 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //MOVIMIENTOS DE TARJETA
         app.intent('Movimientos', (conv) => {
-            conv.ask('hola hola');
+            conv.ask('Tus últimos movimientos de tarjertas son:');
             conv.ask(new Table({
-                title: 'Cuenta/Tarjeta X',
+                title: 'Tarjeta:',
                 subtitle: 'Últimos movimientos:',
                 image: {
-                    url: 'https://www.vectorlogo.es/wp-content/uploads/2015/10/logo-vector-banco-mediolanum.jpg',
+                    url: 'https://www.comparativadebancos.com/wp-content/uploads/2013/07/banco-sabadell-logo.png',
                     accessibilityText: 'Actions on Google'
                 },
                 columns: [
@@ -126,7 +126,7 @@ export class CardIntents /*extends BaseIntent*/ {
                 ],
                 rows: [
                     {
-                        cells: ['Amazon', '16/07/2018', '234€'],
+                        cells: [cards[0].detalleMesActual.concepto, cards[0].detalleMesActual.fecha, cards[0].detalleMesActual.importe],
                         dividerAfter: false,
                     },
                     {
@@ -140,33 +140,6 @@ export class CardIntents /*extends BaseIntent*/ {
 
             }))
         });
-
-        // app.intent('Movimientos', (conv) => {
-        //     if (logged === '1') {
-        //         var voice = 'Tus cuentas son' + ' ';
-        //         const tmp = {
-        //             title: 'Mis Cuentas' + ' ',
-        //             items: {}
-        //         };
-        //         accounts.forEach((account) => {
-        //             voice = voice + ' ' + account.name + ',';
-        //             tmp.items[account.id] = {
-        //                 title: account.name,
-        //                 description: account.description,
-        //                 image: {
-        //                     url: account.url,
-        //                     accessibilityText: account.name
-        //                 }
-        //             };
-        //         });
-        //         conv.ask(new List(tmp));
-        //         conv.ask(voice);
-        //         conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
-        //     } else {
-        //         conv.ask(notLogged);
-        //         suggestions(conv);
-        //     }
-
     }
 }
  
