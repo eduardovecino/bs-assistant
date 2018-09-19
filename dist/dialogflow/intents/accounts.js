@@ -41,7 +41,7 @@ class AccountIntents /*extends BaseIntent*/ {
             accounts.forEach((account) => {
                 if (account.iban === option) {
                     conv.ask('Has seleccionado la cuenta ' + account.descripcion + ' ');
-                    conv.ask('El saldo es de ' + accounts[0].balance);
+                    conv.ask(' El saldo es de ' + accounts[0].balance);
                 }
             });
             // accounts.forEach((account) => {
@@ -78,7 +78,7 @@ class AccountIntents /*extends BaseIntent*/ {
                         conv.ask('El saldo  de tu ' + account.descripcion + ' es de ' + account.balance);
                     }
                     else if (encontrada === 0 && accounts.length - 1 === index) {
-                        conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
+                        conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros' + tipo_cuenta);
                     }
                 });
             }
