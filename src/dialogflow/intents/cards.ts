@@ -34,7 +34,6 @@ export class CardIntents /*extends BaseIntent*/ {
                 });
                 conv.ask(new Carousel(tmp));
                 conv.ask(voice);
-
             } else {
                conv.ask(new BasicCard({
                    title: cards.contrato,
@@ -84,19 +83,21 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //Saldo Tarjeta
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers },  { tipo_tarjeta }) => {
+            if (cards.length === 1) {
+                conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible);
+            } else {
             cards.forEach((cards) => {
                 // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
                 const card4Numbers = cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 4) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 3) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 2) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 1);
-                if (parseInt(last4CardNumbers) === parseInt(card4Numbers)) {
+                if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */ ) {
                     // conv.ask(iban4Numbers + last4numbers);
                     conv.ask('El saldo  de la ' + cards.cuentaRelacionada + ' es de ' + cards.saldoDisponible);
+                } else {
+                    conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                 }
-            });
-        });
-
-
-
-
+              });
+            }
+         });
     }
 }
 

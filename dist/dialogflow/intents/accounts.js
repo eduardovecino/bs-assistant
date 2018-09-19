@@ -71,15 +71,21 @@ class AccountIntents /*extends BaseIntent*/ {
             });
         });
         // Saldo cuenta
-        app.intent('Saldo cuenta', (conv, { last4numbers }) => {
-            accounts.forEach((account) => {
-                // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
-                const iban4Numbers = account.iban.charAt(account.iban.length - 4) + account.iban.charAt(account.iban.length - 3) + account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1);
-                if (parseInt(last4numbers) === parseInt(iban4Numbers)) {
-                    // conv.ask(iban4Numbers + last4numbers);
-                    conv.ask('El saldo  de la ' + account.descripcion + ' es de ' + account.balance);
-                }
-            });
+        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+            if (accounts.length === 1) {
+                conv.ask('El saldo de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance);
+            }
+            else {
+                accounts.forEach((account) => {
+                    const iban4Numbers = account.iban.charAt(account.iban.length - 4) + account.iban.charAt(account.iban.length - 3) + account.iban.charAt(account.iban.length - 2) + account.iban.charAt(account.iban.length - 1);
+                    if (parseInt(last4numbers) === parseInt(iban4Numbers) || tipo_cuenta === account.descripcion) {
+                        conv.ask('El saldo de tu ' + account.descripcion + ' es de ' + account.balance);
+                    }
+                    else {
+                        conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
+                    }
+                });
+            }
         });
     }
 }
