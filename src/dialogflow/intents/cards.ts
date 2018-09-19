@@ -129,11 +129,9 @@ export class CardIntents /*extends BaseIntent*/ {
                         );
                     });
                     conv.ask(new Table(tmp));
-                   }
-                   break;
+                    break;
+                   }      
             }
- }
-
         });
     }
 }

@@ -117,12 +117,11 @@ class CardIntents /*extends BaseIntent*/ {
                         });
                     });
                     conv.ask(new actions_on_google_1.Table(tmp));
+                    break;
                 }
-                break;
             }
         });
     }
-    ;
 }
 exports.CardIntents = CardIntents;
 //# sourceMappingURL=cards.js.map
