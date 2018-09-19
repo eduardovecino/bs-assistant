@@ -65,7 +65,7 @@ class AccountIntents /*extends BaseIntent*/ {
             // });
         });
         // Saldo cuenta
-        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+        app.intent('Saldo cuenta', (conv, { last4numbers, tipo_cuenta }) => {
             let encontrada = 0;
             if (accounts.length === 1) {
                 conv.ask('El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance);
