@@ -92,6 +92,38 @@ class CardIntents /*extends BaseIntent*/ {
                 });
             }
         });
+        app.intent('Movimientos', conv => {
+            const tmp = {
+                title: 'Listado de Movimientos',
+                subtitle: 'Tarjeta',
+                image: new actions_on_google_1.Image({
+                    url: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Banco_Sabadell_logo.svg/1280px-Banco_Sabadell_logo.svg.png',
+                    alt: 'Banco Sabadell'
+                }),
+                columns: [
+                    {
+                        header: 'header 1', align: 'CENTER'
+                    },
+                    {
+                        header: 'header 2', align: 'LEADING'
+                    },
+                    {
+                        header: 'header 3', align: 'TRAILING'
+                    },
+                ],
+                items: {}
+            };
+            conv.ask(new actions_on_google_1.Table({
+                rows: [
+                    cards.forEach((card) => {
+                        tmp.items[card.detalleMesActual] = {
+                            cells: [cards.detalleMesActual.concepto, cards.detalleMesActual.fecha, cards.detalleMesActual.importe],
+                            dividerAfter: true,
+                        };
+                    })
+                ]
+            }));
+        });
     }
 }
 exports.CardIntents = CardIntents;
