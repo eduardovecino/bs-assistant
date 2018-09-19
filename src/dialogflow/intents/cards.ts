@@ -1,5 +1,5 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button } from 'actions-on-google';
+import { BasicCard, Carousel, Button, Table } from 'actions-on-google';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -78,7 +78,6 @@ export class CardIntents /*extends BaseIntent*/ {
         // //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
                 conv.ask('Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell');
-           
         });
 
 
@@ -94,12 +93,24 @@ export class CardIntents /*extends BaseIntent*/ {
                         encontrada = 1;
                         conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible);
                     } else if (encontrada === 0 && cards.length -1 === index) {
-                        conv.ask("hola")
-                        // conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
+                        conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
             }
         });   
+
+
+        //MOVIMIENTOS DE TARJETA
+        app.intent('Movimientos', (conv) => {
+            conv.ask(new Table({
+                dividers: true,
+                columns: ['header 1', 'header 2', 'header 3'],
+                rows: [
+                    ['row 1 item 1', 'row 1 item 2', 'row 1 item 3'],
+                    ['row 2 item 1', 'row 2 item 2', 'row 2 item 3'],
+                ],
+            }))
+        })
     }
 }
  
