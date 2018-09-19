@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const card_service_1 = require("../../services/card.service");
 const card_manager_1 = require("../../managers/card.manager");
-const actions_on_google_1 = require("actions-on-google");
 class CardRoutes {
     constructor() {
         this.cardService = new card_service_1.CardService();
@@ -19,18 +18,8 @@ class CardRoutes {
             const cards = this.cardService.getCards();
             const card = card_manager_1.CardManager.getCardByLast4(cards, req.params.last4);
             if (card) {
-                const tmp = {
-                    dividers: true,
-                    columns: ['Concepto', 'Fecha', 'Importe'],
-                    rows: []
-                };
-                card.detalleMesActual.forEach((detail) => {
-                    tmp.rows.push({
-                        cells: [detail.concepto, detail.fecha, detail.importe],
-                        dividerAfter: true
-                    });
-                });
-                res.status(200).send(new actions_on_google_1.Table(tmp));
+                const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
+                res.status(200).send(movementsTable);
             }
             else {
                 res.status(400).send('No se ha encontrado la tarjeta');

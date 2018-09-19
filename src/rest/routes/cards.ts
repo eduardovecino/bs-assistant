@@ -25,21 +25,9 @@ export class CardRoutes {
                 const card = CardManager.getCardByLast4(cards, req.params.last4);
 
                 if (card) {
-                    const tmp: TableOptions = {
-                        dividers: true,
-                        columns: ['Concepto', 'Fecha', 'Importe'],
-                        rows: []
-                    };
-                    card.detalleMesActual.forEach((detail) => {
-                        tmp.rows.push(
-                            {
-                                cells: [detail.concepto, detail.fecha, detail.importe],
-                                dividerAfter: true
-                            }
-                        );
-                    });
+                    const movementsTable = CardManager.generateMovementsTable(card);
 
-                    res.status(200).send(new Table(tmp));
+                    res.status(200).send(movementsTable);
                 } else {
                     res.status(400).send('No se ha encontrado la tarjeta');
                 }

@@ -1,3 +1,5 @@
+import { Table, TableOptions } from "actions-on-google";
+
 export class CardManager {
 
 
@@ -13,5 +15,23 @@ export class CardManager {
             }
         }
         return null;
+    }
+
+    public static generateMovementsTable(card) {
+        const tmp: TableOptions = {
+            dividers: true,
+            columns: ['Concepto', 'Fecha', 'Importe'],
+            rows: []
+        };
+        card.detalleMesActual.forEach((detail) => {
+            tmp.rows.push(
+                {
+                    cells: [detail.concepto, detail.fecha, detail.importe],
+                    dividerAfter: true
+                }
+            );
+        });
+
+        return new Table(tmp);
     }
 }

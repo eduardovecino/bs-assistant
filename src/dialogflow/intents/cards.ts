@@ -104,20 +104,9 @@ export class CardIntents /*extends BaseIntent*/ {
             const card = CardManager.getCardByLast4(cards, last4CardNumbers);
 
             if (card) {
-                const tmp: TableOptions = {
-                    dividers: true,
-                    columns: ['Concepto', 'Fecha', 'Importe'],
-                    rows: []
-                };
-                card.detalleMesActual.forEach((detail) => {
-                    tmp.rows.push(
-                        {
-                            cells: [detail.concepto, detail.fecha, detail.importe],
-                            dividerAfter: true
-                        }
-                    );
-                });
-                conv.ask(new Table(tmp));
+                const movementsTable = CardManager.generateMovementsTable(card);
+
+                conv.ask(movementsTable);
             } else {
                 conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros')
             }

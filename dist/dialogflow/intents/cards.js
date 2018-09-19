@@ -95,18 +95,8 @@ class CardIntents /*extends BaseIntent*/ {
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             const card = card_manager_1.CardManager.getCardByLast4(cards, last4CardNumbers);
             if (card) {
-                const tmp = {
-                    dividers: true,
-                    columns: ['Concepto', 'Fecha', 'Importe'],
-                    rows: []
-                };
-                card.detalleMesActual.forEach((detail) => {
-                    tmp.rows.push({
-                        cells: [detail.concepto, detail.fecha, detail.importe],
-                        dividerAfter: true
-                    });
-                });
-                conv.ask(new actions_on_google_1.Table(tmp));
+                const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
+                conv.ask(movementsTable);
             }
             else {
                 conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');

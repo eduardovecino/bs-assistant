@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const actions_on_google_1 = require("actions-on-google");
 class CardManager {
     constructor() {
     }
@@ -11,6 +12,20 @@ class CardManager {
             }
         }
         return null;
+    }
+    static generateMovementsTable(card) {
+        const tmp = {
+            dividers: true,
+            columns: ['Concepto', 'Fecha', 'Importe'],
+            rows: []
+        };
+        card.detalleMesActual.forEach((detail) => {
+            tmp.rows.push({
+                cells: [detail.concepto, detail.fecha, detail.importe],
+                dividerAfter: true
+            });
+        });
+        return new actions_on_google_1.Table(tmp);
     }
 }
 exports.CardManager = CardManager;
