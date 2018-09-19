@@ -93,6 +93,7 @@ class CardIntents /*extends BaseIntent*/ {
         });
         //MOVIMIENTOS DE TARJETA
         app.intent('Movimientos', (conv) => {
+            conv.ask('hola hola');
             conv.ask(new actions_on_google_1.Table({
                 dividers: true,
                 columns: ['header 1', 'header 2', 'header 3'],
@@ -102,6 +103,31 @@ class CardIntents /*extends BaseIntent*/ {
                 ],
             }));
         });
+        // app.intent('Movimientos', (conv) => {
+        //     if (logged === '1') {
+        //         var voice = 'Tus cuentas son' + ' ';
+        //         const tmp = {
+        //             title: 'Mis Cuentas' + ' ',
+        //             items: {}
+        //         };
+        //         accounts.forEach((account) => {
+        //             voice = voice + ' ' + account.name + ',';
+        //             tmp.items[account.id] = {
+        //                 title: account.name,
+        //                 description: account.description,
+        //                 image: {
+        //                     url: account.url,
+        //                     accessibilityText: account.name
+        //                 }
+        //             };
+        //         });
+        //         conv.ask(new List(tmp));
+        //         conv.ask(voice);
+        //         conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
+        //     } else {
+        //         conv.ask(notLogged);
+        //         suggestions(conv);
+        //     }
     }
 }
 exports.CardIntents = CardIntents;

@@ -1,5 +1,5 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button, Table } from 'actions-on-google';
+import { BasicCard, Carousel, Button, Table, List } from 'actions-on-google';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -102,6 +102,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //MOVIMIENTOS DE TARJETA
         app.intent('Movimientos', (conv) => {
+            conv.ask('hola hola');
             conv.ask(new Table({
                 dividers: true,
                 columns: ['header 1', 'header 2', 'header 3'],
@@ -110,7 +111,34 @@ export class CardIntents /*extends BaseIntent*/ {
                     ['row 2 item 1', 'row 2 item 2', 'row 2 item 3'],
                 ],
             }))
-        })
+        });
+
+        // app.intent('Movimientos', (conv) => {
+        //     if (logged === '1') {
+        //         var voice = 'Tus cuentas son' + ' ';
+        //         const tmp = {
+        //             title: 'Mis Cuentas' + ' ',
+        //             items: {}
+        //         };
+        //         accounts.forEach((account) => {
+        //             voice = voice + ' ' + account.name + ',';
+        //             tmp.items[account.id] = {
+        //                 title: account.name,
+        //                 description: account.description,
+        //                 image: {
+        //                     url: account.url,
+        //                     accessibilityText: account.name
+        //                 }
+        //             };
+        //         });
+        //         conv.ask(new List(tmp));
+        //         conv.ask(voice);
+        //         conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
+        //     } else {
+        //         conv.ask(notLogged);
+        //         suggestions(conv);
+        //     }
+
     }
 }
  
