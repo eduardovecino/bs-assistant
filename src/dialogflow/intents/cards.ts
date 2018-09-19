@@ -111,10 +111,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     };
                     cards.detalleMesActual.forEach((detail) => {
                         tmp.rows.push(
-                            {
-                                cells: [detail.concepto, detail.fecha, detail.importe],
-                                dividerAfter: true
-                            }
+                             [detail.concepto, detail.fecha, detail.importe]
                         );
                     });
                     conv.ask(new Table(tmp));

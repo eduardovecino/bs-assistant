@@ -101,10 +101,7 @@ class CardIntents /*extends BaseIntent*/ {
                         rows: []
                     };
                     cards.detalleMesActual.forEach((detail) => {
-                        tmp.rows.push({
-                            cells: [detail.concepto, detail.fecha, detail.importe],
-                            dividerAfter: true
-                        });
+                        tmp.rows.push([detail.concepto, detail.fecha, detail.importe]);
                     });
                     conv.ask(new actions_on_google_1.Table(tmp));
                     // conv.ask('Simple Response')
