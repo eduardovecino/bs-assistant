@@ -2,7 +2,7 @@
     "data": [
         {
             "contrato": "00000000000009",
-            "cuentaRelacionada": "00810000000000000002",
+            "cuentaRelacionada": "00810000000000000001",
             "estado": "",
             "fechaLiquiActual": "2014-02-14 00:00:00",
             "fechaProxiLiquidacion": "2014-04-05 00:00:00",
@@ -70,7 +70,7 @@
         },
         {
             "contrato": "00000000000007",
-            "cuentaRelacionada": "00810000000000000002",
+            "cuentaRelacionada": "00810000000000000003",
             "estado": "",
             "fechaLiquiActual": "2014-02-14 00:00:00",
             "fechaProxiLiquidacion": "2014-04-05 00:00:00",

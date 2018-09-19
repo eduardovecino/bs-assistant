@@ -72,6 +72,17 @@ class CardIntents /*extends BaseIntent*/ {
         app.intent('Bloquear tarjeta', (conv) => {
             conv.ask('Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell');
         });
+        //Saldo Tarjeta
+        app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            accounts.forEach((account) => {
+                // const iban4Numbers = account.iban.charAt(account.iban.length - 3)+account.iban.charAt(account.iban.length -2)+account.iban.charAt(account.iban.length-1)+account.iban.charAt(account.iban.length)
+                const card4Numbers = cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 4) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 3) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 2) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 1);
+                if (parseInt(last4CardNumbers) === parseInt(card4Numbers)) {
+                    // conv.ask(iban4Numbers + last4numbers);
+                    conv.ask('El saldo  de la ' + cards.cuentaRelacionada + ' es de ' + cards.saldoDisponible);
+                }
+            });
+        });
     }
 }
 exports.CardIntents = CardIntents;
