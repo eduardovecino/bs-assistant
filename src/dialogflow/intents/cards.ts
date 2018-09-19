@@ -106,9 +106,10 @@ export class CardIntents /*extends BaseIntent*/ {
             if (card) {
                 const movementsTable = CardManager.generateMovementsTable(card);
 
+                conv.ask('Aquí tienes los movimientos');
                 conv.ask(movementsTable);
             } else {
-                conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros')
+                conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
             }
         });
     }

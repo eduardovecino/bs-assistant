@@ -96,6 +96,7 @@ class CardIntents /*extends BaseIntent*/ {
             const card = card_manager_1.CardManager.getCardByLast4(cards, last4CardNumbers);
             if (card) {
                 const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
+                conv.ask('Aquí tienes los movimientos');
                 conv.ask(movementsTable);
             }
             else {
