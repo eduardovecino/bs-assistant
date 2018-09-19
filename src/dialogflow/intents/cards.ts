@@ -123,7 +123,7 @@ export class CardIntents /*extends BaseIntent*/ {
                         }
                     )}
             );
-            conv.ask(tmp);
+            conv.ask("hola"+tmp);
         });
     }
 }

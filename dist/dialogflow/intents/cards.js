@@ -112,7 +112,7 @@ class CardIntents /*extends BaseIntent*/ {
                     dividerAfter: true
                 });
             });
-            conv.ask(tmp);
+            conv.ask("hola" + tmp);
         });
     }
 }
