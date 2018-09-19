@@ -100,21 +100,15 @@ class CardIntents /*extends BaseIntent*/ {
                     alt: 'Banco Sabadell'
                 }),
                 columns: [
-                    {
-                        header: 'header 1', align: 'CENTER'
-                    },
-                    {
-                        header: 'header 2', align: 'LEADING'
-                    },
-                    {
-                        header: 'header 3', align: 'TRAILING'
-                    },
+                    { header: 'header 1', align: 'CENTER' },
+                    { header: 'header 2', align: 'LEADING' },
+                    { header: 'header 3', align: 'TRAILING' },
                 ],
                 rows: []
             };
             cards.forEach((card) => {
                 tmp.rows.push({
-                    cells: [cards.detalleMesActual.concepto, cards.detalleMesActual.fecha, cards.detalleMesActual.importe],
+                    cells: [card.detalleMesActual.concepto, card.detalleMesActual.fecha, card.detalleMesActual.importe],
                     dividerAfter: true
                 });
             });
