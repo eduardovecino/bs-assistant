@@ -93,7 +93,7 @@ class CardIntents /*extends BaseIntent*/ {
         });
         //MOVIMIENTOS DE TARJETA
         app.intent('Movimientos', (conv) => {
-            conv.ask('Tus últimos movimientos de tarjertas son:' + cards[0].detalleMesActual.concepto);
+            conv.ask('Tus últimos movimientos de tarjertas son:' + cards[1].detalleMesActual.concepto);
             // conv.ask(new Table({
             //     title: 'Tarjeta:',
             //     subtitle: 'Últimos movimientos:',
