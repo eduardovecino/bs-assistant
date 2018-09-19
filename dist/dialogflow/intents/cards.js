@@ -18,14 +18,14 @@ class CardIntents /*extends BaseIntent*/ {
                     title: 'Mis Tarjetas',
                     items: {}
                 };
-                cards.forEach((cards) => {
-                    voice = voice + ' ' + cards.contrato + ',';
-                    tmp.items[cards.contrato] = {
-                        title: cards.contrato,
-                        description: cards.cuentaRelacionada,
+                cards.forEach((card) => {
+                    voice = voice + ' ' + card.contrato + ',';
+                    tmp.items[card.contrato] = {
+                        title: card.contrato,
+                        description: card.cuentaRelacionada,
                         image: {
                             url: cardUrlImage,
-                            accessibilityText: cards.contrato
+                            accessibilityText: card.contrato
                         }
                     };
                 });
@@ -34,11 +34,11 @@ class CardIntents /*extends BaseIntent*/ {
             }
             else {
                 conv.ask(new actions_on_google_1.BasicCard({
-                    title: cards.contrato,
+                    title: cards[0].contrato,
                     text: 'Información básica de la Tarjeta',
                     image: {
                         url: cardUrlImage,
-                        accessibilityText: cards.contrato
+                        accessibilityText: cards[0].contrato
                     },
                     buttons: new actions_on_google_1.Button({
                         title: 'Abrir APP',
@@ -49,17 +49,17 @@ class CardIntents /*extends BaseIntent*/ {
         });
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
-            cards.forEach((cards) => {
+            cards.forEach((card) => {
                 if (cards.contrato === option) {
-                    conv.ask('Has seleccionado la ' + cards.contrato + ' con ' + cards.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
+                    conv.ask('Has seleccionado la ' + card.contrato + ' con ' + card.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
                     conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
                     conv.ask(new actions_on_google_1.BasicCard({
-                        title: cards.contrato,
+                        title: card.contrato,
                         image: {
                             url: cardUrlImage,
-                            accessibilityText: cards.contrato
+                            accessibilityText: card.contrato
                         },
-                        text: cards.cuentaRelacionada,
+                        text: card.cuentaRelacionada,
                         buttons: new actions_on_google_1.Button({
                             title: 'Abrir APP',
                             url: 'http://www.eduvecino.com/GA_BMA/app.php',
@@ -78,12 +78,14 @@ class CardIntents /*extends BaseIntent*/ {
                 conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible);
             }
             else {
-                cards.forEach((cards) => {
-                    const card4Numbers = cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 4) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 3) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 2) + cards.cuentaRelacionada.charAt(cards.cuentaRelacionada.length - 1);
+                const encontrada = 0;
+                cards.forEach((card, i) => {
+                    const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
                     if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
-                        conv.ask('El saldo  de la ' + cards.cuentaRelacionada + ' es de ' + cards.saldoDisponible);
+                        const encontrada = 1;
+                        conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible);
                     }
-                    else {
+                    else if (encontrada === 0 && cards.length === i) {
                         conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
