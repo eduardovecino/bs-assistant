@@ -88,13 +88,13 @@ export class CardIntents /*extends BaseIntent*/ {
             if (cards.length === 1) {
                 conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible);
             } else {
-                cards.forEach((card, index) => {
+                cards.forEach((card, i) => {
                     const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
                     if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
                         encontrada = 1;
                         conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible);
-                    } else /*if (encontrada = 0 && cards.length + 1 === index)*/ {
-                        conv.ask(index)
+                    } else /*if (encontrada === 0 && cards.length + 1 === index)*/ {
+                        conv.ask(i)
                         // conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
