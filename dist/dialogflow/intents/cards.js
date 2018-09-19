@@ -7,7 +7,7 @@ class CardIntents /*extends BaseIntent*/ {
         this.cardService = new card_service_1.CardService();
     }
     intents(app) {
-        const cards = this.cardService.getCard();
+        const cards = this.cardService.getCards();
         const notLogged = 'Para esta opción debes iniciar sesión con tú usuario';
         const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
         //CARROUSEL DE TARJETAS
@@ -91,31 +91,38 @@ class CardIntents /*extends BaseIntent*/ {
                 });
             }
         });
-        app.intent('Movimientos', conv => {
-            const tmp = {
-                title: 'Listado de Movimientos',
-                subtitle: 'Tarjeta',
-                image: new actions_on_google_1.Image({
-                    url: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Banco_Sabadell_logo.svg/1280px-Banco_Sabadell_logo.svg.png',
-                    alt: 'Banco Sabadell'
-                }),
-                columns: [
-                    { header: 'header 1', align: 'CENTER' },
-                    { header: 'header 2', align: 'LEADING' },
-                    { header: 'header 3', align: 'TRAILING' },
-                ],
-                rows: []
-            };
-            // cards.forEach((card) => {
-            tmp.rows.push({
-                cells: [cards[0].detalleMesActual[0].concepto, cards[0].detalleMesActual[0].fecha, cards[0].detalleMesActual[0].importe],
-                dividerAfter: true
+        app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            for (let i = 0; i < cards.length; i++) {
+                const card4Numbers = cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 4) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 3) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 2) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 1);
+                if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
+                    const tmp = {
+                        title: 'Listado de Movimientos',
+                        subtitle: 'Tarjeta',
+                        image: new actions_on_google_1.Image({
+                            url: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Banco_Sabadell_logo.svg/1280px-Banco_Sabadell_logo.svg.png',
+                            alt: 'Banco Sabadell'
+                        }),
+                        columns: [
+                            { header: 'header 1', align: 'CENTER' },
+                            { header: 'header 2', align: 'LEADING' },
+                            { header: 'header 3', align: 'TRAILING' },
+                        ],
+                        rows: []
+                    };
+                    const detail = cards.detalleMesActual;
+                    cards.detalleMesActual.forEach((detail) => {
+                        tmp.rows.push({
+                            cells: [detail.concepto, detail.fecha, detail.importe],
+                            dividerAfter: true
+                        });
+                    });
+                    conv.ask(new actions_on_google_1.Table(tmp));
+                }
+                break;
             }
-            // )}
-            );
-            conv.ask("hola" + tmp.rows);
         });
     }
+    ;
 }
 exports.CardIntents = CardIntents;
 //# sourceMappingURL=cards.js.map
