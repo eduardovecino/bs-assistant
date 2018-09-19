@@ -1,5 +1,5 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button, Table, Image } from 'actions-on-google';
+import { BasicCard, Carousel, Button, Table, TableOptions Image } from 'actions-on-google';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -98,7 +98,9 @@ export class CardIntents /*extends BaseIntent*/ {
                 });
             }
         });   
+
         app.intent('Movimientos', conv => { 
+            
             const tmp = {
                 title: 'Listado de Movimientos',
                 subtitle: 'Tarjeta',
@@ -109,23 +111,19 @@ export class CardIntents /*extends BaseIntent*/ {
                 columns: [
                     {header: 'header 1', align: 'CENTER'},
                     {header: 'header 2', align: 'LEADING'},
-                    {header: 'header 3',align: 'TRAILING'},
+                    {header: 'header 3', align: 'TRAILING'},
                 ],
                 rows: []
             }; 
-
             cards.forEach((card) => {
-                tmp.rows.push(
+                tmp.rows.push( 
                         {
                         cells: [card.detalleMesActual.concepto, card.detalleMesActual.fecha, card.detalleMesActual.importe],
                         dividerAfter: true
                         }
-                    )
-                }
+                    )}
             );
-
-            conv.ask(new Table(tmp));
-        
+            conv.ask(tmp);
         });
     }
 }

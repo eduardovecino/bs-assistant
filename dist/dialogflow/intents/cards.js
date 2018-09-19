@@ -112,7 +112,7 @@ class CardIntents /*extends BaseIntent*/ {
                     dividerAfter: true
                 });
             });
-            conv.ask(new actions_on_google_1.Table(tmp));
+            conv.ask(tmp);
         });
     }
 }
