@@ -106,12 +106,13 @@ class CardIntents /*extends BaseIntent*/ {
                 ],
                 rows: []
             };
-            cards.forEach((card) => {
-                tmp.rows.push({
-                    cells: [card.detalleMesActual.concepto, card.detalleMesActual.fecha, card.detalleMesActual.importe],
-                    dividerAfter: true
-                });
-            });
+            // cards.forEach((card) => {
+            tmp.rows.push({
+                cells: [cards[0].detalleMesActual[0].concepto, cards[0].detalleMesActual[0].fecha, cards[0].detalleMesActual[0].importe],
+                dividerAfter: true
+            }
+            // )}
+            );
             conv.ask("hola" + tmp.rows);
         });
     }
