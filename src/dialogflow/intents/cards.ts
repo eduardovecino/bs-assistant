@@ -34,19 +34,11 @@ export class CardIntents /*extends BaseIntent*/ {
                 });
                 conv.ask(new Carousel(tmp));
                 conv.ask(voice);
+               conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
+
             } else {
-               conv.ask(new BasicCard({
-                   title: cards[0].contrato,
-                   text: 'Información básica de la Tarjeta',
-                   image: {
-                       url: cardUrlImage,
-                       accessibilityText: cards[0].contrato
-                   },
-                   buttons: new Button({
-                       title: 'Abrir APP',
-                       url: 'http://eduvecino.com/GA_BMA/app_saba.php',
-                   })
-               }));
+               conv.ask('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+               conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
             }
         });  
         
@@ -55,21 +47,8 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
                 cards.forEach((card) => {
                     if (cards.contrato === option) {
-                        conv.ask('Has seleccionado la ' + card.contrato + ' con ' + card.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
-                        conv.ask('Puedes obtener el listado de movimientos o bloquear una tarjeta');
-                        conv.ask(new BasicCard({
-                            title: card.contrato,
-                            image: {
-                                url: cardUrlImage,
-                                accessibilityText: card.contrato
-                            },
-                            text: card.cuentaRelacionada,
-                            buttons: new Button({
-                                title: 'Abrir APP',
-                                url: 'http://www.eduvecino.com/GA_BMA/app.php',
-                            })
-                        })
-                        );
+                        conv.ask('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
+                        conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
                     }
                 });
         });
@@ -81,23 +60,62 @@ export class CardIntents /*extends BaseIntent*/ {
         });
 
 
-        //Saldo Tarjeta
+        //SALDO TARJETA
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             let encontrada = 0;
             if (cards.length === 1) {
-                conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+                conv.ask('El saldo de tu tarjeta' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
             } else {
                 cards.forEach((card, index) => {
                     const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
                     if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
                         encontrada = 1;
-                        conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible + ' €');
+                        conv.ask('El saldo  de tu tarjeta ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible + ' €');
+                        conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
                     } else if (encontrada === 0 && cards.length -1 === index) {
                         conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
                     }
                 });
             }
-        });   
+        });
+        
+        //FECHA LIQUIDACION TARJETA
+        app.intent('Fecha Liquidación Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            let encontrada = 0;
+            if (cards.length === 1) {
+                conv.ask('La fecha próxima de liquidación de tu tarjeta' + cards[0].cuentaRelacionada + ' es ' + cards[0].fechaProxiLiquidacion);
+            } else {
+                cards.forEach((card, index) => {
+                    const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
+                    if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
+                        encontrada = 1;
+                        conv.ask('La fecha próxima de liquidación de tu tarjeta ' + card.cuentaRelacionada + ' es ' + card.fechaProxiLiquidacion);
+                        conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
+                    } else if (encontrada === 0 && cards.length - 1 === index) {
+                        conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
+                    }
+                });
+            }
+        });
+
+        //LIMITES TARJETA
+        app.intent('Fecha Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            let encontrada = 0;
+            if (cards.length === 1) {
+                conv.ask('Los límites de tu tarjeta' + cards[0].cuentaRelacionada + ' son, limite autorizado ' + cards[0].limiteAutorizado + ' €, limite crédito ' + cards[0].limiteCredito + ' €');
+            } else {
+                cards.forEach((card, index) => {
+                    const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
+                    if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
+                        encontrada = 1;
+                        conv.ask('Los límites de tu tarjeta' + cards[0].cuentaRelacionada + ' son, limite autorizado ' + card.limiteAutorizado + ' €, limite crédito ' + card.limiteCredito + ' €');
+                        conv.ask('Puedes preguntame por los últimos movimientos, fecha liquidación, limites o bloquear tarjeta');
+                    } else if (encontrada === 0 && cards.length - 1 === index) {
+                        conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
+                    }
+                });
+            }
+        });
 
 
         //MOVIMIENTOS DE TARJETA
