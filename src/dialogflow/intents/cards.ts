@@ -91,7 +91,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */ ) {
                         conv.ask('El saldo  de la ' + cards.cuentaRelacionada + ' es de ' + cards.saldoDisponible);
                     } else {
-                        conv.ask('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
+                        conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
                     }
                 });
             }
