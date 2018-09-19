@@ -93,42 +93,42 @@ class CardIntents /*extends BaseIntent*/ {
         });
         //MOVIMIENTOS DE TARJETA
         app.intent('Movimientos', (conv) => {
-            conv.ask('Tus últimos movimientos de tarjertas son:');
-            conv.ask(new actions_on_google_1.Table({
-                title: 'Tarjeta:',
-                subtitle: 'Últimos movimientos:',
-                image: {
-                    url: 'https://www.comparativadebancos.com/wp-content/uploads/2013/07/banco-sabadell-logo.png',
-                    accessibilityText: 'Actions on Google'
-                },
-                columns: [
-                    {
-                        header: 'Concepto',
-                        align: 'CENTER',
-                    },
-                    {
-                        header: 'Fecha',
-                        align: 'LEADING',
-                    },
-                    {
-                        header: 'Importe',
-                        align: 'TRAILING',
-                    },
-                ],
-                rows: [
-                    {
-                        cells: [cards[0].detalleMesActual.concepto, cards[0].detalleMesActual.fecha, cards[0].detalleMesActual.importe],
-                        dividerAfter: false,
-                    },
-                    {
-                        cells: ['Farmacia Pepita', '15/07/2018', '6€'],
-                        dividerAfter: true,
-                    },
-                    {
-                        cells: ['Txocoa', '15/07/2018', '14€'],
-                    },
-                ],
-            }));
+            conv.ask('Tus últimos movimientos de tarjertas son:' + cards[0].detalleMesActual.concepto);
+            // conv.ask(new Table({
+            //     title: 'Tarjeta:',
+            //     subtitle: 'Últimos movimientos:',
+            //     image: {
+            //         url: 'https://www.comparativadebancos.com/wp-content/uploads/2013/07/banco-sabadell-logo.png',
+            //         accessibilityText: 'Actions on Google'
+            //     },
+            //     columns: [
+            //         {
+            //             header: 'Concepto',
+            //             align: 'CENTER',
+            //         },
+            //         {
+            //             header: 'Fecha',
+            //             align: 'LEADING',
+            //         },
+            //         {
+            //             header: 'Importe',
+            //             align: 'TRAILING',
+            //         },
+            //     ],
+            //     rows: [
+            //         {
+            //             cells: [cards[0].detalleMesActual.concepto, cards[0].detalleMesActual.fecha, cards[0].detalleMesActual.importe],
+            //             dividerAfter: false,
+            //         },
+            //         {
+            //             cells: ['Farmacia Pepita', '15/07/2018', '6€'],
+            //             dividerAfter: true,
+            //         },
+            //         {
+            //             cells: ['Txocoa', '15/07/2018', '14€'],
+            //         },
+            //     ],
+            // }))
         });
     }
 }
