@@ -100,7 +100,7 @@ export class CardIntents /*extends BaseIntent*/ {
         });
 
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
-            conv.ask('Movimientos de Tarjetas')
+
             for (let i = 0; i < cards.length; i++) {
                 const card4Numbers = cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 4) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 3) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 2) + cards[i].cuentaRelacionada.charAt(cards[i].cuentaRelacionada.length - 1);
                 if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
