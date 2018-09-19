@@ -1,5 +1,5 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button, Table, TableOptions Image } from 'actions-on-google';
+import { BasicCard, Carousel, Button, Table, Image } from 'actions-on-google';
 
 
 export class CardIntents /*extends BaseIntent*/ {
