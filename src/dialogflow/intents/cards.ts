@@ -130,7 +130,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     });
                     conv.ask(new Table(tmp));
                     break;
-                  } else {
+                  } else if (cards.length -1 === i ) {
                     conv.ask('No tienes movimientos de tarjetas disponibles para mostrar.')
                 }
              } 

@@ -119,7 +119,7 @@ class CardIntents /*extends BaseIntent*/ {
                     conv.ask(new actions_on_google_1.Table(tmp));
                     break;
                 }
-                else {
+                else if (cards.length - 1 === i) {
                     conv.ask('No tienes movimientos de tarjetas disponibles para mostrar.');
                 }
             }
