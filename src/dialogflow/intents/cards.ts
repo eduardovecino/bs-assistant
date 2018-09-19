@@ -16,6 +16,7 @@ export class CardIntents /*extends BaseIntent*/ {
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
 
+            /*
             if (cards.length > 1) {
                 var voice = 'Tus tarjetas son' + ' '
                 const tmp = {
@@ -49,11 +50,13 @@ export class CardIntents /*extends BaseIntent*/ {
                     })
                 }));
             }
+            */
         });
 
 
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
+            /*
             cards.forEach((card) => {
                 if (cards.contrato === option) {
                     conv.ask('Has seleccionado la ' + card.contrato + ' con ' + card.cuentaRelacionada + 'Puedes obtener el listado de movimientos o bloquear una tarjeta');
@@ -73,6 +76,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     );
                 }
             });
+            */
         });
 
 
@@ -84,13 +88,14 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //Saldo Tarjeta
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            /*
             let encontrada = 0;
             if (cards.length === 1) {
                 conv.ask('El saldo de tu ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
             } else {
                 cards.forEach((card, index) => {
                     const card4Numbers = card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 4) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 3) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 2) + card.cuentaRelacionada.charAt(card.cuentaRelacionada.length - 1);
-                    if (parseInt(last4CardNumbers) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
+                    if (parseInt(last4CardNumbers) === parseInt(card4Numbers)) {
                         encontrada = 1;
                         conv.ask('El saldo  de la ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible + ' €');
                     } else if (encontrada === 0 && cards.length - 1 === index) {
@@ -98,19 +103,20 @@ export class CardIntents /*extends BaseIntent*/ {
                     }
                 });
             }
+            */
         });
 
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
-            const card = CardManager.getCardByLast4(cards, last4CardNumbers);
+            this.cardService.getCard(last4CardNumbers).then(card => {
+                if (card) {
+                    const movementsTable = CardManager.generateMovementsTable(card);
 
-            if (card) {
-                const movementsTable = CardManager.generateMovementsTable(card);
-
-                conv.ask('Aquí tienes los movimientos');
-                conv.ask(movementsTable);
-            } else {
-                conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
-            }
+                    conv.ask('Aquí tienes los movimientos');
+                    conv.ask(movementsTable);
+                } else {
+                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
+                }
+            });
         });
     }
 }

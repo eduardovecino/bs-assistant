@@ -4,17 +4,18 @@ const rest_manager_1 = require("../managers/rest.manager");
 const fs = require("fs");
 class CardService extends rest_manager_1.RestManager {
     getCards() {
-        if (this.isMock) {
+        return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
-            return jsonData.data;
-        }
-        else {
-            // return this.get();
-            const data = fs.readFileSync('mock/card/get-cards.json');
+            resolve(jsonData.data);
+        });
+    }
+    getCard(last4) {
+        return new Promise((resolve, reject) => {
+            const data = fs.readFileSync('mock/card/get-card.json');
             const jsonData = JSON.parse(data.toString());
-            return jsonData.data;
-        }
+            resolve(jsonData.data);
+        });
     }
 }
 exports.CardService = CardService;

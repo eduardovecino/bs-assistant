@@ -14,25 +14,22 @@ export class CardRoutes {
     public routes(app): void {
         app.route('/cards')
             .get((req: Request, res: Response) => {
-                // Intercalar el servicio para recuperar los datos del servidor de sabadell
-                const data = this.cardService.getCards();
-                res.status(200).send(data.data);
+                this.cardService.getCards().then(cards => {
+                    res.status(200).send(cards);
+                })
             })
 
         app.route('/cards/:last4/movements')
             .get((req: Request, res: Response) => {
-                const cards = this.cardService.getCards()
-                const card = CardManager.getCardByLast4(cards, req.params.last4);
+                this.cardService.getCard(req.params.last4).then(card => {
+                    if (card) {
+                        const movementsTable = CardManager.generateMovementsTable(card);
 
-                if (card) {
-                    const movementsTable = CardManager.generateMovementsTable(card);
-
-                    res.status(200).send(movementsTable);
-                } else {
-                    res.status(400).send('No se ha encontrado la tarjeta');
-                }
-
-                
+                        res.status(200).send(movementsTable);
+                    } else {
+                        res.status(400).send('No se ha encontrado la tarjeta');
+                    }
+                })
             })
     }
 }

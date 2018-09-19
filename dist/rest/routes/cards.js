@@ -9,21 +9,21 @@ class CardRoutes {
     routes(app) {
         app.route('/cards')
             .get((req, res) => {
-            // Intercalar el servicio para recuperar los datos del servidor de sabadell
-            const data = this.cardService.getCards();
-            res.status(200).send(data.data);
+            this.cardService.getCards().then(cards => {
+                res.status(200).send(cards);
+            });
         });
         app.route('/cards/:last4/movements')
             .get((req, res) => {
-            const cards = this.cardService.getCards();
-            const card = card_manager_1.CardManager.getCardByLast4(cards, req.params.last4);
-            if (card) {
-                const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
-                res.status(200).send(movementsTable);
-            }
-            else {
-                res.status(400).send('No se ha encontrado la tarjeta');
-            }
+            this.cardService.getCard(req.params.last4).then(card => {
+                if (card) {
+                    const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
+                    res.status(200).send(movementsTable);
+                }
+                else {
+                    res.status(400).send('No se ha encontrado la tarjeta');
+                }
+            });
         });
     }
 }
