@@ -6,11 +6,24 @@ class CardRoutes {
     constructor() {
         this.cardService = new card_service_1.CardService();
     }
+    // public routes(app): void {
+    //     app.route('/cards')
+    //         .get((req: Request, res: Response) => {
+    //             this.cardService.getCards().then(cards => {
+    //                 res.status(200).send(cards);
+    //             })
+    //         })
     routes(app) {
         app.route('/cards')
             .get((req, res) => {
             this.cardService.getCards().then(cards => {
-                res.status(200).send(cards);
+                if (cards) {
+                    const carouselOfCards = card_manager_1.CardManager.cardsCarousel(cards);
+                    res.status(200).send(carouselOfCards);
+                }
+                else {
+                    res.status(400).send('No se ha encontrado las tarjetas');
+                }
             });
         });
         app.route('/cards/:last4/movements')

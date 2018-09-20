@@ -1,4 +1,7 @@
-import { Table, TableOptions } from "actions-on-google";
+import { Table, TableOptions, Carousel } from "actions-on-google";
+
+
+const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg'
 
 export class CardManager {
 
@@ -33,5 +36,25 @@ export class CardManager {
         });
 
         return new Table(tmp);
+
+    }
+
+    public static cardsCarousel(cards) {
+        const tmp = {
+            title: 'Mis Tarjetas',
+            items: {}
+        };
+        cards.forEach((card) => {
+            tmp.items[card.contrato] = {
+                title: card.contrato,
+                description: card.cuentaRelacionada,
+                image: {
+                    url: cardUrlImage,
+                    accessibilityText: card.contrato
+                }
+            };
+        });
+        return (new Carousel(tmp));
+
     }
 }

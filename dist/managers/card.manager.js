@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
+const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardManager {
     constructor() {
     }
@@ -26,6 +27,23 @@ class CardManager {
             });
         });
         return new actions_on_google_1.Table(tmp);
+    }
+    static cardsCarousel(cards) {
+        const tmp = {
+            title: 'Mis Tarjetas',
+            items: {}
+        };
+        cards.forEach((card) => {
+            tmp.items[card.contrato] = {
+                title: card.contrato,
+                description: card.cuentaRelacionada,
+                image: {
+                    url: cardUrlImage,
+                    accessibilityText: card.contrato
+                }
+            };
+        });
+        return (new actions_on_google_1.Carousel(tmp));
     }
 }
 exports.CardManager = CardManager;

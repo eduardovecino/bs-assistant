@@ -12,6 +12,16 @@ class CardIntents /*extends BaseIntent*/ {
         const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
+            this.cardService.getCards().then(cards => {
+                if (cards) {
+                    const carouselOfCards = card_manager_1.CardManager.cardsCarousel(cards);
+                    conv.ask('Aquí las tarjetas');
+                    conv.ask(carouselOfCards);
+                }
+                else {
+                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
+                }
+            });
             // if (cards.length > 1) {
             //     var voice = 'Tus tarjetas son' + ' '
             //     const tmp = {
