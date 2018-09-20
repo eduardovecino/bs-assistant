@@ -1,7 +1,7 @@
 {
     "data": [
         {
-            "contrato": "00000000000009",
+            "contrato": "00000000000007",
             "cuentaRelacionada": "00810000000000000001",
             "estado": "",
             "fechaLiquiActual": "2014-02-14 00:00:00",
@@ -67,7 +67,41 @@
                     "poblacion": "OFICINA 0901"
                 }
             ]
-        }
+        },
+                {
+                    "contrato": "00000000000009",
+                    "cuentaRelacionada": "00810000000000000003",
+                    "estado": "",
+                    "fechaLiquiActual": "2014-02-14 00:00:00",
+                    "fechaProxiLiquidacion": "2014-04-05 00:00:00",
+                    "formaPargoMensual": "03",
+                    "ibanBic": " / ",
+                    "importeTotal": "1.647,62",
+                    "importeTotalLiquidar": "1.647,62",
+                    "limiteAutorizado": "300,00",
+                    "limiteCredito": "1.700,00",
+                    "operPeriodActual": "1.647,62",
+                    "saldoAplazadoAnterior": "0,00",
+                    "saldoDisponible": "1.674,75",
+                    "saldoDispuesto": "325,25",
+                    "totalOperPendLiquiActual": "1.647,62",
+                    "totalOperPendProxiLiquidacion": "0,00",
+                    "totalOperProximLiquidacion": "0,00",
+                    "detalleMesActual": [
+                        {
+                            "concepto": "XXXXXXXXXXXXX",
+                            "fecha": "2013-12-02 00:00:00",
+                            "importe": "12,25",
+                            "poblacion": "OFICINA 0901"
+                        },
+                        {
+                            "concepto": "XXXXXXXXXXXXX",
+                            "fecha": "2013-11-29 00:00:00",
+                            "importe": "88,00",
+                            "poblacion": "OFICINA 0901"
+                        }
+                    ]
+                }
     ],
     "head": [
         {
