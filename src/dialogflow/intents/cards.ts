@@ -28,7 +28,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
 
         // //TARJETA SELECCIONADA
-        app.intent('Cuenta seleccionada', (conv, input, option) => {
+        app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
                 const cardSelected = CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
