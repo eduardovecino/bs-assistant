@@ -51,14 +51,21 @@ class CardManager {
         }
     }
     static cardSelect(cards, option) {
-        for (let i = 0; i < cards.length; i++) {
-            if (cards[i].contrato === option) {
-                return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
+        cards.forEach((card) => {
+            if (cards.contrato === option) {
+                return ('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
             }
             else {
-                return (' No podemos mostrar la tarjeta' + cards[i].contrato);
+                return (' No podemos mostrar la tarjeta' + card.contrato);
             }
-        }
+        });
+        // for (let i = 0; i < cards.length; i++) {
+        //     if (cards[i].contrato === option) {
+        //         return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
+        //     } else {
+        //         return (' No podemos mostrar la tarjeta' + cards[i].contrato);
+        //     }
+        // }
     }
 }
 exports.CardManager = CardManager;
