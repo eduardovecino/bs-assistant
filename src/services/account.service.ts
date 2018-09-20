@@ -1,5 +1,5 @@
-import { RestManager } from "../managers/rest.manager";
-import { AccountManager } from "../managers/account.manager";
+import { RestManager } from "../managers/data/rest.manager";
+import { AccountManager } from "../managers/data/account.manager";
 
 import * as fs from "fs";
 

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const rest_manager_1 = require("../managers/rest.manager");
-const account_manager_1 = require("../managers/account.manager");
+const rest_manager_1 = require("../managers/data/rest.manager");
+const account_manager_1 = require("../managers/data/account.manager");
 const fs = require("fs");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
