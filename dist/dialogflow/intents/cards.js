@@ -25,10 +25,9 @@ class CardIntents /*extends BaseIntent*/ {
         });
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
-            this.cardService.getCards().then(cards => {
-                const cardsSelected = card_manager_1.CardManager.cardSelect(cards, option);
-                conv.ask('Aquí tienes la tarjeta seleccionada');
-                conv.ask(cardsSelected);
+            this.cardService.getCards().then(card => {
+                const cardsSelected = card_manager_1.CardManager.cardSelect(card, option);
+                conv.ask('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
             });
         });
         // //BLOQUEAR TARJETA
