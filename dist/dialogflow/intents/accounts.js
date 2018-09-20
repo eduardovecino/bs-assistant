@@ -24,12 +24,10 @@ class AccountIntents /*extends BaseIntent*/ {
         });
         //CUENTA SELECCIONADA
         app.intent('Cuenta seleccionada', (conv, input, option) => {
-            // accounts.forEach((account) => {
-            //     if (account.iban === option) {
-            //         conv.ask('Has seleccionado la cuenta ' + account.descripcion + ', el saldo es de' + accounts[0].balance + ' €');
-            //         conv.ask('Puedes preguntame por el saldo o los movimientos de una cuenta');
-            //     }
-            // });
+            this.accountService.getAccounts().then(accounts => {
+                const accountSelected = account_manager_1.AccountManager.accountSelect(accounts, option);
+                conv.ask(accountSelected);
+            });
         });
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers, tipo_cuenta }) => {

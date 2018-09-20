@@ -30,7 +30,7 @@ class AccountManager {
                 // voice = voice + ' ' + account.descripcion + ',';
                 tmp.items[account.iban] = {
                     title: account.descripcion,
-                    descripcion: account.iban,
+                    description: account.iban,
                     image: {
                         url: accountImage,
                         accessibilityText: account.descripcion
@@ -42,6 +42,23 @@ class AccountManager {
         else {
             return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
         }
+    }
+    static accountSelect(accounts, option) {
+        accounts.forEach((account) => {
+            if (parseInt(account.iban) === parseInt(option)) {
+                return ('Has seleccionado la cuenta ' + account.descripcion + ', el saldo es de' + accounts[0].balance + ' €');
+            }
+            else {
+                return (' No podemos mostrar la cuenta' + account.iban);
+            }
+        });
+        // for (let i = 0; i < cards.length; i++) {
+        //     if (cards[i].contrato === option) {
+        //         return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
+        //     } else {
+        //         return (' No podemos mostrar la tarjeta' + cards[i].contrato);
+        //     }
+        // }
     }
 }
 exports.AccountManager = AccountManager;
