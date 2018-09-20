@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CardService } from "../../services/card.service";
-import { CardManager } from "../../managers/data/card.manager";
+import { CardDFManager } from "../../managers/dialog-flow/card.manager";
 
 export class CardRoutes {
 
@@ -17,7 +17,7 @@ export class CardRoutes {
             .get((req: Request, res: Response) => {
                 this.cardService.getCards().then(cards => {
                     if(cards){
-                        const carouselOfCards = CardManager.cardsCarousel(cards); 
+                        const carouselOfCards = CardDFManager.cardsCarousel(cards); 
 
                         res.status(200).send(carouselOfCards);
 
@@ -30,9 +30,9 @@ export class CardRoutes {
 
             app.route('/cards/:last4/movements')
             .get((req: Request, res: Response) => {
-                this.cardService.getCard(req.params.last4).then(card => {
+                this.cardService.getCardByInputs(req.params.last4).then(card => {
                     if (card) {
-                        const movementsTable = CardManager.generateMovementsTable(card);
+                        const movementsTable = CardDFManager.generateMovementsTable(card);
 
                         res.status(200).send(movementsTable);
                     } else {

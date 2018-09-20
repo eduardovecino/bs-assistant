@@ -45,7 +45,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //SALDO TARJETA
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            this.cardService.getCard(last4CardNumbers).then(card => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask('El saldo de tu tarjeta ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible + ' €');
                     conv.ask(suggestionResponse);
@@ -57,7 +57,7 @@ export class CardIntents /*extends BaseIntent*/ {
         
         //FECHA LIQUIDACION TARJETA
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            this.cardService.getCard(last4CardNumbers).then(card => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask('La fecha próxima de liquidación de tu tarjeta ' + card.cuentaRelacionada + ' es ' + card.fechaProxiLiquidacion);
                     conv.ask(suggestionResponse);
@@ -69,7 +69,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //LIMITES TARJETA
         app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            this.cardService.getCard(last4CardNumbers).then(card => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask('Los límites de tu tarjeta' + card.cuentaRelacionada + ' son, limite autorizado ' + card.limiteAutorizado + ' €, limite crédito ' + card.limiteCredito + ' €');
                     conv.ask(suggestionResponse);
@@ -81,7 +81,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         //MOVIMIENTOS
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
-            this.cardService.getCard(last4CardNumbers).then(card => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     const movementsTable = CardDFManager.generateMovementsTable(card);
                     conv.ask('Aquí tienes los movimientos');
