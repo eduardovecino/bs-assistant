@@ -10,13 +10,6 @@ export class CardRoutes {
         this.cardService = new CardService();
     }
 
-    // public routes(app): void {
-    //     app.route('/cards')
-    //         .get((req: Request, res: Response) => {
-    //             this.cardService.getCards().then(cards => {
-    //                 res.status(200).send(cards);
-    //             })
-    //         })
 
     public routes(app): void {
         
@@ -27,6 +20,7 @@ export class CardRoutes {
                         const carouselOfCards = CardManager.cardsCarousel(cards); 
 
                         res.status(200).send(carouselOfCards);
+
                     } else {
                         res.status(400).send('No se ha encontrado las tarjetas');
                     }

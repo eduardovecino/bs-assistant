@@ -6,13 +6,6 @@ class CardRoutes {
     constructor() {
         this.cardService = new card_service_1.CardService();
     }
-    // public routes(app): void {
-    //     app.route('/cards')
-    //         .get((req: Request, res: Response) => {
-    //             this.cardService.getCards().then(cards => {
-    //                 res.status(200).send(cards);
-    //             })
-    //         })
     routes(app) {
         app.route('/cards')
             .get((req, res) => {

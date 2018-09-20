@@ -60,4 +60,13 @@ export class CardManager {
            return ('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
         }
     }
+
+    public static cardSelect(cards, option) {
+        cards.forEach((card) => {
+            if (cards.contrato === option) {
+                return ('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
+            }
+        })
+
+    }
 }
