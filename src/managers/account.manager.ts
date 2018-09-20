@@ -61,7 +61,7 @@ export class AccountManager {
              if (accounts[i].iban === option) {
                  return ('Has seleccionado la cuenta ' + accounts[i].descripcion + ', el saldo es de' + accounts[i].balance + ' €');
              } else {
-                 return (' No podemos mostrar la cuenta' + accounts[i].iban);
+                 return (' No podemos mostrar la cuenta' + option);
              }
          }
     }
