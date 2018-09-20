@@ -52,11 +52,11 @@ class CardManager {
     }
     static cardSelect(cards, option) {
         for (let i = 0; i < cards.length; i++) {
-            if (parseInt(cards[i].contrato) === parseInt(option)) {
+            if (cards[i].contrato === option) {
                 return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
             }
             else {
-                return ('No podemos mostrar la tarjeta' + cards[i].contrato);
+                return (' No podemos mostrar la tarjeta' + cards[i].contrato);
             }
         }
     }
