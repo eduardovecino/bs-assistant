@@ -27,10 +27,10 @@ class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
-                    conv.ask(`Has seleccionado la cuenta ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible}€`);
+                    conv.ask(`Has seleccionado la tarjeta ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible}€`);
                 }
                 else {
-                    conv.ask(`No podemos mostrar la cuenta ${option}`);
+                    conv.ask(`No podemos mostrar la tarjeta ${option}`);
                 }
             });
         });

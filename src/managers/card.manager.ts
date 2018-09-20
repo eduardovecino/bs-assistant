@@ -67,7 +67,7 @@ export class CardManager {
 
     public static getCardByOption(cards, option) {
         for (let i = 0; i < cards.length; i++) {
-            if (cards[i].iban === option) {
+            if (cards[i].contrato === option) {
                 return cards[i];
             }
         }
