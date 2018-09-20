@@ -63,7 +63,7 @@ export class CardManager {
 
     public static cardSelect(cards, option) {
         cards.forEach((card) => {
-          if (card.contrato === option) {
+            if (parseInt(card.contrato) === parseInt(option)) {
                 return ('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
             } else {
                 return (' No podemos mostrar la tarjeta' + card.contrato);
