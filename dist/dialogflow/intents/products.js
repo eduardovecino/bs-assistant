@@ -50,12 +50,6 @@ class ProductIntents /*extends BaseIntent*/ {
                         conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
                         this.suggestions(conv);
                     }
-                });
-        
-                app.intent('Saldo cuenta', (conv, { tipo_cuenta }) => {
-                    console.log('INTENT: Saldo cuenta');
-                    const data = this.productsService.getProducts();
-                    conv.ask('El saldo  de la cuenta es de ' + data.num);
                 });*/
     }
 }
