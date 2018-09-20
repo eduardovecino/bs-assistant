@@ -40,21 +40,24 @@ export class CardManager {
     }
 
     public static cardsCarousel(cards) {
-        const tmp = {
-            title: 'Mis Tarjetas',
-            items: {}
-        };
-        cards.forEach((card) => {
-            tmp.items[card.contrato] = {
-                title: card.contrato,
-                description: card.cuentaRelacionada,
-                image: {
-                    url: cardUrlImage,
-                    accessibilityText: card.contrato
-                }
+        if (cards.length >1){
+            const tmp = {
+                title: 'Mis Tarjetas',
+                items: {}
             };
-        });
-        return (new Carousel(tmp));
-
+            cards.forEach((card) => {
+                tmp.items[card.contrato] = {
+                    title: card.contrato,
+                    description: card.cuentaRelacionada,
+                    image: {
+                        url: cardUrlImage,
+                        accessibilityText: card.contrato
+                    }
+                };
+            });
+            return (new Carousel(tmp));
+        } else {
+           return ('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+        }
     }
 }

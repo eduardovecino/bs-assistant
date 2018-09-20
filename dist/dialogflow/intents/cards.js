@@ -15,7 +15,7 @@ class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 if (cards) {
                     const carouselOfCards = card_manager_1.CardManager.cardsCarousel(cards);
-                    conv.ask('Aquí las tarjetas');
+                    conv.ask('Aquí tienes las tarjetas');
                     conv.ask(carouselOfCards);
                 }
                 else {

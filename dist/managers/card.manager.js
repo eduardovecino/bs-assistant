@@ -29,21 +29,26 @@ class CardManager {
         return new actions_on_google_1.Table(tmp);
     }
     static cardsCarousel(cards) {
-        const tmp = {
-            title: 'Mis Tarjetas',
-            items: {}
-        };
-        cards.forEach((card) => {
-            tmp.items[card.contrato] = {
-                title: card.contrato,
-                description: card.cuentaRelacionada,
-                image: {
-                    url: cardUrlImage,
-                    accessibilityText: card.contrato
-                }
+        if (cards.length > 1) {
+            const tmp = {
+                title: 'Mis Tarjetas',
+                items: {}
             };
-        });
-        return (new actions_on_google_1.Carousel(tmp));
+            cards.forEach((card) => {
+                tmp.items[card.contrato] = {
+                    title: card.contrato,
+                    description: card.cuentaRelacionada,
+                    image: {
+                        url: cardUrlImage,
+                        accessibilityText: card.contrato
+                    }
+                };
+            });
+            return (new actions_on_google_1.Carousel(tmp));
+        }
+        else {
+            return ('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+        }
     }
 }
 exports.CardManager = CardManager;
