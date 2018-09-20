@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const card_service_1 = require("../../services/card.service");
-const card_manager_1 = require("../../managers/card.manager");
+const card_manager_1 = require("../../managers/data/card.manager");
 class CardRoutes {
     constructor() {
         this.cardService = new card_service_1.CardService();

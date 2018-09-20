@@ -1,4 +1,4 @@
-import { RestManager } from "../managers/rest.manager";
+import { RestManager } from "../managers/data/rest.manager";
 import * as fs from "fs";
 
 export class ProductService extends RestManager {

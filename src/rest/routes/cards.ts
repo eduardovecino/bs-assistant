@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CardService } from "../../services/card.service";
-import { CardManager } from "../../managers/card.manager";
+import { CardManager } from "../../managers/data/card.manager";
 
 export class CardRoutes {
 

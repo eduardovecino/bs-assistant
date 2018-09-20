@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const rest_manager_1 = require("../managers/rest.manager");
+const rest_manager_1 = require("../managers/data/rest.manager");
 const fs = require("fs");
 class ProductService extends rest_manager_1.RestManager {
     getProducts() {

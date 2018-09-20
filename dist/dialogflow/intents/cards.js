@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const card_service_1 = require("../../services/card.service");
-const card_manager_1 = require("../../managers/card.manager");
+const card_manager_1 = require("../../managers/data/card.manager");
+const card_manager_2 = require("../../managers/dialog-flow/card.manager");
 class CardIntents /*extends BaseIntent*/ {
     constructor() {
         this.cardService = new card_service_1.CardService();
@@ -13,7 +14,7 @@ class CardIntents /*extends BaseIntent*/ {
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
                 if (cards) {
-                    const carouselOfCards = card_manager_1.CardManager.cardsCarousel(cards);
+                    const carouselOfCards = card_manager_2.CardDFManager.cardsCarousel(cards);
                     conv.ask('Aquí tienes las tarjetas');
                     conv.ask(carouselOfCards);
                 }
@@ -25,7 +26,7 @@ class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                const cardSelected = card_manager_1.CardManager.cardSelect(cards, option);
+                const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
                 conv.ask(cardSelected);
             });
         });
@@ -73,7 +74,7 @@ class CardIntents /*extends BaseIntent*/ {
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCard(last4CardNumbers).then(card => {
                 if (card) {
-                    const movementsTable = card_manager_1.CardManager.generateMovementsTable(card);
+                    const movementsTable = card_manager_2.CardDFManager.generateMovementsTable(card);
                     conv.ask('Aquí tienes los movimientos');
                     conv.ask(movementsTable);
                 }

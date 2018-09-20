@@ -1,5 +1,5 @@
-import { RestManager } from "../managers/rest.manager";
-import { CardManager } from "../managers/card.manager";
+import { RestManager } from "../managers/data/rest.manager";
+import { CardManager } from "../managers/data/card.manager";
 
 import * as fs from "fs";
 

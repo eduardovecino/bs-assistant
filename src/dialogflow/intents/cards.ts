@@ -1,6 +1,6 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button, Table, Image, TableOptions } from 'actions-on-google';
-import { CardManager } from '../../managers/card.manager';
+import { CardManager } from '../../managers/data/card.manager';
+import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -17,7 +17,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
                 if (cards) {
-                    const carouselOfCards = CardManager.cardsCarousel(cards);
+                    const carouselOfCards = CardDFManager.cardsCarousel(cards);
 
                     conv.ask('Aquí tienes las tarjetas');
                     conv.ask(carouselOfCards);
@@ -31,7 +31,7 @@ export class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                const cardSelected = CardManager.cardSelect(cards, option);
+                const cardSelected = CardManager.getCardByOption(cards, option);
                 conv.ask(cardSelected);
             });
         });
@@ -83,7 +83,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
             this.cardService.getCard(last4CardNumbers).then(card => {
                 if (card) {
-                    const movementsTable = CardManager.generateMovementsTable(card);
+                    const movementsTable = CardDFManager.generateMovementsTable(card);
                     conv.ask('Aquí tienes los movimientos');
                     conv.ask(movementsTable);
                 } else {

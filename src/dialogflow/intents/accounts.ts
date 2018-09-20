@@ -1,8 +1,6 @@
-import { List, BasicCard, Button } from "actions-on-google";
 import { AccountService } from "../../services/account.service";
-import { AccountManager } from "../../managers/account.manager";
-
-
+import { AccountManager } from "../../managers/data/account.manager";
+import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 
 
 export class AccountIntents /*extends BaseIntent*/ {
@@ -18,7 +16,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
-                    const accountsList = AccountManager.generateAccountsList(accounts);
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     conv.ask(suggestionResponse);
                 } else {

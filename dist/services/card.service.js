@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const rest_manager_1 = require("../managers/rest.manager");
-const card_manager_1 = require("../managers/card.manager");
+const rest_manager_1 = require("../managers/data/rest.manager");
+const card_manager_1 = require("../managers/data/card.manager");
 const fs = require("fs");
 class CardService extends rest_manager_1.RestManager {
     getCards() {
