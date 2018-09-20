@@ -1,0 +1,13 @@
+{
+    "data": {
+            "propietario": "&UPJURID - &LPJURID",
+            "disponibilidad": null,
+            "descripcion": "CUENTA CORRIENTE",
+            "usuario": "00000001R",
+            "iban": "ES00810000000000000000",
+            "balance": "123.915,06",
+            "producto": "CC",
+            "numeroProducto": "00810000000000000000",
+            "numeroProductoCodificado": "00810000000000000000"
+        }
+}

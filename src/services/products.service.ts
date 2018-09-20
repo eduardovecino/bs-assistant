@@ -9,7 +9,10 @@ export class ProductService extends RestManager {
             const jsonData = JSON.parse(data.toString());
             return jsonData;
         } else {
-            return this.get();
+            // return this.get();
+            const data = fs.readFileSync('mock/products/get-products.json');
+            const jsonData = JSON.parse(data.toString());
+            return jsonData;
         }
     }
 }

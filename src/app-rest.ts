@@ -21,6 +21,7 @@ class AppRest {
         this.productRoutes.routes(this.app);
         this.cardRoutes.routes(this.app);
         this.accountRoutes.routes(this.app); 
+    
     }
 
     private config(): void {

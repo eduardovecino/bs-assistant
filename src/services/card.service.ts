@@ -1,15 +1,24 @@
 import { RestManager } from "../managers/rest.manager";
+import { CardManager } from "../managers/card.manager";
+
 import * as fs from "fs";
 
 export class CardService extends RestManager {
 
-    public getCard(): any {
-        if(this.isMock) {
-            const data = fs.readFileSync('mock/card/get-card.json');
+    public getCards(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
-            return jsonData;
-        } else {
-            return this.get();
-        }
+            resolve(jsonData.data);
+        });      
+    }
+
+    public getCard(last4): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const data = fs.readFileSync('mock/card/get-cards.json');
+            const jsonData = JSON.parse(data.toString());
+            const card = CardManager.getCardByLast4(jsonData.data, last4);
+            resolve(card);
+        });
     }
 }
