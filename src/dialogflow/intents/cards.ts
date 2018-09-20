@@ -29,14 +29,10 @@ export class CardIntents /*extends BaseIntent*/ {
 
 
         // //TARJETA SELECCIONADA
-        app.intent('Tarjeta seleccionada', (conv, option) => {
+        app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                if (cards) {
                     const cardsSelected = CardManager.cardSelect(cards, option);
                     conv.ask(cardsSelected);
-                } else {
-                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
-                }
             });
         });
 

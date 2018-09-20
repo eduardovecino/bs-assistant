@@ -24,15 +24,10 @@ class CardIntents /*extends BaseIntent*/ {
             });
         });
         // //TARJETA SELECCIONADA
-        app.intent('Tarjeta seleccionada', (conv, option) => {
+        app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                if (cards) {
-                    const cardsSelected = card_manager_1.CardManager.cardSelect(cards, option);
-                    conv.ask(cardsSelected);
-                }
-                else {
-                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
-                }
+                const cardsSelected = card_manager_1.CardManager.cardSelect(cards, option);
+                conv.ask(cardsSelected);
             });
         });
         // //BLOQUEAR TARJETA
