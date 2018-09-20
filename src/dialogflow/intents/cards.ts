@@ -1,5 +1,4 @@
 import { CardService } from '../../services/card.service';
-import { BasicCard, Carousel, Button, Table, Image, TableOptions } from 'actions-on-google';
 import { CardManager } from '../../managers/card.manager';
 
 
