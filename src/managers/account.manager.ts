@@ -1,7 +1,7 @@
 import { List } from "actions-on-google";
 
 export class AccountManager {
-    
+
 
 
     constructor() {
@@ -11,7 +11,7 @@ export class AccountManager {
     public static getAccountByLast4(accounts, last4): any {
         if (accounts.length === 1) {
             return accounts[0];
-        } else if (accounts.length > 1){
+        } else if (accounts.length > 1) {
             for (let i = 0; i < accounts.length; i++) {
                 const account4Numbers = accounts[i].iban.charAt(accounts[i].iban.length - 4) + accounts[i].iban.charAt(accounts[i].iban.length - 3) + accounts[i].iban.charAt(accounts[i].iban.length - 2) + accounts[i].iban.charAt(accounts[i].iban.length - 1);
                 if (parseInt(last4) === parseInt(account4Numbers) /*|| tipo_tarjeta === cards.--- */) {
@@ -43,26 +43,16 @@ export class AccountManager {
             });
             return new List(tmp);
         } else {
-            return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance +' €';
-        } 
+            return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
+        }
     }
 
-    public static accountSelect(accounts, option) {
-        // accounts.forEach((account) => {
-        //     if (parseInt(account.iban) === parseInt(option)) {
-        //         return ('Has seleccionado la cuenta ' + account.descripcion + ', el saldo es de' + account.balance + ' €');
-        //     } else {
-        //         return (' No podemos mostrar la cuenta' + account.iban);
-        //     }
-        // })
-
-
-         for (let i = 0; i < accounts.length; i++) {
-             if (accounts[i].iban === option) {
-                 return ('Has seleccionado la cuenta ' + accounts[i].descripcion + ', el saldo es de' + accounts[i].balance + ' €');
-             } else {
-                 return (' No podemos mostrar la cuenta' + option);
-             }
-         }
+    public static getAccountByOption(accounts, option) {
+        for (let i = 0; i < accounts.length; i++) {
+            if (accounts[i].iban === option) {
+                return accounts[i];
+            }
+        }
+        return null;
     }
 }

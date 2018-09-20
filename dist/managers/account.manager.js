@@ -43,22 +43,13 @@ class AccountManager {
             return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
         }
     }
-    static accountSelect(accounts, option) {
-        // accounts.forEach((account) => {
-        //     if (parseInt(account.iban) === parseInt(option)) {
-        //         return ('Has seleccionado la cuenta ' + account.descripcion + ', el saldo es de' + account.balance + ' €');
-        //     } else {
-        //         return (' No podemos mostrar la cuenta' + account.iban);
-        //     }
-        // })
+    static getAccountByOption(accounts, option) {
         for (let i = 0; i < accounts.length; i++) {
             if (accounts[i].iban === option) {
-                return ('Has seleccionado la cuenta ' + accounts[i].descripcion + ', el saldo es de' + accounts[i].balance + ' €');
-            }
-            else {
-                return (' No podemos mostrar la cuenta' + option);
+                return accounts[i];
             }
         }
+        return null;
     }
 }
 exports.AccountManager = AccountManager;
