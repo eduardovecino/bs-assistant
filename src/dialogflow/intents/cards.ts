@@ -29,12 +29,16 @@ export class CardIntents /*extends BaseIntent*/ {
 
 
         // //TARJETA SELECCIONADA
-        app.intent('Tarjeta seleccionada', (conv, input, option) => {
+        app.intent('Cuenta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                const cardSelected = CardManager.cardSelect(cards, option);
-                conv.ask(cardSelected);
+                const cardSelected = CardManager.getCardByOption(cards, option);
+                if (cardSelected) {
+                    conv.ask(`Has seleccionado la cuenta ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible}€`);
+                } else {
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
+                }
             });
-        });
+        })
 
 
         // //BLOQUEAR TARJETA
