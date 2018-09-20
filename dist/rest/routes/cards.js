@@ -10,7 +10,13 @@ class CardRoutes {
         app.route('/cards')
             .get((req, res) => {
             this.cardService.getCards().then(cards => {
-                res.status(200).send(cards);
+                if (cards) {
+                    const carouselOfCards = card_manager_1.CardManager.cardsCarousel(cards);
+                    res.status(200).send(carouselOfCards);
+                }
+                else {
+                    res.status(400).send('No se ha encontrado las tarjetas');
+                }
             });
         });
         app.route('/cards/:last4/movements')

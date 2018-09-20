@@ -1,4 +1,7 @@
-import { Table, TableOptions } from "actions-on-google";
+import { Table, TableOptions, Carousel } from "actions-on-google";
+
+
+const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg'
 
 export class CardManager {
 
@@ -37,5 +40,47 @@ export class CardManager {
         });
 
         return new Table(tmp);
+
+    }
+
+    public static cardsCarousel(cards) {
+        if (cards.length >1){
+            const tmp = {
+                title: 'Mis Tarjetas',
+                items: {}
+            };
+            cards.forEach((card) => {
+                tmp.items[card.contrato] = {
+                    title: card.contrato,
+                    description: card.cuentaRelacionada,
+                    image: {
+                        url: cardUrlImage,
+                        accessibilityText: card.contrato
+                    }
+                };
+            });
+            return (new Carousel(tmp));
+        } else {
+           return ('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+        }
+    }
+
+    public static cardSelect(cards, option) {
+        // cards.forEach((card) => {
+        //     if (parseInt(card.contrato) === parseInt(option)) {
+        //         return ('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
+        //     } else {
+        //         return (' No podemos mostrar la tarjeta' + card.contrato);
+        //     }
+        // })
+
+
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].contrato === option) {
+                return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
+            } else {
+                return (' No podemos mostrar la tarjeta' + cards[i].contrato);
+            }
+        }
     }
 }

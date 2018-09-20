@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
+const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardManager {
     constructor() {
     }
@@ -31,6 +32,45 @@ class CardManager {
             });
         });
         return new actions_on_google_1.Table(tmp);
+    }
+    static cardsCarousel(cards) {
+        if (cards.length > 1) {
+            const tmp = {
+                title: 'Mis Tarjetas',
+                items: {}
+            };
+            cards.forEach((card) => {
+                tmp.items[card.contrato] = {
+                    title: card.contrato,
+                    description: card.cuentaRelacionada,
+                    image: {
+                        url: cardUrlImage,
+                        accessibilityText: card.contrato
+                    }
+                };
+            });
+            return (new actions_on_google_1.Carousel(tmp));
+        }
+        else {
+            return ('El saldo  de tu tarjeta ' + cards[0].cuentaRelacionada + ' es de ' + cards[0].saldoDisponible + ' €');
+        }
+    }
+    static cardSelect(cards, option) {
+        // cards.forEach((card) => {
+        //     if (parseInt(card.contrato) === parseInt(option)) {
+        //         return ('Has seleccionado la tarjeta' + card.cuentaRelacionada + ' con un saldo disponible de ' + card.saldoDisponible + ' €');
+        //     } else {
+        //         return (' No podemos mostrar la tarjeta' + card.contrato);
+        //     }
+        // })
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].contrato === option) {
+                return ('Has seleccionado la tarjeta' + cards[i].cuentaRelacionada + ' con un saldo disponible de ' + cards[i].saldoDisponible + ' €');
+            }
+            else {
+                return (' No podemos mostrar la tarjeta' + cards[i].contrato);
+            }
+        }
     }
 }
 exports.CardManager = CardManager;
