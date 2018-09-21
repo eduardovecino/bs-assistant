@@ -14,10 +14,6 @@ class InformationDFManager {
                 title: office.id,
                 url: mapUrl,
                 description: office.address,
-                image: {
-                    url: '',
-                    accessibilityText: office.id
-                }
             });
         });
         return (new actions_on_google_1.BrowseCarousel(tmp));
