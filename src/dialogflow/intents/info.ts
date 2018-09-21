@@ -10,8 +10,9 @@ export class InfoIntents /*extends BaseIntent*/ {
     public intents(app): void {
 
         app.intent('Oficinas', conv => {
-            this.informationService.getOffices().then(offices => {
-                conv.ask(offices[0].latitude);
+            conv.ask('jajajjajajaj');
+            // this.informationService.getOffices().then(offices => {
+                // conv.ask(offices[0].latitude);
                 // if (offices) {
                 //     const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
                 //     conv.ask('Aquí tienes las oficinas más cercanas');
@@ -19,7 +20,7 @@ export class InfoIntents /*extends BaseIntent*/ {
                 // } else {
                 //     conv.ask('No podemos mostrar las oficinas cercanas en este momento, vuelve a intentarlo');
                 // }
-            });
+            // });
         });
     }
 }
