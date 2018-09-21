@@ -63,7 +63,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('La fecha próxima de liquidación de tu tarjeta finalizada en ' + last4CardNumbers. + ' es ' + card.fechaProxiLiquidacion);
+                    conv.ask('La fecha próxima de liquidación de tu tarjeta finalizada en ' + last4CardNumbers + ' es ' + card.fechaProxiLiquidacion);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
