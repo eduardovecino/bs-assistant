@@ -9,7 +9,7 @@ export class InfoIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        app.intent('Oficinas', conv => {
+        app.intent('Oficinas Cercanas', conv => {
             conv.ask('jajajjajajaj');
             // this.informationService.getOffices().then(offices => {
                 // conv.ask(offices[0].latitude);

@@ -6,7 +6,7 @@ class InfoIntents /*extends BaseIntent*/ {
         this.informationService = new information_service_1.InformationService();
     }
     intents(app) {
-        app.intent('Oficinas', conv => {
+        app.intent('Oficinas Cercanas', conv => {
             conv.ask('jajajjajajaj');
             // this.informationService.getOffices().then(offices => {
             // conv.ask(offices[0].latitude);
