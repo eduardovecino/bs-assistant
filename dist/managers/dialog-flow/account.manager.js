@@ -16,7 +16,7 @@ class AccountDFManager {
                 const last4Numbers = format_manager_1.FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
                     title: account.descripcion,
-                    description: `ES················${last4Numbers}`,
+                    description: `ES••••••••••••••••${last4Numbers}`,
                     image: {
                         url: accountImage,
                         accessibilityText: account.descripcion
