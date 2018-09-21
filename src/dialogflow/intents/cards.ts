@@ -1,6 +1,7 @@
 import { CardService } from '../../services/card.service';
 import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
+import { FormatManager } from '../../managers/format.manager';
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -18,7 +19,6 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 if (cards) {
                     const carouselOfCards = CardDFManager.cardsCarousel(cards);
-
                     conv.ask('Aquí tienes las tarjetas');
                     conv.ask(carouselOfCards);
                 } else {
@@ -32,7 +32,8 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 const cardSelected = CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
-                    conv.ask(`Has seleccionado la tarjeta ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible}€`);
+                    const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
+                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible}€`);
                 } else {
                     conv.ask('No podemos mostrar la tarjeta');
                 }
@@ -50,7 +51,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('El saldo de tu tarjeta ' + card.cuentaRelacionada + ' es de ' + card.saldoDisponible + ' €');
+                    conv.ask('El saldo de tu tarjeta ' + last4CardNumbers + ' es de ' + card.saldoDisponible + ' €');
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
@@ -62,7 +63,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('La fecha próxima de liquidación de tu tarjeta ' + card.cuentaRelacionada + ' es ' + card.fechaProxiLiquidacion);
+                    conv.ask('La fecha próxima de liquidación de tu tarjeta finalizada en ' + last4CardNumbers + ' es ' + card.fechaProxiLiquidacion);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
@@ -74,7 +75,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('Los límites de tu tarjeta' + card.cuentaRelacionada + ' son, limite autorizado ' + card.limiteAutorizado + ' €, limite crédito ' + card.limiteCredito + ' €');
+                    conv.ask('Los límites de tu tarjeta finalizada en ' + last4CardNumbers + ' son, limite autorizado: ' + card.limiteAutorizado + ' € y limite crédito: ' + card.limiteCredito + ' €');
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
