@@ -30,7 +30,7 @@ class CardIntents /*extends BaseIntent*/ {
                 const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
                     const lastNumbers = format_manager_1.FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
-                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible}€`);
+                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €`);
                 }
                 else {
                     conv.ask(`No podemos mostrar la tarjeta`);

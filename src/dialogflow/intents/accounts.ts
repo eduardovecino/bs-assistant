@@ -9,8 +9,8 @@ export class AccountIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        const nullResponse = 'No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros';
-        const suggestionResponse = 'Puedes preguntame por el saldo o los movimientos de una cuenta';
+        const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+        const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
 
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
@@ -30,7 +30,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 if(selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance}€`);
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 } else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
@@ -41,7 +41,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Saldo cuenta', (conv, { last4numbers, tipo_cuenta }) => {
             this.accountService.getAccount(last4numbers).then(account => {
                 if (account) {
-                    conv.ask('El saldo  de tu ' + account.descripcion + ' es de ' + account.balance + ' €');
+                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
