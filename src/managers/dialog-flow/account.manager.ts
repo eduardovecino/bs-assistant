@@ -1,4 +1,6 @@
 import { List } from "actions-on-google";
+import { FormatManager } from '../../managers/format.manager';
+
 
 export class AccountDFManager {
 
@@ -14,12 +16,11 @@ export class AccountDFManager {
                 title: 'Mis Cuentas' + ' ',
                 items: {}
             };
-            // var voice = 'Tus cuentas son' + ' ';
             accounts.forEach((account) => {
-                // voice = voice + ' ' + account.descripcion + ',';
+                const last4Numbers = FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
                     title: account.descripcion,
-                    description: account.iban,
+                    description: `ES················${last4Numbers}`,
                     image: {
                         url: accountImage,
                         accessibilityText: account.descripcion
