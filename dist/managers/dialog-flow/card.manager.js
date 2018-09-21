@@ -30,7 +30,7 @@ class CardDFManager {
                 const last4Numbers = format_manager_1.FormatManager.getLast4numbers(card.cuentaRelacionada);
                 tmp.items[card.contrato] = {
                     title: card.contrato,
-                    description: last4Numbers,
+                    description: `**** **** **** **** ${last4Numbers}`,
                     image: {
                         url: cardUrlImage,
                         accessibilityText: card.contrato
