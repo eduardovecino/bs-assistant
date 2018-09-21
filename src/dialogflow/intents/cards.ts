@@ -51,7 +51,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
+                    conv.ask(`El saldo de tu tarjeta ${last4CardNumbers.toString()} es de ${card.saldoDisponible} €`);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
