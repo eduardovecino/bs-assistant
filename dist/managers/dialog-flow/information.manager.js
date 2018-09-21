@@ -9,7 +9,7 @@ class InformationDFManager {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://www.xataka.com/`;
+            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
             tmp.items.push({
                 title: office.id,
                 url: mapUrl,
