@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
+const format_manager_1 = require("../../managers/format.manager");
 const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardDFManager {
     constructor() {
@@ -26,9 +27,10 @@ class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
+                const last4Numbers = format_manager_1.FormatManager.getLast4numbers(card.cuentaRelacionada);
                 tmp.items[card.contrato] = {
                     title: card.contrato,
-                    description: card.cuentaRelacionada,
+                    description: last4Numbers,
                     image: {
                         url: cardUrlImage,
                         accessibilityText: card.contrato

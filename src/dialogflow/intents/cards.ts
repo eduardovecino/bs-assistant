@@ -10,8 +10,8 @@ export class CardIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        const nullResponse = 'No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros';
-        const suggestionResponse = 'Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta';
+        const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
+        const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
 
 
         //CARROUSEL DE TARJETAS
@@ -19,10 +19,10 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 if (cards) {
                     const carouselOfCards = CardDFManager.cardsCarousel(cards);
-                    conv.ask('Aquí tienes las tarjetas');
+                    conv.ask(`Aquí tienes las tarjetas`);
                     conv.ask(carouselOfCards);
                 } else {
-                    conv.ask('No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros');
+                    conv.ask(`No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`);
                 }
             });
         });
@@ -35,7 +35,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
                     conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible}€`);
                 } else {
-                    conv.ask('No podemos mostrar la tarjeta');
+                    conv.ask(`No podemos mostrar la tarjeta`);
                 }
             });
         })
@@ -43,7 +43,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         // //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
-            conv.ask('Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell');
+            conv.ask(`Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
         });
 
 
@@ -51,7 +51,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask(last4CardNumbers);
+                    conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
@@ -63,7 +63,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('La fecha próxima de liquidación de tu tarjeta finalizada en ' + last4CardNumbers + ' es ' + card.fechaProxiLiquidacion);
+                    conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
@@ -75,7 +75,7 @@ export class CardIntents /*extends BaseIntent*/ {
         app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask('Los límites de tu tarjeta finalizada en ' + last4CardNumbers + ' son, limite autorizado: ' + card.limiteAutorizado + ' € y limite crédito: ' + card.limiteCredito + ' €');
+                    conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
@@ -88,7 +88,7 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     const movementsTable = CardDFManager.generateMovementsTable(card);
-                    conv.ask('Aquí tienes los movimientos');
+                    conv.ask(`Aquí tienes los movimientos`);
                     conv.ask(movementsTable);
                 } else {
                     conv.ask(nullResponse);

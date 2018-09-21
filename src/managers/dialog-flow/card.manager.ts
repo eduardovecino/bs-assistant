@@ -1,4 +1,5 @@
 import { Table, TableOptions, Carousel } from "actions-on-google";
+import { FormatManager } from '../../managers/format.manager';
 
 
 const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg'
@@ -34,9 +35,10 @@ export class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
+                const last4Numbers = FormatManager.getLast4numbers(card.cuentaRelacionada);
                 tmp.items[card.contrato] = {
                     title: card.contrato,
-                    description: card.cuentaRelacionada,
+                    description: last4Numbers,
                     image: {
                         url: cardUrlImage,
                         accessibilityText: card.contrato
