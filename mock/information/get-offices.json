@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id": "Oficina Diagonal",
+            "latitude": 41.38564,
+            "longitude": 2.114931,
+            "type": "DA",
+            "address": "Avinguda Diagonal, 644",
+            "postalCode": "08017",
+            "city": "BARCELONA",
+            "phoneNumber": "932 387 260"
+        },
+        {
+            "id": "Oficina Av. de Sarrià",
+            "latitude": 41.389414,
+            "longitude": 2.135101,
+            "type": "DC",
+            "address": "Av. de Sarrià, 146",
+            "postalCode": "08017",
+            "city": "BARCELONA",
+            "phoneNumber": "932 800 664"
+        },
+        {
+            "id": "Oficina Travessera de les Corts",
+            "latitude": 41.386201,
+            "longitude": 2.133968,
+            "type": "OF",
+            "address": "Travessera de les Corts, 375",
+            "postalCode": "08029",
+            "city": "BARCELONA",
+            "phoneNumber": "932 535 400"
+        }
+    ]
+}

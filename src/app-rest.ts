@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import { ProductRoutes } from "./rest/routes/products";
 import { CardRoutes } from "./rest/routes/cards";
 import { AccountRoutes } from "./rest/routes/accounts";
+import { InformationRoutes } from "./rest/routes/information";
 
 
 class AppRest {
@@ -11,6 +12,7 @@ class AppRest {
     public productRoutes: ProductRoutes = new ProductRoutes();
     public cardRoutes: CardRoutes = new CardRoutes();
     public accountRoutes: AccountRoutes = new AccountRoutes();
+    public informationRoutes: InformationRoutes = new InformationRoutes();
 
 
 
@@ -20,7 +22,9 @@ class AppRest {
         this.config();
         this.productRoutes.routes(this.app);
         this.cardRoutes.routes(this.app);
-        this.accountRoutes.routes(this.app); 
+        this.accountRoutes.routes(this.app);
+        this.informationRoutes.routes(this.app); 
+ 
     
     }
 

@@ -31,7 +31,7 @@ class CardIntents /*extends BaseIntent*/ {
                     conv.ask(`Has seleccionado la tarjeta ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible}€`);
                 }
                 else {
-                    conv.ask(`No podemos mostrar la tarjeta ${option}`);
+                    conv.ask('No podemos mostrar la tarjeta');
                 }
             });
         });
