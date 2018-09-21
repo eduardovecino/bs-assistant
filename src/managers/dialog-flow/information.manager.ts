@@ -11,7 +11,7 @@ export class InformationDFManager {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
+            const mapUrl = `https://www.xataka.com/`;
             tmp.items.push(
                 {
                     title: office.id,
