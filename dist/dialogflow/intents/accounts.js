@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
+const suggestions_1 = require("../../constants/suggestions");
 const actions_on_google_1 = require("actions-on-google");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
@@ -18,11 +19,7 @@ class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     conv.ask(suggestionResponse);
-                    conv.ask(new actions_on_google_1.Suggestions([
-                        'Iniciar Sesión',
-                        'Oficinas Cercanas',
-                        'Abrir App'
-                    ]));
+                    conv.ask(new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
                 }
                 else {
                     conv.ask(nullResponse);
