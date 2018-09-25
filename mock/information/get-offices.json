@@ -8,7 +8,8 @@
             "address": "Avinguda Diagonal, 644",
             "postalCode": "08017",
             "city": "BARCELONA",
-            "phoneNumber": "932 387 260"
+            "phoneNumber": "932 387 260",
+            "image": "http://estaticos.expansion.com/assets/multimedia/imagenes/2017/11/16/15108492323795.jpg"
         },
         {
             "id": "Oficina Av. de Sarrià",
@@ -18,7 +19,8 @@
             "address": "Av. de Sarrià, 146",
             "postalCode": "08017",
             "city": "BARCELONA",
-            "phoneNumber": "932 800 664"
+            "phoneNumber": "932 800 664",
+            "image": "http://blog.bancosabadell.com/.a/6a00e009801040883301b8d299c272970c-500wi"
         },
         {
             "id": "Oficina Travessera de les Corts",
@@ -28,7 +30,8 @@
             "address": "Travessera de les Corts, 375",
             "postalCode": "08029",
             "city": "BARCELONA",
-            "phoneNumber": "932 535 400"
+            "phoneNumber": "932 535 400",
+            "image": "http://s.libertaddigital.com/2015/09/21/banco-sabadell-wikimedia-1.jpg"
         }
     ]
 }

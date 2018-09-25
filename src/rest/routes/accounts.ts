@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AccountService } from "../../services/account.service";
+import { AccountDFManager } from "../../managers/dialog-flow/account.manager"
 
 export class AccountRoutes {
 
@@ -11,10 +12,17 @@ export class AccountRoutes {
 
     public routes(app): void {
         app.route('/accounts')
-            .get((req: Request, res: Response) => {
-                // Intercalar el servicio para recuperar los datos del servidor de sabadell
-                const data = this.accountService.getAccounts();
-                res.status(200).send(data);
+         .get((req: Request, res: Response) => {
+            this.accountService.getAccounts().then(accounts => {
+                if (accounts) {
+                    const listOfAccounts = AccountDFManager.generateAccountsList(accounts);
+
+                    res.status(200).send(listOfAccounts);
+
+                } else {
+                    res.status(400).send('No se ha encontrado las tarjetas');
+                }
             })
+        })
     }
 }

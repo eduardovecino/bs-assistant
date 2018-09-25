@@ -4,6 +4,7 @@ const card_service_1 = require("../../services/card.service");
 const card_manager_1 = require("../../managers/data/card.manager");
 const card_manager_2 = require("../../managers/dialog-flow/card.manager");
 const format_manager_1 = require("../../managers/format.manager");
+const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 class CardIntents /*extends BaseIntent*/ {
     constructor() {
         this.cardService = new card_service_1.CardService();
@@ -47,6 +48,7 @@ class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
                     conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);
@@ -59,6 +61,7 @@ class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
                     conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);
@@ -71,6 +74,7 @@ class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
                     conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);

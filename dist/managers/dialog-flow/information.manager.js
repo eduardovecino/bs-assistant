@@ -10,15 +10,15 @@ class InformationDFManager {
         };
         offices.forEach((office) => {
             const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
-            tmp.items.push({
+            tmp.items.push(new actions_on_google_1.BrowseCarouselItem({
                 title: office.id,
                 url: mapUrl,
                 description: office.address,
-                image: {
-                    url: 'https://www.busconomico.com/Images/Blog/BSCard.jpg',
-                    accessibilityText: office.id
-                }
-            });
+                image: new actions_on_google_1.Image({
+                    url: office.image,
+                    alt: office.id
+                })
+            }));
         });
         return (new actions_on_google_1.BrowseCarousel(tmp));
     }

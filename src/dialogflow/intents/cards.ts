@@ -2,6 +2,7 @@ import { CardService } from '../../services/card.service';
 import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 import { FormatManager } from '../../managers/format.manager';
+import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
 
 
 export class CardIntents /*extends BaseIntent*/ {
@@ -53,6 +54,7 @@ export class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
                     conv.ask(suggestionResponse);
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
                     conv.ask(nullResponse);
                 }
@@ -65,6 +67,7 @@ export class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
                     conv.ask(suggestionResponse);
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
                     conv.ask(nullResponse);
                 }
@@ -77,6 +80,7 @@ export class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
                     conv.ask(suggestionResponse);
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
                     conv.ask(nullResponse);
                 }
