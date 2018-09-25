@@ -1,4 +1,4 @@
-import { BrowseCarousel} from "actions-on-google";
+import { BrowseCarousel, Image, BrowseCarouselItem} from "actions-on-google";
 
 
 export class InformationDFManager {
@@ -12,16 +12,16 @@ export class InformationDFManager {
         };
         offices.forEach((office) => {
             const mapUrl = `https://www.google.com/maps/place/El+Patio+de+Mi+Casa+Clot/@41.4104223,2.1907937,15z/data=!4m8!1m2!2m1!1smi+casa!3m4!1s0x12a4a32698dcb1eb:0x12cc38232c06459d!8m2!3d41.4068526!4d2.1888659`;
-            tmp.items.push(
+            tmp.items.push( new BrowseCarouselItem(
                 {
                     title: office.id,
                     url: mapUrl,
                     description: office.address,
-                    image: {
+                    image: new Image ({
                         url: 'https://www.busconomico.com/Images/Blog/BSCard.jpg',
-                        accessibilityText: office.id
-                    }
-                }
+                        alt: office.id
+                    })
+                })
             );
         });
         return (new BrowseCarousel(tmp));
