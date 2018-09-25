@@ -2,8 +2,6 @@ import { AccountService } from "../../services/account.service";
 import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
-import { SUGGESTIONS} from "../../constants/suggestions";
-import { Suggestions} from "actions-on-google";
 
 
 export class AccountIntents /*extends BaseIntent*/ {
@@ -22,7 +20,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     conv.ask(suggestionResponse);
-                    conv.ask(new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS))
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
                     conv.ask(nullResponse);
                 }
