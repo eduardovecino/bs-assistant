@@ -20,7 +20,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({
-                context: 'Para dirigirme a usted por su nombre y conocer su ubicación,',
+                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
