@@ -56,6 +56,8 @@ export class ProductIntents /*extends BaseIntent*/ {
                 this.suggestions(conv);
             }
         });*/
-        
+        app.intent('Cancel', (conv) => {
+            conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
+        });
     }
 }

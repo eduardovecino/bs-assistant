@@ -45,6 +45,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if (account) {
                     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                     conv.ask(suggestionResponse);
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
                     conv.ask(nullResponse);
                 }
