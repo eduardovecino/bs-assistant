@@ -10,12 +10,10 @@ export class SuggestionDFManager {
     }
 
     public static generateSuggestions() {
-        if (this.logged === '1') {
-            return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
-        } else {
+        // if (this.logged === '1') {
+        //     return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
+        // } else {
             return (new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
         }
-    }
-
-    
+    // }
 }
