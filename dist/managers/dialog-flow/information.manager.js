@@ -14,6 +14,10 @@ class InformationDFManager {
                 title: office.id,
                 url: mapUrl,
                 description: office.address,
+                image: new actions_on_google_1.Image({
+                    url: office.image,
+                    alt: office.id
+                })
             }));
         });
         return (new actions_on_google_1.BrowseCarousel(tmp));

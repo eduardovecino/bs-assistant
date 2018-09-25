@@ -17,10 +17,10 @@ export class InformationDFManager {
                     title: office.id,
                     url: mapUrl,
                     description: office.address,
-                    // image: new Image ({
-                    //     url: 'https://www.busconomico.com/Images/Blog/BSCard.jpg',
-                    //     alt: office.id
-                    // })
+                    image: new Image ({
+                        url: office.image,
+                        alt: office.id
+                    })
                 })
             );
         });
