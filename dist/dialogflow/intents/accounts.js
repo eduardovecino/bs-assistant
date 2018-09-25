@@ -16,11 +16,8 @@ class AccountIntents /*extends BaseIntent*/ {
                 if (accounts) {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
-                    // conv.ask(suggestionResponse);
-                    // conv.ask(new Suggestions([
-                    //     'Iniciar Sesión',
-                    //     'Oficinas Cercanas',
-                    //     'Abrir App']))
+                    conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 }
                 else {
                     conv.ask(nullResponse);

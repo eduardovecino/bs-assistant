@@ -2,7 +2,6 @@ import { AccountService } from "../../services/account.service";
 import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
-import { Suggestions } from "actions-on-google";
 
 
 export class AccountIntents /*extends BaseIntent*/ {
@@ -20,11 +19,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
-                    // conv.ask(suggestionResponse);
-                    // conv.ask(new Suggestions([
-                    //     'Iniciar Sesión',
-                    //     'Oficinas Cercanas',
-                    //     'Abrir App']))
+                    conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {
                     conv.ask(nullResponse);
                 }
