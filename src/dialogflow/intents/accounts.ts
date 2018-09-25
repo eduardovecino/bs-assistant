@@ -21,10 +21,10 @@ export class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
-                    conv.ask(new Suggestions([
-                        'Iniciar Sesión',
-                        'Oficinas Cercanas',
-                        'Abrir App']))
+                    // conv.ask(new Suggestions([
+                    //     'Iniciar Sesión',
+                    //     'Oficinas Cercanas',
+                    //     'Abrir App']))
                 } else {
                     conv.ask(nullResponse);
                 }
