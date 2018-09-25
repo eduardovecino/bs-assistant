@@ -20,7 +20,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
-                    conv.ask(SuggestionDFManager.generateSuggestions(conv))
+                    conv.ask(SuggestionDFManager.generateSuggestions())
                 } else {
                     conv.ask(nullResponse);
                 }

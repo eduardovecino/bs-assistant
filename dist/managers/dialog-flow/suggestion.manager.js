@@ -5,7 +5,7 @@ const suggestions_1 = require("../../constants/suggestions");
 class SuggestionDFManager {
     constructor() {
     }
-    static generateSuggestions(conv) {
+    static generateSuggestions() {
         if (this.logged === '1') {
             return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.LOGGED_SUGGESTIONS));
         }

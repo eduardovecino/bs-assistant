@@ -9,7 +9,7 @@ export class SuggestionDFManager {
     constructor() {
     }
 
-    public static generateSuggestions(conv) {
+    public static generateSuggestions() {
         if (this.logged === '1') {
             return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
         } else {

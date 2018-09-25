@@ -18,7 +18,7 @@ class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
-                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions(conv));
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);
