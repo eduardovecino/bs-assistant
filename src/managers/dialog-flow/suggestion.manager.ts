@@ -13,7 +13,10 @@ export class SuggestionDFManager {
         if (this.logged === '1') {
             return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
         } else {
-            return (new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
+            return (new Suggestions([
+                'Iniciar Sesión',
+                'Oficinas Cercanas',
+                'Abrir App']));
         }
     }
 

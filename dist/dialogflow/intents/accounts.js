@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
-const suggestions_1 = require("../../constants/suggestions");
+const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
@@ -18,7 +18,7 @@ class AccountIntents /*extends BaseIntent*/ {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
-                    conv.ask(suggestions_1.SUGGESTIONS.NOT_LOGGED_SUGGESTIONS);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);
