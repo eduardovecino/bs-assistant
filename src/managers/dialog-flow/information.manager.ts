@@ -11,7 +11,7 @@ export class InformationDFManager {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
+            const mapUrl = `https://www.google.com/maps/place/El+Patio+de+Mi+Casa+Clot/@41.4104223,2.1907937,15z/data=!4m8!1m2!2m1!1smi+casa!3m4!1s0x12a4a32698dcb1eb:0x12cc38232c06459d!8m2!3d41.4068526!4d2.1888659`;
             tmp.items.push(
                 {
                     title: office.id,
