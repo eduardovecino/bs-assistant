@@ -1,19 +1,18 @@
 import { Suggestions } from "actions-on-google";
 import { SUGGESTIONS } from "../../constants/suggestions";
-
+import { TOKEN } from "../../constants/token";
 
 export class SuggestionDFManager {
 
-    private static logged = '0';
 
     constructor() {
     }
 
     public static generateSuggestions() {
-        // if (this.logged === '1') {
-        //     return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
-        // } else {
+        if (TOKEN.TOKEN_MOCK) {
+            return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
+        } else {
             return (new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
         }
-    // }
+    }
 }
