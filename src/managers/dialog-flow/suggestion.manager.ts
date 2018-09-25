@@ -14,9 +14,9 @@ export class SuggestionDFManager {
             return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
         } else {
             return (new Suggestions([
-                'Iniciar Sesión',
-                'Oficinas Cercanas',
-                'Abrir App']));
+        'Iniciar Sesión',
+        'Oficinas Cercanas',
+        'Abrir App']));
         }
     }
 
