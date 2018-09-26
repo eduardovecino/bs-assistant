@@ -37,7 +37,7 @@ class AppDialogFlow {
         this.expressApp.use(bodyParser.json());
 
         this.translateManager.config = {
-            lang: 'es',
+            lang: 'en',
             translations: {
                 'es': {
                     'foo': 'Soy español'
