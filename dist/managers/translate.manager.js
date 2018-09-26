@@ -13,7 +13,7 @@ class TranslateManager {
         this._config = config;
     }
     translate(key) {
-        return 'hola';
+        return 'Soy un gato';
     }
 }
 exports.TranslateManager = TranslateManager;

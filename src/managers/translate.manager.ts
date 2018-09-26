@@ -5,6 +5,7 @@ export class TranslateManager {
     private static instance: TranslateManager;
     private _config: any;
 
+
     constructor() {
     }
 
@@ -20,6 +21,6 @@ export class TranslateManager {
     }
 
     public translate(key) {
-        return 'hola';
+        return 'Soy un gato';
     }
 }
