@@ -12,8 +12,11 @@ class TranslateManager {
     set config(config) {
         this._config = config;
     }
+    get config() {
+        return this._config;
+    }
     translate(key) {
-        return 'Soy un gato';
+        return this._config.translations[this._config.lang][key];
     }
 }
 exports.TranslateManager = TranslateManager;

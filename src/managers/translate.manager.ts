@@ -3,7 +3,7 @@
 export class TranslateManager {
 
     private static instance: TranslateManager;
-    private _config: any;
+    private _config: {lang, translations};
 
 
     constructor() {
@@ -20,7 +20,11 @@ export class TranslateManager {
         this._config = config;
     }
 
+    get config(): any {
+        return this._config;
+    }
+
     public translate(key) {
-        return 'Soy un gato';
+        return this._config.translations[this._config.lang][key];
     }
 }

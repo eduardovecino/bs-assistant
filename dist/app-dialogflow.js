@@ -29,7 +29,15 @@ class AppDialogFlow {
         // support application/json type post data
         this.expressApp.use(bodyParser.json());
         this.translateManager.config = {
-            lang: 'es'
+            lang: 'es',
+            translations: {
+                'es': {
+                    'foo': 'Soy español'
+                },
+                'en': {
+                    'foo': 'I\'m English'
+                }
+            }
         };
     }
     initialize() {
