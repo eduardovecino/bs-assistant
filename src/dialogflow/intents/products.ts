@@ -23,11 +23,11 @@ export class ProductIntents /*extends BaseIntent*/ {
             const locale = conv.user.locale;
 
             if(locale == "es-ES") {
-                conv.ask('Bienvenido al Banco Sabadell');
-            } else if (locale == "en-EN"){
-                conv.ask("Welcome to Banco Sabadell")
+                conv.ask('Bienvenido al Banco Sabadell'+ locale);
+            } else if (locale == "en-US"){
+                conv.ask("Welcome to Banco Sabadell" + locale)
             } else {
-                conv.ask("Universal Lenguage activated")
+                conv.ask("Universal Lenguage activated" + locale)
             }
             // conv.ask(new Permission({
             //     context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
