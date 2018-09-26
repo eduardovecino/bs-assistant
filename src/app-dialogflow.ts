@@ -37,7 +37,8 @@ class AppDialogFlow {
             defaultLocale: "es-ES",
             objectNotatio: true,
             fallbacks: {
-                'es-ES': 'es'
+                'es-ES': 'es',
+                'en-US': 'us'
             }
         })
     }
