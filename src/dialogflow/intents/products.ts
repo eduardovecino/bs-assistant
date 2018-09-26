@@ -1,32 +1,25 @@
 import { Permission, SignIn } from "actions-on-google";
 import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
-import { i18n} from "i18n"
+import { TranslateManager } from "../../managers/translate.manager";
 
 export class ProductIntents /*extends BaseIntent*/ {
 
     private productsService: ProductService = new ProductService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
-        // super();
     }
 
     public intents(app): void {
         console.log('Registering Products Intents Hola');
 
-        // app.intent('Default Welcome Intent', conv => {
-        //     conv.ask(`Bienvenido a Banco Sabadell`); 
-        //     this.uggestions(conv);       
-        // });
-
         app.intent('Default Welcome Intent', conv => {
-                conv.ask(i18n.__('Simple_hello'));
-
-    
-            // conv.ask(new Permission({
-            //     context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
-            //     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            // }));
+            conv.ask(new Permission({
+                // context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+                context: this.translateManager.translate('foo'),
+                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            }));
         });
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event

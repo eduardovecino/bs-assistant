@@ -4,9 +4,9 @@ import { ProductIntents } from "./dialogflow/intents/products";
 import { AccountIntents } from "./dialogflow/intents/accounts";
 import { CardIntents } from "./dialogflow/intents/cards";
 import { InfoIntents } from "./dialogflow/intents/info";
-import { i18n } from "i18n"
 
 import { dialogflow } from "actions-on-google";
+import { TranslateManager } from "./managers/translate.manager";
 
 class AppDialogFlow {
 
@@ -17,12 +17,12 @@ class AppDialogFlow {
     public cardIntents: CardIntents = new CardIntents();
     public infoIntents: InfoIntents = new InfoIntents();
 
-   
-    
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
         console.log('AppDialogFlow constructor');
         this.expressApp = express();
+        this.expressApp.use();
         this.app = dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);
@@ -31,23 +31,15 @@ class AppDialogFlow {
         this.accountIntents.intents(this.app);
         this.cardIntents.intents(this.app);
         this.infoIntents.intents(this.app);
-
-        i18n.configure({
-            directory: "../src/locales",
-            defaultLocale: "es-ES",
-            objectNotatio: true,
-            fallbacks: {
-                'es-ES': 'es',
-                'en-US': 'us'
-            }
-        })
     }
-
- 
 
     private config(): void {
         // support application/json type post data
         this.expressApp.use(bodyParser.json());
+
+        this.translateManager.config({
+            lang: 'es'
+        });
     }
 
     public initialize(): void {
