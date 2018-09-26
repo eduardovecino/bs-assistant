@@ -22,7 +22,6 @@ class AppDialogFlow {
     constructor() {
         console.log('AppDialogFlow constructor');
         this.expressApp = express();
-        this.expressApp.use();
         this.app = dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);

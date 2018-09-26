@@ -17,7 +17,6 @@ class AppDialogFlow {
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
         console.log('AppDialogFlow constructor');
         this.expressApp = express();
-        this.expressApp.use();
         this.app = actions_on_google_1.dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);
