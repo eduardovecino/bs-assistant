@@ -28,6 +28,17 @@ class AppDialogFlow {
         this.config();
         this.expressApp.post('', this.app);
 
+        this.app.middleware(conv => {
+            console.log(conv.user.locale);
+            this.translateManager.config = {
+                lang: conv.user.locale,
+                translations: {
+                    'es-ES': SPANISH_TRANSLATIONS,
+                    'en-US': ENGLISH_TRANSLATIONS
+                }
+            };
+        })
+
         this.productIntents.intents(this.app);
         this.accountIntents.intents(this.app);
         this.cardIntents.intents(this.app);
@@ -38,13 +49,7 @@ class AppDialogFlow {
         // support application/json type post data
         this.expressApp.use(bodyParser.json());
 
-        this.translateManager.config = {
-            lang: 'en',
-            translations: {
-                'es': SPANISH_TRANSLATIONS,
-                'en': ENGLISH_TRANSLATIONS
-            }
-        };
+        
     }
 
     public initialize(): void {

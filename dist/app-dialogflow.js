@@ -22,6 +22,16 @@ class AppDialogFlow {
         this.app = actions_on_google_1.dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);
+        this.app.middleware(conv => {
+            console.log(conv.user.locale);
+            this.translateManager.config = {
+                lang: conv.user.locale,
+                translations: {
+                    'es-ES': es_ES_1.SPANISH_TRANSLATIONS,
+                    'en-US': en_US_1.ENGLISH_TRANSLATIONS
+                }
+            };
+        });
         this.productIntents.intents(this.app);
         this.accountIntents.intents(this.app);
         this.cardIntents.intents(this.app);
@@ -30,13 +40,6 @@ class AppDialogFlow {
     config() {
         // support application/json type post data
         this.expressApp.use(bodyParser.json());
-        this.translateManager.config = {
-            lang: 'en',
-            translations: {
-                'es': es_ES_1.SPANISH_TRANSLATIONS,
-                'en': en_US_1.ENGLISH_TRANSLATIONS
-            }
-        };
     }
     initialize() {
         console.log('initialize');
