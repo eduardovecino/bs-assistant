@@ -32,14 +32,14 @@ class AppDialogFlow {
         this.cardIntents.intents(this.app);
         this.infoIntents.intents(this.app);
 
-        // i18n.configure({
-        //     directory: "../src/locales",
-        //     defaultLocale: "es-ES",
-        //     objectNotatio: true,
-        //     fallbacks: {
-        //         'es-ES': 'es'
-        //     }
-        // })
+        i18n.configure({
+            directory: "../src/locales",
+            defaultLocale: "es-ES",
+            objectNotatio: true,
+            fallbacks: {
+                'es-ES': 'es'
+            }
+        })
     }
 
  
