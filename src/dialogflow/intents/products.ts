@@ -1,6 +1,7 @@
 import { Permission, SignIn } from "actions-on-google";
 import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
+import { i18n} from "i18n"
 
 export class ProductIntents /*extends BaseIntent*/ {
 
@@ -19,16 +20,9 @@ export class ProductIntents /*extends BaseIntent*/ {
         // });
 
         app.intent('Default Welcome Intent', conv => {
+                conv.ask(i18n.__('Simple_hello'));
 
-            const locale = conv.user.locale;
-
-            if(locale == "es-ES") {
-                conv.ask('Bienvenido al Banco Sabadell'+ locale);
-            } else if (locale == "en-US"){
-                conv.ask("Welcome to Banco Sabadell" + locale)
-            } else {
-                conv.ask("Universal Lenguage activated" + locale)
-            }
+    
             // conv.ask(new Permission({
             //     context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
             //     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],

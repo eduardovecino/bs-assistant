@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const products_service_1 = require("../../services/products.service");
+const i18n_1 = require("i18n");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
@@ -13,16 +14,7 @@ class ProductIntents /*extends BaseIntent*/ {
         //     this.uggestions(conv);       
         // });
         app.intent('Default Welcome Intent', conv => {
-            const locale = conv.user.locale;
-            if (locale == "es-ES") {
-                conv.ask('Bienvenido al Banco Sabadell' + locale);
-            }
-            else if (locale == "en-US") {
-                conv.ask("Welcome to Banco Sabadell" + locale);
-            }
-            else {
-                conv.ask("Universal Lenguage activated" + locale);
-            }
+            conv.ask(i18n_1.i18n.__('Simple_hello'));
             // conv.ask(new Permission({
             //     context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
             //     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
