@@ -16,8 +16,8 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({
-                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
-                // context: this.translateManager.translate('foo'),
+                // context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+                context: this.translateManager.translate('foo'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });

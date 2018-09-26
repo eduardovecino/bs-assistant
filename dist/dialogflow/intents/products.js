@@ -12,8 +12,8 @@ class ProductIntents /*extends BaseIntent*/ {
         console.log('Registering Products Intents Hola');
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
-                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
-                // context: this.translateManager.translate('foo'),
+                // context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+                context: this.translateManager.translate('foo'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
