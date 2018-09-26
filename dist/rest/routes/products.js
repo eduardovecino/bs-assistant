@@ -12,7 +12,7 @@ class ProductRoutes {
             .get((req, res) => {
             // Intercalar el servicio para recuperar los datos del servidor de sabadell
             const data = this.productsService.getProducts();
-            res.status(200).send(this.translateManager.translate('foo'));
+            res.status(200).send(this.translateManager.translate('intent.product.welcome.answer'));
         });
         app.route('/products')
             .get((req, res) => {

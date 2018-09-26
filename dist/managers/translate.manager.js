@@ -15,8 +15,10 @@ class TranslateManager {
     get config() {
         return this._config;
     }
-    translate(key) {
-        return this._config.translations[this._config.lang][key];
+    translate(key, params) {
+        const literal = this._config.translations[this._config.lang][key];
+        // Welcome to Banco Sabadell, {{ name }}
+        return literal;
     }
 }
 exports.TranslateManager = TranslateManager;
