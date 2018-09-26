@@ -8,6 +8,8 @@ const cards_1 = require("./dialogflow/intents/cards");
 const info_1 = require("./dialogflow/intents/info");
 const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("./managers/translate.manager");
+const es_ES_1 = require("./locales/es-ES");
+const en_US_1 = require("./locales/en-US");
 class AppDialogFlow {
     constructor() {
         this.productIntents = new products_1.ProductIntents();
@@ -31,12 +33,8 @@ class AppDialogFlow {
         this.translateManager.config = {
             lang: 'en',
             translations: {
-                'es': {
-                    'foo': 'Soy español'
-                },
-                'en': {
-                    'foo': 'I\'m English'
-                }
+                'es': es_ES_1.SPANISH_TRANSLATIONS,
+                'en': en_US_1.ENGLISH_TRANSLATIONS
             }
         };
     }

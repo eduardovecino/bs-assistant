@@ -7,6 +7,8 @@ import { InfoIntents } from "./dialogflow/intents/info";
 
 import { dialogflow } from "actions-on-google";
 import { TranslateManager } from "./managers/translate.manager";
+import { SPANISH_TRANSLATIONS } from "./locales/es-ES";
+import { ENGLISH_TRANSLATIONS } from "./locales/en-US";
 
 class AppDialogFlow {
 
@@ -39,12 +41,8 @@ class AppDialogFlow {
         this.translateManager.config = {
             lang: 'en',
             translations: {
-                'es': {
-                    'foo': 'Soy español'
-                },
-                'en': {
-                    'foo': 'I\'m English'
-                }
+                'es': SPANISH_TRANSLATIONS,
+                'en': ENGLISH_TRANSLATIONS
             }
         };
     }
