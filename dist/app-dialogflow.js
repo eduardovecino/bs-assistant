@@ -22,6 +22,14 @@ class AppDialogFlow {
         this.accountIntents.intents(this.app);
         this.cardIntents.intents(this.app);
         this.infoIntents.intents(this.app);
+        // i18n.configure({
+        //     directory: "../src/locales",
+        //     defaultLocale: "es-ES",
+        //     objectNotatio: true,
+        //     fallbacks: {
+        //         'es-ES': 'es'
+        //     }
+        // })
     }
     config() {
         // support application/json type post data

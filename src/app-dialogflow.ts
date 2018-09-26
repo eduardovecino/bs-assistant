@@ -4,6 +4,7 @@ import { ProductIntents } from "./dialogflow/intents/products";
 import { AccountIntents } from "./dialogflow/intents/accounts";
 import { CardIntents } from "./dialogflow/intents/cards";
 import { InfoIntents } from "./dialogflow/intents/info";
+import { i18n } from "i18n"
 
 import { dialogflow } from "actions-on-google";
 
@@ -16,6 +17,7 @@ class AppDialogFlow {
     public cardIntents: CardIntents = new CardIntents();
     public infoIntents: InfoIntents = new InfoIntents();
 
+   
     
 
     constructor() {
@@ -30,8 +32,17 @@ class AppDialogFlow {
         this.cardIntents.intents(this.app);
         this.infoIntents.intents(this.app);
 
-
+        // i18n.configure({
+        //     directory: "../src/locales",
+        //     defaultLocale: "es-ES",
+        //     objectNotatio: true,
+        //     fallbacks: {
+        //         'es-ES': 'es'
+        //     }
+        // })
     }
+
+ 
 
     private config(): void {
         // support application/json type post data

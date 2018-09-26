@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
@@ -14,10 +13,20 @@ class ProductIntents /*extends BaseIntent*/ {
         //     this.uggestions(conv);       
         // });
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(new actions_on_google_1.Permission({
-                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
+            const locale = conv.user.locale;
+            if (locale == "es-ES") {
+                conv.ask('Bienvenido al Banco Sabadell');
+            }
+            else if (locale == "en-EN") {
+                conv.ask("Welcome to Banco Sabadell");
+            }
+            else {
+                conv.ask("Universal Lenguage activated");
+            }
+            // conv.ask(new Permission({
+            //     context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+            //     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            // }));
         });
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
