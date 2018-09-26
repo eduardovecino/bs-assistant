@@ -5,7 +5,6 @@ export class TranslateManager {
     private static instance: TranslateManager;
     private _config: {lang, translations};
 
-
     constructor() {
     }
 
@@ -24,7 +23,9 @@ export class TranslateManager {
         return this._config;
     }
 
-    public translate(key) {
-        return this._config.translations[this._config.lang][key];
+    public translate(key, params?) {
+        const literal = this._config.translations[this._config.lang][key];
+        // Welcome to Banco Sabadell, {{ name }}
+        return literal;
     }
 }

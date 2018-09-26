@@ -16,8 +16,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({
-                // context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
-                context: this.translateManager.translate('foo'),
+                context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
@@ -27,7 +26,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             const { name } = conv.user;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(`Bienvenido a Banco Sabadell, ${name.display}`);
+                    conv.ask(this.translateManager.translate('intent.product.welcome.answer_%name%', {name: name.display}));
                     // this.suggestions(conv);
                 }
             } else {
