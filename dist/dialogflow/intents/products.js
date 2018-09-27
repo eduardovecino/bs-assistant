@@ -2,20 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
+const translate_manager_1 = require("../../managers/translate.manager");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
-        // super();
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
         console.log('Registering Products Intents Hola');
-        // app.intent('Default Welcome Intent', conv => {
-        //     conv.ask(`Bienvenido a Banco Sabadell`); 
-        //     this.uggestions(conv);       
-        // });
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
-                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+                context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
@@ -24,7 +21,7 @@ class ProductIntents /*extends BaseIntent*/ {
             const { name } = conv.user;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(`Bienvenido a Banco Sabadell, ${name.display}`);
+                    conv.ask(this.translateManager.translate('intent.product.welcome.answer_%name%', { name: name.display }));
                     // this.suggestions(conv);
                 }
             }

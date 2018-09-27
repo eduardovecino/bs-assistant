@@ -4,6 +4,7 @@ import { ProductRoutes } from "./rest/routes/products";
 import { CardRoutes } from "./rest/routes/cards";
 import { AccountRoutes } from "./rest/routes/accounts";
 import { InformationRoutes } from "./rest/routes/information";
+import { TranslateManager } from "./managers/translate.manager";
 
 
 class AppRest {
@@ -14,7 +15,7 @@ class AppRest {
     public accountRoutes: AccountRoutes = new AccountRoutes();
     public informationRoutes: InformationRoutes = new InformationRoutes();
 
-
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
         console.log('AppRest Constructor');
@@ -33,6 +34,10 @@ class AppRest {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+
+        this.translateManager.config = {
+            lang: 'es'
+        };
     }
 }
 

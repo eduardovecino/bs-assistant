@@ -6,12 +6,14 @@ const products_1 = require("./rest/routes/products");
 const cards_1 = require("./rest/routes/cards");
 const accounts_1 = require("./rest/routes/accounts");
 const information_1 = require("./rest/routes/information");
+const translate_manager_1 = require("./managers/translate.manager");
 class AppRest {
     constructor() {
         this.productRoutes = new products_1.ProductRoutes();
         this.cardRoutes = new cards_1.CardRoutes();
         this.accountRoutes = new accounts_1.AccountRoutes();
         this.informationRoutes = new information_1.InformationRoutes();
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
         console.log('AppRest Constructor');
         this.app = express();
         this.config();
@@ -25,6 +27,9 @@ class AppRest {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.translateManager.config = {
+            lang: 'es'
+        };
     }
 }
 exports.default = new AppRest().app;

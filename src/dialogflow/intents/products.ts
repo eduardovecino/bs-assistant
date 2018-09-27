@@ -1,26 +1,22 @@
 import { Permission, SignIn } from "actions-on-google";
 import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
+import { TranslateManager } from "../../managers/translate.manager";
 
 export class ProductIntents /*extends BaseIntent*/ {
 
     private productsService: ProductService = new ProductService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
-        // super();
     }
 
     public intents(app): void {
         console.log('Registering Products Intents Hola');
 
-        // app.intent('Default Welcome Intent', conv => {
-        //     conv.ask(`Bienvenido a Banco Sabadell`); 
-        //     this.uggestions(conv);       
-        // });
-
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({
-                context: `Para dirigirme a usted por su nombre y conocer su ubicación,`,
+                context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
@@ -30,7 +26,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             const { name } = conv.user;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(`Bienvenido a Banco Sabadell, ${name.display}`);
+                    conv.ask(this.translateManager.translate('intent.product.welcome.answer_%name%', {name: name.display}));
                     // this.suggestions(conv);
                 }
             } else {
