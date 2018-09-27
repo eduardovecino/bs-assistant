@@ -15,8 +15,10 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
         app.intent('Default Welcome Intent', conv => {
-            let ssml = '<speak>You have three seconds to think about it...' + Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer') + '</speak>';
-            conv.ask(ssml);
+            let ssml1 = Ssml.speech(this.translateManager.translate('intent.product.welcome.answer'));
+            let ssml2 =  Ssml.break({ s: 3 });
+            let ssml3 = Ssml.speech(this.translateManager.translate('intent.product.welcome.answer'));
+            conv.ask(ssml1, ssml2, ssml3);
                 
                 // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),
