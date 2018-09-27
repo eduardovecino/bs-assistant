@@ -10,9 +10,11 @@ class ProductIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         app.intent('Default Welcome Intent', conv => {
-            let ssml1 = ssml_gib_1.Ssml.speech(this.translateManager.translate('intent.product.welcome.answer'));
-            let ssml = ssml_gib_1.Ssml.break({ s: 3 });
-            conv.ask(ssml1, ssml);
+            // let ssml1 = Ssml.sayAs({ text: this.translateManager.translate('intent.product.welcome.answer'), interpret: As.expletive });
+            // let ssml =  Ssml.break({ s: 3 });
+            // conv.ask(ssml1, ssml);
+            let ssml = 'You have three seconds to think about it...' + ssml_gib_1.Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer');
+            conv.ask(ssml);
             // new Permission({ 
             // context: this.translateManager.translate('intent.product.welcome.answer'),
             // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
