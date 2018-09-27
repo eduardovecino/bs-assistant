@@ -10,7 +10,7 @@ class ProductIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         console.log('Registering Products Intents Hola');
-        let ssml = `<speak>You have three seconds to think about it...${ssml_gib_1.Ssml.break({ s: 3 })}<spaek>`;
+        let ssml = `<speak>You have three seconds to think about it...${ssml_gib_1.Ssml.break({ s: 3 })}<speak>`;
         app.intent('Default Welcome Intent', conv => {
             conv.ask(ssml);
             // new Permission({ 
