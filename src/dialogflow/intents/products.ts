@@ -18,7 +18,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             // let ssml1 = Ssml.sayAs({ text: this.translateManager.translate('intent.product.welcome.answer'), interpret: As.expletive });
             // let ssml =  Ssml.break({ s: 3 });
             // conv.ask(ssml1, ssml);
-            let ssml = 'You have three seconds to think about it...' + Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer');
+            let ssml = '<speak>You have three seconds to think about it...' + Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer') + '</speak>';
             conv.ask(ssml);
                 // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),
