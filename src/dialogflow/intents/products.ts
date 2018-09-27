@@ -2,13 +2,13 @@ import { Permission, SignIn } from "actions-on-google";
 import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
 import { TranslateManager } from "../../managers/translate.manager";
-import { Speech } from "ssml-builder";
+import { Ssml } from 'ssml-gib';
 
 export class ProductIntents /*extends BaseIntent*/ {
 
     private productsService: ProductService = new ProductService();
     public translateManager: TranslateManager = TranslateManager.getInstance();
-    public speech = new Speech();
+
 
     constructor() {
     }
@@ -17,7 +17,7 @@ export class ProductIntents /*extends BaseIntent*/ {
         console.log('Registering Products Intents Hola');
 
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(this.speech.sayAs({ word: "12343123", interpret: "telephone" }))
+            conv.ask(Ssml.prosody("shout me!", { volume: "loud" }));
                 
                 // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),

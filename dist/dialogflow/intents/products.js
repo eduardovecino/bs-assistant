@@ -2,17 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const products_service_1 = require("../../services/products.service");
 const translate_manager_1 = require("../../managers/translate.manager");
-const ssml_builder_1 = require("ssml-builder");
+const ssml_gib_1 = require("ssml-gib");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
-        this.speech = new ssml_builder_1.Speech();
     }
     intents(app) {
         console.log('Registering Products Intents Hola');
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(this.speech.sayAs({ word: "12343123", interpret: "telephone" }));
+            conv.ask(ssml_gib_1.Ssml.prosody("shout me!", { volume: "loud" }));
             // new Permission({ 
             // context: this.translateManager.translate('intent.product.welcome.answer'),
             // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
