@@ -17,11 +17,12 @@ export class ProductIntents /*extends BaseIntent*/ {
         console.log('Registering Products Intents Hola');
 
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(new Permission({
-                context: this.speech.sayAs({word: "12343123", interpret: "telephone"}), 
+            conv.ask(this.speech.sayAs({ word: "12343123", interpret: "telephone" }))
+                
+                // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
+                // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            // }));
         });
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event

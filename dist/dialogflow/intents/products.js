@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
 const translate_manager_1 = require("../../managers/translate.manager");
 const ssml_builder_1 = require("ssml-builder");
@@ -13,11 +12,11 @@ class ProductIntents /*extends BaseIntent*/ {
     intents(app) {
         console.log('Registering Products Intents Hola');
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(new actions_on_google_1.Permission({
-                context: this.speech.sayAs({ word: "12343123", interpret: "telephone" }),
-                // context: this.translateManager.translate('intent.product.welcome.answer'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
+            conv.ask(this.speech.sayAs({ word: "12343123", interpret: "telephone" }));
+            // new Permission({ 
+            // context: this.translateManager.translate('intent.product.welcome.answer'),
+            // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            // }));
         });
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
