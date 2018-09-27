@@ -2,23 +2,28 @@ import { Permission, SignIn } from "actions-on-google";
 import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
 import { TranslateManager } from "../../managers/translate.manager";
+import { Ssml } from 'ssml-gib';
 
 export class ProductIntents /*extends BaseIntent*/ {
 
     private productsService: ProductService = new ProductService();
     public translateManager: TranslateManager = TranslateManager.getInstance();
 
+
     constructor() {
     }
 
     public intents(app): void {
-        console.log('Registering Products Intents Hola');
-
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(new Permission({
-                context: this.translateManager.translate('intent.product.welcome.answer'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
+            // let ssml1 = Ssml.sayAs({ text: this.translateManager.translate('intent.product.welcome.answer'), interpret: As.expletive });
+            // let ssml =  Ssml.break({ s: 3 });
+            // conv.ask(ssml1, ssml);
+            let ssml = '<speak>You have three seconds to think about it...' + Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer') + '</speak>';
+            conv.ask(ssml);
+                // new Permission({ 
+                // context: this.translateManager.translate('intent.product.welcome.answer'),
+                // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            // }));
         });
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event

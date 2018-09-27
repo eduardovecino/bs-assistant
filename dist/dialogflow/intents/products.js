@@ -1,20 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
 const translate_manager_1 = require("../../managers/translate.manager");
+const ssml_gib_1 = require("ssml-gib");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
-        console.log('Registering Products Intents Hola');
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(new actions_on_google_1.Permission({
-                context: this.translateManager.translate('intent.product.welcome.answer'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
+            // let ssml1 = Ssml.sayAs({ text: this.translateManager.translate('intent.product.welcome.answer'), interpret: As.expletive });
+            // let ssml =  Ssml.break({ s: 3 });
+            // conv.ask(ssml1, ssml);
+            let ssml = '<speak>You have three seconds to think about it...' + ssml_gib_1.Ssml.break({ s: 3 }) + this.translateManager.translate('intent.product.welcome.answer') + '</speak>';
+            conv.ask(ssml);
+            // new Permission({ 
+            // context: this.translateManager.translate('intent.product.welcome.answer'),
+            // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            // }));
         });
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {

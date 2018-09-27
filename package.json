@@ -11,6 +11,7 @@
     "immutable": "^3.8.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
+    "ssml-gib": "^0.7.4",
     "ts-translate": "^4.2.1"
   },
   "scripts": {
