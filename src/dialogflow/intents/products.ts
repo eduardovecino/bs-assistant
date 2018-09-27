@@ -15,9 +15,9 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
         console.log('Registering Products Intents Hola');
-
+        let ssml = `You have three seconds to think about it...${Ssml.break({ s: 3 })}`;
         app.intent('Default Welcome Intent', conv => {
-            conv.ask(Ssml.prosody("shout me!", { volume: "loud" }));
+            conv.ask(ssml);
                 
                 // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),
