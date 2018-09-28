@@ -15,7 +15,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
         app.intent('Default Welcome Intent', conv => {
-            let ssml = [this.translateManager.translate('intent.product.welcome.answer')];
+            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
             conv.ask(Ssml.wrapSsmlSpeak(ssml));
                 // new Permission({ 
                 // context: this.translateManager.translate('intent.product.welcome.answer'),
