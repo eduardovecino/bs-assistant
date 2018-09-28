@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
-const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
@@ -17,8 +16,8 @@ class AccountIntents /*extends BaseIntent*/ {
                 if (accounts) {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                     conv.ask(accountsList);
-                    conv.ask(suggestionResponse);
-                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+                    // conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 }
                 else {
                     conv.ask(nullResponse);
@@ -43,7 +42,6 @@ class AccountIntents /*extends BaseIntent*/ {
                 if (account) {
                     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                     conv.ask(suggestionResponse);
-                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 }
                 else {
                     conv.ask(nullResponse);

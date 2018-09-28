@@ -2,6 +2,8 @@ import { Suggestions } from "actions-on-google";
 import { SUGGESTIONS } from "../../constants/suggestions";
 import { TOKEN } from "../../constants/token";
 
+
+
 export class SuggestionDFManager {
 
 
@@ -15,4 +17,6 @@ export class SuggestionDFManager {
             return (new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
         }
     }
+
+    
 }
