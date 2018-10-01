@@ -2,6 +2,8 @@ import { AccountService } from "../../services/account.service";
 import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
+import { Ssml } from "ssml-gib";
+import { FormatManager } from "../../../src/managers/format.manager"
 
 
 export class AccountIntents /*extends BaseIntent*/ {
@@ -16,8 +18,12 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
+
+                let accountsNames = FormatManager.getLast4numbers(accounts);
+
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(Ssml.wrapSsmlSpeak(accountsNames));
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
