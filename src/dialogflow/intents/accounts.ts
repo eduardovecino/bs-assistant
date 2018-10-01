@@ -18,11 +18,16 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-
+                let response = "Tus Cuentas son: "
 
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(Ssml.wrapSsmlSpeak(accounts));
+                    const accountsNames = this.accountService.getAccounts().then(accounts => {
+                        accounts.forEach (account => {
+                            response += FormatManager.getLast4numbers(account) + ", "; 
+                        }) 
+                    })
+                    conv.ask(response);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
