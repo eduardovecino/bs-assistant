@@ -15,20 +15,19 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
         app.intent('Default Welcome Intent', conv => {
-            let ssml = [this.translateManager.translate('intent.product.welcome.answer')];
-            conv.ask(Ssml.wrapSsmlSpeak(ssml));
-                // new Permission({ 
-                // context: this.translateManager.translate('intent.product.welcome.answer'),
-                // permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            // }));
+            conv.ask(new Permission({ 
+                context: this.translateManager.translate('intent.product.welcome.answer'),
+                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+            }));
         });
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
             const { name } = conv.user;
+            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(this.translateManager.translate('intent.product.welcome.answer_%name%', {name: name.display}));
+                    conv.ask(Ssml.wrapSsmlSpeak(ssml));
                     // this.suggestions(conv);
                 }
             } else {
