@@ -11,9 +11,8 @@ class ProductIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         app.intent('Default Welcome Intent', conv => {
-            let ssml = [this.translateManager.translate('intent.product.welcome.answer')];
             conv.ask(new actions_on_google_1.Permission({
-                context: ssml_gib_1.Ssml.wrapSsmlSpeak(ssml),
+                context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
