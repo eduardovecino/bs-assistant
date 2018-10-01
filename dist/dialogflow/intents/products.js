@@ -13,10 +13,10 @@ class ProductIntents /*extends BaseIntent*/ {
         app.intent('Default Welcome Intent', conv => {
             let ssml = [this.translateManager.translate('intent.product.welcome.answer')];
             conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(ssml));
-            new actions_on_google_1.Permission({
+            conv.askk(new actions_on_google_1.Permission({
                 context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            });
+            }));
         });
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {

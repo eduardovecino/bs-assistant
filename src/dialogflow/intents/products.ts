@@ -17,10 +17,10 @@ export class ProductIntents /*extends BaseIntent*/ {
         app.intent('Default Welcome Intent', conv => {
             let ssml = [this.translateManager.translate('intent.product.welcome.answer')];
             conv.ask(Ssml.wrapSsmlSpeak(ssml));
-                new Permission({ 
+            conv.askk(new Permission({ 
                 context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            });
+            }));
         });
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
