@@ -19,11 +19,10 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
 
-                let accountsNames = FormatManager.getLast4numbers(accounts);
 
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(Ssml.wrapSsmlSpeak(accountsNames));
+                    conv.ask(Ssml.wrapSsmlSpeak(accounts));
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
