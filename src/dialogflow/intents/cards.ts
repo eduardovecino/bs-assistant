@@ -20,7 +20,7 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
                 if (cards) {
                     const carouselOfCards = CardDFManager.cardsCarousel(cards);
-                    conv.ask(`Aquí tienes las tarjetas`);
+                    conv.ask(`Tus tarjetas sson `);
                     conv.ask(carouselOfCards);
                 } else {
                     conv.ask(`No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`);
