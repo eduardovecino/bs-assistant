@@ -22,7 +22,7 @@ export class AccountIntents /*extends BaseIntent*/ {
              
                 if (accounts) {
                     accounts.forEach(account => {
-                        response = response + FormatManager.getLast4numbers(accounts[0].iban) + ", ";
+                        response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                     })
                     // const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(response);
