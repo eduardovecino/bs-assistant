@@ -26,9 +26,9 @@ export class AccountIntents /*extends BaseIntent*/ {
                     accounts.forEach((account) => {
                         reponseAccount = FormatManager.getLast4numbers(account.iban);
                     });
-                    const accountsList = AccountDFManager.generateAccountsList(accounts);    
-                    conv.ask(response + reponseAccount);
-                    conv.ask(accountsList);
+                          // const accountsList = AccountDFManager.generateAccountsList(accounts);    
+                    conv.ask(reponseAccount);
+                        // conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {

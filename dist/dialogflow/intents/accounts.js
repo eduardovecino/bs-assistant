@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
-const account_manager_2 = require("../../managers/dialog-flow/account.manager");
 const format_manager_1 = require("../../../src/managers/format.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
@@ -20,9 +19,9 @@ class AccountIntents /*extends BaseIntent*/ {
                     accounts.forEach((account) => {
                         reponseAccount = format_manager_1.FormatManager.getLast4numbers(account.iban);
                     });
-                    const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(response + reponseAccount);
-                    conv.ask(accountsList);
+                    // const accountsList = AccountDFManager.generateAccountsList(accounts);    
+                    conv.ask(reponseAccount);
+                    // conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 }
