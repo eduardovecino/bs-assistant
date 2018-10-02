@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
-const format_manager_1 = require("../../../src/managers/format.manager");
+const format_manager_1 = require("../../managers/format.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();

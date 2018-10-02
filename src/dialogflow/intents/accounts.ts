@@ -3,7 +3,7 @@ import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
 import { Ssml } from "ssml-gib";
-import { FormatManager } from "../../../src/managers/format.manager"
+import { FormatManager } from "../../managers/format.manager"
 
 
 export class AccountIntents /*extends BaseIntent*/ {
