@@ -18,7 +18,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = "Tienes "+ accounts.length() + " cuentas. Terminadas en:" ;
+                let response = "Tienes "+ /*accounts.length()*/ + " cuentas. Terminadas en:" ;
              
                 if (accounts) {
                     accounts.forEach(account => {
