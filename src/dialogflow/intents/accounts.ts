@@ -30,7 +30,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 //     response.accountName = {nameAccount};
                 // })
                     const accountsList = AccountDFManager.generateAccountsList(accounts);    
-                    conv.ask(FormatManager.getLast4numbers(accounts.descripcion));
+                    // conv.ask(FormatManager.getLast4numbers(accounts.descripcion));
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
