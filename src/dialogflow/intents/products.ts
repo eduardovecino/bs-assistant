@@ -42,18 +42,18 @@ export class ProductIntents /*extends BaseIntent*/ {
         });
 
         app.intent('Get Signin', (conv, params, signin) => {
-            this.logged = '1'; //TEST
+            // this.logged = '1'; //TEST
             if (signin.status === 'OK') {
                 const access = conv.user.access.token;  //possibly do something with access token
                 conv.ask(`¡Genial, gracias por iniciar sesión! ${access}`);
-                this.suggestions(conv);
+                // this.suggestions(conv);
             } else {
                 //${signin.status}
                 conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
-                this.suggestions(conv);
+                // this.suggestions(conv);
             }
         });
-        
+
         app.intent('Cancel', (conv) => {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
         });
