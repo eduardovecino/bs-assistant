@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
-const format_manager_1 = require("../../../src/managers/format.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
@@ -16,7 +15,7 @@ class AccountIntents /*extends BaseIntent*/ {
                 let response = "Tus Cuentas son: ";
                 if (accounts) {
                     // accounts.forEach(account => {
-                    response = response + format_manager_1.FormatManager.getLast4numbers(accounts[0].iban) + ", ";
+                    // response = response + FormatManager.getLast4numbers(accounts[0].iban) + ", ";
                     // })
                     // const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(response);
