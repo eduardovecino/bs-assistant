@@ -15,9 +15,9 @@ class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccounts().then(accounts => {
                 let response = "Tus Cuentas son: ";
                 if (accounts) {
-                    accounts.forEach(account => {
-                        response += format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
-                    });
+                    // accounts.forEach(account => {
+                    response += format_manager_1.FormatManager.getLast4numbers(accounts[0].iban) + ", ";
+                    // })
                     // const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(response);
                     // conv.ask(accountsList);
