@@ -20,7 +20,7 @@ class AccountIntents /*extends BaseIntent*/ {
                         response = response + format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
                     });
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(response);
+                    conv.ask(response + "¿Cúal quieres seleccionar?");
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
