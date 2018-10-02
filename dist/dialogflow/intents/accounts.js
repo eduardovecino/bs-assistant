@@ -16,7 +16,7 @@ class AccountIntents /*extends BaseIntent*/ {
                 let response = "Tus Cuentas son: ";
                 if (accounts) {
                     accounts.forEach(account => {
-                        response += format_manager_1.FormatManager.getLast4numbers(account.descriptio) + ", ";
+                        response += format_manager_1.FormatManager.getLast4numbers(account.descripcion) + ", ";
                     });
                     // const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(response);
