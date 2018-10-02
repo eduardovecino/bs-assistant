@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
+const format_manager_1 = require("../../../src/managers/format.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
@@ -12,7 +13,7 @@ class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = "Tus Cuentas son:" + accounts[0].iban;
+                let response = "Tus Cuentas son:" + format_manager_1.FormatManager.getLast4numbers(accounts[0].iban);
                 if (accounts) {
                     // accounts.forEach(account => {
                     // response = response + FormatManager.getLast4numbers(accounts[0].iban) + ", ";
