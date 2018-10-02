@@ -21,11 +21,13 @@ export class AccountIntents /*extends BaseIntent*/ {
                 let response = "Tus Cuentas son: "
              
                 if (accounts) {
-                    accounts.forEach(account => {
-                        response += FormatManager.getLast4numbers(account.iban) + ", ";
-                    })
+                    let reponseAccount;
+                    
+                    accounts.forEach((account) => {
+                        reponseAccount = FormatManager.getLast4numbers(account.iban);
+                    });
                     const accountsList = AccountDFManager.generateAccountsList(accounts);    
-                    conv.ask(response);
+                    conv.ask(response + reponseAccount);
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
