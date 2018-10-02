@@ -20,9 +20,9 @@ export class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccounts().then(accounts => {
                 let response = "Tus Cuentas son: "
                
-                // accounts.forEach(account => {
-                //     response += FormatManager.getLast4numbers(account) + ", ";
-                // })
+                accounts.forEach(account => {
+                    response += FormatManager.getLast4numbers(account) + ", ";
+                })
                 conv.ask(response);
 
                 // if (accounts) {
