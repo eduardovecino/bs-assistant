@@ -12,7 +12,7 @@ class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = "Tus Cuentas son: ";
+                let response = "Tus Cuentas son:" + accounts[0].iban;
                 if (accounts) {
                     // accounts.forEach(account => {
                     // response = response + FormatManager.getLast4numbers(accounts[0].iban) + ", ";
