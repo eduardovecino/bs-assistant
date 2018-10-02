@@ -18,15 +18,15 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = "Tus Cuentas son:" ;
+                let response = "Tienes "+ accounts.length() + " cuentas. Terminadas en:" ;
              
                 if (accounts) {
                     accounts.forEach(account => {
                         response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                     })
-                    // const accountsList = AccountDFManager.generateAccountsList(accounts);    
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(response);
-                    // conv.ask(accountsList);
+                    conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {
