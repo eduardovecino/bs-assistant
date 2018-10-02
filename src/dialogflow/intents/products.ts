@@ -34,7 +34,7 @@ export class ProductIntents /*extends BaseIntent*/ {
                 conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
             }
         });
-/*
+
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
             conv.ask(`Vamos a iniciar sesión`);
@@ -52,7 +52,8 @@ export class ProductIntents /*extends BaseIntent*/ {
                 conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
                 this.suggestions(conv);
             }
-        });*/
+        });
+        
         app.intent('Cancel', (conv) => {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
         });
