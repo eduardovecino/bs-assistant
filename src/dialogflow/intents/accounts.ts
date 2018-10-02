@@ -19,14 +19,12 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
                 let response = "Tus Cuentas son: "
-      
-
+                accounts.forEach(account => {
+                    response += FormatManager.getLast4numbers(account) + ", ";
+                })
+                conv.ask(response);
                 if (accounts) {
-                    const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    accounts.forEach(account => {
-                        response += FormatManager.getLast4numbers(account) + ", ";
-                    })
-                    conv.ask(response);
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);    
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
