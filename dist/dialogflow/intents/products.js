@@ -30,25 +30,24 @@ class ProductIntents /*extends BaseIntent*/ {
                 conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
             }
         });
-        /*
-                //Iniciar Sesión
-                app.intent('Iniciar Sesion', (conv) => {
-                    conv.ask(`Vamos a iniciar sesión`);
-                    conv.ask(new SignIn());
-                });
-        
-                app.intent('Get Signin', (conv, params, signin) => {
-                    this.logged = '1'; //TEST
-                    if (signin.status === 'OK') {
-                        const access = conv.user.access.token;  //possibly do something with access token
-                        conv.ask(`¡Genial, gracias por iniciar sesión! ${access}`);
-                        this.suggestions(conv);
-                    } else {
-                        //${signin.status}
-                        conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
-                        this.suggestions(conv);
-                    }
-                });*/
+        //Iniciar Sesión
+        app.intent('Iniciar Sesion', (conv) => {
+            conv.ask(`Vamos a iniciar sesión`);
+            conv.ask(new actions_on_google_1.SignIn());
+        });
+        app.intent('Get Signin', (conv, params, signin) => {
+            // this.logged = '1'; //TEST
+            if (signin.status === 'OK') {
+                const access = conv.user.access.token; //possibly do something with access token
+                conv.ask(`¡Genial, gracias por iniciar sesión! ${access}`);
+                // this.suggestions(conv);
+            }
+            else {
+                //${signin.status}
+                conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
+                // this.suggestions(conv);
+            }
+        });
         app.intent('Cancel', (conv) => {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
         });
