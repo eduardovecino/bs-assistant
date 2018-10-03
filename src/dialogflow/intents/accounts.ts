@@ -44,7 +44,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if(selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 } else {
-                    conv.ask(`No podemos mostrar la cuenta ${option}`)o ;
+                    conv.ask(`No podemos mostrar la cuenta ${option}`) ;
                 }
             });
         });

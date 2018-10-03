@@ -41,7 +41,6 @@ class AccountIntents /*extends BaseIntent*/ {
                 }
                 else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
-                    o;
                 }
             });
         });
