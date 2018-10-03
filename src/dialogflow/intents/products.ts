@@ -27,7 +27,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(Ssml.wrapSsmlSpeak(ssml) + conv.user.userId );
+                    conv.ask(Ssml.wrapSsmlSpeak(ssml) + conv.user.name );
                     // this.suggestions(conv);
                 }
             } else {
