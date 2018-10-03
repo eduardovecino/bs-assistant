@@ -44,7 +44,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
             });
-        })
+        })s
 
             app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
                 conv.ask('Hola')
