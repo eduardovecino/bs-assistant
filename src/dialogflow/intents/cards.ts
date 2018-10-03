@@ -3,7 +3,7 @@ import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 import { FormatManager } from '../../managers/format.manager';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
-
+import { Ssml } from 'ssml-gib';
 
 export class CardIntents /*extends BaseIntent*/ {
 
@@ -39,13 +39,16 @@ export class CardIntents /*extends BaseIntent*/ {
                 const cardSelected = CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
                     const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
-                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €`);
+                    conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 } else {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
             });
         })
 
+        app.intent('Tarjeta seleccionada - yes', (conv) =>{
+            conv.ask('Hola')
+        }) 
 
         // //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {

@@ -5,6 +5,7 @@ const card_manager_1 = require("../../managers/data/card.manager");
 const card_manager_2 = require("../../managers/dialog-flow/card.manager");
 const format_manager_1 = require("../../managers/format.manager");
 const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
+const ssml_gib_1 = require("ssml-gib");
 class CardIntents /*extends BaseIntent*/ {
     constructor() {
         this.cardService = new card_service_1.CardService();
@@ -35,12 +36,15 @@ class CardIntents /*extends BaseIntent*/ {
                 const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
                     const lastNumbers = format_manager_1.FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
-                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €`);
+                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €. ${ssml_gib_1.Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 }
                 else {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
             });
+        });
+        app.intent('Tarjeta seleccionada - yes', (conv) => {
+            conv.ask('Hola');
         });
         // //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
