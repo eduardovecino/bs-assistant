@@ -20,7 +20,7 @@ export class InfoIntents /*extends BaseIntent*/ {
                     })
 
                     const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
-                    conv.ask(response);
+                    conv.ask(response + "¿Cúal desea seleccionar?");
                     conv.ask(carouselOfOffices);
                 } else {
                     conv.ask(`No podemos mostrar las oficinas cercanas en este momento, vuelve a intentarlo`);
