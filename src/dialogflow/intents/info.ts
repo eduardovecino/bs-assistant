@@ -16,7 +16,7 @@ export class InfoIntents /*extends BaseIntent*/ {
                 // conv.ask(offices[0].latitude);
                 if (offices) {
                     offices.forEach(office => {
-                        response = response + office.id + "en" + office.address + ", ";
+                        response = response + office.id + " en " + office.address + ", ";
                     })
 
                     const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
