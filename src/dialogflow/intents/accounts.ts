@@ -41,15 +41,15 @@ export class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 if(selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €. ¿Quieres saber algo más a cerca de tus cuentas?`);
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €. ¿Quieres saber el saldo de la cuenta?`);
                 } else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
             });
         });
 
-        app.intent('Cuenta seleccionada - yes', (conv, input, output) => {
-            conv.ask('¿Quieres saber el saldo de la cuenta?')
+        app.intent('Cuenta seleccionada - yes', (conv, input, output, option) => {
+            conv.ask('vamos a ver el saldo')
         })
 
 
