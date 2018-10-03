@@ -22,7 +22,7 @@ class ProductIntents /*extends BaseIntent*/ {
             let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(ssml) + conv.user.profile.displayName);
+                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(ssml) + conv.user.profile);
                     // this.suggestions(conv);
                 }
             }
