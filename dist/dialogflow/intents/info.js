@@ -9,10 +9,14 @@ class InfoIntents /*extends BaseIntent*/ {
     intents(app) {
         app.intent('Oficinas Cercanas', conv => {
             this.informationService.getOffices().then(offices => {
+                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. Són las siguientes:";
                 // conv.ask(offices[0].latitude);
                 if (offices) {
+                    offices.forEach(office => {
+                        response = response + office.id + "en" + office.address + ", ";
+                    });
                     const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
-                    conv.ask(`Aquí tienes las oficinas más cercanas`);
+                    conv.ask(response);
                     conv.ask(carouselOfOffices);
                 }
                 else {
