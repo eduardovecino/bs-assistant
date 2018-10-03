@@ -16,7 +16,7 @@ class InfoIntents /*extends BaseIntent*/ {
                         response = response + office.id + " en " + office.address + ", ";
                     });
                     const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
-                    conv.ask(response + "¿Cúal desea seleccionar?");
+                    conv.ask(response + "¿Cúal quieres  seleccionar?");
                     conv.ask(carouselOfOffices);
                 }
                 else {
