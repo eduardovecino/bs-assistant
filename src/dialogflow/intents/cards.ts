@@ -18,9 +18,14 @@ export class CardIntents /*extends BaseIntent*/ {
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
+                let response = "Tienes " + cards.length + " tarjetas. Terminadas en:";
+
                 if (cards) {
+                    cards.forEach(card => {
+                        response = response + FormatManager.getLast4numbers(card.cuentaRelacionada) + ", ";
+                    })
                     const carouselOfCards = CardDFManager.cardsCarousel(cards);
-                    conv.ask(`Aquí tienes las tarjetas`);
+                    conv.ask(response + "¿Cúal deseas seleccionar?");
                     conv.ask(carouselOfCards);
                 } else {
                     conv.ask(`No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`);

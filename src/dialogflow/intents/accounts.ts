@@ -3,14 +3,12 @@ import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
 import { Ssml } from "ssml-gib";
-import { TranslateManager } from "../../managers/translate.manager";
 import { FormatManager } from "../../managers/format.manager"
 
 
 export class AccountIntents /*extends BaseIntent*/ {
 
     private accountService: AccountService = new AccountService();
-    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     public intents(app): void {
 
@@ -20,7 +18,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = this.translateManager.translate('intent.account.response._%information%');
+                let response = "Tienes " + accounts.length + " cuentas. Terminadas en:" ;
              
                 if (accounts) {
                     accounts.forEach(account => {
@@ -44,7 +42,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if(selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 } else {
-                    conv.ask(`No podemos mostrar la cuenta ${option}`) ;
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
             });
         });
