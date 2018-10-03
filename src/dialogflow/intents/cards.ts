@@ -13,7 +13,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
-        const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la pròxima'];
+        const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
@@ -46,17 +46,17 @@ export class CardIntents /*extends BaseIntent*/ {
             });
         })
 
-            app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
-                conv.ask('Hola')
-            }) 
+        app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
+            conv.ask('¿Quieres saber el saldo de tarjeta, quieres bloquearla, saber su fecha de liquidación, sus límites o ver los movimientos?')
+        }) 
 
-    
-            app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
+
+        app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
                 var cardCloseResponseResult = cardCloseResponse[Math.floor(Math.random() * cardCloseResponse.length)];
-                conv.close(cardCloseResponseResult);
-            }) 
+            conv.close(cardCloseResponseResult);
+        }) 
 
-        // //BLOQUEAR TARJETA
+        //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
             conv.ask(`Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
         });
