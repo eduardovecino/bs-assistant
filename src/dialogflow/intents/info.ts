@@ -11,7 +11,7 @@ export class InfoIntents /*extends BaseIntent*/ {
 
         app.intent('Oficinas Cercanas', conv => {
             this.informationService.getOffices().then(offices => {
-                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. Són las siguientes:";
+                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición.";
 
                 // conv.ask(offices[0].latitude);
                 if (offices) {
