@@ -28,6 +28,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             if (confirmationGranted) {
                 if (name) {
                     conv.ask(Ssml.wrapSsmlSpeak(ssml) + conv.user.profile.payload.name );
+                    console.log(conv.user);
                     // this.suggestions(conv);
                 }
             } else {
