@@ -13,6 +13,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
+        const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la pròxima'];
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
@@ -51,7 +52,6 @@ export class CardIntents /*extends BaseIntent*/ {
 
     
             app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
-                var cardCloseResponse = ['Nos venmos pronto', 'Que vaya bien', 'Hasta la pròxima'];
                 var cardCloseResponseResult = cardCloseResponse[Math.floor(Math.random() * cardCloseResponse.length)];
                 conv.close(cardCloseResponseResult);
             }) 
