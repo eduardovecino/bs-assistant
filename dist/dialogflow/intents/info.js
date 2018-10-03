@@ -9,7 +9,7 @@ class InfoIntents /*extends BaseIntent*/ {
     intents(app) {
         app.intent('Oficinas Cercanas', conv => {
             this.informationService.getOffices().then(offices => {
-                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición.";
+                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
                 // conv.ask(offices[0].latitude);
                 if (offices) {
                     offices.forEach(office => {
