@@ -3,12 +3,14 @@ import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
 import { Ssml } from "ssml-gib";
+import { TranslateManager } from "../../managers/translate.manager";
 import { FormatManager } from "../../managers/format.manager"
 
 
 export class AccountIntents /*extends BaseIntent*/ {
 
     private accountService: AccountService = new AccountService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     public intents(app): void {
 
@@ -18,14 +20,14 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                let response = "Tienes "+ accounts.length + " cuentas. Terminadas en:" ;
+                let response = this.translateManager.translate('intent.account.response._%information%');
              
                 if (accounts) {
                     accounts.forEach(account => {
                         response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                     })
                     const accountsList = AccountDFManager.generateAccountsList(accounts);    
-                    conv.ask(response + "¿Cúal quieres seleccionar?");
+                    conv.ask(response + "¿Cúal deseas seleccionar?");
                     conv.ask(accountsList);
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
@@ -42,7 +44,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if(selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 } else {
-                    conv.ask(`No podemos mostrar la cuenta ${option}`);
+                    conv.ask(`No podemos mostrar la cuenta ${option}`)o ;
                 }
             });
         });
