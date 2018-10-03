@@ -47,7 +47,7 @@ class CardIntents /*extends BaseIntent*/ {
             conv.ask('Hola');
         });
         app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
-            conv.close(`Nos vemos pronto ${conv.user.profile.payload.name} `);
+            conv.close(`Nos vemos pronto ${conv.user.profile.displayName} `);
         });
         // //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
