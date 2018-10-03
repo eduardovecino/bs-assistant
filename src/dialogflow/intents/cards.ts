@@ -46,7 +46,7 @@ export class CardIntents /*extends BaseIntent*/ {
             });
         })
 
-        app.intent('Tarjeta seleccionada - yes', (conv, input) =>{
+        app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
             conv.ask('Hola')
         }) 
 
