@@ -12,28 +12,28 @@ export class AccountService extends RestManager {
 
     public getAccounts(): Promise<any> {
         return new Promise((resolve, reject) => {
-                // const data = fs.readFileSync('mock/accounts/get-accounts.json');
-                // const jsonData = JSON.parse(data.toString());
-                // resolve(jsonData.data);
+                const data = fs.readFileSync('mock/accounts/get-accounts.json');
+                const jsonData = JSON.parse(data.toString());
+                resolve(jsonData.data);
 
-            let url = host + path;
+            // let url = host + path;
 
-            const options = {
-                'method': 'GET',
-                'uri': url,
-                'json': true,
-                'timeout': 8000,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
-                }
-            };
+            // const options = {
+            //     'method': 'GET',
+            //     'uri': url,
+            //     'json': true,
+            //     'timeout': 8000,
+            //     'headers': {
+            //         'Content-Type': 'application/json',
+            //         'Authorization': 'Bearer ' + token,
+            //     }
+            // };
 
-            request(options, (err, res, body) => {
-                if (err) { return console.log(err); }
-                resolve(body.data);
-                console.log(body.data);
-            });
+            // request(options, (err, res, body) => {
+            //     if (err) { return console.log(err); }
+            //     resolve(body.data);
+            //     console.log(body.data);
+            // });
         });        
     }
 
