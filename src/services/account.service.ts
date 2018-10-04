@@ -8,11 +8,11 @@ export class AccountService extends RestManager {
     public getAccounts(): Promise<any> {
         return new Promise((resolve, reject) => {
 
-            setTimeout(function () {
+            // setTimeout(function () {
                 const data = fs.readFileSync('mock/accounts/get-accounts.json');
                 const jsonData = JSON.parse(data.toString());
                 resolve(jsonData.data);
-            },0);
+            // },0);
 
             // const request = require('request');
 
