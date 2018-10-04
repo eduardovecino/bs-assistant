@@ -16,18 +16,15 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                setTimeout(() => {
-                    if (accounts) {
-                        const accountsList = AccountDFManager.generateAccountsList(accounts);
-                        conv.ask(accountsList);
-                        // conv.ask(suggestionResponse);
-                        // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                    } else {
-                        conv.ask(nullResponse);
-                    }
-                }, 5000);
-
-
+                
+                if (accounts) {
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(accountsList);
+                    // conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+                } else {
+                    conv.ask(nullResponse);
+                }
             });
         });
 
