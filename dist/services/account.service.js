@@ -10,7 +10,7 @@ class AccountService extends rest_manager_1.RestManager {
                 const data = fs.readFileSync('mock/accounts/get-accounts.json');
                 const jsonData = JSON.parse(data.toString());
                 resolve(jsonData.data);
-            }, 4000);
+            }, 500);
             // const request = require('request');
             // const options = {
             //     'method': 'GET',
