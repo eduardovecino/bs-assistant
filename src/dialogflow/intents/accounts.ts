@@ -16,7 +16,6 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(`Tus cuentas son `);

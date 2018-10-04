@@ -3,35 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const account_manager_1 = require("../managers/data/account.manager");
 const fs = require("fs");
-const request = require('request-promise');
-const host = 'https://oauth.bancsabadell.com';
-const path = '/ResourcesServerBS/oauthservices/v1.0.0/productos';
-const token = '7da398b8-0b10-4b85-bb81-7e7a86cc2bfe0a8db05d-83fc-4f24-9f03-e685739592e0ac0eaa97-0356-469a-ba02-e7dd74ee81dc';
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return new Promise((resolve, reject) => {
-            // const data = fs.readFileSync('mock/accounts/get-accounts.json');
-            // const jsonData = JSON.parse(data.toString());
-            // resolve(jsonData.data);
-            // console.log(jsonData.data);
-            let url = host + path;
-            const options = {
-                'method': 'GET',
-                'uri': url,
-                'json': true,
-                // 'timeout': 8000,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
-                }
-            };
-            request(options, (err, res, body) => {
-                if (err) {
-                    return console.log(err);
-                }
-                resolve(body.data);
-                console.log(body.data);
-            });
+            const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+            resolve(result);
         });
     }
     getAccount(last4) {
