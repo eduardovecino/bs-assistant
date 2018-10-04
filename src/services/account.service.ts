@@ -3,6 +3,11 @@ import { AccountManager } from "../managers/data/account.manager";
 
 import * as fs from "fs";
 
+const request = require('request-promise');
+const host = 'https://oauth.bancsabadell.com';
+const path = '/ResourcesServerBS/oauthservices/v1.0.0/productos';
+const token = '7da398b8-0b10-4b85-bb81-7e7a86cc2bfe0a8db05d-83fc-4f24-9f03-e685739592e0ac0eaa97-0356-469a-ba02-e7dd74ee81dc'
+
 export class AccountService extends RestManager {
 
     public getAccounts(): Promise<any> {
@@ -11,16 +16,16 @@ export class AccountService extends RestManager {
                 // const jsonData = JSON.parse(data.toString());
                 // resolve(jsonData.data);
 
-            const request = require('request-promise');
+            let url = host + path;
 
             const options = {
                 'method': 'GET',
-                'uri': 'https://oauth.bancsabadell.com/ResourcesServerBS/oauthservices/v1.0.0/productos',
+                'uri': url,
                 'json': true,
                 'timeout': 8000,
                 'headers': {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 7da398b8-0b10-4b85-bb81-7e7a86cc2bfe0a8db05d-83fc-4f24-9f03-e685739592e0ac0eaa97-0356-469a-ba02-e7dd74ee81dc',
+                    'Authorization': 'Bearer ' + token,
                 }
             };
 
