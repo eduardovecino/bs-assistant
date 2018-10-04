@@ -11,7 +11,7 @@ export class AccountService extends RestManager {
                 // const jsonData = JSON.parse(data.toString());
                 // resolve(jsonData.data);
 
-            const request = require('request');
+            const request = require('request-promise');
 
             const options = {
                 'method': 'GET',
@@ -19,7 +19,7 @@ export class AccountService extends RestManager {
                 'json': true,
                 'timeout': 8000,
                 'headers': {
-                    'content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer 7da398b8-0b10-4b85-bb81-7e7a86cc2bfe0a8db05d-83fc-4f24-9f03-e685739592e0ac0eaa97-0356-469a-ba02-e7dd74ee81dc',
                 }
             };
