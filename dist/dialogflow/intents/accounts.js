@@ -43,7 +43,7 @@ class AccountIntents /*extends BaseIntent*/ {
                 }
             });
         });
-        app.intent('Cuenta seleccionada - yes', (conv, input, output, option) => {
+        app.intent('Cuenta seleccionada - yes', (conv, input, output, option, last4numbers) => {
             conv.ask('vamos a ver el saldo');
         });
         app.intent('Cuenta seleccionada - no', (conv, input, output) => {
