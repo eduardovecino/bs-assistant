@@ -19,6 +19,7 @@ class ProductIntents /*extends BaseIntent*/ {
         // Create intent with 'number' context as requirement
         app.intent('Number Input', conv => {
             const context = conv.contexts.get(AppContexts.NUMBER);
+            conv.ask(context);
         });
         // app.intent('Default Welcome Intent', conv => {
         //     conv.ask(new Permission({ 
