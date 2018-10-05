@@ -32,7 +32,7 @@ class AccountIntents /*extends BaseIntent*/ {
             });
         });
         //CUENTA SELECCIONADA
-        app.intent('Cuenta seleccionada', (conv, input, option) => {
+        app.intent('Cuenta seleccionada', (conv, input, output, option) => {
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
                 if (selectedAccount) {
@@ -51,7 +51,7 @@ class AccountIntents /*extends BaseIntent*/ {
             conv.close(accountCloseResponseResult);
         });
         // SALDO CUENTA
-        app.intent('Saldo Cuenta1', (conv, input, { last4numbers, tipo_cuenta }) => {
+        app.intent('Saldo Cuenta1', (conv, input, option, { last4numbers, tipo_cuenta }) => {
             this.accountService.getAccount(last4numbers).then(account => {
                 if (account) {
                     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
