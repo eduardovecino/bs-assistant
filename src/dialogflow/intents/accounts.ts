@@ -48,11 +48,15 @@ export class AccountIntents /*extends BaseIntent*/ {
             });
         });
 
-        app.intent('Cuenta seleccionada - yes', (conv, input, option, { last4numbers, tipo_cuenta }) => {
+        app.intent('Cuenta seleccionada - yes', (conv, option, { last4numbers, tipo_cuenta }) => {
         this.accountService.getAccount(last4numbers).then(account => {
             if (account) {
                 conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                 conv.ask(suggestionResponse);
+                const parameters = {
+                    saldo_cuenta: true,
+                };
+                conv.contexts.set('saldo_cuenta', 5, parameters )
             } else {
                 conv.ask(nullResponse);
             }
@@ -66,7 +70,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         }) 
 
         // SALDO CUENTA
-        app.intent('Saldo Cuenta1', (conv, input, option, { last4numbers, tipo_cuenta }) => {
+        app.intent('Saldo Cuenta', (conv, option, { last4numbers, tipo_cuenta }) => {
             this.accountService.getAccount(last4numbers).then(account => {
                 if (account) {
                     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
