@@ -53,10 +53,6 @@ export class AccountIntents /*extends BaseIntent*/ {
             if (account) {
                 conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                 conv.ask(suggestionResponse);
-                const parameters = {
-                    saldo_cuenta: true,
-                };
-                conv.contexts.set('saldo_cuenta', 5, parameters )
             } else {
                 conv.ask(nullResponse);
             }
