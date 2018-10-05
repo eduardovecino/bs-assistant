@@ -14,26 +14,42 @@ export class ProductIntents /*extends BaseIntent*/ {
     }
 
     public intents(app): void {
-        app.intent('Default Welcome Intent', conv => {
-            conv.ask(new Permission({ 
-                context: this.translateManager.translate('intent.product.welcome.answer'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
-        });
 
-        // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
-        app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            const name  = conv.user;
-            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
-            if (confirmationGranted) {
-                if (name) {
-                    conv.ask(Ssml.wrapSsmlSpeak(ssml));
-                    // this.suggestions(conv);
-                }
-            } else {
-                conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
-            }
-        });
+        const AppContexts = {
+            NUMBER: 'number',
+        }
+        
+        app.intent('Default Welcome Intent', conv => {
+            conv.contexts.set(AppContexts.NUMBER, 1)
+            conv.ask('Welcome to action snippets! Say a number.')
+        })
+
+        // Create intent with 'number' context as requirement
+        app.intent('Number Input', conv => {
+            const context = conv.contexts.get(AppContexts.NUMBER)
+        })
+
+
+        // app.intent('Default Welcome Intent', conv => {
+        //     conv.ask(new Permission({ 
+        //         context: this.translateManager.translate('intent.product.welcome.answer'),
+        //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+        //     }));
+        // });
+
+        // // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
+        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
+        //     const name  = conv.user;
+        //     let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
+        //     if (confirmationGranted) {
+        //         if (name) {
+        //             conv.ask(Ssml.wrapSsmlSpeak(ssml));
+        //             // this.suggestions(conv);
+        //         }
+        //     } else {
+        //         conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
+        //     }
+        // });
 
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
