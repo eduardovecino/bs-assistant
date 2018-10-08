@@ -45,7 +45,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Number Input', conv => {
             const context = conv.contexts.get(AppContexts.TUNUMBER)
-            conv.ask(JSON.stringify(context));
+            conv.ask(JSON.stringify(context.parameters.number));
 
         })
 
