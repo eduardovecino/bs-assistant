@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
 const translate_manager_1 = require("../../managers/translate.manager");
+const ssml_gib_1 = require("ssml-gib");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
@@ -22,17 +23,18 @@ class ProductIntents /*extends BaseIntent*/ {
         });
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            const name = conv.user;
-            conv.ask(JSON.stringify(name.name.given));
-            // let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
-            // if (confirmationGranted) {
-            //     if (name) {
-            //         conv.ask(Ssml.wrapSsmlSpeak(ssml));
-            //         // this.suggestions(conv);
-            //     }
-            // } else {
-            //     conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
-            // }
+            const name = conv.user.name.given;
+            // conv.ask(JSON.stringify(name))
+            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
+            if (confirmationGranted) {
+                if (name) {
+                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(ssml));
+                    // this.suggestions(conv);
+                }
+            }
+            else {
+                conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
+            }
         });
         // app.intent('Number Input', conv => {
         //     const context = conv.contexts.get(AppContexts.TUNUMBER)
