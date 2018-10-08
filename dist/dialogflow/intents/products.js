@@ -14,6 +14,7 @@ class ProductIntents /*extends BaseIntent*/ {
         };
         app.intent('Default Welcome Intent', conv => {
             conv.contexts.set(AppContexts.NUMBER, 1);
+            conv.ask('¿Qué edad tienes?');
             // conv.ask(new Permission({ 
             //     context: this.translateManager.translate('intent.product.welcome.answer'),
             //     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
@@ -34,7 +35,7 @@ class ProductIntents /*extends BaseIntent*/ {
         // });
         app.intent('Number Input', conv => {
             const context = conv.contexts.get(AppContexts.NUMBER);
-            conv.ask(context);
+            conv.ask('Tu edad es' + context);
         });
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
