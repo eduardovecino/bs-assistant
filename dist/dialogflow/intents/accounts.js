@@ -27,7 +27,7 @@ class AccountIntents /*extends BaseIntent*/ {
         //CUENTA SELECCIONADA
         app.intent('Cuenta seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
-                const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
+                const selectedAccount = account_manager_1.AccountManager.getAccountByLast4(accounts, option);
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 }
