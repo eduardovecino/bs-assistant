@@ -34,9 +34,8 @@ class ProductIntents /*extends BaseIntent*/ {
         //     }
         // });
         app.intent('Number Input', conv => {
-            const context = conv.contexts.get(AppContexts[0].TUNUMBER);
+            const context = conv.contexts.get(AppContexts.TUNUMBER);
             conv.ask('Tu edad es' + context);
-            console.log(conv.contexts);
         });
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
