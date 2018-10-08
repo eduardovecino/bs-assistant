@@ -25,7 +25,7 @@ export class RestManager {
                 }
             };
 
-            if(this.isMock) {
+            if(this.isMock === false) {
                 const data = fs.readFileSync(mock);
                 const jsonData = JSON.parse(data.toString());
                 resolve(jsonData.data);
