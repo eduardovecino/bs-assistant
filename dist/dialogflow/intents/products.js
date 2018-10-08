@@ -10,10 +10,10 @@ class ProductIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         const AppContexts = {
-            NUMBER: 'number',
+            TUNUMBER: 'number',
         };
         app.intent('Default Welcome Intent', conv => {
-            conv.contexts.set(AppContexts.NUMBER, 1);
+            conv.contexts.set(AppContexts.TUNUMBER, 1);
             conv.ask('¿Qué edad tienes?');
             // conv.ask(new Permission({ 
             //     context: this.translateManager.translate('intent.product.welcome.answer'),
@@ -34,7 +34,7 @@ class ProductIntents /*extends BaseIntent*/ {
         //     }
         // });
         app.intent('Number Input', conv => {
-            const context = conv.contexts.get(AppContexts.NUMBER);
+            const context = conv.contexts.get(AppContexts.TUNUMBER);
             conv.ask('Tu edad es' + context);
         });
         //Iniciar Sesión
