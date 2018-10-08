@@ -9,34 +9,42 @@ export class RestManager {
     public isMock;
     
 
+    // constructor() {
+    //     this.isMock = process.env.MOCK;
+    // }
+
+    // public getApiBSabadell(path, mock): Promise<any> {
+    //     return new Promise((resolve, reject) => {
+    //         const options = {
+    //             'method': 'GET',
+    //             'uri': host + path,
+    //             'json': true,
+    //             'headers': {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': 'Bearer ' + token,
+    //             }
+    //         };
+
+    //         if(this.isMock) {
+    //             const data = fs.readFileSync(mock);
+    //             const jsonData = JSON.parse(data.toString());
+    //             resolve(jsonData.data);
+
+    //         } else {
+    //             request(options, (err, res, body) => {
+    //                 if (err) { return console.log(err); }
+    //                 resolve(body.data);
+    //                 console.log(body.data);
+    //             });
+    //         }
+    //     })  
+    // }
+
     constructor() {
         this.isMock = process.env.MOCK;
     }
 
-    public getApiBSabadell(path, mock): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const options = {
-                'method': 'GET',
-                'uri': host + path,
-                'json': true,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
-                }
-            };
-
-            if(this.isMock === false) {
-                const data = fs.readFileSync(mock);
-                const jsonData = JSON.parse(data.toString());
-                resolve(jsonData.data);
-
-            } else {
-                request(options, (err, res, body) => {
-                    if (err) { return console.log(err); }
-                    resolve(body.data);
-                    console.log(body.data);
-                });
-            }
-        })  
+    public get(): any {
+        return { num: 21 };
     }
 }
