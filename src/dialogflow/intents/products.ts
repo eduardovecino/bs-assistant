@@ -45,7 +45,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Number Input', conv => {
             for (const context of conv.contexts) {
-                 conv.ask( 'culo' + context.parameters.number);
+                 conv.ask(context.parameters.number);
 
                 // do something with the contexts
             }
