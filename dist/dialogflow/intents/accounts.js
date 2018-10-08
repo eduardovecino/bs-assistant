@@ -11,7 +11,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         //LISTA CUENTAS
-        app.intent('Cuentas', (conv) => {
+        app.intent('Cuentas', conv => {
             this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
