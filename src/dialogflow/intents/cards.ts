@@ -112,5 +112,6 @@ export class CardIntents /*extends BaseIntent*/ {
                     conv.ask(nullResponse);
                 }
             });
-    }
+    })
+}
 }
