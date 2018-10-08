@@ -46,6 +46,7 @@ export class ProductIntents /*extends BaseIntent*/ {
         app.intent('Number Input', conv => {
             const context = conv.contexts.get(AppContexts[0].TUNUMBER)
             conv.ask('Tu edad es' + context);
+            console.log(conv.contexts)
         })
 
         //Iniciar Sesión
