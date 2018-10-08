@@ -16,7 +16,7 @@ export class CardIntents /*extends BaseIntent*/ {
         const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         //CARROUSEL DE TARJETAS
-        app.intent('Tarjetas', conv => {
+   /*     app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
                 let response = "Tienes " + cards.length + " tarjetas. Terminadas en:";
 
@@ -112,6 +112,6 @@ export class CardIntents /*extends BaseIntent*/ {
                     conv.ask(nullResponse);
                 }
             });
-        });
+        });*/
     }
 }
