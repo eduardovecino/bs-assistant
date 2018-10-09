@@ -32,7 +32,7 @@ class AccountIntents /*extends BaseIntent*/ {
             });
         });
         //CUENTA SELECCIONADA
-        app.intent('Cuenta Seleccionada', (conv, option) => {
+        app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
                 if (selectedAccount) {
