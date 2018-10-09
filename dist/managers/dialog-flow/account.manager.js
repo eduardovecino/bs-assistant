@@ -37,13 +37,13 @@ class AccountDFManager {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         }
     }
-    static generateMovementsTable(movement) {
+    static generateMovementsTable(movements) {
         const tmp = {
             dividers: true,
             columns: ['Concepto', 'Fecha', 'Importe'],
             rows: []
         };
-        movement.forEach((movement) => {
+        movements.data.forEach((movement) => {
             tmp.rows.push({
                 cells: [movement.concepto, movement.fecha, movement.importe],
                 dividerAfter: true

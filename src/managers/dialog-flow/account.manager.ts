@@ -41,13 +41,13 @@ export class AccountDFManager {
         }
     }
 
-    public static generateMovementsTable(movement) {
+    public static generateMovementsTable(movements) {
         const tmp: TableOptions = {
             dividers: true,
             columns: ['Concepto', 'Fecha', 'Importe'],
             rows: []
         };
-        movement.forEach((movement) => {
+        movements.data.forEach((movement) => {
             tmp.rows.push(
                 {
                     cells: [movement.concepto, movement.fecha, movement.importe],
