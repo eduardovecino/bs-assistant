@@ -57,9 +57,9 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Saldo cuenta - seleccionada', (conv, option) =>{
             const context = conv.contexts.get(AppContexts.last4NumbersContext)
             this.accountService.getAccounts().then(accounts => {
-                const selectedAccount = AccountManager.getAccountByOption(context, option);
+                const last4Context = AccountManager.getAccountByOption(context, option);
         
-                conv.ask(`El saldo de tu cuenta és  ${context}`);
+                conv.ask(`El saldo de tu cuenta és  ${last4Context}`);
             })
         });
 
