@@ -51,7 +51,18 @@ export class AccountIntents /*extends BaseIntent*/ {
                 } else {
                     conv.ask(`No podemos mostrar la cuenta ${JSON.stringify(option)}`);
                 }
-            });
+
+            app.intent('Saldo cuenta - seleccionada', (conv, /*{ last4numbers }, { tipo_cuenta }*/) => {
+                const context = conv.contexts.get(AppContexts.last4NumbersContext)
+                const selectedAccount = AccountManager.getAccountByOption(accounts, option);
+                    if (selectedAccount) {
+                        conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
+                        conv.ask(suggestionResponse);
+                    } else {
+                        conv.ask(nullResponse);
+                    }
+            }); 
+        });
         })
 
         app.intent('Saldo cuenta - seleccionada', (conv, { last4numbers }, { tipo_cuenta }) => {
