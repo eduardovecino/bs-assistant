@@ -7,10 +7,12 @@ const timers_1 = require("timers");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return new Promise((resolve, reject) => {
+            timers_1.setTimeout(() => 
             // const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
             // resolve(result);
-            timers_1.setTimeout(() => resolve('funciona'), 0);
+            resolve('funciona')
             // resolve('funciona');
+            , 0);
         });
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
