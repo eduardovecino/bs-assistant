@@ -17,7 +17,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         const AppContexts = {
-            last4NumbersContext: 'last4NumbersContext' ,
+            last4NumbersContext: 'last4NumbersContext',
         }
 
         //LISTA CUENTAS
@@ -35,17 +35,17 @@ export class AccountIntents /*extends BaseIntent*/ {
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {
-                    conv.ask(nullResponse + "3");
+                    conv.ask(nullResponse);
                 }
             });
         });
 
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
-            conv.contexts.set(AppContexts.last4NumbersContext, 1)
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 if (selectedAccount) {
+                    conv.contexts.set(AppContexts.last4NumbersContext, 1)
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
                 } else {
                     conv.ask(`No podemos mostrar la cuenta ${JSON.stringify(option)}`);
@@ -53,30 +53,22 @@ export class AccountIntents /*extends BaseIntent*/ {
             });
         });
 
+        app.intent('Saldo cuenta - seleccionada', (conv) =>{
+            const context = conv.contexts.get(AppContexts.last4NumbersContext)
+            conv.ask('Tu edad es' + context.parameters.last4NumbersContext);
+            });
+
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers}, {tipo_cuenta }) => {
-            if (last4numbers){
-                this.accountService.getAccount(last4numbers).then(account => {
-                    if (account) {
-                        conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                        conv.ask(suggestionResponse);
-                    } else {
-                        conv.ask(nullResponse + "2");
-                    }
-                });
-            } else {
-                const context = conv.contexts.get(AppContexts.last4NumbersContext)
-                this.accountService.getAccount(context).then(account => {
-                    if (account) {
-                        conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                        conv.ask(suggestionResponse);
-                    } else {
-                        conv.ask(nullResponse + "1");
-                    }
-                });
-            }
 
-
+            this.accountService.getAccount(last4numbers).then(account => {
+                if (account) {
+                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                    conv.ask(suggestionResponse);
+                } else {
+                    conv.ask(nullResponse);
+                }
+            });
         }); 
     }
 }
