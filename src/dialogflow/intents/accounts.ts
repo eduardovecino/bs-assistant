@@ -77,17 +77,15 @@ export class AccountIntents /*extends BaseIntent*/ {
         })
         
         app.intent('Movimientos Cuentas', (conv) => {
-
-            conv.ask('hola')
-            // this.accountService.getMovementsAccounts().then(account => {
-            //     if (account) {
-            //         const movementsTable = AccountDFManager.generateMovementsTable(account);
-            //         conv.ask(`Aquí tienes los movimientos`);
-            //         conv.ask(movementsTable);
-            //     } else {
-            //         conv.ask(nullResponse);
-            //     }
-            // });
+            this.accountService.getMovementsAccounts().then(account => {
+                if (account) {
+                    const movementsTable = AccountDFManager.generateMovementsTable(account);
+                    conv.ask(`Aquí tienes los movimientos`);
+                    conv.ask(movementsTable);
+                } else {
+                    conv.ask(nullResponse);
+                }
+            });
         })
 
         // SALDO CUENTA
