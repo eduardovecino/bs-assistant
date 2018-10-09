@@ -48,30 +48,34 @@ export class AccountIntents /*extends BaseIntent*/ {
 
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, ¿Quieres saber el saldo de la cuenta?`);
-                } else {
+                    } else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
 
             app.intent('Saldo cuenta - seleccionada', (conv) => {
-                const context = conv.contexts.get(AppContexts.last4NumbersContext)
-                    if (selectedAccount) {
-                        conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-                    } else {
-                        conv.ask(nullResponse);
-                    }
+                const context = conv.contexts.get(AppContexts.last4NumbersContext);
+                const response = AccountDFManager.saldoAccount(selectedAccount);
+                conv.ask(response);
+                    // if (selectedAccount) {
+                    //     conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
+                    //     } else {
+                    //     conv.ask(nullResponse);
+                    // }
                  }); 
             });
         })
+
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers}, {tipo_cuenta }) => {
-
             this.accountService.getAccount(last4numbers).then(account => {
-                if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                    conv.ask(suggestionResponse);
-                } else {
-                    conv.ask(nullResponse);
-                }
+                const response = AccountDFManager.saldoAccount(account);
+                conv.ask(response);
+                // if (account) {
+                //     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                //     conv.ask(suggestionResponse);
+                // } else {
+                //     conv.ask(nullResponse);
+                // }
             });
         }); 
     }
