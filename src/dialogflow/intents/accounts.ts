@@ -18,7 +18,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccounts().then(accounts => {
                 new Promise((resolve, reject) => {
                     if (accounts) {
-                        conv.ask(accounts);
+                        resolve(conv.ask(accounts));
                         // const accountsList = AccountDFManager.generateAccountsList(accounts);
                         // resolve (conv.ask(`Tus cuentas son `));
                         // conv.ask(accountsList);
