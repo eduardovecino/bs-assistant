@@ -13,7 +13,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
         const AppContexts = {
-            last4NumbersContext: 'si',
+            last4NumbersContext: 'last4NumbersContext',
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
@@ -47,11 +47,9 @@ class AccountIntents /*extends BaseIntent*/ {
                 }
             });
         });
-        app.intent('Saldo cuenta - seleccionada', (conv, option) => {
+        app.intent('Saldo cuenta - seleccionada', (conv) => {
             const context = conv.contexts.get(AppContexts.last4NumbersContext);
-            // this.accountService.getAccounts().then(accounts => {
-            //     const last4Context = AccountManager.getAccountByOption(context, option);
-            conv.ask('Tu respuesta es' + context);
+            conv.ask('Tu respuesta es' + context.parameters.last4NumbersContext);
         });
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
