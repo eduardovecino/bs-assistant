@@ -16,6 +16,10 @@ export class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
+        const AppContexts = {
+            last4NumbersContext: 'last4NumbersContext',
+        }
+
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
@@ -38,6 +42,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
+            conv.contexts.set(AppContexts.last4NumbersContext, 1)
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 if (selectedAccount) {
@@ -49,15 +54,29 @@ export class AccountIntents /*extends BaseIntent*/ {
         });
 
         // SALDO CUENTA
-        app.intent('Saldo cuenta', (conv, { last4numbers},{tipo_cuenta }) => {
-            this.accountService.getAccount(last4numbers).then(account => {
-                if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                    conv.ask(suggestionResponse);
-                } else {
-                    conv.ask(nullResponse);
-                }
-            });
+        app.intent('Saldo cuenta', (conv, { last4numbers}, {tipo_cuenta }) => {
+            if (last4numbers){
+                this.accountService.getAccount(last4numbers).then(account => {
+                    if (account) {
+                        conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                        conv.ask(suggestionResponse);
+                    } else {
+                        conv.ask(nullResponse);
+                    }
+                });
+            } else {
+                const context = conv.contexts.get(AppContexts.last4NumbersContext)
+                this.accountService.getAccount(context).then(account => {
+                    if (account) {
+                        conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                        conv.ask(suggestionResponse);
+                    } else {
+                        conv.ask(nullResponse);
+                    }
+                });
+            }
+
+
         }); 
     }
 }
