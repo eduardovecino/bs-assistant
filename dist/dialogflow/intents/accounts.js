@@ -13,16 +13,18 @@ class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                if (accounts) {
-                    const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(`Tus cuentas son `);
-                    conv.ask(accountsList);
-                    // conv.ask(suggestionResponse);
-                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                }
-                else {
-                    conv.ask(nullResponse);
-                }
+                new Promise((resolve, reject) => {
+                    if (accounts) {
+                        const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
+                        resolve(conv.ask(`Tus cuentas son `));
+                        conv.ask(accountsList);
+                        // conv.ask(suggestionResponse);
+                        // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+                    }
+                    else {
+                        conv.ask(nullResponse);
+                    }
+                });
             });
         });
         //CUENTA SELECCIONADA
