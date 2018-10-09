@@ -53,21 +53,19 @@ class AccountIntents /*extends BaseIntent*/ {
             //     const last4Context = AccountManager.getAccountByOption(context, option);
             conv.ask('Tu respuesta es' + context);
         });
+        // SALDO CUENTA
+        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+            this.accountService.getAccount(last4numbers).then(account => {
+                if (account) {
+                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                    conv.ask(suggestionResponse);
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
+            });
+        });
     }
-    ;
-    intent() { }
 }
 exports.AccountIntents = AccountIntents;
-(conv, { last4numbers }, { tipo_cuenta }) => {
-    this.accountService.getAccount(last4numbers).then(account => {
-        if (account) {
-            conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-            conv.ask(suggestionResponse);
-        }
-        else {
-            conv.ask(nullResponse);
-        }
-    });
-};
-;
 //# sourceMappingURL=accounts.js.map
