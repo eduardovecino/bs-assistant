@@ -22,7 +22,7 @@ class AccountService extends rest_manager_1.RestManager {
     getMovementsAccounts() {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/accounts/get-movements-accounts.json');
-            const jsonData = JSON.parse(data.toString());
+            const jsonData = JSON.parse(data.toString(jsonData.data));
             resolve(jsonData.data);
         });
     }
