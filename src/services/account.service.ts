@@ -11,7 +11,8 @@ export class AccountService extends RestManager {
         return new Promise((resolve, reject) => {
             // const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
             // resolve(result);
-            setTimeout(() => resolve('funciona'), 4000);
+            // setTimeout(() => resolve('funciona'), 4000);
+            resolve('funciona');
         });
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
