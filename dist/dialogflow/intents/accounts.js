@@ -13,7 +13,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
         const AppContexts = {
-            last4NumbersContext: 'last4NumbersContext',
+            last4NumbersContext: ' ',
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
@@ -30,7 +30,7 @@ class AccountIntents /*extends BaseIntent*/ {
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 }
                 else {
-                    conv.ask(nullResponse);
+                    conv.ask(nullResponse + "3");
                 }
             });
         });
@@ -56,7 +56,7 @@ class AccountIntents /*extends BaseIntent*/ {
                         conv.ask(suggestionResponse);
                     }
                     else {
-                        conv.ask(nullResponse);
+                        conv.ask(nullResponse + "2");
                     }
                 });
             }
@@ -68,7 +68,7 @@ class AccountIntents /*extends BaseIntent*/ {
                         conv.ask(suggestionResponse);
                     }
                     else {
-                        conv.ask(nullResponse);
+                        conv.ask(nullResponse + "1");
                     }
                 });
             }

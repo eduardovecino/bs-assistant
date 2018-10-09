@@ -17,7 +17,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         const AppContexts = {
-            last4NumbersContext: 'last4NumbersContext',
+            last4NumbersContext: ' ',
         }
 
         //LISTA CUENTAS
@@ -35,7 +35,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(nullResponse + "3");
                 }
             });
         });
@@ -61,7 +61,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                         conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                         conv.ask(suggestionResponse);
                     } else {
-                        conv.ask(nullResponse);
+                        conv.ask(nullResponse + "2");
                     }
                 });
             } else {
@@ -71,7 +71,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                         conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
                         conv.ask(suggestionResponse);
                     } else {
-                        conv.ask(nullResponse);
+                        conv.ask(nullResponse + "1");
                     }
                 });
             }
