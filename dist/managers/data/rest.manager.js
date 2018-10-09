@@ -25,12 +25,11 @@ class RestManager {
                 resolve(jsonData.data);
             }
             else {
-                request(options, (err, res, body) => {
-                    if (err) {
-                        return console.log(err);
-                    }
+                request(options).then(body => {
                     resolve(body.data);
                     console.log(body.data);
+                }).catch(error => {
+                    console.log('Error promesa');
                 });
             }
         });
