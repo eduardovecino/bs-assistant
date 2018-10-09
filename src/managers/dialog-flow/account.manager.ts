@@ -1,4 +1,4 @@
-import { List } from "actions-on-google";
+import { List, Table, TableOptions } from "actions-on-google";
 import { FormatManager } from '../../managers/format.manager';
 
 
@@ -39,5 +39,22 @@ export class AccountDFManager {
         } else {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
         }
+    }
+
+    public static generateMovementsTable(data) {
+        const tmp: TableOptions = {
+            dividers: true,
+            columns: ['Concepto', 'Fecha', 'Importe'],
+            rows: []
+        };
+        data.forEach((movement) => {
+            tmp.rows.push(
+                {
+                    cells: [data.concepto, data.fecha, data.importe],
+                    dividerAfter: true
+                }
+            );
+        });
+        return new Table(tmp);
     }
 }

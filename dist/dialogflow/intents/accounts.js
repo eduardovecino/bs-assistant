@@ -55,6 +55,28 @@ class AccountIntents /*extends BaseIntent*/ {
                     //     conv.ask(nullResponse);
                     // }
                 });
+                app.intent('Movimientos - seleccionada', (conv) => {
+                    const context = conv.contexts.get(AppContexts.last4NumbersContext);
+                    const response = account_manager_2.AccountDFManager.saldoAccount(selectedAccount);
+                    conv.ask(response);
+                    // if (selectedAccount) {
+                    //     conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
+                    //     } else {
+                    //     conv.ask(nullResponse);
+                    // }
+                });
+            });
+        });
+        app.intent('Movimientos Cuentas', (conv) => {
+            this.accountService.getMovementsAccounts().then(account => {
+                if (account) {
+                    const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(account);
+                    conv.ask(`Aquí tienes los movimientos`);
+                    conv.ask(movementsTable);
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
         });
         // SALDO CUENTA

@@ -37,6 +37,20 @@ class AccountDFManager {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         }
     }
+    static generateMovementsTable(data) {
+        const tmp = {
+            dividers: true,
+            columns: ['Concepto', 'Fecha', 'Importe'],
+            rows: []
+        };
+        data.forEach((movement) => {
+            tmp.rows.push({
+                cells: [data.concepto, data.fecha, data.importe],
+                dividerAfter: true
+            });
+        });
+        return new actions_on_google_1.Table(tmp);
+    }
 }
 exports.AccountDFManager = AccountDFManager;
 //# sourceMappingURL=account.manager.js.map
