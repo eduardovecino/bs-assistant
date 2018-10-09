@@ -14,6 +14,9 @@ class CardIntents /*extends BaseIntent*/ {
         const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
         const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
+        const AppContexts = {
+            action_card: 'tipo_tarjeta',
+        };
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {

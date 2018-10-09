@@ -15,6 +15,10 @@ export class CardIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
         const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
+        const AppContexts = {
+            action_card: 'tipo_tarjeta',
+        }
+
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
@@ -47,6 +51,7 @@ export class CardIntents /*extends BaseIntent*/ {
         })
 
         app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
+
             conv.ask('¿Quieres saber el saldo de tarjeta, quieres bloquearla, saber su fecha de liquidación, sus límites o ver los movimientos?')
         }) 
 
