@@ -10,6 +10,17 @@
             "producto": "CC",
             "numeroProducto": "00810000000000001234",
             "numeroProductoCodificado": "00810000000000001234"
+        },
+        {
+            "propietario": "&RNOMBRE &DPRIAPE I &. &MPRIAPE",
+            "disponibilidad": null,
+            "descripcion": "CUENTA EXPANSIÓN",
+            "usuario": "00000001R ",
+            "iban": "ES00810000000000004567",
+            "balance": "27.912,74",
+            "producto": "CC",
+            "numeroProducto": "00810000000000004567",
+            "numeroProductoCodificado": "00810000000000004567"
         }
     ],
     "head": {

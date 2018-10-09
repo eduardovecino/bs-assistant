@@ -27,7 +27,7 @@ export class AccountDFManager {
                     }
                 };
             });
-            return new List(tmp);
+            return (new List(tmp));
         } else {
             return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
         }

@@ -23,7 +23,7 @@ class AccountDFManager {
                     }
                 };
             });
-            return new actions_on_google_1.List(tmp);
+            return (new actions_on_google_1.List(tmp));
         }
         else {
             return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
