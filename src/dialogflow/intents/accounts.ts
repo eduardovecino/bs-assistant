@@ -52,7 +52,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(`No podemos mostrar la cuenta ${JSON.stringify(option)}`);
                 }
             });
-        });
+        })
 
         app.intent('Saldo cuenta - seleccionada', (conv, { last4numbers }, { tipo_cuenta }) => {
             const context = conv.contexts.get(AppContexts.last4NumbersContext)
