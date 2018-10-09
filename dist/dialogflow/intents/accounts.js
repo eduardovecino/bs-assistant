@@ -13,7 +13,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
         const AppContexts = {
-            last4NumbersContext: ' ',
+            last4NumbersContext: 'last4NumbersContext',
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {

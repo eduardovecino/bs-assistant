@@ -17,7 +17,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         const AppContexts = {
-            last4NumbersContext: ' ',
+            last4NumbersContext: 'last4NumbersContext' ,
         }
 
         //LISTA CUENTAS
