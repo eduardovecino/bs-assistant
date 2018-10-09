@@ -6,11 +6,8 @@ const fs = require("fs");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return new Promise((resolve, reject) => {
-            // setTimeout(() => 
-            // const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
-            // resolve(result);
-            resolve('funciona');
-            // , 0);
+            const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+            resolve(result);
         });
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');

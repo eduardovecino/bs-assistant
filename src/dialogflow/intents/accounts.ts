@@ -17,19 +17,15 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
-                    conv.ask(accounts);
-                    // const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    // resolve (conv.ask(`Tus cuentas son `));
-                    // conv.ask(accountsList);
-
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(`Tus cuentas son `);
+                    conv.ask(accountsList);
 
                     // conv.ask(suggestionResponse);
                     // conv.ask(SuggestionDFManager.generateSuggestions(conv))
                 } else {
                     conv.ask(nullResponse);
                 }
-            }).catch(function (err) {
-                conv.ask("nada");
             });
         });
 
