@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
+const account_manager_1 = require("../../managers/data/account.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
@@ -11,32 +12,29 @@ class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                new Promise((resolve, reject) => {
-                    if (accounts) {
-                        resolve(conv.ask(accounts));
-                        // const accountsList = AccountDFManager.generateAccountsList(accounts);
-                        // resolve (conv.ask(`Tus cuentas son `));
-                        // conv.ask(accountsList);
-                        // conv.ask(suggestionResponse);
-                        // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                    }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
+                if (accounts) {
+                    conv.ask(accounts);
+                    // const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    // resolve (conv.ask(`Tus cuentas son `));
+                    // conv.ask(accountsList);
+                    // conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
         });
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
-                new Promise((resolve, reject) => {
-                    // const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                    // if (selectedAccount) {
-                    //     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
-                    // } else {
-                    //     conv.ask(`No podemos mostrar la cuenta ${option}`);
-                    // }
-                });
+                const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
+                if (selectedAccount) {
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
+                }
+                else {
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
+                }
             });
         });
         // SALDO CUENTA

@@ -16,34 +16,30 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
             this.accountService.getAccounts().then(accounts => {
-                new Promise((resolve, reject) => {
-                    if (accounts) {
-                        resolve(conv.ask(accounts));
-                        // const accountsList = AccountDFManager.generateAccountsList(accounts);
-                        // resolve (conv.ask(`Tus cuentas son `));
-                        // conv.ask(accountsList);
+                if (accounts) {
+                    conv.ask(accounts);
+                    // const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    // resolve (conv.ask(`Tus cuentas son `));
+                    // conv.ask(accountsList);
 
 
-                        // conv.ask(suggestionResponse);
-                        // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                    } else {
-                        conv.ask(nullResponse);
-                    }
-                })
+                    // conv.ask(suggestionResponse);
+                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+                } else {
+                    conv.ask(nullResponse);
+                }
             });
         });
 
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
-                new Promise((resolve, reject) => {
-                    // const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                    // if (selectedAccount) {
-                    //     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
-                    // } else {
-                    //     conv.ask(`No podemos mostrar la cuenta ${option}`);
-                    // }
-                })
+                const selectedAccount = AccountManager.getAccountByOption(accounts, option);
+                if (selectedAccount) {
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, el saldo es de ${selectedAccount.balance} €`);
+                } else {
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
+                }
             });
         });
 
