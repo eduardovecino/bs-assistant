@@ -13,7 +13,7 @@ export class RestManager {
         this.isMock = process.env.MOCK;
     }
 
-    public getApiBSabadell(path, mock): Promise<any> {
+    public getApiBSabadell(path, mock)/*: Promise<any>*/ {
         // return new Promise((resolve, reject) => {
             const options = {
                 'method': 'GET',
