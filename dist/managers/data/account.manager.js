@@ -19,7 +19,7 @@ class AccountManager {
     }
     static getAccountByOption(accounts, option) {
         for (let i = 0; i < accounts.length; i++) {
-            if (accounts[i].iban == option) {
+            if (accounts[i].iban === option) {
                 return accounts[i];
             }
         }
