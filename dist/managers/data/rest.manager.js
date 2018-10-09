@@ -9,30 +9,31 @@ class RestManager {
         this.isMock = process.env.MOCK;
     }
     getApiBSabadell(path, mock) {
-        return new Promise((resolve, reject) => {
-            const options = {
-                'method': 'GET',
-                'uri': host + path,
-                'json': true,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
-                }
-            };
-            if (this.isMock) {
-                const data = fs.readFileSync(mock);
-                const jsonData = JSON.parse(data.toString());
-                resolve(jsonData.data);
+        // return new Promise((resolve, reject) => {
+        const options = {
+            'method': 'GET',
+            'uri': host + path,
+            'json': true,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
             }
-            else {
-                request(options).then(body => {
-                    resolve(body.data);
-                    console.log(body.data);
-                }).catch(error => {
-                    console.log('Error promesa');
-                });
-            }
-        });
+        };
+        if (this.isMock) {
+            const data = fs.readFileSync(mock);
+            const jsonData = JSON.parse(data.toString());
+            // resolve(jsonData.data);
+        }
+        else {
+            request(options).then(body => {
+                // resolve(body.data);
+                console.log(body.data);
+                return body.data;
+            }).catch(error => {
+                console.log('Error promesa');
+            });
+        }
+        // })  
     }
 }
 exports.RestManager = RestManager;
