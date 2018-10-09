@@ -13,7 +13,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
         const AppContexts = {
-            last4NumbersContext: 'last4NumbersContext',
+            last4NumbersContext: 'si',
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => {
@@ -49,24 +49,25 @@ class AccountIntents /*extends BaseIntent*/ {
         });
         app.intent('Saldo cuenta - seleccionada', (conv, option) => {
             const context = conv.contexts.get(AppContexts.last4NumbersContext);
-            this.accountService.getAccounts().then(accounts => {
-                const last4Context = account_manager_1.AccountManager.getAccountByOption(context, option);
-                conv.ask(`El saldo de tu cuenta és  ${last4Context}`);
-            });
-        });
-        // SALDO CUENTA
-        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
-            this.accountService.getAccount(last4numbers).then(account => {
-                if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                    conv.ask(suggestionResponse);
-                }
-                else {
-                    conv.ask(nullResponse);
-                }
-            });
+            // this.accountService.getAccounts().then(accounts => {
+            //     const last4Context = AccountManager.getAccountByOption(context, option);
+            conv.ask('Tu respuesta es' + context);
         });
     }
+    ;
+    intent() { }
 }
 exports.AccountIntents = AccountIntents;
+(conv, { last4numbers }, { tipo_cuenta }) => {
+    this.accountService.getAccount(last4numbers).then(account => {
+        if (account) {
+            conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+            conv.ask(suggestionResponse);
+        }
+        else {
+            conv.ask(nullResponse);
+        }
+    });
+};
+;
 //# sourceMappingURL=accounts.js.map
