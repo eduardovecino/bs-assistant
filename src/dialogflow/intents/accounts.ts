@@ -52,30 +52,16 @@ export class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
 
-            app.intent('Saldo cuenta - seleccionada', (conv, /*{ last4numbers }, { tipo_cuenta }*/) => {
+            app.intent('Saldo cuenta - seleccionada', (conv) => {
                 const context = conv.contexts.get(AppContexts.last4NumbersContext)
-                const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                     if (selectedAccount) {
                         conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
                     } else {
                         conv.ask(nullResponse);
                     }
-            }); 
-        });
-        })
-
-        app.intent('Saldo cuenta - seleccionada', (conv, { last4numbers }, { tipo_cuenta }) => {
-            const context = conv.contexts.get(AppContexts.last4NumbersContext)
-            this.accountService.getAccount(last4numbers).then(account => {
-                if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
-                    conv.ask(suggestionResponse);
-                } else {
-                    conv.ask(nullResponse);
-                }
+                 }); 
             });
-        }); 
-
+        })
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers}, {tipo_cuenta }) => {
 
