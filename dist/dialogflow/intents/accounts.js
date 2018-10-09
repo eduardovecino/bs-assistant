@@ -23,6 +23,8 @@ class AccountIntents /*extends BaseIntent*/ {
                 else {
                     conv.ask(nullResponse);
                 }
+            }, error => {
+                conv.ask("errrorrrr");
             });
         });
         //CUENTA SELECCIONADA
