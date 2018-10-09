@@ -29,7 +29,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         });
 
         //CUENTA SELECCIONADA
-        app.intent('Cuenta seleccionada', (conv, input, option) => {
+        app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
                 new Promise((resolve, reject) => {
                     const selectedAccount = AccountManager.getAccountByOption(accounts, option);
