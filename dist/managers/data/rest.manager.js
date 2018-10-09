@@ -3,37 +3,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const request = require('request-promise');
 const host = 'https://oauth.bancsabadell.com';
-const token = 'e9eb3665-d159-4f95-b5d8-82078bd4d2700f9dc5fb-49b7-4d14-8231-5c1d05f734a448c180a8-1732-4552-bc75-cd5061255c75';
+const token = '23df793a-4c26-4c47-9f71-3e858abb2e2f54e635c6-de2d-4a98-9de7-d2456f360db202231bf0-ff4b-44dd-b162-f404ef87800d';
 class RestManager {
     constructor() {
         this.isMock = process.env.MOCK;
     }
     getApiBSabadell(path, mock) {
-        // return new Promise((resolve, reject) => {
-        const options = {
-            'method': 'GET',
-            'uri': host + path,
-            'json': true,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token,
+        return new Promise((resolve, reject) => {
+            const options = {
+                'method': 'GET',
+                'uri': host + path,
+                'json': true,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                }
+            };
+            if (this.isMock) {
+                const data = fs.readFileSync(mock);
+                const jsonData = JSON.parse(data.toString());
+                resolve(jsonData.data);
             }
-        };
-        if (this.isMock) {
-            const data = fs.readFileSync(mock);
-            const jsonData = JSON.parse(data.toString());
-            // resolve(jsonData.data);
-        }
-        else {
-            request(options).then(body => {
-                // resolve(body.data);
-                console.log(body.data);
-                return body.data;
-            }).catch(error => {
-                console.log('Error promesa');
-            });
-        }
-        // })  
+            else {
+                // request(options, (err, res, body) => {
+                //     if (!!err) { return console.log(err); }
+                //     resolve(body.data);
+                //     console.log(body.data);
+                // });
+                request(options)
+                    .then(function (body) {
+                    var data = body.data;
+                    resolve(data);
+                    console.log(data);
+                    return data;
+                })
+                    .catch(function (err) {
+                    reject(err.error);
+                });
+            }
+        });
     }
 }
 exports.RestManager = RestManager;
