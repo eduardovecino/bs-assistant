@@ -8,8 +8,9 @@ export class AccountService extends RestManager {
 
     public getAccounts(): Promise<any> {
         return new Promise((resolve, reject) => {
-            const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
-            resolve(result); 
+            // const result = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+            // resolve(result);
+            resolve('funciona');
         });
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
