@@ -49,7 +49,7 @@ class AccountIntents /*extends BaseIntent*/ {
         });
         app.intent('Saldo cuenta - seleccionada', (conv) => {
             const context = conv.contexts.get(AppContexts.last4NumbersContext);
-            conv.ask('Tu respuesta es' + context.parameters.last4NumbersContext);
+            conv.ask('Tu respuesta es');
         });
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
