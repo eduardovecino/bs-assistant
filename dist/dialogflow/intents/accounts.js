@@ -43,14 +43,13 @@ class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, ¿Quieres saber el saldo de la cuenta?`);
                 }
                 else {
-                    conv.ask(`No podemos mostrar la cuenta ${JSON.stringify(option)}`);
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
                     const context = conv.contexts.get(AppContexts.last4NumbersContext);
                     const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
                     if (selectedAccount) {
                         conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-                        conv.ask(suggestionResponse);
                     }
                     else {
                         conv.ask(nullResponse);

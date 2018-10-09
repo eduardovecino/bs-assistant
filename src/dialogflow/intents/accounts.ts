@@ -49,7 +49,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, ¿Quieres saber el saldo de la cuenta?`);
                 } else {
-                    conv.ask(`No podemos mostrar la cuenta ${JSON.stringify(option)}`);
+                    conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
 
             app.intent('Saldo cuenta - seleccionada', (conv, /*{ last4numbers }, { tipo_cuenta }*/) => {
@@ -57,7 +57,6 @@ export class AccountIntents /*extends BaseIntent*/ {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                     if (selectedAccount) {
                         conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-                        conv.ask(suggestionResponse);
                     } else {
                         conv.ask(nullResponse);
                     }
