@@ -62,18 +62,6 @@ export class AccountIntents /*extends BaseIntent*/ {
                     //     conv.ask(nullResponse);
                     // }
                  }); 
-
-            // app.intent('Movimientos - seleccionada', (conv) => {
-            //     const context = conv.contexts.get(AppContexts.last4NumbersContext);
-            //     const response = AccountDFManager.movementsAccount(selectedAccount);
-            //     conv.ask(response);
-            //     // if (selectedAccount) {
-            //     //     conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-            //     //     } else {
-            //     //     conv.ask(nullResponse);
-            //     // }
-            // });
-
                 app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
                     this.accountService.getMovementsAccounts().then(movements => {
                         if (movements) {
@@ -83,6 +71,11 @@ export class AccountIntents /*extends BaseIntent*/ {
                         } else {
                             conv.ask(nullResponse);
                         }
+                    });
+                })
+
+                app.intent('ayuda - cuentas', (conv) => {
+                   conv.ask('Puedes preguntar a cerca del saldo de la cuenta o de los movimientos de las cuentas');
                     });
                 })
             });
