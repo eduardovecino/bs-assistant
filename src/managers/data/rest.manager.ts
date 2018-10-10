@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as rp from "request-promise";
-import { setTimeout } from "timers";
 
 const host = 'https://oauth.bancsabadell.com';
 const token = '23df793a-4c26-4c47-9f71-3e858abb2e2f54e635c6-de2d-4a98-9de7-d2456f360db202231bf0-ff4b-44dd-b162-f404ef87800d'
@@ -14,9 +13,9 @@ export class RestManager {
         this.isMock = process.env.MOCK;
     }
 
-    public getApiBSabadell(path, mock): Promise<any> {
+    public getApiBSabadell(path, mock)/*: Promise<any>*/ {
         console.log('Before promise');
-        return new Promise((resolve, reject) => {
+        // return new Promise((resolve, reject) => {
             console.log('After promise - before timeout');
  
             const options = {
@@ -32,10 +31,11 @@ export class RestManager {
             if (this.isMock) {
                 const data = fs.readFileSync(mock);
                 const jsonData = JSON.parse(data.toString());
-                resolve(jsonData.data);
+                // resolve(jsonData.data);
+                return jsonData.data;
 
             } else {
-                // request(options, (err, res, body) => {
+                // rp(options, (err, res, body) => {
                 //     if (!!err) { return console.log(err); }
                 //     resolve(body.data);
                 //     console.log(body.data);
@@ -45,14 +45,15 @@ export class RestManager {
                     .then(function (body) {
                         var data = body.data;
                         console.log('success', data);
-                        resolve(data);
+                        // resolve(data);
+                        return data;
                     })
                     .catch(function (err) {
                         console.log('error', err);
-                        reject(err.error);
+                        // reject(err.error);
                     });
             }
-        })  
+        // })  
     }
 
     // constructor() {

@@ -7,7 +7,8 @@ import { setTimeout } from "timers";
 
 export class AccountService extends RestManager {
 
-    public getAccounts(): Promise<any> {
+    public getAccounts() {
+        let response;
         return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
@@ -20,8 +21,8 @@ export class AccountService extends RestManager {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/accounts/get-account.json');
             const jsonData = JSON.parse(data.toString());
-            const card = AccountManager.getAccountByLast4(jsonData.data, last4);
-            resolve(card);
+            const account = AccountManager.getAccountByLast4(jsonData.data, last4);
+            resolve(account);
         });
     }
 }

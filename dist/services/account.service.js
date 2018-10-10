@@ -5,6 +5,7 @@ const account_manager_1 = require("../managers/data/account.manager");
 const fs = require("fs");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
+        let response;
         return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
@@ -16,8 +17,8 @@ class AccountService extends rest_manager_1.RestManager {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/accounts/get-account.json');
             const jsonData = JSON.parse(data.toString());
-            const card = account_manager_1.AccountManager.getAccountByLast4(jsonData.data, last4);
-            resolve(card);
+            const account = account_manager_1.AccountManager.getAccountByLast4(jsonData.data, last4);
+            resolve(account);
         });
     }
 }
