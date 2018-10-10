@@ -107,7 +107,7 @@ export class CardIntents /*extends BaseIntent*/ {
         });
 
         //MOVIMIENTOS
-        app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
+        app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     const movementsTable = CardDFManager.generateMovementsTable(card);
