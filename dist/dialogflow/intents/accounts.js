@@ -21,7 +21,7 @@ class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
             let accounts;
-            accounts = yield this.accountService.getAccounts(); /*.then(accounts => {*/
+            accounts = yield this.accountService.getAccounts();
             if (accounts) {
                 const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                 conv.ask(`Tus cuentas son `);
@@ -32,9 +32,6 @@ class AccountIntents /*extends BaseIntent*/ {
             else {
                 conv.ask(nullResponse);
             }
-            // }, error => {
-            //     conv.ask("errrorrrr");
-            // });
         }));
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {

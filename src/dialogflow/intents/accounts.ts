@@ -16,20 +16,17 @@ export class AccountIntents /*extends BaseIntent*/ {
         //LISTA CUENTAS
         app.intent('Cuentas', async (conv) => {
             let accounts;
-            accounts = await this.accountService.getAccounts()/*.then(accounts => {*/
-                if (accounts) {
-                    const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(`Tus cuentas son `);
-                    conv.ask(accountsList);
+            accounts = await this.accountService.getAccounts();
+            if (accounts) {
+                const accountsList = AccountDFManager.generateAccountsList(accounts);
+                conv.ask(`Tus cuentas son `);
+                conv.ask(accountsList);
 
-                    // conv.ask(suggestionResponse);
-                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                } else {
-                    conv.ask(nullResponse);
-                }
-            // }, error => {
-            //     conv.ask("errrorrrr");
-            // });
+                // conv.ask(suggestionResponse);
+                // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+            } else {
+                conv.ask(nullResponse);
+            }
         });
 
         //CUENTA SELECCIONADA
