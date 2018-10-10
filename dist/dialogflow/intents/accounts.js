@@ -81,7 +81,7 @@ class AccountIntents /*extends BaseIntent*/ {
         });
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
-            this.accountService.getAccounts().then(account => {
+            this.accountService.getAccount(last4numbers).then(account => {
                 const response = account_manager_2.AccountDFManager.saldoAccount(account);
                 conv.ask(response);
                 // if (account) {
