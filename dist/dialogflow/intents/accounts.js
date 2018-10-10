@@ -79,7 +79,6 @@ class AccountIntents /*extends BaseIntent*/ {
                 });
             });
         });
-        º;
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
             this.accountService.getAccount(last4numbers).then(account => {

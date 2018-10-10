@@ -86,7 +86,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     });
                 })
             });
-        })º
+        })
         
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
