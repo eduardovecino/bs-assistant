@@ -10,42 +10,40 @@ class RestManager {
     }
     getApiBSabadell(path, mock) {
         console.log('Before promise');
-        // return new Promise((resolve, reject) => {
-        console.log('After promise - before timeout');
-        const options = {
-            'method': 'GET',
-            'uri': host + path,
-            'json': true,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token,
+        return new Promise((resolve, reject) => {
+            console.log('After promise - before timeout');
+            const options = {
+                'method': 'GET',
+                'uri': host + path,
+                'json': true,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                }
+            };
+            if (this.isMock) {
+                const data = fs.readFileSync(mock);
+                const jsonData = JSON.parse(data.toString());
+                resolve(jsonData.data);
             }
-        };
-        if (this.isMock) {
-            const data = fs.readFileSync(mock);
-            const jsonData = JSON.parse(data.toString());
-            // resolve(jsonData.data);
-            return jsonData.data;
-        }
-        else {
-            // rp(options, (err, res, body) => {
-            //     if (!!err) { return console.log(err); }
-            //     resolve(body.data);
-            //     console.log(body.data);
-            // });
-            rp(options)
-                .then(function (body) {
-                var data = body.data;
-                console.log('success', data);
-                // resolve(data);
-                return data;
-            })
-                .catch(function (err) {
-                console.log('error', err);
-                // reject(err.error);
-            });
-        }
-        // })  
+            else {
+                // rp(options, (err, res, body) => {
+                //     if (!!err) { return console.log(err); }
+                //     resolve(body.data);
+                //     console.log(body.data);
+                // });
+                rp(options)
+                    .then(function (body) {
+                    var data = body.data;
+                    console.log('success', data);
+                    resolve(data);
+                })
+                    .catch(function (err) {
+                    console.log('error', err);
+                    reject(err.error);
+                });
+            }
+        });
     }
 }
 exports.RestManager = RestManager;

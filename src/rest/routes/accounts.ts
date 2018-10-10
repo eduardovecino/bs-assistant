@@ -13,8 +13,7 @@ export class AccountRoutes {
     public routes(app): void {
         app.route('/accounts')
          .get((req: Request, res: Response) => {
-             let accounts;
-             accounts = this.accountService.getAccounts()/*.then(accounts => {*/
+            this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
                     const listOfAccounts = AccountDFManager.generateAccountsList(accounts);
 
@@ -24,6 +23,6 @@ export class AccountRoutes {
                     res.status(400).send('No se ha encontrado las tarjetas');
                 }
             })
-        // })
+        })
     }
 }

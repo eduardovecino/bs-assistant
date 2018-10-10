@@ -13,9 +13,9 @@ export class RestManager {
         this.isMock = process.env.MOCK;
     }
 
-    public getApiBSabadell(path, mock)/*: Promise<any>*/ {
+    public getApiBSabadell(path, mock): Promise<any> {
         console.log('Before promise');
-        // return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             console.log('After promise - before timeout');
  
             const options = {
@@ -31,8 +31,7 @@ export class RestManager {
             if (this.isMock) {
                 const data = fs.readFileSync(mock);
                 const jsonData = JSON.parse(data.toString());
-                // resolve(jsonData.data);
-                return jsonData.data;
+                resolve(jsonData.data);
 
             } else {
                 // rp(options, (err, res, body) => {
@@ -45,15 +44,14 @@ export class RestManager {
                     .then(function (body) {
                         var data = body.data;
                         console.log('success', data);
-                        // resolve(data);
-                        return data;
+                        resolve(data);
                     })
                     .catch(function (err) {
                         console.log('error', err);
-                        // reject(err.error);
+                        reject(err.error);
                     });
             }
-        // })  
+        })  
     }
 
     // constructor() {

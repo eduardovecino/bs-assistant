@@ -15,8 +15,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         //LISTA CUENTAS
         app.intent('Cuentas', async (conv) => {
-            let accounts;
-            accounts = await this.accountService.getAccounts()/*.then(accounts => {*/
+            this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);
                     conv.ask(`Tus cuentas son `);
@@ -27,9 +26,9 @@ export class AccountIntents /*extends BaseIntent*/ {
                 } else {
                     conv.ask(nullResponse);
                 }
-            // }, error => {
-            //     conv.ask("errrorrrr");
-            // });
+            }, error => {
+                conv.ask("errrorrrr");
+            });
         });
 
         //CUENTA SELECCIONADA
