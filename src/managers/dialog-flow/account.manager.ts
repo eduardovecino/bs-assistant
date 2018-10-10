@@ -33,9 +33,9 @@ export class AccountDFManager {
         }
     }
 
-    public static saldoAccount(account) {
-        if (account) {
-            return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
+    public static saldoAccount(accounts) {
+        if (accounts) {
+            return `El saldo  de tu ${accounts.descripcion} es de ${accounts.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
         } else {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
         }
