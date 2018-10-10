@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as rp from "request-promise";
+import { setTimeout } from "timers";
 
 const host = 'https://oauth.bancsabadell.com';
 const token = '23df793a-4c26-4c47-9f71-3e858abb2e2f54e635c6-de2d-4a98-9de7-d2456f360db202231bf0-ff4b-44dd-b162-f404ef87800d'

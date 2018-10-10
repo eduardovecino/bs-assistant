@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const timers_1 = require("timers");
 const host = 'https://oauth.bancsabadell.com';
 const token = '23df793a-4c26-4c47-9f71-3e858abb2e2f54e635c6-de2d-4a98-9de7-d2456f360db202231bf0-ff4b-44dd-b162-f404ef87800d';
 class RestManager {
@@ -8,7 +9,7 @@ class RestManager {
     }
     getApiBSabadell(path, mock) {
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
+            timers_1.setTimeout(() => {
                 const data = {
                     "data": [
                         {
