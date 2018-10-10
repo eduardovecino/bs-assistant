@@ -45,7 +45,7 @@ class AccountDFManager {
         };
         movements.forEach((movement) => {
             tmp.rows.push({
-                cells: [movement.concepto, movement.fecha, movement.importe],
+                cells: [movement.concepto, movement.fechaOperacion, movement.importe],
                 dividerAfter: true
             });
         });
