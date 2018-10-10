@@ -47,7 +47,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 conv.contexts.set(AppContexts.last4NumbersContext, 1)
 
                 if (selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}, ¿Quieres saber el saldo de la cuenta?`);
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. Puedes preguntame por el saldo de la cuenta o los movimientos.`);
                     } else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
@@ -80,7 +80,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getMovementsAccounts().then(movements => {
                 if (movements) {
                     const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                    conv.ask(`Aquí tienes los movimientos`);
+                    conv.ask(`Aquí tienes los movimientos de la cuenta`);
                     conv.ask(movementsTable);
                 } else {
                     conv.ask(nullResponse);
