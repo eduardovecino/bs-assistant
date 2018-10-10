@@ -24,8 +24,8 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         app.intent('Cuentas', async (conv) => {
             let accounts;
-            let response = "Tienes " + accounts.length + " cuentas. Terminadas en:";
             accounts = await this.accountService.getAccounts();
+            let response = "Tienes " + accounts.length + " cuentas. Terminadas en:";
             if (accounts) {
                 accounts.forEach(account => {
                     response = response + FormatManager.getLast4numbers(account.iban) + ", ";
