@@ -75,9 +75,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                 })
 
                 app.intent('ayuda - cuentas', (conv) => {
-                   conv.ask('Puedes preguntar a cerca del saldo de la cuenta o de los movimientos de las cuentas');
-                    });
-                })
+                    conv.ask('Puedes preguntar a cerca del saldo de la cuenta o de los movimientos de las cuentas');
+                });
             });
         })
         

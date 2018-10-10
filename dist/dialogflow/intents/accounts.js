@@ -72,22 +72,21 @@ class AccountIntents /*extends BaseIntent*/ {
                 });
             });
         });
+        // SALDO CUENTA
+        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+            this.accountService.getAccount(last4numbers).then(account => {
+                // const response = AccountDFManager.saldoAccount(account);
+                // conv.ask(response);
+                if (account) {
+                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €. `);
+                    conv.ask(suggestionResponse);
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
+            });
+        });
     }
-    intent() { }
 }
 exports.AccountIntents = AccountIntents;
-(conv, { last4numbers }, { tipo_cuenta }) => {
-    this.accountService.getAccount(last4numbers).then(account => {
-        // const response = AccountDFManager.saldoAccount(account);
-        // conv.ask(response);
-        if (account) {
-            conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €. `);
-            conv.ask(suggestionResponse);
-        }
-        else {
-            conv.ask(nullResponse);
-        }
-    });
-};
-;
 //# sourceMappingURL=accounts.js.map
