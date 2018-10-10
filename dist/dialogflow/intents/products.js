@@ -62,7 +62,7 @@ class ProductIntents /*extends BaseIntent*/ {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
         });
         app.intent('Ayuda', (conv) => {
-            conv.close('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
+            conv.ask('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
         });
     }
 }

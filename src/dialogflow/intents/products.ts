@@ -74,7 +74,7 @@ export class ProductIntents /*extends BaseIntent*/ {
         });
 
         app.intent('Ayuda', (conv) => {
-            conv.close('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
+            conv.ask('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
         });
     }
 }
