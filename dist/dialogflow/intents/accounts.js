@@ -20,20 +20,21 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            this.accountService.getAccounts().then(accounts => {
-                if (accounts) {
-                    const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(`Tus cuentas son `);
-                    conv.ask(accountsList);
-                    // conv.ask(suggestionResponse);
-                    // conv.ask(SuggestionDFManager.generateSuggestions(conv))
-                }
-                else {
-                    conv.ask(nullResponse);
-                }
-            }, error => {
-                conv.ask("errrorrrr");
-            });
+            let accounts;
+            accounts = yield this.accountService.getAccounts(); /*.then(accounts => {*/
+            if (accounts) {
+                const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
+                conv.ask(`Tus cuentas son `);
+                conv.ask(accountsList);
+                // conv.ask(suggestionResponse);
+                // conv.ask(SuggestionDFManager.generateSuggestions(conv))
+            }
+            else {
+                conv.ask(nullResponse);
+            }
+            // }, error => {
+            //     conv.ask("errrorrrr");
+            // });
         }));
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
