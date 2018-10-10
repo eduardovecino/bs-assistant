@@ -17,8 +17,8 @@ export class AccountService extends RestManager {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/accounts/get-accounts.json');
             const jsonData = JSON.parse(data.toString());
-            const accounts = AccountManager.getAccountByLast4(jsonData.data, last4);
-            resolve(accounts);
+            const account = AccountManager.getAccountByLast4(jsonData.data, last4);
+            resolve(account);
         });
     }
 
