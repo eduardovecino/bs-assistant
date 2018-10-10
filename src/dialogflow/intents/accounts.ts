@@ -39,8 +39,9 @@ export class AccountIntents /*extends BaseIntent*/ {
         });
 
         //CUENTA SELECCIONADA
-        app.intent('Cuenta Seleccionada', (conv, input, option) => {
-            this.accountService.getAccounts().then(accounts => {
+        app.intent('Cuenta Seleccionada', async (conv, input, option) => {
+            let accounts;
+            accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 conv.contexts.set(AppContexts.last4NumbersContext, 1)
                 if (selectedAccount) {
@@ -75,7 +76,6 @@ export class AccountIntents /*extends BaseIntent*/ {
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask('Puedes preguntar a cerca del saldo de la cuenta o de los movimientos de las cuentas');
                 });
-            });
         })
         
         // SALDO CUENTA
