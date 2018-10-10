@@ -15,6 +15,7 @@ export class RestManager {
 
     public getApiBSabadell(path, mock): Promise<any> {
         return new Promise((resolve, reject) => {
+            
             const data = {
                 "data": [
                     {
