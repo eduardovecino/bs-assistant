@@ -9,16 +9,17 @@ class AccountRoutes {
     routes(app) {
         app.route('/accounts')
             .get((req, res) => {
-            this.accountService.getAccounts().then(accounts => {
-                if (accounts) {
-                    const listOfAccounts = account_manager_1.AccountDFManager.generateAccountsList(accounts);
-                    res.status(200).send(listOfAccounts);
-                }
-                else {
-                    res.status(400).send('No se ha encontrado las tarjetas');
-                }
-            });
+            let accounts;
+            accounts = this.accountService.getAccounts(); /*.then(accounts => {*/
+            if (accounts) {
+                const listOfAccounts = account_manager_1.AccountDFManager.generateAccountsList(accounts);
+                res.status(200).send(listOfAccounts);
+            }
+            else {
+                res.status(400).send('No se ha encontrado las tarjetas');
+            }
         });
+        // })
     }
 }
 exports.AccountRoutes = AccountRoutes;
