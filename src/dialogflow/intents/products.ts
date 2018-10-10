@@ -72,5 +72,9 @@ export class ProductIntents /*extends BaseIntent*/ {
         app.intent('Cancel', (conv) => {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
         });
+
+        app.intent('Ayuda', (conv) => {
+            conv.close('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
+        });
     }
 }

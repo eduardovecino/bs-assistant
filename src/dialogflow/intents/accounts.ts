@@ -62,6 +62,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     //     conv.ask(nullResponse);
                     // }
                  }); 
+                 
                 app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
                     this.accountService.getMovementsAccounts().then(movements => {
                         if (movements) {
