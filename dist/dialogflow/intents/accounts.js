@@ -67,10 +67,10 @@ class AccountIntents /*extends BaseIntent*/ {
                 });
             });
         });
-        app.intent('Movimientos Cuentas', (conv) => {
-            this.accountService.getMovementsAccounts().then(account => {
-                if (account) {
-                    const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(account);
+        app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
+            this.accountService.getMovementsAccounts().then(movements => {
+                if (movements) {
+                    const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(movements);
                     conv.ask(`Aquí tienes los movimientos`);
                     conv.ask(movementsTable);
                 }

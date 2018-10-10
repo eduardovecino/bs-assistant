@@ -43,7 +43,7 @@ class AccountDFManager {
             columns: ['Concepto', 'Fecha', 'Importe'],
             rows: []
         };
-        movements.data.forEach((movement) => {
+        movements.forEach((movement) => {
             tmp.rows.push({
                 cells: [movement.concepto, movement.fecha, movement.importe],
                 dividerAfter: true
