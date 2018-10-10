@@ -15,6 +15,43 @@ export class RestManager {
 
     public getApiBSabadell(path, mock): Promise<any> {
         return new Promise((resolve, reject) => {
+            const data = {
+                "data": [
+                    {
+                        "propietario": "&UPJURID - &LPJURID",
+                        "disponibilidad": null,
+                        "descripcion": "CUENTA CORRIENTE",
+                        "usuario": "00000001R",
+                        "iban": "ES00810000000000001234",
+                        "balance": "123.915,06",
+                        "producto": "CC",
+                        "numeroProducto": "00810000000000001234",
+                        "numeroProductoCodificado": "00810000000000001234"
+                    },
+                    {
+                        "propietario": "&RNOMBRE &DPRIAPE I &. &MPRIAPE",
+                        "disponibilidad": null,
+                        "descripcion": "CUENTA EXPANSIÓN",
+                        "usuario": "00000001R ",
+                        "iban": "ES00810000000000004567",
+                        "balance": "27.912,74",
+                        "producto": "CC",
+                        "numeroProducto": "00810000000000004567",
+                        "numeroProductoCodificado": "00810000000000004567"
+                    }
+                ],
+                "head": {
+                    "fechaOperacion": "2014-03-25 11:00:05",
+                    "descripcionError": null,
+                    "informacionAdicional": null,
+                    "codigoServicio": "SERV_CUE01",
+                    "errorCode": null,
+                    "warnCode": null
+                }
+            }
+
+            resolve(data.data);
+            /*
             const options = {
                 'method': 'GET',
                 'uri': host + path,
@@ -48,6 +85,7 @@ export class RestManager {
                         reject(err.error);
                     });
             }
+            */
         })  
     }
 
