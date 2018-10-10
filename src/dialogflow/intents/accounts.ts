@@ -14,7 +14,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
 
         //LISTA CUENTAS
-        app.intent('Cuentas', (conv) => {
+        app.intent('Cuentas', async (conv) => {
             this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
                     const accountsList = AccountDFManager.generateAccountsList(accounts);

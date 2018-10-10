@@ -8,8 +8,11 @@ class RestManager {
         this.isMock = process.env.MOCK;
     }
     getApiBSabadell(path, mock) {
+        console.log('Before promise');
         return new Promise((resolve, reject) => {
+            console.log('After promise - before timeout');
             timers_1.setTimeout(() => {
+                console.log('After timeout');
                 const data = {
                     "data": [
                         {

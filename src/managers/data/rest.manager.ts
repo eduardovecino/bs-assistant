@@ -15,8 +15,11 @@ export class RestManager {
     }
 
     public getApiBSabadell(path, mock): Promise<any> {
+        console.log('Before promise');
         return new Promise((resolve, reject) => {
+            console.log('After promise - before timeout');
             setTimeout(() => {
+                console.log('After timeout');
                 const data = {
                     "data": [
                         {

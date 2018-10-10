@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
@@ -11,7 +19,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         //LISTA CUENTAS
-        app.intent('Cuentas', (conv) => {
+        app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
             this.accountService.getAccounts().then(accounts => {
                 if (accounts) {
                     const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
@@ -26,7 +34,7 @@ class AccountIntents /*extends BaseIntent*/ {
             }, error => {
                 conv.ask("errrorrrr");
             });
-        });
+        }));
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
