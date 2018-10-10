@@ -94,7 +94,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 // const response = AccountDFManager.saldoAccount(account);
                 // conv.ask(response);
                 if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €`);
+                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €. `);
                     conv.ask(suggestionResponse);
                 } else {
                     conv.ask(nullResponse);
