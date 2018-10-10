@@ -46,7 +46,7 @@ class AccountIntents /*extends BaseIntent*/ {
                 const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
                 conv.contexts.set(AppContexts.last4NumbersContext, 1);
                 if (selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. Puedes preguntame por el saldo de la cuenta o los movimientos.`);
+                    conv.ask(`Has seleccionado `);
                 }
                 else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
