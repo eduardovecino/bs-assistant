@@ -26,8 +26,6 @@ class AccountIntents /*extends BaseIntent*/ {
                 const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
                 conv.ask(`Tus cuentas son `);
                 conv.ask(accountsList);
-                // conv.ask(suggestionResponse);
-                // conv.ask(SuggestionDFManager.generateSuggestions(conv))
             }
             else {
                 conv.ask(nullResponse);
