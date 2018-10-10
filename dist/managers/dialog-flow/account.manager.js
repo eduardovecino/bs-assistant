@@ -37,10 +37,10 @@ class AccountDFManager {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         }
     }
-    static movementsAccount(account) {
-        if () {
-        }
-    }
+    // public static movementsAccount(account) {
+    //     if(){
+    //     }
+    // }
     static generateMovementsTable(movements) {
         const tmp = {
             dividers: true,

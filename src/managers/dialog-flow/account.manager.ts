@@ -41,11 +41,11 @@ export class AccountDFManager {
         }
     }
 
-    public static movementsAccount(account) {
-        if(){
-            
-        }
-    }
+    // public static movementsAccount(account) {
+    //     if(){
+
+    //     }
+    // }
 
     public static generateMovementsTable(movements) {
         const tmp: TableOptions = {
