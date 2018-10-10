@@ -3,7 +3,7 @@ import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 import { FormatManager } from '../../managers/format.manager';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
-
+import { Ssml } from 'ssml-gib';
 
 export class CardIntents /*extends BaseIntent*/ {
 
@@ -13,14 +13,23 @@ export class CardIntents /*extends BaseIntent*/ {
 
         const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
+        const cardCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
+        const AppContexts = {
+            action_card: 'tipo_tarjeta',
+        }
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
             this.cardService.getCards().then(cards => {
+                let response = "Tienes " + cards.length + " tarjetas. Terminadas en:";
+
                 if (cards) {
+                    cards.forEach(card => {
+                        response = response + FormatManager.getLast4numbers(card.cuentaRelacionada) + ", ";
+                    })
                     const carouselOfCards = CardDFManager.cardsCarousel(cards);
-                    conv.ask(`Tus tarjetas sson `);
+                    conv.ask(response + "¿Cúal deseas seleccionar?");
                     conv.ask(carouselOfCards);
                 } else {
                     conv.ask(`No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`);
@@ -34,15 +43,25 @@ export class CardIntents /*extends BaseIntent*/ {
                 const cardSelected = CardManager.getCardByOption(cards, option);
                 if (cardSelected) {
                     const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
-                    conv.ask(`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €`);
+                    conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 } else {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
             });
         })
 
+        app.intent('Tarjeta seleccionada - yes', (conv, input, output) =>{
 
-        // //BLOQUEAR TARJETA
+            conv.ask('¿Quieres saber el saldo de tarjeta, quieres bloquearla, saber su fecha de liquidación, sus límites o ver los movimientos?')
+        }) 
+
+
+        app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
+                var cardCloseResponseResult = cardCloseResponse[Math.floor(Math.random() * cardCloseResponse.length)];
+            conv.close(cardCloseResponseResult);
+        }) 
+
+        //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
             conv.ask(`Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
         });
@@ -88,7 +107,7 @@ export class CardIntents /*extends BaseIntent*/ {
         });
 
         //MOVIMIENTOS
-        app.intent('Movimientos', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
+        app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     const movementsTable = CardDFManager.generateMovementsTable(card);
@@ -98,6 +117,6 @@ export class CardIntents /*extends BaseIntent*/ {
                     conv.ask(nullResponse);
                 }
             });
-        });
-    }
+    })
+}
 }

@@ -24,4 +24,12 @@ export class AccountService extends RestManager {
             resolve(account);
         });
     }
+
+    public getMovementsAccounts(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const data = fs.readFileSync('mock/accounts/get-movements-accounts.json');
+            const jsonData = JSON.parse(data.toString());
+            resolve(jsonData.data);
+        });
+    }
 }

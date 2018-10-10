@@ -1,0 +1,67 @@
+{
+    "data": [
+        {
+            "numOrden": "20180606081445566062",
+            "fechaOperacion": "2018-06-06 00:00:00",
+            "fechaValor": "2018-06-06 00:00:00",
+            "importe": "1,00",
+            "divisa": "EUR",
+            "saldo": "1,04",
+            "concepto": "ABONO TRANSFERENCIA DE JOSE VICTOR FERNANDEZ DEL RIO",
+            "codigoConcepto": "13"
+        },
+        {
+            "numOrden": "20180517081251110086",
+            "fechaOperacion": "2018-05-17 00:00:00",
+            "fechaValor": "2018-02-12 00:00:00",
+            "importe": "-500,00",
+            "divisa": "EUR",
+            "saldo": "0,04",
+            "concepto": "CORRECCION TRANSFERENCIA QUE NO CORRESPON",
+            "codigoConcepto": "98"
+        },
+        {
+            "numOrden": "20180212103618096245",
+            "fechaOperacion": "2018-02-12 00:00:00",
+            "fechaValor": "2018-02-12 00:00:00",
+            "importe": "500,00",
+            "divisa": "EUR",
+            "saldo": "500,04",
+            "concepto": "TRANSFERENCIA SOLVIA SERVICIOS INMOBILIARIOS, S.L.",
+            "codigoConcepto": "04"
+        },
+        {
+            "numOrden": "20171213111919871962",
+            "fechaOperacion": "2017-12-13 00:00:00",
+            "fechaValor": "2017-12-13 00:00:00",
+            "importe": "0,01",
+            "divisa": "EUR",
+            "saldo": "0,04",
+            "concepto": "TRANSFERENCIA DE OSCAR LLAGOSTERA GIL",
+            "codigoConcepto": "04"
+        },
+        {
+            "numOrden": "20170614114301897313",
+            "fechaOperacion": "2017-06-14 00:00:00",
+            "fechaValor": "2017-06-14 00:00:00",
+            "importe": "0,01",
+            "divisa": "EUR",
+            "saldo": "0,03",
+            "concepto": "TRANSFERENCIA DE OSCAR LLAGOSTERA GIL",
+            "codigoConcepto": "04"
+        },
+        {
+            "numOrden": "20161215004131168931",
+            "fechaOperacion": "2016-12-15 00:00:00",
+            "fechaValor": "2016-12-15 00:00:00",
+            "importe": "0,01",
+            "divisa": "EUR",
+            "saldo": "0,02",
+            "concepto": "TRANSFERENCIA DE OSCAR LLAGOSTERA GIL",
+            "codigoConcepto": "04"
+        }
+    ],
+    "head": {
+        "fechaOperacion": "2018-10-09 15:52:27"
+    }
+}

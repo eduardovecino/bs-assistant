@@ -13,8 +13,16 @@ export class ProductIntents /*extends BaseIntent*/ {
     constructor() {
     }
 
+    
+
     public intents(app): void {
+
+        const AppContexts = {
+            TUNUMBER: 'number',
+        }
         app.intent('Default Welcome Intent', conv => {
+            // conv.contexts.set(AppContexts.TUNUMBER, 1)
+            // conv.ask('¿Qué edad tienes?')
             conv.ask(new Permission({ 
                 context: this.translateManager.translate('intent.product.welcome.answer'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
@@ -23,7 +31,8 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            const { name } = conv.user;
+            const name = conv.user.name.given;
+            // conv.ask(JSON.stringify(name))
             let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
             if (confirmationGranted) {
                 if (name) {
@@ -53,6 +62,10 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Cancel', (conv) => {
             conv.close('Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!');
+        });
+
+        app.intent('Ayuda', (conv) => {
+            conv.ask('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
         });
     }
 }
