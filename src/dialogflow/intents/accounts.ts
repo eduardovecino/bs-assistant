@@ -26,6 +26,8 @@ export class AccountIntents /*extends BaseIntent*/ {
             let accounts;
             accounts = await this.accountService.getAccounts();
             let response = "Tienes " + accounts.length + " cuentas. Terminadas en:";
+            conv.contexts.delete(Contexts.selected_card);
+
             if (accounts) {
                 accounts.forEach(account => {
                     response = response + FormatManager.getLast4numbers(account.iban) + ", ";
@@ -44,7 +46,6 @@ export class AccountIntents /*extends BaseIntent*/ {
             accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                  conv.contexts.set(Contexts.selected_account, 5)
-                 conv.contexts.delete(Contexts.selected_card);
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
                     } else {
