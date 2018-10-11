@@ -16,8 +16,8 @@ export class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
-        const AppContexts = {
-            last4NumbersContext: 'si',
+        const Contexts = {
+            selected_account: 'selected_account ',
         }
 
         //LISTA CUENTAS
@@ -44,7 +44,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuenta Seleccionada', (conv, input, option) => {
             this.accountService.getAccounts().then(accounts => {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                // conv.contexts.set(AppContexts.last4NumbersContext, 1)
+                conv.contexts.set(Contexts.selected_account , 5)
 
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. Puedes preguntame por el saldo de la cuenta o los movimientos.`);
