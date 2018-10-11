@@ -1,1 +1,0 @@
-{"version":3,"file":"rest.manager.js","sourceRoot":"","sources":["../../src/managers/rest.manager.ts"],"names":[],"mappings":";;AAAA,MAAa,WAAW;IAIpB;QACI,IAAI,CAAC,MAAM,GAAG,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC;IACnC,CAAC;IAEM,GAAG;QACN,OAAO,EAAE,GAAG,EAAE,EAAE,EAAE,CAAC;IACvB,CAAC;CACJ;AAXD,kCAWC"}

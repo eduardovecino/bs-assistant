@@ -1,3 +1,3 @@
 export const TOKEN = {
-    TOKEN_MOCK: 'c4de79a8-3062-4d9c-b901-7d3a1408859b6ee54a84-3166-4d32-bf7a-3ddeeecd8fa3c5e938b0-dc91-4741-baa3-1c99b80f65cf'
+    TOKEN_MOCK: '07b85d58-1e37-4cf3-9f2f-b4c3d753f3a08203d205-3975-41ee-9058-ee0843c8c1475136a6f7-ec9d-40c1-8285-45a34ea9dae8'
 }
