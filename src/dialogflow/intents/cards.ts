@@ -66,6 +66,8 @@ export class CardIntents /*extends BaseIntent*/ {
                     });  
             });
         })
+
+        
         //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
