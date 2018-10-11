@@ -89,9 +89,13 @@ class AccountIntents /*extends BaseIntent*/ {
             let movements;
             let account;
             account = yield this.accountService.getAccount(last4numbers);
+            console.log("PTG1");
             if (account) {
+                console.log("PTG2");
                 movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
+                console.log("PTG3");
                 if (movements) {
+                    console.log("PTG4");
                     let response = `Este mes tienes ${movements.length} movimientos: `;
                     for (let i = 0; i < 3; i++) {
                         response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
