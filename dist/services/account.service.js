@@ -12,14 +12,14 @@ class AccountService extends rest_manager_1.RestManager {
         // });        
     }
     getAccount(last4) {
-        return new Promise((resolve, reject) => {
-            // const data = fs.readFileSync('mock/accounts/get-accounts.json');
-            this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json').then(accounts => {
-                const jsonData = JSON.parse(accounts.toString());
-                const account = account_manager_1.AccountManager.getAccountByLast4(jsonData.data, last4);
-                resolve(account);
-            });
+        // return new Promise((resolve, reject) => {
+        // const data = fs.readFileSync('mock/accounts/get-accounts.json');
+        this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json').then(accounts => {
+            const jsonData = JSON.parse(accounts.toString());
+            const account = account_manager_1.AccountManager.getAccountByLast4(jsonData.data, last4);
+            return account;
         });
+        // });
     }
     getMovementsAccounts(account) {
         return this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-1-2018`, `mock/accounts/get-movements-accounts.json`);

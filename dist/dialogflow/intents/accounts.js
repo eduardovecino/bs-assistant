@@ -88,9 +88,7 @@ class AccountIntents /*extends BaseIntent*/ {
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let movements;
             let account;
-            this.accountService.getAccount(last4numbers).then(account => {
-                account = account;
-            });
+            account = yield this.accountService.getAccount(last4numbers);
             movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
             if (movements) {
                 let response = `Este mes tienes ${movements.length} movimientos: `;

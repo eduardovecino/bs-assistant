@@ -16,17 +16,15 @@ export class AccountService extends RestManager {
         // });        
     }
 
-    public getAccount(last4): Promise<any> {
-        return new Promise((resolve, reject) => {
+    public getAccount(last4) {
+        // return new Promise((resolve, reject) => {
             // const data = fs.readFileSync('mock/accounts/get-accounts.json');
             this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json').then(accounts => {
                 const jsonData = JSON.parse(accounts.toString());
                 const account = AccountManager.getAccountByLast4(jsonData.data, last4);
-                resolve(account);
+                return account;
             })
-            
-            
-        });
+        // });
     }
 
     public getMovementsAccounts(account): Promise<any> {

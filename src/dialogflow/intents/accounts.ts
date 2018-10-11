@@ -89,9 +89,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let movements;
             let account;
-            this.accountService.getAccount(last4numbers).then(account => {
-                account = account;
-            });
+            account = await this.accountService.getAccount(last4numbers);
             movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
             if (movements) {
                 let response = `Este mes tienes ${movements.length} movimientos: `;
