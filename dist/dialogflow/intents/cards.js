@@ -47,13 +47,6 @@ class CardIntents /*extends BaseIntent*/ {
                 }
             });
         });
-        app.intent('Tarjeta seleccionada - yes', (conv, input, output) => {
-            conv.ask('¿Quieres saber el saldo de tarjeta, quieres bloquearla, saber su fecha de liquidación, sus límites o ver los movimientos?');
-        });
-        app.intent('Tarjeta seleccionada - no', (conv, input, output) => {
-            var cardCloseResponseResult = cardCloseResponse[Math.floor(Math.random() * cardCloseResponse.length)];
-            conv.close(cardCloseResponseResult);
-        });
         //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv) => {
             conv.ask(`Tu tarjeta ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell`);

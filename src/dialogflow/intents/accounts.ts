@@ -14,10 +14,9 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
-        const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
-        const AppContexts = {
-            last4NumbersContext: 'si',
+        const Contexts = {
+            selected_account: 'selected_account',
         }
 
         //LISTA CUENTAS
@@ -43,7 +42,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             let accounts;
             accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                conv.contexts.set(AppContexts.last4NumbersContext, 1)
+                 conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
                     } else {
@@ -51,14 +50,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                 }
 
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
-                    const context = conv.contexts.get(AppContexts.last4NumbersContext);
                     const response = AccountDFManager.saldoAccount(selectedAccount);
                     conv.ask(response);
-                        // if (selectedAccount) {
-                        //     conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-                        //     } else {
-                        //     conv.ask(nullResponse);
-                        // }
                 }); 
                  
                 app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
@@ -81,14 +74,8 @@ export class AccountIntents /*extends BaseIntent*/ {
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
             this.accountService.getAccount(last4numbers).then(account => {
-                // const response = AccountDFManager.saldoAccount(account);
-                // conv.ask(response);
-                if (account) {
-                    conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €. `);
-                    conv.ask(suggestionResponse);
-                } else {
-                    conv.ask(nullResponse);
-                }
+                const response = AccountDFManager.saldoAccount(account);
+                conv.ask(response);
             });
         }); 
     }
