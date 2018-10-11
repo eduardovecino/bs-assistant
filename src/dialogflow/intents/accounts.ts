@@ -13,7 +13,7 @@ export class AccountIntents /*extends BaseIntent*/ {
     public intents(app): void {
 
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
-        const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
+        const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
         const AppContexts = {
