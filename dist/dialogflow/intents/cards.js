@@ -57,6 +57,9 @@ class CardIntents /*extends BaseIntent*/ {
                 app.intent('Limites - seleccionada', (conv) => {
                     conv.ask(`Los límites de tu tarjeta finalizada en ${cardSelected.contrato} son, limite autorizado: ${cardSelected.limiteAutorizado} € y limite crédito: ${cardSelected.limiteCredito} €`);
                 });
+                app.intent('ayuda - tarjetas', (conv) => {
+                    conv.ask(suggestionResponse);
+                });
             });
         });
         //BLOQUEAR TARJETA
