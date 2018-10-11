@@ -89,20 +89,22 @@ class AccountIntents /*extends BaseIntent*/ {
             let movements;
             let account;
             account = yield this.accountService.getAccount(last4numbers);
-            movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
-            if (movements) {
-                let response = `Este mes tienes ${movements.length} movimientos: `;
-                for (let i = 0; i < 3; i++) {
-                    response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+            if (account) {
+                movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
+                if (movements) {
+                    let response = `Este mes tienes ${movements.length} movimientos: `;
+                    for (let i = 0; i < 3; i++) {
+                        response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+                    }
+                    ;
+                    response = response + "¿Qué más quieres saber acerca de tu cuenta?";
+                    const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(movements);
+                    conv.ask(response);
+                    conv.ask(movementsTable);
                 }
-                ;
-                response = response + "¿Qué más quieres saber acerca de tu cuenta?";
-                const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(movements);
-                conv.ask(response);
-                conv.ask(movementsTable);
-            }
-            else {
-                conv.ask(nullResponse);
+                else {
+                    conv.ask(nullResponse);
+                }
             }
             // this.accountService.getAccount(last4numbers).then(account => {
             //     const response = AccountDFManager.movementsAccount(account);
