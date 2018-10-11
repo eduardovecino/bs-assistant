@@ -49,7 +49,13 @@ class CardIntents /*extends BaseIntent*/ {
                     conv.ask(`Tu tarjeta con el número de contrato: ${cardSelected.contrato}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
                 });
                 app.intent('Saldo tarjeta - seleccionada', (conv) => {
-                    conv.ask(`El saldo de tu tarjeta ${lastNumbers} es de ${cardSelected.saldoDisponible} €`);
+                    conv.ask(`El saldo de tu tarjeta ${cardSelected.contrato} es de ${cardSelected.saldoDisponible} €`);
+                });
+                app.intent('Fecha liquidacion - seleccionada', (conv) => {
+                    conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${cardSelected.contrato} es de ${cardSelected.fechaProxiLiquidacion} €`);
+                });
+                app.intent('Limites - seleccionada', (conv) => {
+                    conv.ask(`Los límites de tu tarjeta finalizada en ${cardSelected.contrato} son, limite autorizado: ${cardSelected.limiteAutorizado} € y limite crédito: ${cardSelected.limiteCredito} €`);
                 });
             });
         });
