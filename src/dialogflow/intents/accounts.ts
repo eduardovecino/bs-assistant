@@ -68,7 +68,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     } else {
                         conv.ask(nullResponse);
                     }
-                })
+                });
 
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask(suggestionResponse);

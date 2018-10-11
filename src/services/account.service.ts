@@ -26,7 +26,7 @@ export class AccountService extends RestManager {
     }
 
     public getMovementsAccounts(account): Promise<any> {
-        return this.getApiBSabadell(`/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-1-2018`, `mock/accounts/get-movements-accounts.json`);
+        return this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-1-2018`, `mock/accounts/get-movements-accounts.json`);
         // return new Promise((resolve, reject) => {
         //     const data = fs.readFileSync('mock/accounts/get-movements-accounts.json');
         //     const jsonData = JSON.parse(data.toString());
