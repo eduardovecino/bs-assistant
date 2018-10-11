@@ -44,7 +44,7 @@ export class CardIntents /*extends BaseIntent*/ {
             const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
             conv.contexts.set(Contexts.selected_card, 5);
             conv.contexts.delete(Contexts.selected_account, 5);
-            console.log(Contexts.selected_account);
+            console.log('hola hola' + Contexts.selected_account);
 
         
                 if (cardSelected) {
