@@ -54,11 +54,15 @@ export class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(response);
                 }); 
                  
-                app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
+                app.intent('Movimientos cuenta - seleccionada', (conv) => {
                     this.accountService.getMovementsAccounts().then(movements => {
                         if (movements) {
+                            let response = `Este mes tienes ${movements.length} movimientos: `;
+                            movements.forEach(movement => {
+                                response = response + movement.concepto + " con un importe de " + movement.importe + ", ";
+                            });
                             const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                            conv.ask(`Aquí tienes los movimientos de la cuenta`);
+                            conv.ask(response);
                             conv.ask(movementsTable);
                         } else {
                             conv.ask(nullResponse);
@@ -77,6 +81,25 @@ export class AccountIntents /*extends BaseIntent*/ {
                 const response = AccountDFManager.saldoAccount(account);
                 conv.ask(response);
             });
-        }); 
+        });
+        
+        
+        //MOVIMIENTOS CUENTA
+        app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
+            // this.accountService.getAccount(last4numbers).then(account => {
+            //     const response = AccountDFManager.movementsAccount(account);
+            //     conv.ask(response);
+            // });
+
+            // this.accountService.getMovementsAccounts().then(movements => {
+            //     if (movements) {
+            //         const movementsTable = AccountDFManager.generateMovementsTable(movements);
+            //         conv.ask(`Aquí tienes los movimientos de la cuenta`);
+            //         conv.ask(movementsTable);
+            //     } else {
+            //         conv.ask(nullResponse);
+            //     }
+            // });
+        })
     }
 }
