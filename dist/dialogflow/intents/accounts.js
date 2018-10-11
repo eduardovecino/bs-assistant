@@ -55,23 +55,23 @@ class AccountIntents /*extends BaseIntent*/ {
                 const response = account_manager_2.AccountDFManager.saldoAccount(selectedAccount);
                 conv.ask(response);
             });
-            app.intent('Movimientos cuenta - seleccionada', (conv) => {
-                this.accountService.getMovementsAccounts(selectedAccount.numeroProducto).then(movements => {
-                    if (movements) {
-                        let response = `Este mes tienes ${movements.length} movimientos: `;
-                        for (let i = 0; i < 3; i++) {
-                            response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
-                        }
-                        ;
-                        const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(movements);
-                        conv.ask(response);
-                        conv.ask(movementsTable);
+            app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
+                let movements;
+                movements = yield this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
+                if (movements) {
+                    let response = `Este mes tienes ${movements.length} movimientos: `;
+                    for (let i = 0; i < 3; i++) {
+                        response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
                     }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
-            });
+                    ;
+                    const movementsTable = account_manager_2.AccountDFManager.generateMovementsTable(movements);
+                    conv.ask(response);
+                    conv.ask(movementsTable);
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
+            }));
             app.intent('ayuda - cuentas', (conv) => {
                 conv.ask(suggestionResponse);
             });

@@ -52,22 +52,22 @@ export class AccountIntents /*extends BaseIntent*/ {
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
                     const response = AccountDFManager.saldoAccount(selectedAccount);
                     conv.ask(response);
-                }); 
+                });
                  
-                app.intent('Movimientos cuenta - seleccionada', (conv) => {
-                    this.accountService.getMovementsAccounts(selectedAccount.numeroProducto).then(movements => {
-                        if (movements) {
-                            let response = `Este mes tienes ${movements.length} movimientos: `;
-                            for (let i = 0; i < 3 ; i++){
-                                response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
-                            };
-                            const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                            conv.ask(response);
-                            conv.ask(movementsTable);
-                        } else {
-                            conv.ask(nullResponse);
-                        }
-                    });
+                app.intent('Movimientos cuenta - seleccionada', async (conv) => {
+                    let movements;
+                    movements = await this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
+                    if (movements) {
+                        let response = `Este mes tienes ${movements.length} movimientos: `;
+                        for (let i = 0; i < 3 ; i++){
+                            response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+                        };
+                        const movementsTable = AccountDFManager.generateMovementsTable(movements);
+                        conv.ask(response);
+                        conv.ask(movementsTable);
+                    } else {
+                        conv.ask(nullResponse);
+                    }
                 })
 
                 app.intent('ayuda - cuentas', (conv) => {
