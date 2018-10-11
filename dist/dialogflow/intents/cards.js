@@ -60,57 +60,57 @@ class CardIntents /*extends BaseIntent*/ {
                     conv.ask(nullResponse);
                 }
             });
-            //SALDO TARJETA
-            app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-                this.cardService.getCardByInputs(last4CardNumbers).then(card => {
-                    if (card) {
-                        conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
-                        conv.ask(suggestionResponse);
-                        conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
-                    }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
+        });
+        //SALDO TARJETA
+        app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
+                if (card) {
+                    conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
+                    conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
-            //FECHA LIQUIDACION TARJETA
-            app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-                this.cardService.getCardByInputs(last4CardNumbers).then(card => {
-                    if (card) {
-                        conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
-                        conv.ask(suggestionResponse);
-                        conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
-                    }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
+        });
+        //FECHA LIQUIDACION TARJETA
+        app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
+                if (card) {
+                    conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
+                    conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
-            //LIMITES TARJETA
-            app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-                this.cardService.getCardByInputs(last4CardNumbers).then(card => {
-                    if (card) {
-                        conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
-                        conv.ask(suggestionResponse);
-                        conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
-                    }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
+        });
+        //LIMITES TARJETA
+        app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
+                if (card) {
+                    conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
+                    conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
-            //MOVIMIENTOS
-            app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-                this.cardService.getCardByInputs(last4CardNumbers).then(card => {
-                    if (card) {
-                        const movementsTable = card_manager_2.CardDFManager.generateMovementsTable(card);
-                        conv.ask(`Aquí tienes los movimientos`);
-                        conv.ask(movementsTable);
-                    }
-                    else {
-                        conv.ask(nullResponse);
-                    }
-                });
+        });
+        //MOVIMIENTOS
+        app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
+            this.cardService.getCardByInputs(last4CardNumbers).then(card => {
+                if (card) {
+                    const movementsTable = card_manager_2.CardDFManager.generateMovementsTable(card);
+                    conv.ask(`Aquí tienes los movimientos`);
+                    conv.ask(movementsTable);
+                }
+                else {
+                    conv.ask(nullResponse);
+                }
             });
         });
     }

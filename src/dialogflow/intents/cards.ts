@@ -64,8 +64,8 @@ export class CardIntents /*extends BaseIntent*/ {
                 } else {
                     conv.ask(nullResponse);
                 }
+             });
         });
-
 
         //SALDO TARJETA
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
