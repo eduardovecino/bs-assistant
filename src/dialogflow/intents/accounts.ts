@@ -16,7 +16,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
 
-        const AppContexts = {
+        const Contexts = {
             selected_account: 'selected_account',
         }
 
@@ -43,7 +43,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             let accounts;
             accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-            conv.contexts.set(AppContexts.selected_account, 1)
+                 conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
                     } else {
@@ -51,7 +51,6 @@ export class AccountIntents /*extends BaseIntent*/ {
                 }
 
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
-                    const context = conv.contexts.get(AppContexts.selected_account);
                     const response = AccountDFManager.saldoAccount(selectedAccount);
                     conv.ask(response);
                         // if (selectedAccount) {
