@@ -13,8 +13,8 @@ class AccountService extends rest_manager_1.RestManager {
     }
     getAccount(last4) {
         this.getAccounts().then(accounts => {
-            const jsonData = JSON.parse(accounts.toString());
-            const account = account_manager_1.AccountManager.getAccountByLast4(jsonData.data, last4);
+            // const jsonData = JSON.parse(accounts.toString());
+            const account = account_manager_1.AccountManager.getAccountByLast4(accounts.data, last4);
             return account;
         });
     }
