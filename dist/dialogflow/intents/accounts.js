@@ -19,7 +19,6 @@ class AccountIntents /*extends BaseIntent*/ {
     intents(app) {
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
-        const accountCloseResponse = ['Nos vemos pronto', 'Que vaya bien', 'Hasta la próxima'];
         const Contexts = {
             selected_account: 'selected_account',
         };
@@ -55,11 +54,6 @@ class AccountIntents /*extends BaseIntent*/ {
             app.intent('Saldo cuenta - seleccionada', (conv) => {
                 const response = account_manager_2.AccountDFManager.saldoAccount(selectedAccount);
                 conv.ask(response);
-                // if (selectedAccount) {
-                //     conv.ask(`El saldo  de tu ${selectedAccount.descripcion} es de ${selectedAccount.balance} €`);
-                //     } else {
-                //     conv.ask(nullResponse);
-                // }
             });
             app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
                 this.accountService.getMovementsAccounts().then(movements => {
@@ -82,12 +76,6 @@ class AccountIntents /*extends BaseIntent*/ {
             this.accountService.getAccount(last4numbers).then(account => {
                 const response = account_manager_2.AccountDFManager.saldoAccount(account);
                 conv.ask(response);
-                // if (account) {
-                //     conv.ask(`El saldo  de tu ${account.descripcion} es de ${account.balance} €. `);
-                //     conv.ask(suggestionResponse);
-                // } else {
-                //     conv.ask(nullResponse);
-                // }
             });
         });
     }
