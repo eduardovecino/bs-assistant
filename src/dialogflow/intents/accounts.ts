@@ -55,15 +55,12 @@ export class AccountIntents /*extends BaseIntent*/ {
                 }); 
                  
                 app.intent('Movimientos cuenta - seleccionada', (conv) => {
-                    this.accountService.getMovementsAccounts().then(movements => {
+                    this.accountService.getMovementsAccounts(selectedAccount.numeroProducto).then(movements => {
                         if (movements) {
                             let response = `Este mes tienes ${movements.length} movimientos: `;
                             for (let i = 0; i < 3 ; i++){
-                                response = response + movements[0].concepto + " con un importe de " + movements[0].importe + ", ";
-                            }
-                            // movements.forEach(movement => {
-                            //     response = response + movement.concepto + " con un importe de " + movement.importe + ", ";
-                            // });
+                                response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+                            };
                             const movementsTable = AccountDFManager.generateMovementsTable(movements);
                             conv.ask(response);
                             conv.ask(movementsTable);

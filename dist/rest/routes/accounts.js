@@ -21,15 +21,14 @@ class AccountRoutes {
         });
         app.route('/accounts/movements')
             .get((req, res) => {
-            this.accountService.getMovementsAccounts().then(movements => {
-                if (movements) {
-                    const movementsOfAccounts = account_manager_1.AccountDFManager.generateMovementsTable(movements);
-                    res.status(200).send(movementsOfAccounts);
-                }
-                else {
-                    res.status(400).send('No se ha encontrado las tarjetas');
-                }
-            });
+            // this.accountService.getMovementsAccounts().then(movements => {
+            //     if (movements) {
+            //         const movementsOfAccounts = AccountDFManager.generateMovementsTable(movements);
+            //         res.status(200).send(movementsOfAccounts);
+            //     } else {
+            //         res.status(400).send('No se ha encontrado la cuenta');
+            //     }
+            // })
         });
     }
 }
