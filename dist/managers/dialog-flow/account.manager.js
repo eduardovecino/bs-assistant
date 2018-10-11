@@ -23,11 +23,33 @@ class AccountDFManager {
                     }
                 };
             });
-            return new actions_on_google_1.List(tmp);
+            return (new actions_on_google_1.List(tmp));
         }
         else {
             return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
         }
+    }
+    static saldoAccount(account) {
+        if (account) {
+            return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
+        }
+        else {
+            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+        }
+    }
+    static generateMovementsTable(movements) {
+        const tmp = {
+            dividers: true,
+            columns: ['Concepto', 'Fecha', 'Importe'],
+            rows: []
+        };
+        movements.forEach((movement) => {
+            tmp.rows.push({
+                cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                dividerAfter: true
+            });
+        });
+        return new actions_on_google_1.Table(tmp);
     }
 }
 exports.AccountDFManager = AccountDFManager;
