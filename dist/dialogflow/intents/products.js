@@ -4,6 +4,7 @@ const actions_on_google_1 = require("actions-on-google");
 const products_service_1 = require("../../services/products.service");
 const translate_manager_1 = require("../../managers/translate.manager");
 const ssml_gib_1 = require("ssml-gib");
+const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 class ProductIntents /*extends BaseIntent*/ {
     constructor() {
         this.productsService = new products_service_1.ProductService();
@@ -56,6 +57,7 @@ class ProductIntents /*extends BaseIntent*/ {
         });
         app.intent('Ayuda', (conv) => {
             conv.ask('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
+            conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
     }
 }

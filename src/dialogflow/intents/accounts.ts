@@ -6,6 +6,7 @@ import { Ssml } from "ssml-gib";
 import { FormatManager } from "../../managers/format.manager"
 
 
+
 export class AccountIntents /*extends BaseIntent*/ {
 
     private accountService: AccountService = new AccountService();
@@ -72,6 +73,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask(suggestionResponse);
+                    conv.ask(SuggestionDFManager.generateSuggestions());
                 });
         })
         

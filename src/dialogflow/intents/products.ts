@@ -3,6 +3,8 @@ import { ProductService } from "../../services/products.service";
 import { BaseIntent } from "./base-intent";
 import { TranslateManager } from "../../managers/translate.manager";
 import { Ssml } from 'ssml-gib';
+import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
+
 
 export class ProductIntents /*extends BaseIntent*/ {
 
@@ -67,6 +69,8 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Ayuda', (conv) => {
             conv.ask('Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?');
+            conv.ask(SuggestionDFManager.generateSuggestions());
+
         });
     }
 }

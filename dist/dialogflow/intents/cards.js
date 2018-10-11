@@ -62,6 +62,7 @@ class CardIntents /*extends BaseIntent*/ {
                 });
                 app.intent('ayuda - tarjetas', (conv) => {
                     conv.ask(suggestionResponse);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
                 });
             });
         });

@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
+const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 const format_manager_1 = require("../../managers/format.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
@@ -72,6 +73,7 @@ class AccountIntents /*extends BaseIntent*/ {
             });
             app.intent('ayuda - cuentas', (conv) => {
                 conv.ask(suggestionResponse);
+                conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
             });
         }));
         // SALDO CUENTA
