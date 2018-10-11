@@ -77,11 +77,10 @@ export class AccountIntents /*extends BaseIntent*/ {
         })
         
         // SALDO CUENTA
-        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
-            this.accountService.getAccount(last4numbers).then(account => {
-                const response = AccountDFManager.saldoAccount(account);
-                conv.ask(response);
-            });
+        app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
+            let account = await this.accountService.getAccount(last4numbers);
+            const response = AccountDFManager.saldoAccount(account);
+            conv.ask(response);
         });
         
         
@@ -89,6 +88,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let movements;
             let account;
+            console.log("PTG0");
             account = await this.accountService.getAccount(last4numbers);
             console.log("PTG1");
             if(account) {

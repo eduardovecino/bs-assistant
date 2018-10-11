@@ -78,16 +78,16 @@ class AccountIntents /*extends BaseIntent*/ {
             });
         }));
         // SALDO CUENTA
-        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
-            this.accountService.getAccount(last4numbers).then(account => {
-                const response = account_manager_2.AccountDFManager.saldoAccount(account);
-                conv.ask(response);
-            });
-        });
+        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
+            let account = yield this.accountService.getAccount(last4numbers);
+            const response = account_manager_2.AccountDFManager.saldoAccount(account);
+            conv.ask(response);
+        }));
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let movements;
             let account;
+            console.log("PTG0");
             account = yield this.accountService.getAccount(last4numbers);
             console.log("PTG1");
             if (account) {

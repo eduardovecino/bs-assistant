@@ -17,10 +17,11 @@ export class AccountService extends RestManager {
     }
 
     public getAccount(last4) {
-        const accounts = this.getAccounts();
-        const jsonData = JSON.parse(accounts.toString());
-        const account = AccountManager.getAccountByLast4(jsonData.data, last4);
-        return account;
+        this.getAccounts().then(accounts=> {
+            const jsonData = JSON.parse(accounts.toString());
+            const account = AccountManager.getAccountByLast4(jsonData.data, last4);
+            return account;
+        });
     }
 
     public getMovementsAccounts(account): Promise<any> {
