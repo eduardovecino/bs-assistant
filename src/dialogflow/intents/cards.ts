@@ -71,7 +71,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
                 app.intent('ayuda - tarjetas', (conv) => {
                     conv.ask(suggestionResponse);
-                    conv.ask(SuggestionDFManager.generateSuggestions());
+                    conv.ask(SuggestionDFManager.generateCardSuggestions());
                     });  
             });
         })

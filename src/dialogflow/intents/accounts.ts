@@ -73,7 +73,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask(suggestionResponse);
-                    conv.ask(SuggestionDFManager.generateSuggestions());
+                    conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 });
         })
         

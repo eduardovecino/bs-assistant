@@ -14,6 +14,12 @@ class SuggestionDFManager {
             return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
         }
     }
+    static generateCardSuggestions() {
+        return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.CARD_SUGGESTIONS));
+    }
+    static generateAccountSuggestions() {
+        return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.ACCOUNT_SUGGESTIONS));
+    }
 }
 exports.SuggestionDFManager = SuggestionDFManager;
 //# sourceMappingURL=suggestion.manager.js.map

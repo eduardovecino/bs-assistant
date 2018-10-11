@@ -73,7 +73,7 @@ class AccountIntents /*extends BaseIntent*/ {
             });
             app.intent('ayuda - cuentas', (conv) => {
                 conv.ask(suggestionResponse);
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+                conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             });
         }));
         // SALDO CUENTA

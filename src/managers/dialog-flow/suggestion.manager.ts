@@ -18,5 +18,13 @@ export class SuggestionDFManager {
         }
     }
 
+    public static generateCardSuggestions() {
+            return (new Suggestions(SUGGESTIONS.CARD_SUGGESTIONS));
+    }
+
+    public static generateAccountSuggestions() {
+        return (new Suggestions(SUGGESTIONS.ACCOUNT_SUGGESTIONS));
+    }
+
     
 }

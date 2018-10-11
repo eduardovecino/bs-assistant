@@ -7,5 +7,16 @@ export const SUGGESTIONS = {
         'Cuentas',
         'Tarjetas',
         'Oficinas Cercanas',
-        'Abrir App']
+        'Abrir App'],
+    ACCOUNT_SUGGESTIONS: [
+        'Saldo de Cuenta',
+        'Movimientos'],
+    CARD_SUGGESTIONS: [
+        'Bloquear Tarjeta',
+        'Límites',
+        'Fecha de Liquidación',
+        'Saldo de Tarjeta'],
+
+
+        
 }
