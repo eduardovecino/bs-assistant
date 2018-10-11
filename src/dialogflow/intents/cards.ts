@@ -39,18 +39,23 @@ export class CardIntents /*extends BaseIntent*/ {
         // //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => {
             this.cardService.getCards().then(cards => {
-                const cardSelected = CardManager.getCardByOption(cards, option);
-                conv.contexts.set(Contexts.selected_card, 5)
+            const cardSelected = CardManager.getCardByOption(cards, option);
+            const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
+            conv.contexts.set(Contexts.selected_card, 5)
+
                 if (cardSelected) {
-                    const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
                     conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 } else {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
 
-                app.intent('Bloquear tarjeta - seleccionada', (conv) => {
-                    conv.ask(`Tu tarjeta con el número de contrato: ${cardSelected.contrato}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
-                });   
+                    app.intent('Bloquear tarjeta - seleccionada', (conv) => {
+                        conv.ask(`Tu tarjeta con el número de contrato: ${cardSelected.contrato}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
+                    });  
+                    
+                    app.intent('Saldo tarjeta - seleccionada', (conv) => {
+                        conv.ask(`El saldo de tu tarjeta ${lastNumbers} es de ${cardSelected.saldoDisponible} €`);
+                    });  
                 
                 
 
