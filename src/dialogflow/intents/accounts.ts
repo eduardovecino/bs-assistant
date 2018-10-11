@@ -58,9 +58,12 @@ export class AccountIntents /*extends BaseIntent*/ {
                     this.accountService.getMovementsAccounts().then(movements => {
                         if (movements) {
                             let response = `Este mes tienes ${movements.length} movimientos: `;
-                            movements.forEach(movement => {
-                                response = response + movement.concepto + " con un importe de " + movement.importe + ", ";
-                            });
+                            for (let i = 0; i < 3 ; i++){
+                                response = response + movements[0].concepto + " con un importe de " + movements[0].importe + ", ";
+                            }
+                            // movements.forEach(movement => {
+                            //     response = response + movement.concepto + " con un importe de " + movement.importe + ", ";
+                            // });
                             const movementsTable = AccountDFManager.generateMovementsTable(movements);
                             conv.ask(response);
                             conv.ask(movementsTable);
