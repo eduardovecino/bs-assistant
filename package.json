@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/express": "^4.16.0",
     "@types/mocha": "^5.2.5",
+    "@types/request-promise": "^4.1.42",
     "actions-on-google": "^2.3.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
