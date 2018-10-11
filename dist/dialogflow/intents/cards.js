@@ -15,6 +15,7 @@ class CardIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
         const Contexts = {
             selected_card: 'selected_card',
+            selected_account: 'selected_account'
         };
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', conv => {
@@ -39,6 +40,7 @@ class CardIntents /*extends BaseIntent*/ {
                 const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
                 const lastNumbers = format_manager_1.FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
                 conv.contexts.set(Contexts.selected_card, 5);
+                conv.contexts.delete(Contexts.selected_account, 5);
                 if (cardSelected) {
                     conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible} €. ${ssml_gib_1.Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 }

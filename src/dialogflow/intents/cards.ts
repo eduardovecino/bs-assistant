@@ -16,6 +16,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
         const Contexts = {
             selected_card: 'selected_card',
+            selected_account: 'selected_account'
         }
 
         //CARROUSEL DE TARJETAS
@@ -41,8 +42,10 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCards().then(cards => {
             const cardSelected = CardManager.getCardByOption(cards, option);
             const lastNumbers = FormatManager.getLast4numbers(cardSelected.cuentaRelacionada);
-            conv.contexts.set(Contexts.selected_card, 5)
+            conv.contexts.set(Contexts.selected_card, 5);
+            conv.contexts.delete(Contexts.selected_account, 5);
 
+        
                 if (cardSelected) {
                     conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 } else {
