@@ -54,7 +54,7 @@ class CardIntents /*extends BaseIntent*/ {
         app.intent('Bloquear tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
-                    conv.ask(`Tu tarjeta  ha sido bloqueada, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
+                    conv.ask(`Tu tarjeta con el número de contrato: ${card.contrato}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
                 }
                 else {
                     conv.ask(nullResponse);
