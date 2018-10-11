@@ -21,6 +21,7 @@ class AccountIntents /*extends BaseIntent*/ {
         const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
         const Contexts = {
             selected_account: 'selected_account',
+            selected_card: 'selected_card'
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
@@ -44,7 +45,8 @@ class AccountIntents /*extends BaseIntent*/ {
             let accounts;
             accounts = yield this.accountService.getAccounts();
             const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
-            conv.contexts.set(Contexts.selected_account, 2);
+            conv.contexts.set(Contexts.selected_account, 5);
+            conv.contexts.delete(Contexts.selected_card);
             if (selectedAccount) {
                 conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
             }

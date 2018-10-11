@@ -17,6 +17,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
         const Contexts = {
             selected_account: 'selected_account',
+            selected_card: 'selected_card'
         }
 
         //LISTA CUENTAS
@@ -42,7 +43,8 @@ export class AccountIntents /*extends BaseIntent*/ {
             let accounts;
             accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                 conv.contexts.set(Contexts.selected_account, 2)
+                 conv.contexts.set(Contexts.selected_account, 5)
+                 conv.contexts.delete(Contexts.selected_card);
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
                     } else {
