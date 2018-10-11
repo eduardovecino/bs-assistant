@@ -44,7 +44,7 @@ export class CardIntents /*extends BaseIntent*/ {
             conv.contexts.set(Contexts.selected_card, 5)
 
                 if (cardSelected) {
-                    conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${lastNumbers}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
+                    conv.ask(Ssml.wrapSsmlSpeak([`Has seleccionado la tarjeta finalizada en ${cardSelected.cuentaRelacionada}, el saldo es de ${cardSelected.saldoDisponible} €. ${Ssml.break({ s: 3 })} ¿Quieres saber algo más a cerca de tus tarjetas?`]));
                 } else {
                     conv.ask(`No podemos mostrar la tarjeta`);
                 }
