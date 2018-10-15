@@ -14,7 +14,7 @@ export class AccountIntents /*extends BaseIntent*/ {
     public intents(app): void {
 
         const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
-        const suggestionResponse = `Puedes preguntame por el saldo o los movimientos de una cuenta`;
+        const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
 
         const Contexts = {
             selected_account: 'selected_account',
@@ -59,17 +59,22 @@ export class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(`El saldo de la cuenta es ${selectedAccount.balance}`)
                 }); 
                  
-                app.intent('Movimientos Cuentas', (conv, { last4numbers }, { tipo_cuenta }) => {
-                    this.accountService.getMovementsAccounts().then(movements => {
-                        if (movements) {
-                            const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                            conv.ask(`Aquí tienes los movimientos de la cuenta`);
-                            conv.ask(movementsTable);
-                        } else {
-                            conv.ask(nullResponse);
-                        }
-                    });
-                })
+                app.intent('Movimientos cuenta - seleccionada', async (conv) => {
+                    let movements;
+                    movements = await this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
+                    if (movements) {
+                        let response = `Este mes tienes ${movements.length} movimientos: `;
+                        for (let i = 0; i < 3 ; i++){
+                            response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+                        };
+                        response = response + "¿Qué más quieres saber acerca de tu cuenta?"
+                        const movementsTable = AccountDFManager.generateMovementsTable(movements);
+                        conv.ask(response);
+                        conv.ask(movementsTable);
+                    } else {
+                        conv.ask(nullResponse);
+                    }
+                });
 
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask(suggestionResponse);
@@ -78,11 +83,53 @@ export class AccountIntents /*extends BaseIntent*/ {
         })
         
         // SALDO CUENTA
-        app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => {
-            this.accountService.getAccount(last4numbers).then(account => {
-                const response = AccountDFManager.saldoAccount(account);
-                conv.ask(response);
-            });
-        }); 
+        app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
+            let account = await this.accountService.getAccount(last4numbers);
+            const response = AccountDFManager.saldoAccount(account);
+            conv.ask(response);
+        });
+        
+        
+        //MOVIMIENTOS CUENTA
+        app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
+            let movements;
+            let account;
+            console.log("PTG0");
+            account = await this.accountService.getAccount(last4numbers);
+            console.log("PTG1");
+            if(account) {
+                console.log("PTG2");
+                movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
+                console.log("PTG3");
+                if (movements) {
+                    console.log("PTG4");
+                    let response = `Este mes tienes ${movements.length} movimientos: `;
+                    for (let i = 0; i < 3; i++) {
+                        response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+                    };
+                    response = response + "¿Qué más quieres saber acerca de tu cuenta?"
+                    const movementsTable = AccountDFManager.generateMovementsTable(movements);
+                    conv.ask(response);
+                    conv.ask(movementsTable);
+                } else {
+                    conv.ask(nullResponse);
+                }
+            }
+
+            // this.accountService.getAccount(last4numbers).then(account => {
+            //     const response = AccountDFManager.movementsAccount(account);
+            //     conv.ask(response);
+            // });
+
+            // this.accountService.getMovementsAccounts().then(movements => {
+            //     if (movements) {
+            //         const movementsTable = AccountDFManager.generateMovementsTable(movements);
+            //         conv.ask(`Aquí tienes los movimientos de la cuenta`);
+            //         conv.ask(movementsTable);
+            //     } else {
+            //         conv.ask(nullResponse);
+            //     }
+            // });
+        })
     }
 }

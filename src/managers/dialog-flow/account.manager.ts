@@ -41,6 +41,15 @@ export class AccountDFManager {
         }
     }
 
+    public static movementsAccount(account) {
+        if (account) {
+
+            // return this.generateMovementsTable(movements);
+        } else {
+            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
+        }
+    }
+
     public static generateMovementsTable(movements) {
         const tmp: TableOptions = {
             dividers: true,
