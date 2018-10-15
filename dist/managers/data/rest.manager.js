@@ -9,9 +9,7 @@ class RestManager {
         this.isMock = process.env.MOCK;
     }
     getApiBSabadell(path, mock) {
-        console.log('Before promise');
         return new Promise((resolve, reject) => {
-            console.log('After promise - before timeout');
             const options = {
                 'method': 'GET',
                 'uri': host + path,
@@ -36,6 +34,7 @@ class RestManager {
                     .then(function (body) {
                     var data = body.data;
                     console.log('success', data);
+                    console.log("PTG1234" + JSON.stringify(data));
                     resolve(data);
                 })
                     .catch(function (err) {
