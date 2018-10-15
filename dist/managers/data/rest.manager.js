@@ -34,7 +34,6 @@ class RestManager {
                     .then(function (body) {
                     var data = body.data;
                     console.log('success', data);
-                    console.log("PTG1234" + JSON.stringify(data));
                     resolve(data);
                 })
                     .catch(function (err) {
