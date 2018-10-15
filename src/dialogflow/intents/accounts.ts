@@ -26,7 +26,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
-            let response = "Tienes " + accounts.length + " cuentas. Terminadas en:";
+            let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
             conv.contexts.delete(Contexts.selected_card);
 
             if (accounts) {
@@ -49,6 +49,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                  conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
                     conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
+                    conv.ask(SuggestionDFManager.generateAccountSuggestions());
                     } else {
                     conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
@@ -56,7 +57,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
                     // const response = AccountDFManager.saldoAccount(selectedAccount);
                     // conv.ask(response);
-                    conv.ask(`El saldo de la cuenta es ${selectedAccount.balance}`)
+                    conv.ask(`El saldo de la cuenta es ${selectedAccount.balance} €`)
                 }); 
                  
                 app.intent('Movimientos cuenta - seleccionada', async (conv) => {
@@ -94,15 +95,10 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let movements;
             let account;
-            console.log("PTG0");
             account = await this.accountService.getAccount(last4numbers);
-            console.log("PTG1");
             if(account) {
-                console.log("PTG2");
                 movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
-                console.log("PTG3");
                 if (movements) {
-                    console.log("PTG4");
                     let response = `Este mes tienes ${movements.length} movimientos: `;
                     for (let i = 0; i < 3; i++) {
                         response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
