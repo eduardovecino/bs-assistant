@@ -91,6 +91,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                 console.log("PTG93" + JSON.stringify(account));
                 const response = AccountDFManager.saldoAccount(account);
                 conv.ask(response);
+            } else {
+                conv.ask(nullResponse);
             }
         });
         
