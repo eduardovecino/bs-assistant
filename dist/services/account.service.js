@@ -17,7 +17,7 @@ class AccountService extends rest_manager_1.RestManager {
             // const jsonData = JSON.parse(accounts.toString());
             console.log("ACCOUNT.SERVICE2 " + JSON.stringify(accounts));
             const account = account_manager_1.AccountManager.getAccountByLast4(accounts, last4);
-            console.log("987654321 " + account);
+            console.log("987654321 " + JSON.stringify(account));
             return account;
         });
     }

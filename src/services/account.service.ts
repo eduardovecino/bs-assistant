@@ -22,7 +22,7 @@ export class AccountService extends RestManager {
             // const jsonData = JSON.parse(accounts.toString());
             console.log("ACCOUNT.SERVICE2 " + JSON.stringify(accounts));
             const account = AccountManager.getAccountByLast4(accounts, last4);
-            console.log("987654321 "+account);
+            console.log("987654321 " + JSON.stringify(account));
             return account;
         });
     }
