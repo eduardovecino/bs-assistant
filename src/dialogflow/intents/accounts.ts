@@ -106,7 +106,7 @@ export class AccountIntents /*extends BaseIntent*/ {
             if(account) {
                 movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
                 const response = AccountDFManager.saldoAccount(movements);
-                console.log("PTG123 " + response[0]);
+                console.log("PTG123 " + response);
                 conv.ask(response[0]);
                 conv.ask(response[1]);
                 // if (movements) {
