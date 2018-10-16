@@ -37,9 +37,21 @@ class AccountDFManager {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
         }
     }
-    static movementsAccount(account) {
-        if (account) {
-            // return this.generateMovementsTable(movements);
+    static movementsAccount(movements) {
+        // if (account) {
+        //     // return this.generateMovementsTable(movements);
+        // } else {
+        //     return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
+        // }
+        if (movements) {
+            let response = `Este mes tienes ${movements.length} movimientos: `;
+            for (let i = 0; i < 3; i++) {
+                response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
+            }
+            ;
+            response = response + "¿Qué más quieres saber acerca de tu cuenta?";
+            const movementsTable = AccountDFManager.generateMovementsTable(movements);
+            return [response, movementsTable];
         }
         else {
             return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;

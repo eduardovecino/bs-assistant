@@ -8,12 +8,7 @@ import { setTimeout } from "timers";
 export class AccountService extends RestManager {
 
     public getAccounts() {
-        return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
-        // return new Promise((resolve, reject) => {
-        //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
-        //     const jsonData = JSON.parse(data.toString());
-        //     resolve(jsonData.data);
-        // });        
+        return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');        
     }
 
     public getAccount(last4) {
@@ -27,10 +22,5 @@ export class AccountService extends RestManager {
 
     public getMovementsAccounts(account) {
         return this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-1-2018`, `mock/accounts/get-movements-accounts.json`);
-        // return new Promise((resolve, reject) => {
-        //     const data = fs.readFileSync('mock/accounts/get-movements-accounts.json');
-        //     const jsonData = JSON.parse(data.toString());
-        //     resolve(jsonData.data);
-        // });
     }
 }
