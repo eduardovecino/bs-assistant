@@ -17,9 +17,10 @@ export class AccountService extends RestManager {
     }
 
     public getAccount(last4) {
-        this.getAccounts().then(accounts=> {
+        return this.getAccounts().then(accounts=> {
             const account = AccountManager.getAccountByLast4(accounts, last4);
             console.log("987654321 " + JSON.stringify(account));
+            
             return account;
         });
     }
