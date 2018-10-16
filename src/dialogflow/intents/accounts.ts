@@ -116,6 +116,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                 } else {
                     conv.ask(nullResponse);
                 }
+            } else {
+                conv.ask(nullResponse);
             }
 
             // this.accountService.getAccount(last4numbers).then(account => {

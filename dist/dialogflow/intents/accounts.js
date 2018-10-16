@@ -118,6 +118,9 @@ class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(nullResponse);
                 }
             }
+            else {
+                conv.ask(nullResponse);
+            }
             // this.accountService.getAccount(last4numbers).then(account => {
             //     const response = AccountDFManager.movementsAccount(account);
             //     conv.ask(response);
