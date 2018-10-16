@@ -1,6 +1,7 @@
 import { List, Table, TableOptions } from "actions-on-google";
 import { FormatManager } from '../../managers/format.manager';
 
+const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
 
 export class AccountDFManager {
 
@@ -8,6 +9,7 @@ export class AccountDFManager {
 
     constructor() {
     }
+    
 
     public static generateAccountsList(accounts) {
         if (accounts.length > 1) {
@@ -37,7 +39,7 @@ export class AccountDFManager {
         if (account) {
             return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
         } else {
-            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
+            return nullResponse;
         }
     }
 
@@ -51,7 +53,7 @@ export class AccountDFManager {
             const movementsTable = AccountDFManager.generateMovementsTable(movements);
             return [response, movementsTable];
         } else {
-            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
+            return `No hay movimientos recientes en esta cuenta`
         }
     }
 

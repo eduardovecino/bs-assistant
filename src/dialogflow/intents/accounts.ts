@@ -22,7 +22,6 @@ export class AccountIntents /*extends BaseIntent*/ {
         }
 
         //LISTA CUENTAS
-
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
@@ -54,31 +53,22 @@ export class AccountIntents /*extends BaseIntent*/ {
                 conv.ask(`No podemos mostrar la cuenta ${option}`);
                 }
 
+                // SALDO CUENTA SELECCIONADA
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
                     const response = AccountDFManager.saldoAccount(selectedAccount);
                     conv.ask(response);
                 }); 
-                 
+                
+                // MOVIMIENTOS CUENTA SELECCIONADA
                 app.intent('Movimientos cuenta - seleccionada', async (conv) => {
                     let movements;
                     movements = await this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
                     const response = AccountDFManager.movementsAccount(movements);
                     conv.ask(response[0]);
                     conv.ask(response[1]);
-                    // if (movements) {
-                    //     let response = `Este mes tienes ${movements.length} movimientos: `;
-                    //     for (let i = 0; i < 3 ; i++){
-                    //         response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
-                    //     };
-                    //     response = response + "¿Qué más quieres saber acerca de tu cuenta?"
-                    //     const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                    //     conv.ask(response);
-                    //     conv.ask(movementsTable);
-                    // } else {
-                    //     conv.ask(nullResponse);
-                    // }
                 });
 
+                // AYUDA CUENTAS
                 app.intent('ayuda - cuentas', (conv) => {
                     conv.ask(suggestionResponse);
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
@@ -97,7 +87,6 @@ export class AccountIntents /*extends BaseIntent*/ {
             }
         });
         
-        
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let movements;
@@ -106,39 +95,11 @@ export class AccountIntents /*extends BaseIntent*/ {
             if(account) {
                 movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
                 const response = AccountDFManager.movementsAccount(movements);
-                console.log("PTG123 " + response);
                 conv.ask(response[0]);
                 conv.ask(response[1]);
-                // if (movements) {
-                //     let response = `Este mes tienes ${movements.length} movimientos: `;
-                //     for (let i = 0; i < 3; i++) {
-                //         response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
-                //     };
-                //     response = response + "¿Qué más quieres saber acerca de tu cuenta?"
-                //     const movementsTable = AccountDFManager.generateMovementsTable(movements);
-                //     conv.ask(response);
-                //     conv.ask(movementsTable);
-                // } else {
-                //     conv.ask(nullResponse);
-                // }
             } else {
                 conv.ask(nullResponse);
             }
-
-            // this.accountService.getAccount(last4numbers).then(account => {
-            //     const response = AccountDFManager.movementsAccount(account);
-            //     conv.ask(response);
-            // });
-
-            // this.accountService.getMovementsAccounts().then(movements => {
-            //     if (movements) {
-            //         const movementsTable = AccountDFManager.generateMovementsTable(movements);
-            //         conv.ask(`Aquí tienes los movimientos de la cuenta`);
-            //         conv.ask(movementsTable);
-            //     } else {
-            //         conv.ask(nullResponse);
-            //     }
-            // });
         })
     }
 }

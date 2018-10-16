@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const format_manager_1 = require("../../managers/format.manager");
+const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
 class AccountDFManager {
     constructor() {
     }
@@ -34,7 +35,7 @@ class AccountDFManager {
             return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
         }
         else {
-            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+            return nullResponse;
         }
     }
     static movementsAccount(movements) {
@@ -49,7 +50,7 @@ class AccountDFManager {
             return [response, movementsTable];
         }
         else {
-            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+            return `No hay movimientos recientes en esta cuenta`;
         }
     }
     static generateMovementsTable(movements) {
