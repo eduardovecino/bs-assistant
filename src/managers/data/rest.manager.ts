@@ -31,12 +31,6 @@ export class RestManager {
                 resolve(jsonData.data);
 
             } else {
-                // rp(options, (err, res, body) => {
-                //     if (!!err) { return console.log(err); }
-                //     resolve(body.data);
-                //     console.log(body.data);
-                // });
-
                 rp(options)
                     .then(function (body) {
                         var data = body.data;
@@ -50,12 +44,4 @@ export class RestManager {
             }
         })  
     }
-
-    // constructor() {
-    //     this.isMock = process.env.MOCK;
-    // }
-
-    // public get(): any {
-    //     return { num: 21 };
-    // }
 }

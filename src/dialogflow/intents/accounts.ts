@@ -86,9 +86,12 @@ export class AccountIntents /*extends BaseIntent*/ {
         // SALDO CUENTA
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account;
+            console.log("PTG0");
             account = await this.accountService.getAccount(last4numbers);
+            console.log("PTG1" + JSON.stringify(account));
+
             if (account){
-                console.log("PTG93" + JSON.stringify(account));
+                console.log("PTG2" + JSON.stringify(account));
                 const response = AccountDFManager.saldoAccount(account);
                 conv.ask(response);
             } else {

@@ -86,9 +86,11 @@ class AccountIntents /*extends BaseIntent*/ {
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account;
+            console.log("PTG0");
             account = yield this.accountService.getAccount(last4numbers);
+            console.log("PTG1" + JSON.stringify(account));
             if (account) {
-                console.log("PTG93" + JSON.stringify(account));
+                console.log("PTG2" + JSON.stringify(account));
                 const response = account_manager_2.AccountDFManager.saldoAccount(account);
                 conv.ask(response);
             }
