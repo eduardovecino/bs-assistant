@@ -38,11 +38,6 @@ class AccountDFManager {
         }
     }
     static movementsAccount(movements) {
-        // if (account) {
-        //     // return this.generateMovementsTable(movements);
-        // } else {
-        //     return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
-        // }
         if (movements) {
             let response = `Este mes tienes ${movements.length} movimientos: `;
             for (let i = 0; i < 3; i++) {
