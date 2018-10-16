@@ -50,7 +50,7 @@ class AccountDFManager {
             return [response, movementsTable];
         }
         else {
-            return [`No hay movimientos recientes en esta cuenta`, ``];
+            return [`No hay movimientos recientes en esta cuenta`, ` `];
         }
     }
     static generateMovementsTable(movements) {
