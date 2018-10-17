@@ -4,20 +4,17 @@ import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
 import { Ssml } from "ssml-gib";
 import { FormatManager } from "../../managers/format.manager"
-import { TranslateManager } from "../../managers/translate.manager";
 
 
 
 export class AccountIntents /*extends BaseIntent*/ {
 
     private accountService: AccountService = new AccountService();
-    public translateManager: TranslateManager = TranslateManager.getInstance();
-
 
     public intents(app): void {
 
-        const nullResponse = this.translateManager.translate('intent.account.null_response');
-        const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
+        const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+        const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
 
         const Contexts = {
             selected_account: 'selected_account',
