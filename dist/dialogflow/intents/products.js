@@ -24,29 +24,28 @@ class ProductIntents /*extends BaseIntent*/ {
                 }
             }
             else {
-                conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_permission.failure')));
+                conv.ask(this.translateManager.translate('intent.product.get_permission.failure'));
             }
         });
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
-            conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.login')));
+            conv.ask(this.translateManager.translate('intent.product.login'));
             conv.ask(new actions_on_google_1.SignIn());
         });
         app.intent('Get Signin', (conv, params, signin) => {
             const access = conv.user.access.token; //possibly do something with access token
             if (signin.status === 'OK') {
-                conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_signin.ok')));
+                conv.ask(this.translateManager.translate('intent.product.get_signin.ok'));
             }
             else {
-                conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_signin.failure')));
+                conv.ask(this.translateManager.translate('intent.product.get_signin.failure'));
             }
         });
         app.intent('Cancel', (conv) => {
-            conv.close(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.cancel')));
+            conv.close(this.translateManager.translate('intent.product.cancel'));
         });
         app.intent('Ayuda', (conv) => {
-            // conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
-            conv.ask(`Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`);
+            conv.ask(this.translateManager.translate('intent.product.help'));
             conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
     }

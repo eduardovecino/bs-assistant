@@ -8,5 +8,5 @@ export const ENGLISH_TRANSLATIONS= {
     'intent.product.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
     'intent.product.get_signin.failure': `No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`,
     'intent.product.cancel': `Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!`,
-    'intent.product.help': `Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`,
+    'intent.product.help': `Puedes preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`,
 }

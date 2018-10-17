@@ -29,35 +29,32 @@ export class ProductIntents /*extends BaseIntent*/ {
                     conv.ask(Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', name)]));
                 }
             } else {
-                conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_permission.failure')));
+                conv.ask(this.translateManager.translate('intent.product.get_permission.failure'));
             }
         });
 
         //Iniciar Sesión
         app.intent('Iniciar Sesion', (conv) => {
-            conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.login')));
+            conv.ask(this.translateManager.translate('intent.product.login'));
             conv.ask(new SignIn());
         });
 
         app.intent('Get Signin', (conv, params, signin) => {
             const access = conv.user.access.token;  //possibly do something with access token
             if (signin.status === 'OK') {
-                conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_signin.ok')));
+                conv.ask(this.translateManager.translate('intent.product.get_signin.ok'));
 
             } else {
-                conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.get_signin.failure')));
+                conv.ask(this.translateManager.translate('intent.product.get_signin.failure'));
             }
         });
 
         app.intent('Cancel', (conv) => {
-            conv.close(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.cancel')));
+            conv.close(this.translateManager.translate('intent.product.cancel'));
         });
 
         app.intent('Ayuda', (conv) => {
-            // conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
-            conv.ask(`Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`);
-
-
+            conv.ask(this.translateManager.translate('intent.product.help'));
             conv.ask(SuggestionDFManager.generateSuggestions());
         });
     }
