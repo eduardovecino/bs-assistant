@@ -45,7 +45,8 @@ class ProductIntents /*extends BaseIntent*/ {
             conv.close(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.cancel')));
         });
         app.intent('Ayuda', (conv) => {
-            conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
+            // conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
+            conv.ask(`Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`);
             conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
     }

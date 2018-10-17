@@ -54,7 +54,10 @@ export class ProductIntents /*extends BaseIntent*/ {
         });
 
         app.intent('Ayuda', (conv) => {
-            conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
+            // conv.ask(Ssml.wrapSsmlSpeak(this.translateManager.translate('intent.product.help')));
+            conv.ask(`Puedes ver preguntar sobre tus tarjetas, tus cuentas o las oficinas más cercanas. ¿Qué deseas hacer?`);
+
+
             conv.ask(SuggestionDFManager.generateSuggestions());
         });
     }
