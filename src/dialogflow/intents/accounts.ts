@@ -16,8 +16,12 @@ export class AccountIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        const nullResponse = this.translateManager.translate('intent.account.null_response');
-        const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
+        const nullResponse = this.translateManager.translate('No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros');
+        // const nullResponse = this.translateManager.translate('intent.account.null_response');
+
+        const suggestionResponse = this.translateManager.translate('Puedes preguntarme por el saldo o los movimientos de una cuenta');
+        // const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
+
         const Contexts = {
             selected_account: 'selected_account',
             selected_card: 'selected_card'
