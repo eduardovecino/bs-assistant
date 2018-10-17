@@ -9,9 +9,6 @@ class ProductIntents /*extends BaseIntent*/ {
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
-        const AppContexts = {
-            TUNUMBER: 'number',
-        };
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
                 context: this.translateManager.translate('intent.product.welcome.permission'),

@@ -14,9 +14,6 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        const AppContexts = {
-            TUNUMBER: 'number',
-        }
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({ 
                 context: this.translateManager.translate('intent.product.welcome.permission'),
