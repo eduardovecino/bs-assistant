@@ -35,7 +35,7 @@ export class ProductIntents /*extends BaseIntent*/ {
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
             const name = conv.user.name.given;
             // conv.ask(JSON.stringify(name))
-            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%')];
+            let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%', name)];
             if (confirmationGranted) {
                 if (name) {
                     conv.ask(Ssml.wrapSsmlSpeak(ssml));

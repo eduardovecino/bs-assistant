@@ -17,7 +17,6 @@ class TranslateManager {
     }
     translate(key, params) {
         const literal = this._config.translations[this._config.lang][key];
-        // Welcome to Banco Sabadell, {{ name }}
         return literal;
     }
 }

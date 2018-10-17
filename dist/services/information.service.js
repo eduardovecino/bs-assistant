@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const fs = require("fs");
 const rp = require("request-promise");
-const host = 'http://api_geocaix_host/geocaix/rest/cajeroscercanos.json';
 class InformationService extends rest_manager_1.RestManager {
     getNearbyOffices() {
         return new Promise((resolve, reject) => {
@@ -16,7 +15,7 @@ class InformationService extends rest_manager_1.RestManager {
         return new Promise((resolve, reject) => {
             const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <informacion>
-                <canal></canal>
+                <canal>C_BS1</canal>
                 <ubiRef>
                     <idCajero></idCajero>
                     <geoPos>
@@ -25,7 +24,7 @@ class InformationService extends rest_manager_1.RestManager {
                     </geoPos>
                 </ubiRef>
                 <numCajCer></numCajCer>
-                <hashMD5></hashMD5>
+                <hashMD5>wbubwubuwwbuwbbfwf</hashMD5>
                 <hora></hora>
                 <tamanyoMapa>
                     <ancho></ancho>
@@ -47,11 +46,11 @@ class InformationService extends rest_manager_1.RestManager {
             </informacion>`;
             const options = {
                 'method': 'GET',
-                'uri': host,
+                'uri': 'http://api_geocaix_host/geocaix/rest/cajeroscercanos.json',
                 'json': true,
                 'headers': {
-                    // 'Content-Type': 'application/json'
-                    'Content-Type': 'text/xml'
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'text/xml'
                 },
                 'body': xmlString
             };

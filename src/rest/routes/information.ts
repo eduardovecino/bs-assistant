@@ -16,9 +16,10 @@ export class InformationRoutes {
             .get((req: Request, res: Response) => {
                 this.informationService.getOffices().then(offices => {
                     if (offices) {
-                        const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
+                        res.status(200).send(offices);
+                        // const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
 
-                        res.status(200).send(carouselOfOffices);
+                        // res.status(200).send(carouselOfOffices);
 
                     } else {
                         res.status(400).send('No se ha encontrado las tarjetas');
