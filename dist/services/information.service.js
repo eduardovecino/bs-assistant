@@ -45,7 +45,7 @@ class InformationService extends rest_manager_1.RestManager {
                 </filterCriteria>
             </informacion>`;
             const options = {
-                'method': 'GET',
+                'method': 'POST',
                 'uri': host,
                 'json': true,
                 'headers': {

@@ -49,7 +49,7 @@ export class InformationService extends RestManager {
                 </filterCriteria>
             </informacion>`;
             const options = {
-                'method': 'GET',
+                'method': 'POST',
                 'uri': host,
                 'json': true,
                 'headers': {
