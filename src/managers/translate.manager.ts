@@ -29,10 +29,10 @@ export class TranslateManager {
         // const endCharacter = literal.lastIndexOf('{');
         
         let startPart = literal.split('{{');
-        let endPart = startPart[1].split('}}');
-        let selection = endPart[1];
-        literal = literal.replace(selection , params);
-        console.log("liiteral" +literal);
-        return literal;
+        // let endPart = startPart[1].split('}}');
+        // let selection = endPart[1];
+        // literal = literal.replace(selection , params);
+        console.log("liiteral" +startPart[1]);
+        return startPart[1];
     }
 }
