@@ -19,8 +19,8 @@ class InformationService extends rest_manager_1.RestManager {
                 <ubiRef>
                     <idCajero></idCajero>
                     <geoPos>
-                        <lat>41.389492</lat>
-                        <lon>2.135065</lon>
+                        <lat>41,389492</lat>
+                        <lon>2,135065</lon>
                     </geoPos>
                 </ubiRef>
                 <numCajCer></numCajCer>
