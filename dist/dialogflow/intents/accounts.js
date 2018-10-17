@@ -32,8 +32,8 @@ class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
             let accounts;
             accounts = yield this.accountService.getAccounts();
-            let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
-            // let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
+            // let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
+            let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 accounts.forEach(account => {
