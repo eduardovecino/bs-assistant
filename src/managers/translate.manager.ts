@@ -35,7 +35,7 @@ export class TranslateManager {
         
         // let startPart = literal.split('{{');
         // let endPart = startPart[1].split('}}');
-        let selection = literal.slice(startCharacter-1, endCharacter-1);
+        let selection = literal.slice(startCharacter-1, endCharacter+1);
         console.log("liiteral4" + selection);
 
         literal = literal.replace(selection , params);
