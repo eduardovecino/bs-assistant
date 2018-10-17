@@ -19,10 +19,10 @@ class TranslateManager {
         let literal = this._config.translations[this._config.lang][key];
         // const startCharacter = literal.indexOf('{');
         // const endCharacter = literal.lastIndexOf('{');
-        // let startPart = literal.split('{{');
-        // let endPart = startPart[1].split('}}');
-        // let selection = endPart[1];
-        literal = literal.replace('{{ name }}', params);
+        let startPart = literal.split('{{');
+        let endPart = startPart[1].split('}}');
+        let selection = endPart[1];
+        literal = literal.replace(selection, params);
         console.log("liiteral" + literal);
         return literal;
     }
