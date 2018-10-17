@@ -4,18 +4,20 @@ import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
 import { Ssml } from "ssml-gib";
 import { FormatManager } from "../../managers/format.manager"
+import { TranslateManager } from "../../managers/translate.manager";
 
 
 
 export class AccountIntents /*extends BaseIntent*/ {
 
     private accountService: AccountService = new AccountService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
+
 
     public intents(app): void {
 
-        const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
-        const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
-
+        const nullResponse = this.translateManager.translate('intent.account.null_response');
+        const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
         const Contexts = {
             selected_account: 'selected_account',
             selected_card: 'selected_card'
@@ -25,7 +27,8 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
-            let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
+            // let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
+            let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
             conv.contexts.delete(Contexts.selected_card);
 
             if (accounts) {
@@ -33,7 +36,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                 })
                 const accountsList = AccountDFManager.generateAccountsList(accounts);
-                conv.ask(response + "¿Cúal deseas seleccionar?");
+                conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
                 conv.ask(accountsList);
             } else {
                 conv.ask(nullResponse);

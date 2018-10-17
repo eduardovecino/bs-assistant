@@ -13,13 +13,15 @@ const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
 const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 const format_manager_1 = require("../../managers/format.manager");
+const translate_manager_1 = require("../../managers/translate.manager");
 class AccountIntents /*extends BaseIntent*/ {
     constructor() {
         this.accountService = new account_service_1.AccountService();
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
-        const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
-        const suggestionResponse = `Puedes preguntarme por el saldo o los movimientos de una cuenta`;
+        const nullResponse = this.translateManager.translate('intent.account.null_response');
+        const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
         const Contexts = {
             selected_account: 'selected_account',
             selected_card: 'selected_card'
@@ -28,14 +30,15 @@ class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
             let accounts;
             accounts = yield this.accountService.getAccounts();
-            let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
+            // let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
+            let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 accounts.forEach(account => {
                     response = response + format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
                 });
                 const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                conv.ask(response + "¿Cúal deseas seleccionar?");
+                conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
                 conv.ask(accountsList);
             }
             else {
