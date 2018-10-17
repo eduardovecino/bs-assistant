@@ -30,7 +30,7 @@ export class TranslateManager {
         let startCharacter = literal.indexOf('{');
         console.log("liiteral2" + startCharacter);
 
-        let endCharacter = literal.lastIndexOf('{');
+        let endCharacter = literal.lastIndexOf('}');
         console.log("liiteral3" + endCharacter);
         
         // let startPart = literal.split('{{');
