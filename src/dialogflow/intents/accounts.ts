@@ -24,7 +24,6 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
-            // let response = "Tienes " + accounts.length + " cuentas. Terminadas en: ";
             let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
             conv.contexts.delete(Contexts.selected_card);
 
@@ -33,7 +32,6 @@ export class AccountIntents /*extends BaseIntent*/ {
                     response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                 })
                 const accountsList = AccountDFManager.generateAccountsList(accounts);
-                // conv.ask(response + '¿Cúal deseas seleccionar ?');
                 conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
                 conv.ask(accountsList);
             } else {
@@ -51,7 +49,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                     conv.ask(this.translateManager.translate('intent.account.selected_account_%account%', selectedAccount.descripcion) + this.translateManager.translate('intent.account.help'));
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 } else {
-                conv.ask(`No podemos mostrar la cuenta ${option}`);
+                    conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
                 }
 
                 // SALDO CUENTA SELECCIONADA

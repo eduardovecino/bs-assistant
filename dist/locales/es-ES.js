@@ -14,6 +14,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.account.help': `Puedes preguntarme por el saldo o los movimientos de una cuenta`,
     'intent.account.account_list_%number%': `Tienes {{ number }} cuentas. Terminadas en: `,
     'intent.account.account_list.answer_which_one': `¿Cúal deseas seleccionar?`,
-    'intent.account.selected_account_%account%': `Has seleccionado la {{ account }}. `
+    'intent.account.selected_account_%account%': `Has seleccionado la {{ account }}. `,
+    'intent.account.selected_account.failure_%account%': `No podemos mostrar la cuenta terminada en {{ account }}.`
 };
 //# sourceMappingURL=es-ES.js.map
