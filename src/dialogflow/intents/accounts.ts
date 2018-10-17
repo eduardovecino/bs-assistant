@@ -40,9 +40,8 @@ export class AccountIntents /*extends BaseIntent*/ {
                     response = response + FormatManager.getLast4numbers(account.iban) + ", ";
                 })
                 const accountsList = AccountDFManager.generateAccountsList(accounts);
-                conv.ask(response + '¿Cúal deseas seleccionar ?');
-
-                // conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
+                // conv.ask(response + '¿Cúal deseas seleccionar ?');
+                conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
                 conv.ask(accountsList);
             } else {
                 conv.ask(nullResponse);
