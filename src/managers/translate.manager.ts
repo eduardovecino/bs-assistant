@@ -32,6 +32,7 @@ export class TranslateManager {
         let endPart = startPart[1].split('}}');
         let selection = endPart[1];
         literal.replace(selection , params);
+        console.log("liiteral" +literal);
         return literal;
     }
 }
