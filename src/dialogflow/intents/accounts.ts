@@ -48,7 +48,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                  conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${this.translateManager.translate('intent.account.help')}`);
+                    conv.ask(`${this.translateManager.translate('intent.account.selected_account_%account%', selectedAccount.descripcion)} ${this.translateManager.translate('intent.account.help')}`);
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 } else {
                 conv.ask(`No podemos mostrar la cuenta ${option}`);
