@@ -45,7 +45,7 @@ class AccountIntents /*extends BaseIntent*/ {
                 conv.ask(accountsList);
             }
             else {
-                conv.ask(nullResponse);
+                conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         }));
         //CUENTA SELECCIONADA
@@ -76,7 +76,7 @@ class AccountIntents /*extends BaseIntent*/ {
             }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
-                conv.ask(suggestionResponse);
+                conv.ask(this.translateManager.translate('intent.account.suggestion_response'));
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             });
         }));
