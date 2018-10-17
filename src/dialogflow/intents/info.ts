@@ -1,11 +1,13 @@
 import { InformationService } from '../../services/information.service';
 import { InformationDFManager } from '../../managers/dialog-flow/information.manager';
+import { TranslateManager } from "../../managers/translate.manager";
 
 
 
 export class InfoIntents /*extends BaseIntent*/ {
-    private informationService: InformationService = new InformationService();
 
+    private informationService: InformationService = new InformationService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     public intents(app): void {
 

@@ -4,10 +4,14 @@ import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 import { FormatManager } from '../../managers/format.manager';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
 import { Ssml } from 'ssml-gib';
+import { TranslateManager } from "../../managers/translate.manager";
+
 
 export class CardIntents /*extends BaseIntent*/ {
 
     private cardService: CardService = new CardService();
+    public translateManager: TranslateManager = TranslateManager.getInstance();
+
 
     public intents(app): void {
 

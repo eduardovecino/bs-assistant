@@ -6,9 +6,11 @@ const card_manager_2 = require("../../managers/dialog-flow/card.manager");
 const format_manager_1 = require("../../managers/format.manager");
 const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
 const ssml_gib_1 = require("ssml-gib");
+const translate_manager_1 = require("../../managers/translate.manager");
 class CardIntents /*extends BaseIntent*/ {
     constructor() {
         this.cardService = new card_service_1.CardService();
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
         const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;

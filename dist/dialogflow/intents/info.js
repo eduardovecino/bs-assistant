@@ -9,9 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const information_service_1 = require("../../services/information.service");
+const translate_manager_1 = require("../../managers/translate.manager");
 class InfoIntents /*extends BaseIntent*/ {
     constructor() {
         this.informationService = new information_service_1.InformationService();
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
