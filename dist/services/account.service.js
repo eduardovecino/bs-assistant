@@ -9,12 +9,13 @@ class AccountService extends rest_manager_1.RestManager {
     getAccount(last4) {
         return this.getAccounts().then(accounts => {
             const account = account_manager_1.AccountManager.getAccountByLast4(accounts, last4);
-            console.log("987654321 " + JSON.stringify(account));
             return account;
         });
     }
     getMovementsAccounts(account) {
-        return this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-1-2018`, `mock/accounts/get-movements-accounts.json`);
+        //TODO Quitar los limites de la fecha para mostrar los últimos movimientos
+        // /ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos
+        return this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-10-2018`, `mock/accounts/get-movements-accounts.json`);
     }
 }
 exports.AccountService = AccountService;
