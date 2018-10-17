@@ -20,7 +20,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         // const nullResponse = this.translateManager.translate('intent.account.null_response');
 
         // const suggestionResponse = 'Puedes preguntarme por el saldo o los movimientos de una cuenta';
-        const suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
+        let suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
 
         const Contexts = {
             selected_account: 'selected_account',
