@@ -21,6 +21,10 @@ class InfoIntents /*extends BaseIntent*/ {
                 console.log("Localizaciones cajeros" + JSON.stringify(offices));
                 conv.ask("Localizaciones cajeros" + JSON.stringify(offices));
             }
+            else {
+                console.log("No funciona el servicio");
+                conv.ask("No funciona el servicio");
+            }
             // let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
             // if (offices) {
             //     offices.forEach(office => {
