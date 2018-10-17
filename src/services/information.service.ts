@@ -27,7 +27,7 @@ export class InformationService extends RestManager {
                     </geoPos>
                 </ubiRef>
                 <numCajCer></numCajCer>
-                <hashMD5>wbubwubuwwbuwbbfwf</hashMD5>
+                <hashMD5></hashMD5>
                 <hora></hora>
                 <tamanyoMapa>
                     <ancho></ancho>
