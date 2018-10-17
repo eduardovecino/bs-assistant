@@ -49,7 +49,8 @@ class InformationService extends rest_manager_1.RestManager {
                 'uri': host,
                 'json': true,
                 'headers': {
-                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/json'
+                    'Content-Type': 'text/xml'
                 },
                 'body': xmlString
             };
