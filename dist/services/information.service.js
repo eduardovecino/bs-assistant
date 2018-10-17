@@ -2,12 +2,67 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const fs = require("fs");
+const rp = require("request-promise");
+const host = 'http://api_geocaix_host/geocaix/rest/cajeroscercanos.json';
 class InformationService extends rest_manager_1.RestManager {
-    getOffices() {
+    getNearbyOffices() {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/information/get-offices.json');
             const jsonData = JSON.parse(data.toString());
             resolve(jsonData.data);
+        });
+    }
+    getOffices() {
+        return new Promise((resolve, reject) => {
+            const xmlString = `<informacion>
+                <canal></canal>
+                <ubiRef>
+                    <idCajero></idCajero>
+                    <geoPos>
+                        <lat>41.389492</lat>
+                        <lon>2.135065</lon>
+                    </geoPos>
+                </ubiRef>
+                <numCajCer></numCajCer>
+                <hashMD5></hashMD5>
+                <hora></hora>
+                <tamanyoMapa>
+                    <ancho></ancho>
+                    <alto></alto>
+                </tamanyoMapa>
+                <filterCriteria>
+                    <operatividadGlobal></operatividadGlobal>
+                    <conectividad></conectividad>
+                    <actTarjPermitido></actTarjPermitido>
+                    <actLibretaPermitido></actLibretaPermitido>
+                    <actQRPermitido></actQRPermitido>
+                    <opParcialIngresoSobres></opParcialIngresoSobres>
+                    <opParcialIngresoEfecOnl></opParcialIngresoEfecOnl>
+                    <opParcialUniRecibos></opParcialUniRecibos>
+                    <opParcialUniTicketing></opParcialUniTicketing>
+                    <horarioEstablecimiento></horarioEstablecimiento>
+                    <cajeroPropio></cajeroPropio>
+                </filterCriteria>
+            </informacion>`;
+            const options = {
+                'method': 'GET',
+                'uri': host,
+                'json': true,
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'body': xmlString
+            };
+            rp(options)
+                .then(function (body) {
+                var data = body.data;
+                console.log('success', data);
+                resolve(data);
+            })
+                .catch(function (err) {
+                console.log('error', err);
+                reject(err.error);
+            });
         });
     }
 }
