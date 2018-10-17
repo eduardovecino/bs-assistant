@@ -49,9 +49,9 @@ export class InformationService extends RestManager {
                     <cajeroPropio></cajeroPropio>
                 </filterCriteria>
             </informacion>`;
-            
+
             const options = {
-                'method': 'POST',
+                'method': 'GET',
                 'uri': host,
                 'json': true,
                 'headers': {
@@ -63,7 +63,7 @@ export class InformationService extends RestManager {
 
             rp(options)
                 .then(function (body) {
-                    var data = body.data;
+                    var data = body;
                     console.log('success', data);
                     resolve(data);
                 })
