@@ -34,12 +34,10 @@ export class ProductIntents /*extends BaseIntent*/ {
         // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
             const name = conv.user.name.given;
-            // conv.ask(JSON.stringify(name))
             let ssml = [this.translateManager.translate('intent.product.welcome.answer_%name%', name)];
             if (confirmationGranted) {
                 if (name) {
                     conv.ask(Ssml.wrapSsmlSpeak(ssml));
-                    // this.suggestions(conv);
                 }
             } else {
                 conv.ask(`I can't read your mind right now! My mystical powers have failed!`);
