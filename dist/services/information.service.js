@@ -14,7 +14,8 @@ class InformationService extends rest_manager_1.RestManager {
     }
     getOffices() {
         return new Promise((resolve, reject) => {
-            const xmlString = `<informacion>
+            const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <informacion>
                 <canal></canal>
                 <ubiRef>
                     <idCajero></idCajero>

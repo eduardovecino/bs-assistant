@@ -18,7 +18,8 @@ export class InformationService extends RestManager {
     public getOffices(): Promise<any> {
         return new Promise((resolve, reject) => {
             const xmlString = 
-            `<informacion>
+            `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <informacion>
                 <canal></canal>
                 <ubiRef>
                     <idCajero></idCajero>
@@ -48,6 +49,7 @@ export class InformationService extends RestManager {
                     <cajeroPropio></cajeroPropio>
                 </filterCriteria>
             </informacion>`;
+            
             const options = {
                 'method': 'POST',
                 'uri': host,
