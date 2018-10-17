@@ -15,13 +15,6 @@ export class AccountIntents /*extends BaseIntent*/ {
 
 
     public intents(app): void {
-
-        const nullResponse = 'No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros';
-        // let nullResponse = this.translateManager.translate('intent.account.null_response');
-
-        const suggestionResponse = 'Puedes preguntarme por el saldo o los movimientos de una cuenta';
-        // let suggestionResponse = this.translateManager.translate('intent.account.suggestion_response');
-
         const Contexts = {
             selected_account: 'selected_account',
             selected_card: 'selected_card'
@@ -55,7 +48,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                  conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
-                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${suggestionResponse}`);
+                    conv.ask(`Has seleccionado la ${selectedAccount.descripcion}. ${this.translateManager.translate('intent.account.help')}`);
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 } else {
                 conv.ask(`No podemos mostrar la cuenta ${option}`);
@@ -78,7 +71,7 @@ export class AccountIntents /*extends BaseIntent*/ {
 
                 // AYUDA CUENTAS
                 app.intent('ayuda - cuentas', (conv) => {
-                    conv.ask(this.translateManager.translate('intent.account.suggestion_response'));
+                    conv.ask(this.translateManager.translate('intent.account.help'));
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 });
         })
@@ -91,7 +84,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 const response = AccountDFManager.saldoAccount(account);
                 conv.ask(response);
             } else {
-                conv.ask(nullResponse);
+                conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         });
         
@@ -106,7 +99,7 @@ export class AccountIntents /*extends BaseIntent*/ {
                 conv.ask(response[0]);
                 conv.ask(response[1]);
             } else {
-                conv.ask(nullResponse);
+                conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         })
     }
