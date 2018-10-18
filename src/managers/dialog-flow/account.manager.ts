@@ -4,7 +4,8 @@ import { TranslateManager } from "../translate.manager";
 
 
 export class AccountDFManager {
-    public translateManager: TranslateManager = TranslateManager.getInstance();
+
+    public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
     }
@@ -49,7 +50,7 @@ export class AccountDFManager {
                 response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
             };
             response = response + "¿Qué más quieres saber acerca de tu cuenta?"
-            const movementsTable = AccountDFManager.generateMovementsTable(movements);
+            const movementsTable = this.generateMovementsTable(movements);
             return [response, movementsTable];
         } else {
             return [`No hay movimientos recientes en esta cuenta`, ` `]

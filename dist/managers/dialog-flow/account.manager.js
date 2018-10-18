@@ -5,7 +5,6 @@ const format_manager_1 = require("../../managers/format.manager");
 const translate_manager_1 = require("../translate.manager");
 class AccountDFManager {
     constructor() {
-        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     static generateAccountsList(accounts) {
         if (accounts.length > 1) {
@@ -47,7 +46,7 @@ class AccountDFManager {
             }
             ;
             response = response + "¿Qué más quieres saber acerca de tu cuenta?";
-            const movementsTable = AccountDFManager.generateMovementsTable(movements);
+            const movementsTable = this.generateMovementsTable(movements);
             return [response, movementsTable];
         }
         else {
@@ -69,5 +68,6 @@ class AccountDFManager {
         return new actions_on_google_1.Table(tmp);
     }
 }
+AccountDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.AccountDFManager = AccountDFManager;
 //# sourceMappingURL=account.manager.js.map

@@ -24,7 +24,7 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
-            let response = this.translateManager.translate('intent.account.account_list_%number%', accounts.length);
+            let response = this.translateManager.translate('intent.account.account_list_%number%', [accounts.length]);
             conv.contexts.delete(Contexts.selected_card);
 
             if (accounts) {
