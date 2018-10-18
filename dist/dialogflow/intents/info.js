@@ -18,8 +18,10 @@ class InfoIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
+            const latitude = conv.coordinates.latitude;
+            const longitude = conv.coordinates.longitude;
             let offices;
-            offices = yield this.informationService.getOffices();
+            offices = yield this.informationService.getOffices(latitude, longitude);
             if (offices) {
                 let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
                 offices.forEach(office => {
@@ -33,17 +35,6 @@ class InfoIntents /*extends BaseIntent*/ {
                 console.log("No funciona el servicio");
                 conv.ask("No funciona el servicio");
             }
-            // let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
-            // if (offices) {
-            //     offices.forEach(office => {
-            //         response = response + office.id + " en " + office.address + ", ";
-            //     })
-            //     const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
-            //     conv.ask(response + "¿Cúal quieres seleccionar?");
-            //     conv.ask(carouselOfOffices);
-            // } else {
-            //     conv.ask(`No podemos mostrar las oficinas cercanas en este momento, vuelve a intentarlo`);
-            // }
         }));
     }
 }

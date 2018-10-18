@@ -11,25 +11,26 @@ class InformationService extends rest_manager_1.RestManager {
             resolve(jsonData.data);
         });
     }
-    getOffices() {
+    getOffices(latitude, longitude) {
         return new Promise((resolve, reject) => {
             const options = {
                 'method': 'GET',
-                'uri': 'https://www.bancsabadell.mobi/bsmobil/api/offices/?lat=41.389492&lng=2.135065&numOffices=10',
+                'uri': `https://www.bancsabadell.mobi/bsmobil/api/offices/?lat=${latitude}&lng=${longitude}&numOffices=10`,
                 'json': true,
                 'headers': {
                     'Accept-Language': 'es',
                     'Accept': 'application/vnd.idk.bsmobil-v1000+json'
-                    // 'Content-Type': 'application/json'
                 },
             };
             rp(options)
                 .then(function (body) {
                 var data = body;
+                console.log('laatitude', latitude, longitude);
                 console.log('success', data);
                 resolve(data.offices);
             })
                 .catch(function (err) {
+                console.log('loongitude', latitude, longitude);
                 console.log('error', err);
                 reject(err.error);
             });
