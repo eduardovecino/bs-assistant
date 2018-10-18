@@ -17,10 +17,10 @@ export class InformationDFManager {
                     title: office.name,
                     url: mapUrl,
                     description: office.address,
-                    image: new Image ({
-                        url: office.image,
-                        alt: office.name
-                    })
+                    // image: new Image ({
+                    //     url: office.image,
+                    //     alt: office.name
+                    // })
                 })
             );
         });
