@@ -28,13 +28,9 @@ export class InformationService extends RestManager {
             rp(options)
                 .then(function (body) {
                     var data = body;
-                    console.log('laatitude', latitude, longitude);
-                    console.log('success', data);
                     resolve(data.offices);
                 })
                 .catch(function (err) {
-                    console.log('loongitude', latitude, longitude);
-                    console.log('error', err);
                     reject(err.error);
                 });    
         }) 
