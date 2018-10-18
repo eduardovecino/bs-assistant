@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const information_service_1 = require("../../services/information.service");
+const information_manager_1 = require("../../managers/dialog-flow/information.manager");
 const translate_manager_1 = require("../../managers/translate.manager");
 class InfoIntents /*extends BaseIntent*/ {
     constructor() {
@@ -20,8 +21,13 @@ class InfoIntents /*extends BaseIntent*/ {
             let offices;
             offices = yield this.informationService.getOffices();
             if (offices) {
-                console.log("Localizaciones cajeros" + JSON.stringify(offices));
-                conv.ask("Localizaciones cajeros" + JSON.stringify(offices));
+                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
+                offices.forEach(office => {
+                    response = response + office.name + " en " + office.address + ", ";
+                });
+                const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
+                conv.ask(response + "¿Cúal quieres seleccionar?");
+                conv.ask(carouselOfOffices);
             }
             else {
                 console.log("No funciona el servicio");

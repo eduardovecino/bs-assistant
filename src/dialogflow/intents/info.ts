@@ -15,8 +15,14 @@ export class InfoIntents /*extends BaseIntent*/ {
             let offices;
             offices = await this.informationService.getOffices();
             if (offices){
-                console.log("Localizaciones cajeros" + JSON.stringify(offices));
-                conv.ask("Localizaciones cajeros" + JSON.stringify(offices));
+                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
+                offices.forEach(office => {
+                    response = response + office.name + " en " + office.address + ", ";
+                })
+
+                const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
+                conv.ask(response + "¿Cúal quieres seleccionar?");
+                conv.ask(carouselOfOffices);
             } else {
                 console.log("No funciona el servicio");
                 conv.ask("No funciona el servicio"); 

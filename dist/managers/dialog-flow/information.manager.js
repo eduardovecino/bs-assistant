@@ -9,14 +9,14 @@ class InformationDFManager {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
+            const mapUrl = `https://maps.google.com/?q=${office.point.lat},${office.point.lng}`;
             tmp.items.push(new actions_on_google_1.BrowseCarouselItem({
-                title: office.id,
+                title: office.name,
                 url: mapUrl,
                 description: office.address,
                 image: new actions_on_google_1.Image({
                     url: office.image,
-                    alt: office.id
+                    alt: office.name
                 })
             }));
         });

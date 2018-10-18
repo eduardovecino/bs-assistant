@@ -13,52 +13,21 @@ class InformationService extends rest_manager_1.RestManager {
     }
     getOffices() {
         return new Promise((resolve, reject) => {
-            const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-            <informacion>
-                <canal>C_BS1</canal>
-                <ubiRef>
-                    <idCajero></idCajero>
-                    <geoPos>
-                        <lat>41.389492</lat>
-                        <lon>2.135065</lon>
-                    </geoPos>
-                </ubiRef>
-                <numCajCer></numCajCer>
-                <hashMD5></hashMD5>
-                <hora></hora>
-                <tamanyoMapa>
-                    <ancho></ancho>
-                    <alto></alto>
-                </tamanyoMapa>
-                <filterCriteria>
-                    <operatividadGlobal></operatividadGlobal>
-                    <conectividad></conectividad>
-                    <actTarjPermitido></actTarjPermitido>
-                    <actLibretaPermitido></actLibretaPermitido>
-                    <actQRPermitido></actQRPermitido>
-                    <opParcialIngresoSobres></opParcialIngresoSobres>
-                    <opParcialIngresoEfecOnl></opParcialIngresoEfecOnl>
-                    <opParcialUniRecibos></opParcialUniRecibos>
-                    <opParcialUniTicketing></opParcialUniTicketing>
-                    <horarioEstablecimiento></horarioEstablecimiento>
-                    <cajeroPropio></cajeroPropio>
-                </filterCriteria>
-            </informacion>`;
             const options = {
                 'method': 'GET',
-                'uri': 'http://api_geocaix_host/geocaix/rest/cajeroscercanos.json',
+                'uri': 'https://www.bancsabadell.mobi/bsmobil/api/offices/?lat=41.389492&lng=2.135065&numOffices=10',
                 'json': true,
                 'headers': {
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'text/xml'
+                    'Accept-Language': 'es',
+                    'Accept': 'application/vnd.idk.bsmobil-v1000+json'
+                    // 'Content-Type': 'application/json'
                 },
-                'body': xmlString
             };
             rp(options)
                 .then(function (body) {
                 var data = body;
                 console.log('success', data);
-                resolve(data);
+                resolve(data.offices);
             })
                 .catch(function (err) {
                 console.log('error', err);

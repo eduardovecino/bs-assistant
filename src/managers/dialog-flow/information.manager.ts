@@ -11,15 +11,15 @@ export class InformationDFManager {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
+            const mapUrl = `https://maps.google.com/?q=${office.point.lat},${office.point.lng}`;
             tmp.items.push( new BrowseCarouselItem(
                 {
-                    title: office.id,
+                    title: office.name,
                     url: mapUrl,
                     description: office.address,
                     image: new Image ({
                         url: office.image,
-                        alt: office.id
+                        alt: office.name
                     })
                 })
             );
