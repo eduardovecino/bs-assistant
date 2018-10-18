@@ -12,8 +12,8 @@ export class InfoIntents /*extends BaseIntent*/ {
     public intents(app): void {
 
         app.intent('Oficinas Cercanas', async conv => {
-            const latitude = conv.coordinates.latitude;
-            const longitude = conv.coordinates.longitude;
+            const latitude = conv.device.location.coordinates.latitude;
+            const longitude = conv.device.location.coordinates.longitude;
 
             let offices;
             offices = await this.informationService.getOffices(latitude, longitude);

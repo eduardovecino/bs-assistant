@@ -18,8 +18,8 @@ class InfoIntents /*extends BaseIntent*/ {
     }
     intents(app) {
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            const latitude = conv.coordinates.latitude;
-            const longitude = conv.coordinates.longitude;
+            const latitude = conv.device.location.coordinates.latitude;
+            const longitude = conv.device.location.coordinates.longitude;
             let offices;
             offices = yield this.informationService.getOffices(latitude, longitude);
             if (offices) {
