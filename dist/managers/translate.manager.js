@@ -19,7 +19,7 @@ class TranslateManager {
         let literal = this._config.translations[this._config.lang][key];
         if (params) {
             // for(let i=0; i<params.lenght+1; i++){
-            literal = literal.replace(/\{{.*?\}}/, 'caca');
+            literal = literal.replace(/\{{.*?\}}/, params[0]);
             // }
             // let startCharacter = literal.indexOf('{');
             // let endCharacter = literal.lastIndexOf('}');
