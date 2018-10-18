@@ -4,7 +4,7 @@ const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
 class InformationDFManager {
     static generateOfficesSimpleResponse(offices) {
-        let response;
+        let response = ' ';
         let lenght = (offices.length > 3) ? 3 : offices.length + 1;
         for (let i = 0; i < lenght; i++) {
             response = response + offices[i].address + ", ";

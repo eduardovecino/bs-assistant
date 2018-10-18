@@ -7,7 +7,7 @@ export class InformationDFManager {
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateOfficesSimpleResponse(offices) {
-        let response;
+        let response = ' ';
         let lenght = (offices.length > 3) ? 3 : offices.length + 1;
         for (let i=0 ; i<lenght; i++){
             response = response + offices[i].address + ", ";
