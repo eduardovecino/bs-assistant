@@ -29,7 +29,7 @@ class InfoIntents {
                 conv.ask(carouselOfOffices);
             }
             else {
-                conv.ask("No ha funcionado, vuelve a intentarlo");
+                conv.ask(this.translateManager.translate('intent.service.failure'));
             }
         }));
     }

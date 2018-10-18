@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
+const translate_manager_1 = require("../translate.manager");
 class InformationDFManager {
-    constructor() {
-    }
     static generateOfficesSimpleResponse(offices) {
-        let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
-        offices.forEach((office) => {
-            response = response + office.name + " en " + office.address + ", ";
-        });
-        response = response + "¿Cúal quieres seleccionar?";
-        return response;
+        let response;
+        let lenght = (offices.length > 3) ? 3 : offices.length + 1;
+        for (let i = 1; i < lenght; i++) {
+            response = response + offices[i].address + ", ";
+        }
+        return this.translateManager.translate('intent.information.simple_response_%offices%', response);
     }
+    ;
     static generateOfficesBrowseCarousel(offices) {
         const tmp = {
             items: []
@@ -26,6 +26,8 @@ class InformationDFManager {
         });
         return (new actions_on_google_1.BrowseCarousel(tmp));
     }
+    ;
 }
+InformationDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.InformationDFManager = InformationDFManager;
 //# sourceMappingURL=information.manager.js.map

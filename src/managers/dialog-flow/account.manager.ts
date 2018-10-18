@@ -6,11 +6,7 @@ import { TranslateManager } from "../translate.manager";
 export class AccountDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
-
-    constructor() {
-    }
     
-
     public static generateAccountsList(accounts) {
         if (accounts.length > 1) {
             const accountImage = 'https://es.banqueando.com/wp-content/uploads/2012/05/logotipo_sabadell_creditos_banco11.gif';

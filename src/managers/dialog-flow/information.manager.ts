@@ -1,19 +1,19 @@
 import { BrowseCarousel, Image, BrowseCarouselItem} from "actions-on-google";
+import { TranslateManager } from "../translate.manager";
 
 
 export class InformationDFManager {
 
-    constructor() {
-    }
+    public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateOfficesSimpleResponse(offices) {
-        let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
-        offices.forEach((office) => {
-                response = response + office.name + " en " + office.address + ", ";
-        });
-        response = response + "¿Cúal quieres seleccionar?";
-        return response;
-    }
+        let response;
+        let lenght = (offices.length > 3) ? 3 : offices.length + 1;
+        for (let i=1 ; i < lenght; i++){
+            response = response + offices[i].address + ", ";
+        }
+        return this.translateManager.translate('intent.information.simple_response_%offices%', response);
+    };
 
     public static generateOfficesBrowseCarousel(offices) {
         const tmp =  {
@@ -34,5 +34,5 @@ export class InformationDFManager {
             );
         });
         return (new BrowseCarousel(tmp));
-    }
+    };
 }
