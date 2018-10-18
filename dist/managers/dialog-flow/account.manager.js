@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const format_manager_1 = require("../../managers/format.manager");
-const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
+const translate_manager_1 = require("../translate.manager");
 class AccountDFManager {
     constructor() {
+        this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     static generateAccountsList(accounts) {
         if (accounts.length > 1) {
@@ -35,7 +36,7 @@ class AccountDFManager {
             return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
         }
         else {
-            return nullResponse;
+            return this.translateManager.translate('intent.account.null_response');
         }
     }
     static movementsAccount(movements) {

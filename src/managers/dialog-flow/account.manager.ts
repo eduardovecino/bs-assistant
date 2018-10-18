@@ -1,11 +1,10 @@
 import { List, Table, TableOptions } from "actions-on-google";
 import { FormatManager } from '../../managers/format.manager';
+import { TranslateManager } from "../translate.manager";
 
-const nullResponse = `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`;
 
 export class AccountDFManager {
-
-
+    public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
     }
@@ -39,7 +38,7 @@ export class AccountDFManager {
         if (account) {
             return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
         } else {
-            return nullResponse;
+            return this.translateManager.translate('intent.account.null_response');
         }
     }
 
