@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const information_service_1 = require("../../services/information.service");
 const information_manager_1 = require("../../managers/dialog-flow/information.manager");
 const translate_manager_1 = require("../../managers/translate.manager");
-class InfoIntents /*extends BaseIntent*/ {
+class InfoIntents {
     constructor() {
         this.informationService = new information_service_1.InformationService();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
@@ -23,17 +23,13 @@ class InfoIntents /*extends BaseIntent*/ {
             let offices;
             offices = yield this.informationService.getOffices(latitude, longitude);
             if (offices) {
-                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
-                offices.forEach(office => {
-                    response = response + office.name + " en " + office.address + ", ";
-                });
+                const officesSimpleResponse = information_manager_1.InformationDFManager.generateOfficesSimpleResponse(offices);
                 const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
-                conv.ask(response + "¿Cúal quieres seleccionar?");
+                conv.ask(officesSimpleResponse);
                 conv.ask(carouselOfOffices);
             }
             else {
-                console.log("No funciona el servicio");
-                conv.ask("No funciona el servicio");
+                conv.ask("No ha funcionado, vuelve a intentarlo");
             }
         }));
     }

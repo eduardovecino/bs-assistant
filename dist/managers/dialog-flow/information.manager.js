@@ -4,6 +4,14 @@ const actions_on_google_1 = require("actions-on-google");
 class InformationDFManager {
     constructor() {
     }
+    static generateOfficesSimpleResponse(offices) {
+        let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
+        offices.forEach((office) => {
+            response = response + office.name + " en " + office.address + ", ";
+        });
+        response = response + "¿Cúal quieres seleccionar?";
+        return response;
+    }
     static generateOfficesBrowseCarousel(offices) {
         const tmp = {
             items: []

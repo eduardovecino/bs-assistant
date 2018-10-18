@@ -4,7 +4,7 @@ import { TranslateManager } from "../../managers/translate.manager";
 
 
 
-export class InfoIntents /*extends BaseIntent*/ {
+export class InfoIntents {
 
     private informationService: InformationService = new InformationService();
     public translateManager: TranslateManager = TranslateManager.getInstance();
@@ -18,17 +18,12 @@ export class InfoIntents /*extends BaseIntent*/ {
             let offices;
             offices = await this.informationService.getOffices(latitude, longitude);
             if (offices){
-                let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
-                offices.forEach(office => {
-                    response = response + office.name + " en " + office.address + ", ";
-                })
-
+                const officesSimpleResponse = InformationDFManager.generateOfficesSimpleResponse(offices);
                 const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
-                conv.ask(response + "¿Cúal quieres seleccionar?");
+                conv.ask(officesSimpleResponse);
                 conv.ask(carouselOfOffices);
             } else {
-                console.log("No funciona el servicio");
-                conv.ask("No funciona el servicio"); 
+                conv.ask("No ha funcionado, vuelve a intentarlo"); 
             }
         });
     }

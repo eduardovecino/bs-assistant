@@ -6,6 +6,15 @@ export class InformationDFManager {
     constructor() {
     }
 
+    public static generateOfficesSimpleResponse(offices) {
+        let response = "Tienes " + offices.length + " oficinas cercanas a tu posición. ";
+        offices.forEach((office) => {
+                response = response + office.name + " en " + office.address + ", ";
+        });
+        response = response + "¿Cúal quieres seleccionar?";
+        return response;
+    }
+
     public static generateOfficesBrowseCarousel(offices) {
         const tmp =  {
             items: []
