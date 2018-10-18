@@ -23,7 +23,7 @@ export class TranslateManager {
         return this._config;
     }
 
-    public translate(key, params) {
+    public translate(key, params?) {
         let literal = this._config.translations[this._config.lang][key];
         if (params){
             // for(let i=0; i<params.lenght+1; i++){
