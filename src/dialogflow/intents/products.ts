@@ -16,7 +16,7 @@ export class ProductIntents /*extends BaseIntent*/ {
 
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({ 
-                context: this.translateManager.translate2('intent.product.welcome.permission'),
+                context: this.translateManager.translate('intent.product.welcome.permission'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
@@ -26,7 +26,7 @@ export class ProductIntents /*extends BaseIntent*/ {
             const name = conv.user.name.given;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', name)]));
+                    conv.ask(Ssml.wrapSsmlSpeak([this.translateManager.translate2('intent.product.get_permission.answer_%name%', name)]));
                 }
             } else {
                 conv.ask(this.translateManager.translate('intent.product.get_permission.failure'));

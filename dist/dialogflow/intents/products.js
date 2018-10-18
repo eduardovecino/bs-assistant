@@ -11,7 +11,7 @@ class ProductIntents /*extends BaseIntent*/ {
     intents(app) {
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
-                context: this.translateManager.translate2('intent.product.welcome.permission'),
+                context: this.translateManager.translate('intent.product.welcome.permission'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
@@ -20,7 +20,7 @@ class ProductIntents /*extends BaseIntent*/ {
             const name = conv.user.name.given;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', name)]));
+                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate2('intent.product.get_permission.answer_%name%', name)]));
                 }
             }
             else {
