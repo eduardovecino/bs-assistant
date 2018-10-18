@@ -6,6 +6,14 @@ import { TranslateManager } from "../translate.manager";
 export class AccountDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
+
+    public static generateAccountsSimpleResponse(accounts) {
+        let response= ' ';
+        accounts.forEach(account => {
+            response = response + FormatManager.getLast4numbers(account.iban) + ", ";
+        });
+        return this.translateManager.translate('intent.account.simple_response_%number%_%accounts%', [accounts.length,response]);
+    }
     
     public static generateAccountsList(accounts) {
         if (accounts.length > 1) {

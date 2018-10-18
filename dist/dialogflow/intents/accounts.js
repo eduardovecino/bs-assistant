@@ -12,9 +12,8 @@ const account_service_1 = require("../../services/account.service");
 const account_manager_1 = require("../../managers/data/account.manager");
 const account_manager_2 = require("../../managers/dialog-flow/account.manager");
 const suggestion_manager_1 = require("../../managers/dialog-flow/suggestion.manager");
-const format_manager_1 = require("../../managers/format.manager");
 const translate_manager_1 = require("../../managers/translate.manager");
-class AccountIntents /*extends BaseIntent*/ {
+class AccountIntents {
     constructor() {
         this.accountService = new account_service_1.AccountService();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
@@ -28,14 +27,11 @@ class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
             let accounts;
             accounts = yield this.accountService.getAccounts();
-            let response = this.translateManager.translate('intent.account.account_list_%number%', [accounts.length]);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                accounts.forEach(account => {
-                    response = response + format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
-                });
+                const accountsSimpleResponse = account_manager_2.AccountDFManager.generateAccountsSimpleResponse(accounts);
                 const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
+                conv.ask(accountsSimpleResponse);
                 conv.ask(accountsList);
             }
             else {

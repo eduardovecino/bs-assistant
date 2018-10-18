@@ -18,9 +18,9 @@ export const SPANISH_TRANSLATIONS = {
     'intent.account.null_response': `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
     'intent.account.help': `Puedes preguntarme por el saldo o los movimientos de una cuenta`,
     'intent.account.account_list_%number%': `Tienes {{ number }} cuentas. Terminadas en: `,
-    'intent.account.account_list.answer_which_one': `¿Cúal deseas seleccionar?`,
     'intent.account.selected_account_%account%': `Has seleccionado la {{ account }}. `,
     'intent.account.selected_account.failure_%account%': `No podemos mostrar la cuenta terminada en {{ account }}.`,
+    'intent.account.simple_response_%number%_%accounts%': `Tienes {{ number }} cuentas. Terminadas en: {{ accounts }} ¿Cúal deseas seleccionar?`,
 
     //INFORMATION
     'intent.information.simple_response_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}. ¿Cúal quieres seleccionar?`,

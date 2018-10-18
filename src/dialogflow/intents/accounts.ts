@@ -8,7 +8,7 @@ import { TranslateManager } from "../../managers/translate.manager";
 
 
 
-export class AccountIntents /*extends BaseIntent*/ {
+export class AccountIntents {
 
     private accountService: AccountService = new AccountService();
     public translateManager: TranslateManager = TranslateManager.getInstance();
@@ -24,15 +24,11 @@ export class AccountIntents /*extends BaseIntent*/ {
         app.intent('Cuentas', async (conv) => {
             let accounts;
             accounts = await this.accountService.getAccounts();
-            let response = this.translateManager.translate('intent.account.account_list_%number%', [accounts.length]);
             conv.contexts.delete(Contexts.selected_card);
-
             if (accounts) {
-                accounts.forEach(account => {
-                    response = response + FormatManager.getLast4numbers(account.iban) + ", ";
-                })
+                const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
                 const accountsList = AccountDFManager.generateAccountsList(accounts);
-                conv.ask(response + this.translateManager.translate('intent.account.account_list.answer_which_one'));
+                conv.ask(accountsSimpleResponse);
                 conv.ask(accountsList);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));

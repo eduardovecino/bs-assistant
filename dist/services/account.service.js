@@ -2,13 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const account_manager_1 = require("../managers/data/account.manager");
+const account_model_1 = require("../models/account.model");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
     }
     getAccount(last4) {
         return this.getAccounts().then(accounts => {
-            const account = account_manager_1.AccountManager.getAccountByLast4(accounts, last4);
+            const account = new account_model_1.AccountModel(account_manager_1.AccountManager.getAccountByLast4(accounts, last4));
             return account;
         });
     }

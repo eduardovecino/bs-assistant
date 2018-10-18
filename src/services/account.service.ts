@@ -3,6 +3,7 @@ import { AccountManager } from "../managers/data/account.manager";
 
 import * as fs from "fs";
 import { setTimeout } from "timers";
+import { AccountModel } from "../models/account.model";
 
 
 export class AccountService extends RestManager {
@@ -13,7 +14,7 @@ export class AccountService extends RestManager {
 
     public getAccount(last4) {
         return this.getAccounts().then(accounts=> {
-            const account = AccountManager.getAccountByLast4(accounts, last4);            
+            const account: AccountModel = new AccountModel(AccountManager.getAccountByLast4(accounts, last4));            
             return account;
         });
     }

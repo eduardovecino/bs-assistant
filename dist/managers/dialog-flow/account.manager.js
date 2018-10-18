@@ -4,6 +4,13 @@ const actions_on_google_1 = require("actions-on-google");
 const format_manager_1 = require("../../managers/format.manager");
 const translate_manager_1 = require("../translate.manager");
 class AccountDFManager {
+    static generateAccountsSimpleResponse(accounts) {
+        let response = ' ';
+        accounts.forEach(account => {
+            response = response + format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
+        });
+        return this.translateManager.translate('intent.account.simple_response_%number%_%accounts%', [accounts.length, response]);
+    }
     static generateAccountsList(accounts) {
         if (accounts.length > 1) {
             const accountImage = 'https://es.banqueando.com/wp-content/uploads/2012/05/logotipo_sabadell_creditos_banco11.gif';
