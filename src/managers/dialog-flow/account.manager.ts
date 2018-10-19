@@ -41,7 +41,7 @@ export class AccountDFManager {
 
     public static selectedAccount(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.selected_account_%account%', account.descripcion);
+            return this.translateManager.translate('intent.account.selected_account_%account%', [account.descripcion]);
         } else {
             return this.translateManager.translate('intent.account.null_response');
         }
@@ -62,26 +62,30 @@ export class AccountDFManager {
             for (let i = 0; i < length; i++) {
                 response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concepto, movements[i].importe])
             };
-            return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [response]);
+            return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response]);
         } else {
             return this.translateManager.translate('intent.account.movements.no_movements');
         }
     }
 
     public static generateMovementsAccountTable(movements) {
-        const tmp: TableOptions = {
-            dividers: true,
-            columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
-            rows: []
-        };
-        movements.forEach((movement) => {
-            tmp.rows.push(
-                {
-                    cells: [movement.concepto, movement.fechaOperacion, movement.importe],
-                    dividerAfter: true
-                }
-            );
-        });
-        return new Table(tmp);
+        if (movements) {
+            const tmp: TableOptions = {
+                dividers: true,
+                columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
+                rows: []
+            };
+            movements.forEach((movement) => {
+                tmp.rows.push(
+                    {
+                        cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                        dividerAfter: true
+                    }
+                );
+            });
+            return new Table(tmp);
+        } else {
+            return this.translateManager.translate('intent.account.movements.no_movements');
+        }
     }
 }
