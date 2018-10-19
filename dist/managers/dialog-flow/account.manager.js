@@ -66,23 +66,18 @@ class AccountDFManager {
         }
     }
     static generateMovementsAccountTable(movements) {
-        if (movements) {
-            const tmp = {
-                dividers: true,
-                columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
-                rows: []
-            };
-            movements.forEach((movement) => {
-                tmp.rows.push({
-                    cells: [movement.concepto, movement.fechaOperacion, movement.importe],
-                    dividerAfter: true
-                });
+        const tmp = {
+            dividers: true,
+            columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
+            rows: []
+        };
+        movements.forEach((movement) => {
+            tmp.rows.push({
+                cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                dividerAfter: true
             });
-            return new actions_on_google_1.Table(tmp);
-        }
-        else {
-            return this.translateManager.translate('intent.account.movements.no_movements');
-        }
+        });
+        return new actions_on_google_1.Table(tmp);
     }
 }
 AccountDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();

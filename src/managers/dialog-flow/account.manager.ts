@@ -69,23 +69,19 @@ export class AccountDFManager {
     }
 
     public static generateMovementsAccountTable(movements) {
-        if (movements) {
-            const tmp: TableOptions = {
-                dividers: true,
-                columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
-                rows: []
-            };
-            movements.forEach((movement) => {
-                tmp.rows.push(
-                    {
-                        cells: [movement.concepto, movement.fechaOperacion, movement.importe],
-                        dividerAfter: true
-                    }
-                );
-            });
-            return new Table(tmp);
-        } else {
-            return this.translateManager.translate('intent.account.movements.no_movements');
-        }
+        const tmp: TableOptions = {
+            dividers: true,
+            columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
+            rows: []
+        };
+        movements.forEach((movement) => {
+            tmp.rows.push(
+                {
+                    cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                    dividerAfter: true
+                }
+            );
+        });
+        return new Table(tmp);
     }
 }

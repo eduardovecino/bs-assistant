@@ -5,7 +5,7 @@ import { Ssml } from 'ssml-gib';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
 
 
-export class ProductIntents /*extends BaseIntent*/ {
+export class StartIntents /*extends BaseIntent*/ {
 
     public translateManager: TranslateManager = TranslateManager.getInstance();
 
@@ -14,14 +14,13 @@ export class ProductIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
+        //PERMISSIONS
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new Permission({ 
                 context: this.translateManager.translate('intent.product.welcome.permission'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
-
-        // Create a Dialogflow intent with the `actions_intent_PERMISSION` event
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
             const name = conv.user.name.given;
             if (confirmationGranted) {
@@ -33,12 +32,11 @@ export class ProductIntents /*extends BaseIntent*/ {
             }
         });
 
-        //Iniciar Sesión
+        //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
             conv.ask(this.translateManager.translate('intent.product.login'));
             conv.ask(new SignIn());
         });
-
         app.intent('Get Signin', (conv, params, signin) => {
             const access = conv.user.access.token;  //possibly do something with access token
             if (signin.status === 'OK') {
@@ -49,10 +47,12 @@ export class ProductIntents /*extends BaseIntent*/ {
             }
         });
 
+        //CANCEL
         app.intent('Cancel', (conv) => {
             conv.close(this.translateManager.translate('intent.product.cancel'));
         });
 
+        //HELP
         app.intent('Ayuda', (conv) => {
             conv.ask(this.translateManager.translate('intent.product.help'));
             conv.ask(SuggestionDFManager.generateSuggestions());
