@@ -8,8 +8,8 @@ export class InformationDFManager {
 
     public static generateOfficesSimpleResponse(offices) {
         let response = ' ';
-        let lenght = (offices.length > 3) ? 3 : offices.length + 1;
-        for (let i=0 ; i<lenght; i++){
+        let length = (offices.length > 3) ? 3 : offices.length + 1;
+        for (let i=0 ; i<length; i++){
             response = response + offices[i].address + ", ";
         }
         return this.translateManager.translate('intent.information.simple_response_%offices%', response);

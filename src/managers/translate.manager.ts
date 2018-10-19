@@ -26,7 +26,8 @@ export class TranslateManager {
     public translate(key, params?) {
         let literal = this._config.translations[this._config.lang][key];
         if (params){
-            for(let i=0; i<params.lenght+1; i++){
+            console.log("PTGlen" + params.length);
+            for(let i=0; i<params.length+1; i++){
                 literal = literal.replace(/\{{.*?\}}/, params[i]);
             }
             // let startCharacter = literal.indexOf('{');
@@ -41,7 +42,7 @@ export class TranslateManager {
     public translate2(key, [params]) {
         let literal = this._config.translations[this._config.lang][key];
         if (params) {
-            for(let i=0; i<params.lenght+1; i++){
+            for(let i=0; i<params.length+1; i++){
                 literal = literal.replace(/\{{.*?\}}/, params[i]);
             }
             // let startCharacter = literal.indexOf('{');
