@@ -1,5 +1,5 @@
 
-export class AccountModel {
+export class ProductModel {
     constructor(data: any) {
         this.fromJSON(data);
     }

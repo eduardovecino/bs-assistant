@@ -1,7 +1,7 @@
 import { RestManager } from "../managers/data/rest.manager";
 import { AccountManager } from "../managers/data/account.manager";
 
-import { AccountModel } from "../models/account.model";
+import { ProductModel } from "../models/product.model";
 
 
 export class AccountService extends RestManager {
@@ -12,7 +12,7 @@ export class AccountService extends RestManager {
 
     public getAccount(last4) {
         return this.getAccounts().then(accounts=> {
-            const account: AccountModel = new AccountModel(AccountManager.getAccountByLast4(accounts, last4));            
+            const account: ProductModel = new ProductModel(AccountManager.getAccountByLast4(accounts, last4));            
             return account;
         });
     }
