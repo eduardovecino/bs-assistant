@@ -12,7 +12,7 @@ export class InformationDFManager {
         for (let i=0 ; i<length; i++){
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate2('intent.information.simple_response_%offices%', response);
+        return this.translateManager.translate('intent.information.simple_response_%offices%', [response]);
     };
 
     public static generateOfficesBrowseCarousel(offices) {
