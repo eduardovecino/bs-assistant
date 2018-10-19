@@ -45,7 +45,8 @@ class AccountIntents {
             const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
-                conv.ask(this.translateManager.translate('intent.account.selected_account_%account%', selectedAccount.descripcion) + this.translateManager.translate('intent.account.help'));
+                const response = account_manager_2.AccountDFManager.selectedAccount(selectedAccount);
+                conv.ask(response + this.translateManager.translate('intent.account.help'));
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             }
             else {
@@ -60,9 +61,10 @@ class AccountIntents {
             app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
                 let movements;
                 movements = yield this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
-                const response = account_manager_2.AccountDFManager.movementsAccount(movements);
-                conv.ask(response[0]);
-                conv.ask(response[1]);
+                const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask(accountMovementsSimpleResponse);
+                conv.ask(accountMovementsTable);
             }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
@@ -89,9 +91,10 @@ class AccountIntents {
             account = yield this.accountService.getAccount(last4numbers);
             if (account) {
                 movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
-                const response = account_manager_2.AccountDFManager.movementsAccount(movements);
-                conv.ask(response[0]);
-                conv.ask(response[1]);
+                const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask(accountMovementsSimpleResponse);
+                conv.ask(accountMovementsTable);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));

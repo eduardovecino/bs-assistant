@@ -40,9 +40,10 @@ export class AccountIntents {
             let accounts;
             accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                 conv.contexts.set(Contexts.selected_account, 5)
+                conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
-                    conv.ask(this.translateManager.translate('intent.account.selected_account_%account%', selectedAccount.descripcion) + this.translateManager.translate('intent.account.help'));
+                    const response = AccountDFManager.selectedAccount(selectedAccount);
+                    conv.ask( response + this.translateManager.translate('intent.account.help'));
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 } else {
                     conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
@@ -58,9 +59,10 @@ export class AccountIntents {
                 app.intent('Movimientos cuenta - seleccionada', async (conv) => {
                     let movements;
                     movements = await this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
-                    const response = AccountDFManager.movementsAccount(movements);
-                    conv.ask(response[0]);
-                    conv.ask(response[1]);
+                    const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                    const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+                    conv.ask(accountMovementsSimpleResponse);
+                    conv.ask(accountMovementsTable);
                 });
 
                 // AYUDA CUENTAS
@@ -89,9 +91,10 @@ export class AccountIntents {
             account = await this.accountService.getAccount(last4numbers);
             if(account) {
                 movements = await this.accountService.getMovementsAccounts(account.numeroProducto);
-                const response = AccountDFManager.movementsAccount(movements);
-                conv.ask(response[0]);
-                conv.ask(response[1]);
+                const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask(accountMovementsSimpleResponse);
+                conv.ask(accountMovementsTable);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }

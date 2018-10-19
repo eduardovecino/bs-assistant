@@ -22,28 +22,9 @@ class TranslateManager {
             for (let i = 0; i < params.length; i++) {
                 literal = literal.replace(/\{{.*?\}}/, params[i]);
             }
-            // let startCharacter = literal.indexOf('{');
-            // let endCharacter = literal.lastIndexOf('}');
-            // let selection = literal.slice(startCharacter - 1, endCharacter + 1);
-            // literal = literal.replace(selection, params);
-        }
-        return literal;
-    }
-    translate2(key, [params]) {
-        let literal = this._config.translations[this._config.lang][key];
-        if (params) {
-            console.log("PTGlen" + params.length);
-            for (let i = 0; i < params.length + 1; i++) {
-                literal = literal.replace(/\{{.*?\}}/, params[i]);
-            }
-            // let startCharacter = literal.indexOf('{');
-            // let endCharacter = literal.lastIndexOf('}');
-            // let selection = literal.slice(startCharacter - 1, endCharacter + 1);
-            // literal = literal.replace(selection, params);
         }
         return literal;
     }
 }
 exports.TranslateManager = TranslateManager;
-//.replace(/\{{.*?\}}/, ['adios1'])
 //# sourceMappingURL=translate.manager.js.map

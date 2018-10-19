@@ -17,6 +17,7 @@ class InfoIntents {
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
+        //OFICINAS
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;

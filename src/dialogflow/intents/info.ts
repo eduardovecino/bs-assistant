@@ -11,6 +11,7 @@ export class InfoIntents {
 
     public intents(app): void {
 
+        //OFICINAS
         app.intent('Oficinas Cercanas', async conv => {
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;

@@ -15,7 +15,7 @@ class AccountDFManager {
         if (accounts.length > 1) {
             const accountImage = 'https://es.banqueando.com/wp-content/uploads/2012/05/logotipo_sabadell_creditos_banco11.gif';
             const tmp = {
-                title: 'Mis Cuentas' + ' ',
+                title: this.translateManager.translate('intent.account.list.title'),
                 items: {}
             };
             accounts.forEach((account) => {
@@ -32,36 +32,43 @@ class AccountDFManager {
             return (new actions_on_google_1.List(tmp));
         }
         else {
-            return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
+            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].descripcion, accounts[0].balance]);
         }
     }
-    static saldoAccount(account) {
+    static selectedAccount(account) {
         if (account) {
-            return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
+            return this.translateManager.translate('intent.account.selected_account_%account%', account.descripcion);
         }
         else {
             return this.translateManager.translate('intent.account.null_response');
         }
     }
-    static movementsAccount(movements) {
-        if (movements) {
-            let response = `Este mes tienes ${movements.length} movimientos: `;
-            for (let i = 0; i < 3; i++) {
-                response = response + movements[i].concepto + " con un importe de " + movements[i].importe + "€, ";
-            }
-            ;
-            response = response + "¿Qué más quieres saber acerca de tu cuenta?";
-            const movementsTable = this.generateMovementsTable(movements);
-            return [response, movementsTable];
+    static saldoAccount(account) {
+        if (account) {
+            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.descripcion, account.balance]);
         }
         else {
-            return [`No hay movimientos recientes en esta cuenta`, ` `];
+            return this.translateManager.translate('intent.account.null_response');
         }
     }
-    static generateMovementsTable(movements) {
+    static generateMovementsAccountSimpleResponse(movements) {
+        let response = ' ';
+        let length = (movements.length > 3) ? 3 : movements.length + 1;
+        if (movements) {
+            for (let i = 0; i < length; i++) {
+                response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concepto, movements[i].importe]);
+            }
+            ;
+            return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [response]);
+        }
+        else {
+            return this.translateManager.translate('intent.account.movements.no_movements');
+        }
+    }
+    static generateMovementsAccountTable(movements) {
         const tmp = {
             dividers: true,
-            columns: ['Concepto', 'Fecha', 'Importe'],
+            columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
             rows: []
         };
         movements.forEach((movement) => {
