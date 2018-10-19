@@ -69,14 +69,14 @@ export class AccountModel {
     }
 
     fromJSON(data: any) {
-        this._numOrder = data.numOrden;
-        this._operationDate = data.fechaOperacion;
-        this._valueDate = data.fechaValor;
-        this._amount = data.importe;
-        this._currency = data.divisa;
-        this._balance = data.saldo;
-        this._concept = data.concepto;
-        this._conceptCode = data.codigoConcepto;
+        // this._numOrder = data.numOrden;
+        // this._operationDate = data.fechaOperacion;
+        // this._valueDate = data.fechaValor;
+        // this._amount = data.importe;
+        // this._currency = data.divisa;
+        // this._balance = data.saldo;
+        // this._concept = data.concepto;
+        // this._conceptCode = data.codigoConcepto;
     }
 
     toJSON() {
