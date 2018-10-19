@@ -20,7 +20,7 @@ class ProductIntents /*extends BaseIntent*/ {
             const name = conv.user.name.given;
             if (confirmationGranted) {
                 if (name) {
-                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate2('intent.product.get_permission.answer_%name%', [name])]));
+                    conv.ask(ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', [name])]));
                 }
             }
             else {
