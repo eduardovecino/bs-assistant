@@ -10,39 +10,71 @@ class AccountModel {
     set owner(value) {
         this._owner = value;
     }
+    get available() {
+        return this._available;
+    }
+    set available(value) {
+        this._available = value;
+    }
+    get description() {
+        return this._description;
+    }
+    set description(value) {
+        this._description = value;
+    }
+    get user() {
+        return this._user;
+    }
+    set user(value) {
+        this._user = value;
+    }
     get iban() {
         return this._iban;
     }
     set iban(value) {
         this._iban = value;
     }
+    get balance() {
+        return this._balance;
+    }
+    set balance(value) {
+        this._balance = value;
+    }
+    get product() {
+        return this._product;
+    }
+    set product(value) {
+        this._product = value;
+    }
+    get numberProduct() {
+        return this._numberProduct;
+    }
+    set numberProduct(value) {
+        this._numberProduct = value;
+    }
+    get numberCodificatedProduct() {
+        return this._numberCodificatedProduct;
+    }
+    set numberCodificatedProduct(value) {
+        this._numberCodificatedProduct = value;
+    }
     get formattedIban() {
         return `****${this.iban}`;
     }
     fromJSON(data) {
         this._owner = data.propietario;
-        // this._productId = data.product;
-        // this._productId = data.product;
-        // this._productId = data.product;
+        this._available = data.disponibilidad;
+        this._description = data.descripcion;
+        this._user = data.usuario;
         this._iban = data.iban;
-        // this._productId = data.product;
-        // this._productId = data.product;
-        // this._productId = data.product;
+        this._balance = data.balance;
+        this._product = data.product;
+        this._numberProduct = data.numeroProducto;
+        this._numberCodificatedProduct = data.numeroProductoCodificado;
     }
     toJSON() {
         return {};
     }
 }
 exports.AccountModel = AccountModel;
-/*
-"propietario": "&UPJURID - &LPJURID",
-"disponibilidad": null,
-"descripcion": "CUENTA CORRIENTE",
-"usuario": "00000001R",
-"iban": "ES00817065420001205528",
-"balance": "123.915,06",
-"producto": "CC",
-"numeroProducto": "00817065420001205528",
-"numeroProductoCodificado": "00817065420001205528"
-*/ 
 //# sourceMappingURL=account.model.js.map

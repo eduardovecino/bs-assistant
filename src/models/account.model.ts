@@ -12,6 +12,30 @@ export class AccountModel {
         this._owner = value;
     }
 
+    private _available: string;
+    get available(): string {
+        return this._available;
+    }
+    set available(value: string) {
+        this._available = value;
+    }
+
+    private _description: string;
+    get description(): string {
+        return this._description;
+    }
+    set description(value: string) {
+        this._description = value;
+    }
+
+    private _user: string;
+    get user(): string {
+        return this._user;
+    }
+    set user(value: string) {
+        this._user = value;
+    }
+
     private _iban: string;
     get iban(): string {
         return this._iban;
@@ -20,34 +44,56 @@ export class AccountModel {
         this._iban = value;
     }
 
+    private _balance: string;
+    get balance(): string {
+        return this._balance;
+    }
+    set balance(value: string) {
+        this._balance = value;
+    }
+
+    private _product: string;
+    get product(): string {
+        return this._product;
+    }
+    set product(value: string) {
+        this._product = value;
+    }
+
+    private _numberProduct: string;
+    get numberProduct(): string {
+        return this._numberProduct;
+    }
+    set numberProduct(value: string) {
+        this._numberProduct = value;
+    }
+
+    private _numberCodificatedProduct: string;
+    get numberCodificatedProduct(): string {
+        return this._numberCodificatedProduct;
+    }
+    set numberCodificatedProduct(value: string) {
+        this._numberCodificatedProduct = value;
+    }
+
     get formattedIban(): string {
         return `****${this.iban}`;
     }
 
     fromJSON(data: any) {
         this._owner = data.propietario;
-        // this._productId = data.product;
-        // this._productId = data.product;
-        // this._productId = data.product;
+        this._available = data.disponibilidad;
+        this._description = data.descripcion;
+        this._user = data.usuario;
         this._iban = data.iban;
-        // this._productId = data.product;
-        // this._productId = data.product;
-        // this._productId = data.product;
+        this._balance = data.balance;
+        this._product = data.product;
+        this._numberProduct = data.numeroProducto;
+        this._numberCodificatedProduct = data.numeroProductoCodificado;
+
     }
 
     toJSON() {
         return {};
     }
 }
-
-/*
-"propietario": "&UPJURID - &LPJURID",
-"disponibilidad": null,
-"descripcion": "CUENTA CORRIENTE",
-"usuario": "00000001R",
-"iban": "ES00817065420001205528",
-"balance": "123.915,06",
-"producto": "CC",
-"numeroProducto": "00817065420001205528",
-"numeroProductoCodificado": "00817065420001205528"
-*/
