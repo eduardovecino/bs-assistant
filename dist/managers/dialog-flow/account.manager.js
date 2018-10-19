@@ -35,7 +35,7 @@ class AccountDFManager {
             return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].descripcion, accounts[0].balance]);
         }
     }
-    static selectedAccount(account) {
+    static generateSelectedAccountSimpleResponse(account) {
         if (account) {
             return this.translateManager.translate('intent.account.selected_account_%account%', [account.descripcion]);
         }
@@ -43,7 +43,7 @@ class AccountDFManager {
             return this.translateManager.translate('intent.account.null_response');
         }
     }
-    static saldoAccount(account) {
+    static generateBalanceAccountResponse(account) {
         if (account) {
             return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.descripcion, account.balance]);
         }

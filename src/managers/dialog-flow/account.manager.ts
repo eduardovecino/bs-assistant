@@ -39,7 +39,7 @@ export class AccountDFManager {
         }
     }
 
-    public static selectedAccount(account) {
+    public static generateSelectedAccountSimpleResponse(account) {
         if (account) {
             return this.translateManager.translate('intent.account.selected_account_%account%', [account.descripcion]);
         } else {
@@ -47,7 +47,7 @@ export class AccountDFManager {
         }
     }
 
-    public static saldoAccount(account) {
+    public static generateBalanceAccountResponse(account) {
         if (account) {
             return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.descripcion, account.balance]);
         } else {

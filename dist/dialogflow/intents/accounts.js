@@ -45,7 +45,7 @@ class AccountIntents {
             const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
-                const response = account_manager_2.AccountDFManager.selectedAccount(selectedAccount);
+                const response = account_manager_2.AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
                 conv.ask(response + this.translateManager.translate('intent.account.help'));
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             }
@@ -54,7 +54,7 @@ class AccountIntents {
             }
             // SALDO CUENTA SELECCIONADA
             app.intent('Saldo cuenta - seleccionada', (conv) => {
-                const response = account_manager_2.AccountDFManager.saldoAccount(selectedAccount);
+                const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(selectedAccount);
                 conv.ask(response);
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
@@ -77,7 +77,7 @@ class AccountIntents {
             let account;
             account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                const response = account_manager_2.AccountDFManager.saldoAccount(account);
+                const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);
                 conv.ask(response);
             }
             else {

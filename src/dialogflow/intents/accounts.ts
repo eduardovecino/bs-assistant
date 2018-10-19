@@ -2,8 +2,6 @@ import { AccountService } from "../../services/account.service";
 import { AccountManager } from "../../managers/data/account.manager";
 import { AccountDFManager } from "../../managers/dialog-flow/account.manager";
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager";
-import { Ssml } from "ssml-gib";
-import { FormatManager } from "../../managers/format.manager"
 import { TranslateManager } from "../../managers/translate.manager";
 
 
@@ -42,7 +40,7 @@ export class AccountIntents {
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
-                    const response = AccountDFManager.selectedAccount(selectedAccount);
+                    const response = AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
                     conv.ask( response + this.translateManager.translate('intent.account.help'));
                     conv.ask(SuggestionDFManager.generateAccountSuggestions());
                 } else {
@@ -51,7 +49,7 @@ export class AccountIntents {
 
                 // SALDO CUENTA SELECCIONADA
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
-                    const response = AccountDFManager.saldoAccount(selectedAccount);
+                    const response = AccountDFManager.generateBalanceAccountResponse(selectedAccount);
                     conv.ask(response);
                 }); 
                 
@@ -77,7 +75,7 @@ export class AccountIntents {
             let account;
             account = await this.accountService.getAccount(last4numbers);
             if (account){
-                const response = AccountDFManager.saldoAccount(account);
+                const response = AccountDFManager.generateBalanceAccountResponse(account);
                 conv.ask(response);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));

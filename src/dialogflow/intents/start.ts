@@ -1,8 +1,9 @@
 import { Permission, SignIn } from "actions-on-google";
-import { BaseIntent } from "./base-intent";
 import { TranslateManager } from "../../managers/translate.manager";
 import { Ssml } from 'ssml-gib';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
+import { StartDFManager } from "../../managers/dialog-flow/start.manager";
+
 
 
 export class StartIntents /*extends BaseIntent*/ {
@@ -23,38 +24,32 @@ export class StartIntents /*extends BaseIntent*/ {
         });
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
             const name = conv.user.name.given;
-            if (confirmationGranted) {
-                if (name) {
-                    conv.ask(Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', [name])]));
-                }
-            } else {
-                conv.ask(this.translateManager.translate('intent.product.get_permission.failure'));
-            }
+            const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
+            conv.ask(permissionSimpleResponse);
         });
 
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
-            conv.ask(this.translateManager.translate('intent.product.login'));
+            const loginResponse = StartDFManager.generateLoginSimpleResponse();
+            conv.ask(loginResponse);
             conv.ask(new SignIn());
         });
         app.intent('Get Signin', (conv, params, signin) => {
             const access = conv.user.access.token;  //possibly do something with access token
-            if (signin.status === 'OK') {
-                conv.ask(this.translateManager.translate('intent.product.get_signin.ok'));
-
-            } else {
-                conv.ask(this.translateManager.translate('intent.product.get_signin.failure'));
-            }
+            const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
+            conv.ask(signinSimpleResponse);
         });
 
         //CANCEL
         app.intent('Cancel', (conv) => {
-            conv.close(this.translateManager.translate('intent.product.cancel'));
+            const cancelSimpleResponse = StartDFManager.generateCancelSimpleResponse();
+            conv.close(cancelSimpleResponse);
         });
 
         //HELP
         app.intent('Ayuda', (conv) => {
-            conv.ask(this.translateManager.translate('intent.product.help'));
+            const helpSimpleResponse = StartDFManager.generateHelpSimpleResponse();
+            conv.ask(helpSimpleResponse);
             conv.ask(SuggestionDFManager.generateSuggestions());
         });
     }
