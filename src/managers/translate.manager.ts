@@ -1,9 +1,7 @@
-
-
 export class TranslateManager {
 
     private static instance: TranslateManager;
-    private _config: {lang, translations};
+    private _config: { lang, translations };
 
     constructor() {
     }
@@ -25,9 +23,8 @@ export class TranslateManager {
 
     public translate(key, params?) {
         let literal = this._config.translations[this._config.lang][key];
-        if (params){
-            console.log("PTGlen" + params.length);
-            for(let i=0; i<params.length; i++){
+        if (params) {
+            for (let i = 0; i < params.length; i++) {
                 literal = literal.replace(/\{{.*?\}}/, params[i]);
             }
         }
