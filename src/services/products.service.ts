@@ -16,4 +16,4 @@ export class ProductService extends RestManager {
             return jsonData;
         }
     }
-}
+} 
