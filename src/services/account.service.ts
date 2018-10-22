@@ -12,7 +12,9 @@ export class AccountService extends RestManager {
 
     public getAccount(last4) {
         return this.getAccounts().then(accounts=> {
-            const account: ProductModel = new ProductModel(AccountManager.getAccountByLast4(accounts, last4));            
+            // const account: ProductModel = new ProductModel(AccountManager.getAccountByLast4(accounts, last4));    
+            const account = AccountManager.getAccountByLast4(accounts, last4);            
+        
             return account;
         });
     }
