@@ -27,16 +27,16 @@ export class AccountRoutes {
 
         app.route('/accounts/movements')
             .get((req: Request, res: Response) => {
-                this.accountService.getMovementsAccounts().then(movements => {
-                    if (movements) {
-                        const movementsOfAccounts = AccountDFManager.generateMovementsTable(movements);
+                // this.accountService.getMovementsAccounts().then(movements => {
+                //     if (movements) {
+                //         const movementsOfAccounts = AccountDFManager.generateMovementsTable(movements);
 
-                        res.status(200).send(movementsOfAccounts);
+                //         res.status(200).send(movementsOfAccounts);
 
-                    } else {
-                        res.status(400).send('No se ha encontrado las tarjetas');
-                    }
-                })
+                //     } else {
+                //         res.status(400).send('No se ha encontrado la cuenta');
+                //     }
+                // })
             })
     }
     
