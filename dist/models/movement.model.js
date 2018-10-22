@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class AccountModel {
+class MovementModel {
     constructor(data) {
         this.fromJSON(data);
     }
@@ -66,5 +66,5 @@ class AccountModel {
         return {};
     }
 }
-exports.AccountModel = AccountModel;
+exports.MovementModel = MovementModel;
 //# sourceMappingURL=movement.model.js.map

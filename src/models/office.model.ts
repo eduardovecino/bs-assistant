@@ -1,39 +1,31 @@
 
-export class AccountModel {
+export class OfficeModel {
     constructor(data: any) {
         this.fromJSON(data);
     }
 
-    private _id: string;
-    get id(): string {
-        return this._id;
+    private _distToPoint: number;
+    get distToPoint(): number {
+        return this._distToPoint;
     }
-    set id(value: string) {
-        this._id = value;
+    set distToPoint(value: number) {
+        this._distToPoint = value;
     }
 
-    private _latitude: string;
-    get latitude(): string {
-        return this._latitude;
+    private _num: string;
+    get num(): string {
+        return this._num;
     }
     set latitude(value: string) {
-        this._latitude = value;
+        this._num = value;
     }
 
-    private _longitude: string;
-    get longitude(): string {
-        return this._longitude;
+    private _name: string;
+    get name(): string {
+        return this._name;
     }
-    set longitude(value: string) {
-        this._longitude = value;
-    }
-
-    private _type: string;
-    get type(): string {
-        return this._type;
-    }
-    set type(value: string) {
-        this._type = value;
+    set name(value: string) {
+        this._name = value;
     }
 
     private _address: string;
@@ -44,6 +36,14 @@ export class AccountModel {
         this._address = value;
     }
 
+    private _location: string;
+    get location(): string {
+        return this._location;
+    }
+    set location(value: string) {
+        this._location = value;
+    }
+
     private _postalCode: string;
     get postalCode(): string {
         return this._postalCode;
@@ -52,31 +52,84 @@ export class AccountModel {
         this._postalCode = value;
     }
 
-    private _city: string;
-    get city(): string {
-        return this._city;
+    private _director: string;
+    get director(): string {
+        return this._director;
     }
-    set city(value: string) {
-        this._city = value;
+    set director(value: string) {
+        this._director = value;
     }
 
-    private _phoneNumber: string;
-    get phoneNumber(): string {
-        return this._phoneNumber;
+    private _phone: string;
+    get phone(): string {
+        return this._phone;
     }
-    set phoneNumber(value: string) {
-        this._phoneNumber = value;
+    set phone(value: string) {
+        this._phone = value;
+    }
+
+    private _fax: string;
+    get fax(): string {
+        return this._fax;
+    }
+    set fax(value: string) {
+        this._fax = value;
+    }
+
+    private _type: number;
+    get type(): number {
+        return this._type;
+    }
+    set type(value: number) {
+        this._type = value;
+    }
+
+    private _point: {
+        lat: number,
+        lng: number,
+        description: number
+    };
+    get point() {
+        return this._point;
+    }
+    set point(value) {
+        this._point = value;
+    }
+
+    private _country: string;
+    get country(): string {
+        return this._country;
+    }
+    set country(value: string) {
+        this._country = value;
+    }
+
+    private _geoaddress: string;
+    get geoaddress(): string {
+        return this._geoaddress;
+    }
+    set geoaddress(value: string) {
+        this._geoaddress = value;
     }
 
     fromJSON(data: any) {
-        // this._numOrder = data.numOrden;
-        // this._operationDate = data.fechaOperacion;
-        // this._valueDate = data.fechaValor;
-        // this._amount = data.importe;
-        // this._currency = data.divisa;
-        // this._balance = data.saldo;
-        // this._concept = data.concepto;
-        // this._conceptCode = data.codigoConcepto;
+        this._distToPoint = data.distToPoint;
+        this._num = data.num;
+        this._name = data.name;
+        this._address = data.address;
+        this._location = data.location;
+        this._postalCode = data.postalCode;
+        this._director = data.director;
+        this._phone = data.phone;
+        this._fax = data.fax;
+        this._type = data.type;
+        this._point = data.point.map(detail => ({
+            lat: detail.lat,
+            lng: detail.lng,
+            description: detail.description
+        }));
+        this._country = data.country;
+        this._geoaddress = data.geoaddress;
     }
 
     toJSON() {
