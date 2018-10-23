@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const fs = require("fs");
 const rp = require("request-promise");
+const office_model_1 = require("../models/office.model");
 class InformationService extends rest_manager_1.RestManager {
     getNearbyOffices() {
         return new Promise((resolve, reject) => {
@@ -24,8 +25,10 @@ class InformationService extends rest_manager_1.RestManager {
             };
             rp(options)
                 .then(function (body) {
-                var data = body;
-                resolve(data.offices);
+                const results = body.offcies;
+                const offices = [];
+                results.forEach(result => offices.push(new office_model_1.OfficeModel(result)));
+                resolve(offices);
             })
                 .catch(function (err) {
                 reject(err.error);

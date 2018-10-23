@@ -2,6 +2,7 @@ import { RestManager } from "../managers/data/rest.manager";
 
 import * as fs from "fs";
 import * as rp from "request-promise";
+import { OfficeModel } from "../models/office.model";
 
 export class InformationService extends RestManager {
 
@@ -27,8 +28,10 @@ export class InformationService extends RestManager {
 
             rp(options)
                 .then(function (body) {
-                    var data = body;
-                    resolve(data.offices);
+                    const results: any = body.offcies;
+                    const offices: Array<OfficeModel> = [];
+                    results.forEach(result => offices.push(new OfficeModel(result)))
+                    resolve(offices);
                 })
                 .catch(function (err) {
                     reject(err.error);
