@@ -29,5 +29,9 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.account.movements.table.column.third': 'Importe',
     //INFORMATION
     'intent.information.simple_response_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}. ¿Cúal quieres seleccionar?`,
+    //CARDS
+    'intent.card.null_response': `No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
+    'intent.card.help': `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`,
+    'intent.card.simple_response_%number%_%cards%': `Tienes {{ number }} tarjetas. Terminadas en: {{ cards }} ¿Cúal deseas seleccionar?`,
 };
 //# sourceMappingURL=es-ES.js.map

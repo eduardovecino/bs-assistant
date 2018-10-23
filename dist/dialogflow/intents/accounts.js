@@ -88,12 +88,10 @@ class AccountIntents {
         }));
     }
     accountMovements(account, movements, conv) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-            const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
-            conv.ask(accountMovementsSimpleResponse);
-            conv.ask(accountMovementsTable);
-        });
+        const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+        const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+        conv.ask(accountMovementsSimpleResponse);
+        conv.ask(accountMovementsTable);
     }
     accountBalance(account, conv) {
         const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);

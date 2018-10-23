@@ -86,7 +86,7 @@ export class AccountIntents {
         })
     }
 
-    async accountMovements(account, movements, conv){
+    private accountMovements(account, movements, conv){
         const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
         const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
         conv.ask(accountMovementsSimpleResponse);

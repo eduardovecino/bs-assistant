@@ -11,7 +11,7 @@ class CardRoutes {
             .get((req, res) => {
             this.cardService.getCards().then(cards => {
                 if (cards) {
-                    const carouselOfCards = card_manager_1.CardDFManager.cardsCarousel(cards);
+                    const carouselOfCards = card_manager_1.CardDFManager.generateCardsCarousel(cards);
                     res.status(200).send(carouselOfCards);
                 }
                 else {

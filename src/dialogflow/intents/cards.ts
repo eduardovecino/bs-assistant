@@ -1,13 +1,16 @@
 import { CardService } from '../../services/card.service';
 import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
-import { FormatManager } from '../../managers/format.manager';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
-import { Ssml } from 'ssml-gib';
 import { TranslateManager } from "../../managers/translate.manager";
 
 
-export class CardIntents /*extends BaseIntent*/ {
+
+import { FormatManager } from '../../managers/format.manager';
+import { Ssml } from 'ssml-gib';
+
+
+export class CardIntents {
 
     private cardService: CardService = new CardService();
     public translateManager: TranslateManager = TranslateManager.getInstance();
@@ -15,7 +18,7 @@ export class CardIntents /*extends BaseIntent*/ {
 
     public intents(app): void {
 
-        const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
+        // const nullResponse = `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`;
         const suggestionResponse = `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`;
 
         const Contexts = {
@@ -24,22 +27,17 @@ export class CardIntents /*extends BaseIntent*/ {
         }
 
         //CARROUSEL DE TARJETAS
-        app.intent('Tarjetas', conv => {
-            this.cardService.getCards().then(cards => {
-                let response = "Tienes " + cards.length + " tarjetas. Terminadas en:";
-                conv.contexts.delete(Contexts.selected_account);
-
-                if (cards) {
-                    cards.forEach(card => {
-                        response = response + FormatManager.getLast4numbers(card.cuentaRelacionada) + ", ";
-                    })
-                    const carouselOfCards = CardDFManager.cardsCarousel(cards);
-                    conv.ask(response + "¿Cúal deseas seleccionar?");
-                    conv.ask(carouselOfCards);
-                } else {
-                    conv.ask(`No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`);
-                }
-            });
+        app.intent('Tarjetas', async (conv) => {
+            let cards = await this.cardService.getCards();
+            conv.contexts.delete(Contexts.selected_account);
+            if(cards) {
+                const cardsSimpleResponse = CardDFManager.generateCardsSimpleResponse(cards);
+                const cardsCarousel = CardDFManager.generateCardsCarousel(cards);
+                conv.ask(cardsSimpleResponse);
+                conv.ask(cardsCarousel);
+            } else {
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
+            }
         });
 
         // //TARJETA SELECCIONADA
@@ -74,7 +72,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     });
 
                 app.intent('ayuda - tarjetas', (conv) => {
-                    conv.ask(suggestionResponse);
+                    conv.ask(this.translateManager.translate('intent.card.help'));
                     conv.ask(SuggestionDFManager.generateCardSuggestions());
                     });  
             });
@@ -87,7 +85,7 @@ export class CardIntents /*extends BaseIntent*/ {
                 if (card) {
                     conv.ask(`Tu tarjeta con el número de contrato: ${card.contrato}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell`);
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(this.translateManager.translate('intent.account.null_response'));
                 }
              });
         });
@@ -97,10 +95,10 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask(`El saldo de tu tarjeta ${last4CardNumbers} es de ${card.saldoDisponible} €`);
-                    conv.ask(suggestionResponse);
+                    conv.ask(this.translateManager.translate('intent.card.help'));
                     conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(this.translateManager.translate('intent.account.null_response'));
                 }
             });
         });
@@ -110,10 +108,10 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask(`La fecha próxima de liquidación de tu tarjeta finalizada en ${last4CardNumbers} es ${card.fechaProxiLiquidacion}`);
-                    conv.ask(suggestionResponse);
+                    conv.ask(this.translateManager.translate('intent.card.help'));
                     conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(this.translateManager.translate('intent.account.null_response'));
                 }
             });
         });
@@ -123,10 +121,10 @@ export class CardIntents /*extends BaseIntent*/ {
             this.cardService.getCardByInputs(last4CardNumbers).then(card => {
                 if (card) {
                     conv.ask(`Los límites de tu tarjeta finalizada en ${last4CardNumbers} son, limite autorizado: ${card.limiteAutorizado} € y limite crédito: ${card.limiteCredito} €`);
-                    conv.ask(suggestionResponse);
+                    conv.ask(this.translateManager.translate('intent.card.help'));
                     conv.ask(SuggestionDFManager.generateSuggestions());
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(this.translateManager.translate('intent.account.null_response'));
                 }
             });
         });
@@ -139,7 +137,7 @@ export class CardIntents /*extends BaseIntent*/ {
                     conv.ask(`Aquí tienes los movimientos`);
                     conv.ask(movementsTable);
                 } else {
-                    conv.ask(nullResponse);
+                    conv.ask(this.translateManager.translate('intent.account.null_response'));
                 }
             });
     })

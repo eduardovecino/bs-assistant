@@ -17,7 +17,7 @@ export class CardRoutes {
             .get((req: Request, res: Response) => {
                 this.cardService.getCards().then(cards => {
                     if(cards){
-                        const carouselOfCards = CardDFManager.cardsCarousel(cards); 
+                        const carouselOfCards = CardDFManager.generateCardsCarousel(cards); 
 
                         res.status(200).send(carouselOfCards);
 
