@@ -51,7 +51,7 @@ export class AccountIntents {
                 }); 
                 
                 // MOVIMIENTOS CUENTA SELECCIONADA
-                app.intent('Movimientos cuenta - seleccionada', async (conv) => {
+                app.intent('Movimientos cuenta - seleccionada', (conv) => {
                     this.accountMovements(selectedAccount, conv);
                 });
 

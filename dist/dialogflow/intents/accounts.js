@@ -55,9 +55,9 @@ class AccountIntents {
                 this.accountBalance(selectedAccount, conv);
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
-            app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
+            app.intent('Movimientos cuenta - seleccionada', (conv) => {
                 this.accountMovements(selectedAccount, conv);
-            }));
+            });
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
                 conv.ask(this.translateManager.translate('intent.account.help'));
