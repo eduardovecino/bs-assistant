@@ -37,7 +37,7 @@
 
 import { Ssml } from "ssml-gib";
 
-export const ENGLISH_TRANSLATIONS = {
+export const SPANISH_TRANSLATIONS = {
     'intent.product.welcome.permission': ` para dirigirme a usted por su nombre y conocer su ubicación`,
     'intent.product.get_permission.answer_%name%': `Bienvenido a Banco Sabadell, ${Ssml.break({ s: 1 })} {{ name }}`,
     'intent.product.get_permission.failure': `¡No puedo leer tu mente ahora mismo! ¡Mis poderes místicos han fallado!`,
