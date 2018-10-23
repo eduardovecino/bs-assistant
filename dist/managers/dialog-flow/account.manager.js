@@ -21,23 +21,23 @@ class AccountDFManager {
             accounts.forEach((account) => {
                 const last4Numbers = format_manager_1.FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
-                    title: account.descripcion,
+                    title: account.description,
                     description: `ES••••••••••••••••${last4Numbers}`,
                     image: {
                         url: accountImage,
-                        accessibilityText: account.descripcion
+                        accessibilityText: account.description
                     }
                 };
             });
             return (new actions_on_google_1.List(tmp));
         }
         else {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].descripcion, accounts[0].balance]);
+            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance]);
         }
     }
     static generateSelectedAccountSimpleResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.selected_account_%account%', [account.descripcion]);
+            return this.translateManager.translate('intent.account.selected_account_%account%', [account.description]);
         }
         else {
             return this.translateManager.translate('intent.account.null_response');
@@ -45,7 +45,7 @@ class AccountDFManager {
     }
     static generateBalanceAccountResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.descripcion, account.balance]);
+            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance]);
         }
         else {
             return this.translateManager.translate('intent.account.null_response');
@@ -56,7 +56,7 @@ class AccountDFManager {
         let length = (movements.length > 3) ? 3 : movements.length + 1;
         if (movements) {
             for (let i = 0; i < length; i++) {
-                response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concepto, movements[i].importe]);
+                response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount]);
             }
             ;
             return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response]);
@@ -73,7 +73,7 @@ class AccountDFManager {
         };
         movements.forEach((movement) => {
             tmp.rows.push({
-                cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                cells: [movement.concept, movement.operationDate, movement.amount],
                 dividerAfter: true
             });
         });

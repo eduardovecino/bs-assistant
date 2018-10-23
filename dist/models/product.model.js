@@ -46,11 +46,11 @@ class ProductModel {
     set product(value) {
         this._product = value;
     }
-    get numberProduct() {
-        return this._numberProduct;
+    get productNumber() {
+        return this._productNumber;
     }
-    set numberProduct(value) {
-        this._numberProduct = value;
+    set productNumber(value) {
+        this._productNumber = value;
     }
     get numberCodificatedProduct() {
         return this._numberCodificatedProduct;
@@ -69,7 +69,7 @@ class ProductModel {
         this._iban = data.iban;
         this._balance = data.balance;
         this._product = data.product;
-        this._numberProduct = data.numeroProducto;
+        this._productNumber = data.numeroProducto;
         this._numberCodificatedProduct = data.numeroProductoCodificado;
     }
     toJSON() {

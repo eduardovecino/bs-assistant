@@ -60,7 +60,7 @@ class AccountIntents {
             // MOVIMIENTOS CUENTA SELECCIONADA
             app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
                 let movements;
-                movements = yield this.accountService.getMovementsAccounts(selectedAccount.numeroProducto);
+                movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
                 const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsSimpleResponse);
@@ -90,7 +90,7 @@ class AccountIntents {
             let account;
             account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                movements = yield this.accountService.getMovementsAccounts(account.numeroProducto);
+                movements = yield this.accountService.getMovementsAccounts(account.productNumber);
                 const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsSimpleResponse);

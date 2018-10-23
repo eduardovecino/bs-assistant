@@ -60,12 +60,12 @@ export class ProductModel {
         this._product = value;
     }
 
-    private _numberProduct: string;
-    get numberProduct(): string {
-        return this._numberProduct;
+    private _productNumber: string;
+    get productNumber(): string {
+        return this._productNumber;
     }
-    set numberProduct(value: string) {
-        this._numberProduct = value;
+    set productNumber(value: string) {
+        this._productNumber = value;
     }
 
     private _numberCodificatedProduct: string;
@@ -88,7 +88,7 @@ export class ProductModel {
         this._iban = data.iban;
         this._balance = data.balance;
         this._product = data.product;
-        this._numberProduct = data.numeroProducto;
+        this._productNumber = data.numeroProducto;
         this._numberCodificatedProduct = data.numeroProductoCodificado;
 
     }
