@@ -51,8 +51,9 @@ export class AccountIntents {
                 }); 
                 
                 // MOVIMIENTOS CUENTA SELECCIONADA
-                app.intent('Movimientos cuenta - seleccionada', (conv) => {
-                    this.accountMovements(selectedAccount, conv);
+                app.intent('Movimientos cuenta - seleccionada', async (conv) => {
+                    let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                    this.accountMovements(selectedAccount, movements, conv);
                 });
 
                 // AYUDA CUENTAS
@@ -75,16 +76,17 @@ export class AccountIntents {
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers);
+            let movements = await this.accountService.getMovementsAccounts(account.productNumber);
+
             if(account) {
-                this.accountMovements(account, conv);
+                this.accountMovements(account, movements, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         })
     }
 
-    async accountMovements(account, conv){
-        const movements = await this.accountService.getMovementsAccounts(account.productNumber);
+    async accountMovements(account, movements, conv){
         const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
         const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
         conv.ask(accountMovementsSimpleResponse);

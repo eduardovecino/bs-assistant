@@ -55,9 +55,10 @@ class AccountIntents {
                 this.accountBalance(selectedAccount, conv);
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
-            app.intent('Movimientos cuenta - seleccionada', (conv) => {
-                this.accountMovements(selectedAccount, conv);
-            });
+            app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
+                let movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                this.accountMovements(selectedAccount, movements, conv);
+            }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
                 conv.ask(this.translateManager.translate('intent.account.help'));
@@ -77,17 +78,17 @@ class AccountIntents {
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account = yield this.accountService.getAccount(last4numbers);
+            let movements = yield this.accountService.getMovementsAccounts(account.productNumber);
             if (account) {
-                this.accountMovements(account, conv);
+                this.accountMovements(account, movements, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         }));
     }
-    accountMovements(account, conv) {
+    accountMovements(account, movements, conv) {
         return __awaiter(this, void 0, void 0, function* () {
-            const movements = yield this.accountService.getMovementsAccounts(account.productNumber);
             const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
             const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
             conv.ask(accountMovementsSimpleResponse);
