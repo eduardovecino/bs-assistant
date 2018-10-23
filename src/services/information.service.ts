@@ -28,7 +28,7 @@ export class InformationService extends RestManager {
 
             rp(options)
                 .then(function (body) {
-                    const results: any = body.offcies;
+                    const results: any = body.offices;
                     console.log("RESULTS: ", results);
                     const offices: Array<OfficeModel> = [];
                     results.forEach(result => offices.push(new OfficeModel(result)));
