@@ -10,21 +10,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
 const account_manager_1 = require("../managers/data/account.manager");
-const product_model_1 = require("../models/product.model");
+const account_model_1 = require("../models/account.model");
 const movement_model_1 = require("../models/movement.model");
 class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return __awaiter(this, void 0, void 0, function* () {
-            const results = yield this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+            const results = yield this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista', 'mock/accounts/get-accounts.json');
             const accounts = [];
-            results.forEach(result => accounts.push(new product_model_1.ProductModel(result)));
+            results.forEach(result => accounts.push(new account_model_1.AccountModel(result)));
             return accounts;
         });
     }
     getAccount(last4) {
         return __awaiter(this, void 0, void 0, function* () {
             const accounts = yield this.getAccounts();
-            const account = new product_model_1.ProductModel(account_manager_1.AccountManager.getAccountByLast4(accounts, last4));
+            const account = new account_model_1.AccountModel(account_manager_1.AccountManager.getAccountByLast4(accounts, last4));
             return account;
         });
     }

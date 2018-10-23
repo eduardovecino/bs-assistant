@@ -26,9 +26,7 @@ class InformationService extends rest_manager_1.RestManager {
                 .then(function (body) {
                 const results = body.offices;
                 const offices = [];
-                console.log("RESULTS: ", results);
                 results.forEach(result => offices.push(result));
-                console.log("OFFICES: ", offices);
                 resolve(offices);
             })
                 .catch(function (err) {

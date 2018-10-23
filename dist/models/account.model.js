@@ -10,12 +10,6 @@ class AccountModel {
     set owner(value) {
         this._owner = value;
     }
-    get available() {
-        return this._available;
-    }
-    set available(value) {
-        this._available = value;
-    }
     get description() {
         return this._description;
     }
@@ -46,11 +40,11 @@ class AccountModel {
     set product(value) {
         this._product = value;
     }
-    get numberProduct() {
-        return this._numberProduct;
+    get productNumber() {
+        return this._productNumber;
     }
-    set numberProduct(value) {
-        this._numberProduct = value;
+    set productNumber(value) {
+        this._productNumber = value;
     }
     get numberCodificatedProduct() {
         return this._numberCodificatedProduct;
@@ -58,19 +52,25 @@ class AccountModel {
     set numberCodificatedProduct(value) {
         this._numberCodificatedProduct = value;
     }
+    get currency() {
+        return this._currency;
+    }
+    set currency(value) {
+        this._currency = value;
+    }
     get formattedIban() {
         return `****${this.iban}`;
     }
     fromJSON(data) {
         this._owner = data.propietario;
-        this._available = data.disponibilidad;
         this._description = data.descripcion;
         this._user = data.usuario;
         this._iban = data.iban;
         this._balance = data.balance;
-        this._product = data.product;
-        this._numberProduct = data.numeroProducto;
+        this._product = data.producto;
+        this._productNumber = data.numeroProducto;
         this._numberCodificatedProduct = data.numeroProductoCodificado;
+        this._currency = data.currency;
     }
     toJSON() {
         return {};

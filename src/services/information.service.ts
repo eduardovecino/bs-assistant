@@ -30,9 +30,7 @@ export class InformationService extends RestManager {
                 .then(function (body) {
                     const results: any = body.offices;
                     const offices: Array<OfficeModel> = [];
-                    console.log("RESULTS: ", results);
                     results.forEach(result => offices.push(result));
-                    console.log("OFFICES: ", offices);
                     resolve(offices);
                 })
                 .catch(function (err) {

@@ -21,6 +21,17 @@
             "numeroProducto": "00810000000000000000",
             "numeroProductoCodificado": "00810000000000000000",
             "currency": "EUR"
+        },
+        {
+            "propietario": "&RNOMBRE &DPRIAPE I &. &MPRIAPE",
+            "descripcion": "TARJETA DEBITO",
+            "usuario": "00000001R ",
+            "iban": "ES00810000000000000001",
+            "balance": "1.834,32",
+            "producto": "TC",
+            "numeroProducto": "00810000000000000000",
+            "numeroProductoCodificado": "00810000000000000000",
+            "currency": "EUR"
         }
     ],
     "head": {

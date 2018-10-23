@@ -1,22 +1,22 @@
 import { RestManager } from "../managers/data/rest.manager";
 import { AccountManager } from "../managers/data/account.manager";
 
-import { ProductModel } from "../models/product.model";
+import { AccountModel } from "../models/account.model";
 import { MovementModel } from "../models/movement.model";
 
 
 export class AccountService extends RestManager {
 
     async getAccounts() {
-        const results: any = await this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
-        const accounts: Array<ProductModel> = [];
-        results.forEach(result => accounts.push(new ProductModel(result)));
+        const results: any = await this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista', 'mock/accounts/get-accounts.json');
+        const accounts: Array<AccountModel> = [];
+        results.forEach(result => accounts.push(new AccountModel(result)));
         return accounts;        
     }
 
     async getAccount(last4) {
         const accounts = await this.getAccounts();
-        const account: ProductModel = new ProductModel(AccountManager.getAccountByLast4(accounts, last4));
+        const account: AccountModel = new AccountModel(AccountManager.getAccountByLast4(accounts, last4));
         return account;
     }
 
