@@ -83,7 +83,7 @@ export class AccountIntents {
         })
     }
 
-    private async accountMovements(account, conv){
+    async accountMovements(account, conv){
         const movements = await this.accountService.getMovementsAccounts(account.productNumber);
         const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
         const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
