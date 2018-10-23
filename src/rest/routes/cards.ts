@@ -30,9 +30,9 @@ export class CardRoutes {
 
             app.route('/cards/:last4/movements')
             .get((req: Request, res: Response) => {
-                this.cardService.getCardByInputs(req.params.last4).then(card => {
+                this.cardService.getCard(req.params.last4).then(card => {
                     if (card) {
-                        const movementsTable = CardDFManager.generateMovementsTable(card);
+                        const movementsTable = CardDFManager.generateMovementsCardTable(card);
 
                         res.status(200).send(movementsTable);
                     } else {

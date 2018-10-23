@@ -11,7 +11,7 @@ class CardService extends rest_manager_1.RestManager {
             resolve(jsonData.data);
         });
     }
-    getCardByInputs(last4) {
+    getCard(last4) {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());

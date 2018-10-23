@@ -13,7 +13,7 @@ export class CardService extends RestManager {
         });      
     }
 
-    public getCardByInputs(last4): Promise<any> {
+    public getCard(last4): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());

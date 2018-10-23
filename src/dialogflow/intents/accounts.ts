@@ -35,32 +35,32 @@ export class AccountIntents {
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', async (conv, input, option) => {
             let accounts = await this.accountService.getAccounts();
-                const selectedAccount = AccountManager.getAccountByOption(accounts, option);
-                conv.contexts.set(Contexts.selected_account, 5)
-                if (selectedAccount) {
-                    const response = AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
-                    conv.ask( response + this.translateManager.translate('intent.account.help'));
-                    conv.ask(SuggestionDFManager.generateAccountSuggestions());
-                } else {
-                    conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
-                }
+            const selectedAccount = AccountManager.getAccountByOption(accounts, option);
+            conv.contexts.set(Contexts.selected_account, 5)
+            if (selectedAccount) {
+                const response = AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
+                conv.ask( response + this.translateManager.translate('intent.account.help'));
+                conv.ask(SuggestionDFManager.generateAccountSuggestions());
+            } else {
+                conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
+            }
 
-                // SALDO CUENTA SELECCIONADA
-                app.intent('Saldo cuenta - seleccionada', (conv) => {
-                    this.accountBalance(selectedAccount, conv);
-                }); 
-                
-                // MOVIMIENTOS CUENTA SELECCIONADA
-                app.intent('Movimientos cuenta - seleccionada', async (conv) => {
-                    let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
-                    this.accountMovements(selectedAccount, movements, conv);
-                });
+            // SALDO CUENTA SELECCIONADA
+            app.intent('Saldo cuenta - seleccionada', (conv) => {
+                this.accountBalance(selectedAccount, conv);
+            }); 
+            
+            // MOVIMIENTOS CUENTA SELECCIONADA
+            app.intent('Movimientos cuenta - seleccionada', async (conv) => {
+                let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                this.accountMovements(movements, conv);
+            });
 
-                // AYUDA CUENTAS
-                app.intent('ayuda - cuentas', (conv) => {
-                    conv.ask(this.translateManager.translate('intent.account.help'));
-                    conv.ask(SuggestionDFManager.generateAccountSuggestions());
-                });
+            // AYUDA CUENTAS
+            app.intent('ayuda - cuentas', (conv) => {
+                conv.ask(this.translateManager.translate('intent.account.help'));
+                conv.ask(SuggestionDFManager.generateAccountSuggestions());
+            });
         })
         
         // SALDO CUENTA
@@ -77,16 +77,15 @@ export class AccountIntents {
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers);
             let movements = await this.accountService.getMovementsAccounts(account.productNumber);
-
             if(account) {
-                this.accountMovements(account, movements, conv);
+                this.accountMovements(movements, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         })
     }
 
-    private accountMovements(account, movements, conv){
+    private accountMovements(movements, conv){
         const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
         const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
         conv.ask(accountMovementsSimpleResponse);
