@@ -87,7 +87,7 @@ export class ProductModel {
         this._user = data.usuario;
         this._iban = data.iban;
         this._balance = data.balance;
-        this._product = data.product;
+        this._product = data.producto;
         this._productNumber = data.numeroProducto;
         this._numberCodificatedProduct = data.numeroProductoCodificado;
 

@@ -20,8 +20,7 @@ export class AccountIntents {
 
         //LISTA CUENTAS
         app.intent('Cuentas', async (conv) => {
-            let accounts;
-            accounts = await this.accountService.getAccounts();
+            let accounts = await this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
@@ -55,8 +54,7 @@ export class AccountIntents {
                 
                 // MOVIMIENTOS CUENTA SELECCIONADA
                 app.intent('Movimientos cuenta - seleccionada', async (conv) => {
-                    let movements;
-                    movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                    let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
                     const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                     const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
                     conv.ask(accountMovementsSimpleResponse);
@@ -72,8 +70,7 @@ export class AccountIntents {
         
         // SALDO CUENTA
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
-            let account;
-            account = await this.accountService.getAccount(last4numbers);
+            let account = await this.accountService.getAccount(last4numbers);
             if (account){
                 const response = AccountDFManager.generateBalanceAccountResponse(account);
                 conv.ask(response);
@@ -84,11 +81,9 @@ export class AccountIntents {
         
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
-            let movements;
-            let account;
-            account = await this.accountService.getAccount(last4numbers);
+            let account = await this.accountService.getAccount(last4numbers);
             if(account) {
-                movements = await this.accountService.getMovementsAccounts(account.productNumber);
+                let movements = await this.accountService.getMovementsAccounts(account.productNumber);
                 const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                 const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsSimpleResponse);

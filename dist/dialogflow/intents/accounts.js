@@ -25,8 +25,7 @@ class AccountIntents {
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            let accounts;
-            accounts = yield this.accountService.getAccounts();
+            let accounts = yield this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 const accountsSimpleResponse = account_manager_2.AccountDFManager.generateAccountsSimpleResponse(accounts);
@@ -59,8 +58,7 @@ class AccountIntents {
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
             app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
-                let movements;
-                movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                let movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
                 const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsSimpleResponse);
@@ -74,8 +72,7 @@ class AccountIntents {
         }));
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
-            let account;
-            account = yield this.accountService.getAccount(last4numbers);
+            let account = yield this.accountService.getAccount(last4numbers);
             if (account) {
                 const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);
                 conv.ask(response);
@@ -86,11 +83,9 @@ class AccountIntents {
         }));
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
-            let movements;
-            let account;
-            account = yield this.accountService.getAccount(last4numbers);
+            let account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                movements = yield this.accountService.getMovementsAccounts(account.productNumber);
+                let movements = yield this.accountService.getMovementsAccounts(account.productNumber);
                 const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsSimpleResponse);
