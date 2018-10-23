@@ -39,8 +39,7 @@ class AccountIntents {
         }));
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
-            let accounts;
-            accounts = yield this.accountService.getAccounts();
+            let accounts = yield this.accountService.getAccounts();
             const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
@@ -53,16 +52,11 @@ class AccountIntents {
             }
             // SALDO CUENTA SELECCIONADA
             app.intent('Saldo cuenta - seleccionada', (conv) => {
-                const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(selectedAccount);
-                conv.ask(response);
+                this.accountBalance(selectedAccount, conv);
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
             app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
-                let movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
-                const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-                const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
-                conv.ask(accountMovementsSimpleResponse);
-                conv.ask(accountMovementsTable);
+                this.accountMovements(selectedAccount, conv);
             }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
@@ -74,8 +68,7 @@ class AccountIntents {
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);
-                conv.ask(response);
+                this.accountBalance(account, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
@@ -85,16 +78,25 @@ class AccountIntents {
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                let movements = yield this.accountService.getMovementsAccounts(account.productNumber);
-                const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-                const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
-                conv.ask(accountMovementsSimpleResponse);
-                conv.ask(accountMovementsTable);
+                this.accountMovements(account, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         }));
+    }
+    accountMovements(account, conv) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const movements = yield this.accountService.getMovementsAccounts(account.productNumber);
+            const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+            const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+            conv.ask(accountMovementsSimpleResponse);
+            conv.ask(accountMovementsTable);
+        });
+    }
+    accountBalance(account, conv) {
+        const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);
+        conv.ask(response);
     }
 }
 exports.AccountIntents = AccountIntents;

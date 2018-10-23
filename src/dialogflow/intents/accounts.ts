@@ -34,8 +34,7 @@ export class AccountIntents {
 
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', async (conv, input, option) => {
-            let accounts;
-            accounts = await this.accountService.getAccounts();
+            let accounts = await this.accountService.getAccounts();
                 const selectedAccount = AccountManager.getAccountByOption(accounts, option);
                 conv.contexts.set(Contexts.selected_account, 5)
                 if (selectedAccount) {
@@ -48,17 +47,12 @@ export class AccountIntents {
 
                 // SALDO CUENTA SELECCIONADA
                 app.intent('Saldo cuenta - seleccionada', (conv) => {
-                    const response = AccountDFManager.generateBalanceAccountResponse(selectedAccount);
-                    conv.ask(response);
+                    this.accountBalance(selectedAccount, conv);
                 }); 
                 
                 // MOVIMIENTOS CUENTA SELECCIONADA
                 app.intent('Movimientos cuenta - seleccionada', async (conv) => {
-                    let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
-                    const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-                    const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
-                    conv.ask(accountMovementsSimpleResponse);
-                    conv.ask(accountMovementsTable);
+                    this.accountMovements(selectedAccount, conv);
                 });
 
                 // AYUDA CUENTAS
@@ -72,8 +66,7 @@ export class AccountIntents {
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers);
             if (account){
-                const response = AccountDFManager.generateBalanceAccountResponse(account);
-                conv.ask(response);
+                this.accountBalance(account, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -83,14 +76,23 @@ export class AccountIntents {
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers);
             if(account) {
-                let movements = await this.accountService.getMovementsAccounts(account.productNumber);
-                const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-                const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
-                conv.ask(accountMovementsSimpleResponse);
-                conv.ask(accountMovementsTable);
+                this.accountMovements(account, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         })
+    }
+
+    private async accountMovements(account, conv){
+        const movements = await this.accountService.getMovementsAccounts(account.productNumber);
+        const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+        const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+        conv.ask(accountMovementsSimpleResponse);
+        conv.ask(accountMovementsTable);
+    }
+
+    private accountBalance(account, conv) {
+        const response = AccountDFManager.generateBalanceAccountResponse(account);
+        conv.ask(response);
     }
 }
