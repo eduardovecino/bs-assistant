@@ -12,14 +12,6 @@ export class ProductModel {
         this._owner = value;
     }
 
-    private _available: string;
-    get available(): string {
-        return this._available;
-    }
-    set available(value: string) {
-        this._available = value;
-    }
-
     private _description: string;
     get description(): string {
         return this._description;
@@ -76,13 +68,20 @@ export class ProductModel {
         this._numberCodificatedProduct = value;
     }
 
+    private _currency: string;
+    get currency(): string {
+        return this._currency;
+    }
+    set currency(value: string) {
+        this._currency = value;
+    }
+
     get formattedIban(): string {
         return `****${this.iban}`;
     }
 
     fromJSON(data: any) {
         this._owner = data.propietario;
-        this._available = data.disponibilidad;
         this._description = data.descripcion;
         this._user = data.usuario;
         this._iban = data.iban;
@@ -90,7 +89,7 @@ export class ProductModel {
         this._product = data.producto;
         this._productNumber = data.numeroProducto;
         this._numberCodificatedProduct = data.numeroProductoCodificado;
-
+        this._currency = data.currency;
     }
 
     toJSON() {

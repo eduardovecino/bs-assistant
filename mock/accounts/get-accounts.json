@@ -2,25 +2,25 @@
     "data": [
         {
             "propietario": "&UPJURID - &LPJURID",
-            "disponibilidad": null,
             "descripcion": "CUENTA CORRIENTE",
             "usuario": "00000001R",
             "iban": "ES00817065420001205528",
             "balance": "123.915,06",
             "producto": "CC",
             "numeroProducto": "00817065420001205528",
-            "numeroProductoCodificado": "00817065420001205528"
+            "numeroProductoCodificado": "00817065420001205528",
+            "currency": "EUR"
         },
         {
             "propietario": "&RNOMBRE &DPRIAPE I &. &MPRIAPE",
-            "disponibilidad": null,
             "descripcion": "CUENTA EXPANSIÓN",
             "usuario": "00000001R ",
             "iban": "ES00810052020005540059",
             "balance": "27.912,74",
             "producto": "CC",
             "numeroProducto": "00810052020005540059",
-            "numeroProductoCodificado": "00810052020005540059"
+            "numeroProductoCodificado": "00810052020005540059",
+            "currency": "EUR"
         }
     ],
     "head": {
