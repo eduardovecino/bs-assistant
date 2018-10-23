@@ -8,8 +8,10 @@ export class AccountService extends RestManager {
 
     async getAccounts() {
         const results: any = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+        console.log("RESULTS: ", results);
         const accounts: Array<ProductModel> = [];
         results.forEach(result => accounts.push(new ProductModel(result)));
+        console.log("ACCOUNTS: ", accounts);
         return accounts;        
     }
 

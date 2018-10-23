@@ -15,8 +15,10 @@ class AccountService extends rest_manager_1.RestManager {
     getAccounts() {
         return __awaiter(this, void 0, void 0, function* () {
             const results = this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
+            console.log("RESULTS: ", results);
             const accounts = [];
             results.forEach(result => accounts.push(new product_model_1.ProductModel(result)));
+            console.log("ACCOUNTS: ", accounts);
             return accounts;
         });
     }
