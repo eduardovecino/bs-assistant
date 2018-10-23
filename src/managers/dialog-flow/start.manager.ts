@@ -10,33 +10,33 @@ export class StartDFManager {
     public static generatePermissionSimpleResponse(confirmationGranted, name) {
         if (confirmationGranted) {
             if (name) {
-                return (Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.product.get_permission.answer_%name%', [name])]));
+                return (Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.answer_%name%', [name])]));
             }
         } else {
-            return this.translateManager.translate('intent.product.get_permission.failure');
+            return this.translateManager.translate('intent.start.get_permission.failure');
         }
         
     }
 
     public static generateLoginSimpleResponse() {
-        return this.translateManager.translate('intent.product.login');
+        return this.translateManager.translate('intent.start.login');
     }
 
     public static generateSigninSimpleResponse(signin) {
         if (signin.status === 'OK') {
-            return this.translateManager.translate('intent.product.get_signin.ok');
+            return this.translateManager.translate('intent.start.get_signin.ok');
 
         } else {
-            return this.translateManager.translate('intent.product.get_signin.failure');
+            return this.translateManager.translate('intent.start.get_signin.failure');
         }
     }
 
     public static generateCancelSimpleResponse() {
-        return this.translateManager.translate('intent.product.cancel');
+        return this.translateManager.translate('intent.start.cancel');
     }
 
     public static generateHelpSimpleResponse() {
-        return this.translateManager.translate('intent.product.help');
+        return this.translateManager.translate('intent.start.help');
     }
     
 }

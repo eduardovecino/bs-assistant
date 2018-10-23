@@ -12,7 +12,7 @@ class StartIntents /*extends BaseIntent*/ {
         //PERMISSIONS
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
-                context: this.translateManager.translate('intent.product.welcome.permission'),
+                context: this.translateManager.translate('intent.start.welcome.permission'),
                 permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
             }));
         });
