@@ -27,10 +27,10 @@ export class InformationService extends RestManager {
             };
 
             rp(options)
-                .then(function (body) {
-                    const results: any = body.offices;
-                    console.log("RESULTS: ", results);
+                .then(async function (body) {
+                    const results: any = await body.offices;
                     const offices: Array<OfficeModel> = [];
+                    console.log("RESULTS: ", results);
                     results.forEach(result => offices.push(new OfficeModel(result)));
                     console.log("OFFICES: ", offices);
                     resolve(offices);
