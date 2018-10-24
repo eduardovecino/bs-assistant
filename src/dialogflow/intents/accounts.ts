@@ -86,22 +86,31 @@ export class AccountIntents {
     }
 
     private accountMovements(movements, conv){
-        console.log("ENTRO 0", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
-
-        if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
-            console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
-            if (movements.length > 1) {
-                const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
-                conv.ask(accountMovementsTable);
-            } else {
-                const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-                conv.ask(accountMovementsSimpleResponse);
-            }
-        } else {
-            console.log("ENTRO NO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
-            const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-            conv.ask(accountMovementsSimpleResponse);
+        const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+        conv.ask(accountMovementsSimpleResponse);
+        if (movements.length > 1) {
+            const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+            conv.ask(accountMovementsTable);
         }
+
+
+
+        // console.log("ENTRO 0", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+
+        // if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+        //     console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+        //     if (movements.length > 1) {
+        //         const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+        //         conv.ask(accountMovementsTable);
+        //     } else {
+        //         const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+        //         conv.ask(accountMovementsSimpleResponse);
+        //     }
+        // } else {
+        //     console.log("ENTRO NO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+        //     const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+        //     conv.ask(accountMovementsSimpleResponse);
+        // }
     }
 
     private accountBalance(account, conv) {
