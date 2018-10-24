@@ -74,7 +74,7 @@ export class CardDFManager {
 
     public static generateLimitsCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%_%authorized_limit%_%credit_limit%', [card.relatedAccount, card.authorizedLimit, card.creditLimit]);
+            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.relatedAccount, card.authorizedLimit, card.creditLimit]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }

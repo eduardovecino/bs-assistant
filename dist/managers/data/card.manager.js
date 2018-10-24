@@ -11,7 +11,6 @@ class CardManager {
             for (let i = 0; i < cards.length; i++) {
                 const card4Numbers = cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 4) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 3) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 2) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 1);
                 if (parseInt(last4) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
-                    console.log("RETURN0", cards[i]);
                     return cards[i];
                 }
             }
