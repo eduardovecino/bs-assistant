@@ -11,7 +11,8 @@ class SuggestionDFManager {
             return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.LOGGED_SUGGESTIONS));
         }
         else {
-            return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
+            //TODO NOT LOGGED SUGGESTIONS
+            return (new actions_on_google_1.Suggestions(suggestions_1.SUGGESTIONS.LOGGED_SUGGESTIONS));
         }
     }
     static generateCardSuggestions() {

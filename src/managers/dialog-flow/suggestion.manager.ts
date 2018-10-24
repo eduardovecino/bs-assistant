@@ -14,7 +14,8 @@ export class SuggestionDFManager {
         if (TOKEN.TOKEN_MOCK) {
             return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
         } else {
-            return (new Suggestions(SUGGESTIONS.NOT_LOGGED_SUGGESTIONS));
+            //TODO NOT LOGGED SUGGESTIONS
+            return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
         }
     }
 

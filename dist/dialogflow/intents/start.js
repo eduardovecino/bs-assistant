@@ -20,6 +20,7 @@ class StartIntents /*extends BaseIntent*/ {
             const name = conv.user.name.given;
             const permissionSimpleResponse = start_manager_1.StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
             conv.ask(permissionSimpleResponse);
+            conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {

@@ -25,6 +25,7 @@ export class StartIntents /*extends BaseIntent*/ {
             const name = conv.user.name.given;
             const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
             conv.ask(permissionSimpleResponse);
+            conv.ask(SuggestionDFManager.generateSuggestions());
         });
 
         //INICIAR SESIÓN
