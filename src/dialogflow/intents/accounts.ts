@@ -23,10 +23,13 @@ export class AccountIntents {
             let accounts = await this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
-                const accountsList = AccountDFManager.generateAccountsList(accounts);
-                conv.ask(accountsSimpleResponse);
-                conv.ask(accountsList);
+                if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(accountsList);
+                } else {
+                    const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
+                    conv.ask(accountsSimpleResponse);
+                }
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
