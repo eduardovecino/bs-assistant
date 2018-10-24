@@ -45,7 +45,7 @@ class AccountIntents {
             if (selectedAccount) {
                 const response = account_manager_2.AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
                 conv.ask(response);
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
+                this.accountSuggestion(conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
@@ -61,8 +61,7 @@ class AccountIntents {
             }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
-                conv.ask(this.translateManager.translate('intent.account.help'));
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
+                this.accountSuggestion(conv);
             });
         }));
         // SALDO CUENTA
@@ -98,6 +97,10 @@ class AccountIntents {
     accountBalance(account, conv) {
         const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);
         conv.ask(response);
+    }
+    accountSuggestion(conv) {
+        conv.ask(this.translateManager.translate('intent.account.help'));
+        conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
     }
 }
 exports.AccountIntents = AccountIntents;
