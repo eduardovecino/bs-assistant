@@ -77,7 +77,7 @@ class CardDFManager {
     }
     static generateMovementsCardSimpleResponse(movements) {
         let response = ' ';
-        let length = (movements.length > 3) ? 3 : movements.length + 1;
+        let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
             console.log("ENTROOOO");
             for (let i = 0; i < length; i++) {
