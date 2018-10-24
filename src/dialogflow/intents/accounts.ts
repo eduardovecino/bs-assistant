@@ -23,13 +23,10 @@ export class AccountIntents {
             let accounts = await this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
-                    const accountsList = AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(accountsList);
-                } else {
-                    const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
-                    conv.ask(accountsSimpleResponse);
-                }
+                const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
+                const accountsList = AccountDFManager.generateAccountsList(accounts);
+                conv.ask(accountsSimpleResponse);
+                conv.ask(accountsList);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -89,11 +86,17 @@ export class AccountIntents {
     }
 
     private accountMovements(movements, conv){
-        const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-        conv.ask(accountMovementsSimpleResponse);
-        if (movements.length > 1) {
-            const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
-            conv.ask(accountMovementsTable);
+        if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+            if (movements.length > 1) {
+                const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask(accountMovementsTable);
+            } else {
+                const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                conv.ask(accountMovementsSimpleResponse);
+            }
+        } else {
+            const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+            conv.ask(accountMovementsSimpleResponse);
         }
     }
 

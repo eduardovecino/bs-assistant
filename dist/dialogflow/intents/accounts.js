@@ -28,14 +28,10 @@ class AccountIntents {
             let accounts = yield this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
-                    const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                    conv.ask(accountsList);
-                }
-                else {
-                    const accountsSimpleResponse = account_manager_2.AccountDFManager.generateAccountsSimpleResponse(accounts);
-                    conv.ask(accountsSimpleResponse);
-                }
+                const accountsSimpleResponse = account_manager_2.AccountDFManager.generateAccountsSimpleResponse(accounts);
+                const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
+                conv.ask(accountsSimpleResponse);
+                conv.ask(accountsList);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
@@ -92,11 +88,19 @@ class AccountIntents {
         }));
     }
     accountMovements(movements, conv) {
-        const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-        conv.ask(accountMovementsSimpleResponse);
-        if (movements.length > 1) {
-            const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
-            conv.ask(accountMovementsTable);
+        if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+            if (movements.length > 1) {
+                const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask(accountMovementsTable);
+            }
+            else {
+                const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+                conv.ask(accountMovementsSimpleResponse);
+            }
+        }
+        else {
+            const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
+            conv.ask(accountMovementsSimpleResponse);
         }
     }
     accountBalance(account, conv) {
