@@ -8,9 +8,9 @@ export class CardService extends RestManager {
     public getCards(): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
-            const jsonData = JSON.parse(data.toString());
+            // const jsonData = JSON.parse(data.toString());
             const cards: Array<CardModel> = [];
-            jsonData.forEach(card => cards.push(new CardModel(card)));
+            data.forEach(card => cards.push(new CardModel(card)));
             console.log("CARDS", cards);
             resolve(cards);
         });
