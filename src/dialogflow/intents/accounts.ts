@@ -101,7 +101,7 @@ export class AccountIntents {
             console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT'));
             if (movements.length > 1) {
                 const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
-                // conv.ask("SIIIIIIIII");
+                conv.ask("SIIIIIIIII");
                 conv.ask(accountMovementsTable);
             } else {
                 const accountMovementsSimpleResponse = AccountDFManager.generateMovementsAccountSimpleResponse(movements);
