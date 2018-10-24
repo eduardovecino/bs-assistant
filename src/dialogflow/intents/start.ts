@@ -4,7 +4,6 @@ import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manag
 import { StartDFManager } from "../../managers/dialog-flow/start.manager";
 
 
-
 export class StartIntents /*extends BaseIntent*/ {
 
     public translateManager: TranslateManager = TranslateManager.getInstance();
@@ -22,6 +21,7 @@ export class StartIntents /*extends BaseIntent*/ {
             }));
         });
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
+            console.log("AQUIIIII", JSON.parse(conv.toString()));
             const name = conv.user.name.given;
             const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
             conv.ask(permissionSimpleResponse);
