@@ -88,6 +88,7 @@ class AccountIntents {
         }));
     }
     accountMovements(movements, conv) {
+        console.log("ENTRO 0", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
         if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
             console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
             if (movements.length > 1) {
