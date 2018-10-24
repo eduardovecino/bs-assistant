@@ -163,7 +163,7 @@ export class CardModel {
         this._currentMonthDetail = value;
     }
 
-    get last4numbers(): string {
+    get last4Numbers(): string {
         return FormatManager.getLast4numbers(this.relatedAccount);
     }
 

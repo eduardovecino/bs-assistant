@@ -59,7 +59,7 @@ class AccountModel {
     set currency(value) {
         this._currency = value;
     }
-    get last4numbers() {
+    get last4Numbers() {
         return format_manager_1.FormatManager.getLast4numbers(this.iban);
     }
     fromJSON(data) {

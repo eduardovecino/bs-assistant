@@ -77,7 +77,7 @@ export class AccountModel {
         this._currency = value;
     }
 
-    get last4numbers(): string {
+    get last4Numbers(): string {
         return FormatManager.getLast4numbers(this.iban);
     }
 

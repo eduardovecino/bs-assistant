@@ -119,7 +119,7 @@ class CardModel {
     set currentMonthDetail(value) {
         this._currentMonthDetail = value;
     }
-    get last4numbers() {
+    get last4Numbers() {
         return format_manager_1.FormatManager.getLast4numbers(this.relatedAccount);
     }
     fromJSON(data) {
