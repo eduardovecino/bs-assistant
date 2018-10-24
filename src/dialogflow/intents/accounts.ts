@@ -39,7 +39,7 @@ export class AccountIntents {
             conv.contexts.set(Contexts.selected_account, 5)
             if (selectedAccount) {
                 const response = AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
-                // conv.ask(response + this.translateManager.translate('intent.account.help'));
+                conv.ask(response);
                 conv.ask(SuggestionDFManager.generateAccountSuggestions());
             } else {
                 conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
