@@ -120,7 +120,7 @@ export class CardIntents {
         //MOVIMIENTOS
         app.intent('Movimientos Tarjetas', async (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
             let card = await this.cardService.getCard(last4CardNumbers);
-            let movements = card.detalleMesActual;
+            let movements = card.currentMonthDetail;
             if (card) {
                 this.cardMovements(movements, conv);
             } else {

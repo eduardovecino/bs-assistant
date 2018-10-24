@@ -8,7 +8,7 @@ class CardDFManager {
     static generateCardsSimpleResponse(cards) {
         let response = ' ';
         cards.forEach(card => {
-            response = response + format_manager_1.FormatManager.getLast4numbers(card.cuentaRelacionada) + ", ";
+            response = response + format_manager_1.FormatManager.getLast4numbers(card.relatedAccount) + ", ";
         });
         return this.translateManager.translate('intent.card.simple_response_%number%_%cards%', [cards.length, response]);
     }
@@ -19,25 +19,25 @@ class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                const last4Numbers = format_manager_1.FormatManager.getLast4numbers(card.cuentaRelacionada);
-                tmp.items[card.contrato] = {
-                    title: card.contrato,
+                const last4Numbers = format_manager_1.FormatManager.getLast4numbers(card.relatedAccount);
+                tmp.items[card.contract] = {
+                    title: card.contract,
                     description: `**** **** **** **** ${last4Numbers}`,
                     image: {
                         url: cardUrlImage,
-                        accessibilityText: card.contrato
+                        accessibilityText: card.contract
                     }
                 };
             });
             return (new actions_on_google_1.Carousel(tmp));
         }
         else {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].cuentaRelacionada, cards[0].saldoDisponible]);
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].relatedAccount, cards[0].availableBalance]);
         }
     }
     static generateSelectedCardSimpleResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.selected_card_%card%', [card.cuentaRelacionada]);
+            return this.translateManager.translate('intent.card.selected_card_%card%', [card.relatedAccount]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -45,7 +45,7 @@ class CardDFManager {
     }
     static generateBalanceCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.cuentaRelacionada, card.saldoDisponible]);
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.relatedAccount, card.availableBalance]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -53,7 +53,7 @@ class CardDFManager {
     }
     static generateBlockCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%', [card.cuentaRelacionada]);
+            return this.translateManager.translate('intent.card.block_%card%', [card.relatedAccount]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -61,7 +61,7 @@ class CardDFManager {
     }
     static generateSettlementCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.cuentaRelacionada, card.fechaProxiLiquidacion]);
+            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.relatedAccount, card.nextSettlementDate]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -69,7 +69,7 @@ class CardDFManager {
     }
     static generateLimitsCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%_%authorized_limit%_%credit_limit%', [card.cuentaRelacionada, card.limiteAutorizado, card.limiteCredito]);
+            return this.translateManager.translate('intent.card.block_%card%_%authorized_limit%_%credit_limit%', [card.relatedAccount, card.authorizedLimit, card.creditLimit]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -80,7 +80,7 @@ class CardDFManager {
         let length = (movements.length > 3) ? 3 : movements.length + 1;
         if (movements) {
             for (let i = 0; i < length; i++) {
-                response = response + this.translateManager.translate('intent.card.movements.simple_response.pre_%concept%_%import%', [movements[i].concepto, movements[i].importe]);
+                response = response + this.translateManager.translate('intent.card.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount]);
             }
             ;
             return this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response]);
@@ -97,7 +97,7 @@ class CardDFManager {
         };
         movements.forEach((detail) => {
             tmp.rows.push({
-                cells: [detail.concepto, detail.fecha, detail.importe],
+                cells: [detail.concept, detail.date, detail.amount],
                 dividerAfter: true
             });
         });

@@ -1,7 +1,7 @@
 import { RestManager } from "../managers/data/rest.manager";
 import { CardManager } from "../managers/data/card.manager";
-
 import * as fs from "fs";
+import { CardModel } from "../models/card.model";
 
 export class CardService extends RestManager {
 
@@ -9,15 +9,17 @@ export class CardService extends RestManager {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
-            resolve(jsonData.data);
-        });      
+            const cards: Array<CardModel> = [];
+            jsonData.forEach(card => cards.push(new CardModel(card)));
+            resolve(cards);
+        });
     }
 
     public getCard(last4): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
-            const card = CardManager.getCardByLast4(jsonData.data, last4);
+            const card: CardModel = new CardModel(CardManager.getCardByLast4(jsonData.data, last4));
             resolve(card);
         });
     }
