@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const format_manager_1 = require("../managers/format.manager");
 class CardModel {
     constructor(data) {
         this.fromJSON(data);
@@ -117,6 +118,9 @@ class CardModel {
     }
     set currentMonthDetail(value) {
         this._currentMonthDetail = value;
+    }
+    get last4numbers() {
+        return format_manager_1.FormatManager.getLast4numbers(this.relatedAccount);
     }
     fromJSON(data) {
         this._contract = data.contrato;

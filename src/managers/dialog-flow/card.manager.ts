@@ -1,5 +1,4 @@
 import { Table, TableOptions, Carousel } from "actions-on-google";
-import { FormatManager } from '../../managers/format.manager';
 import { TranslateManager } from "../translate.manager";
 
 
@@ -12,7 +11,7 @@ export class CardDFManager {
     public static generateCardsSimpleResponse(cards) {
         let response = ' ';
         cards.forEach(card => {
-            response = response + FormatManager.getLast4numbers(card.relatedAccount) + ", ";
+            response = response + card.last4Numbers + ", ";
         });
         return this.translateManager.translate('intent.card.simple_response_%number%_%cards%', [cards.length, response]);
     }
@@ -24,10 +23,9 @@ export class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                const last4Numbers = FormatManager.getLast4numbers(card.relatedAccount);
                 tmp.items[card.contract] = {
                     title: card.contract,
-                    description: `**** **** **** **** ${last4Numbers}`,
+                    description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
                         url: cardUrlImage,
                         accessibilityText: card.contract
@@ -36,13 +34,13 @@ export class CardDFManager {
             });
             return (new Carousel(tmp));
         } else {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].relatedAccount, cards[0].availableBalance])
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].availableBalance])
         }
     }
 
     public static generateSelectedCardSimpleResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.selected_card_%card%', [card.relatedAccount]);
+            return this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }
@@ -50,7 +48,7 @@ export class CardDFManager {
 
     public static generateBalanceCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.relatedAccount, card.availableBalance]);
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }
@@ -58,7 +56,7 @@ export class CardDFManager {
 
     public static generateBlockCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%', [card.relatedAccount]);
+            return this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }
@@ -66,7 +64,7 @@ export class CardDFManager {
 
     public static generateSettlementCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.relatedAccount, card.nextSettlementDate]);
+            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }
@@ -74,7 +72,7 @@ export class CardDFManager {
 
     public static generateLimitsCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.relatedAccount, card.authorizedLimit, card.creditLimit]);
+            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit]);
         } else {
             return this.translateManager.translate('intent.card.null_response');
         }

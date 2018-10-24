@@ -1,5 +1,4 @@
 import { List, Table, TableOptions } from "actions-on-google";
-import { FormatManager } from '../../managers/format.manager';
 import { TranslateManager } from "../translate.manager";
 
 
@@ -10,7 +9,7 @@ export class AccountDFManager {
     public static generateAccountsSimpleResponse(accounts) {
         let response= ' ';
         accounts.forEach(account => {
-            response = response + FormatManager.getLast4numbers(account.iban) + ", ";
+            response = response + account.last4Numbers + ", ";
         });
         return this.translateManager.translate('intent.account.simple_response_%number%_%accounts%', [accounts.length,response]);
     }
@@ -23,10 +22,9 @@ export class AccountDFManager {
                 items: {}
             };
             accounts.forEach((account) => {
-                const last4Numbers = FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
                     title: account.description,
-                    description: `ES••••••••••••••••${last4Numbers}`,
+                    description: `ES••••••••••••••••${account.last4Numbers}`,
                     image: {
                         url: accountImage,
                         accessibilityText: account.description

@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
-const format_manager_1 = require("../../managers/format.manager");
 const translate_manager_1 = require("../translate.manager");
 const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardDFManager {
     static generateCardsSimpleResponse(cards) {
         let response = ' ';
         cards.forEach(card => {
-            response = response + format_manager_1.FormatManager.getLast4numbers(card.relatedAccount) + ", ";
+            response = response + card.last4Numbers + ", ";
         });
         return this.translateManager.translate('intent.card.simple_response_%number%_%cards%', [cards.length, response]);
     }
@@ -19,10 +18,9 @@ class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                const last4Numbers = format_manager_1.FormatManager.getLast4numbers(card.relatedAccount);
                 tmp.items[card.contract] = {
                     title: card.contract,
-                    description: `**** **** **** **** ${last4Numbers}`,
+                    description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
                         url: cardUrlImage,
                         accessibilityText: card.contract
@@ -32,12 +30,12 @@ class CardDFManager {
             return (new actions_on_google_1.Carousel(tmp));
         }
         else {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].relatedAccount, cards[0].availableBalance]);
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].availableBalance]);
         }
     }
     static generateSelectedCardSimpleResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.selected_card_%card%', [card.relatedAccount]);
+            return this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -45,7 +43,7 @@ class CardDFManager {
     }
     static generateBalanceCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.relatedAccount, card.availableBalance]);
+            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -53,7 +51,7 @@ class CardDFManager {
     }
     static generateBlockCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%', [card.relatedAccount]);
+            return this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -61,7 +59,7 @@ class CardDFManager {
     }
     static generateSettlementCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.relatedAccount, card.nextSettlementDate]);
+            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');
@@ -69,7 +67,7 @@ class CardDFManager {
     }
     static generateLimitsCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.relatedAccount, card.authorizedLimit, card.creditLimit]);
+            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit]);
         }
         else {
             return this.translateManager.translate('intent.card.null_response');

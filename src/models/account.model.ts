@@ -1,3 +1,4 @@
+import { FormatManager } from '../managers/format.manager';
 
 export class AccountModel {
     constructor(data: any) {
@@ -76,8 +77,8 @@ export class AccountModel {
         this._currency = value;
     }
 
-    get formattedIban(): string {
-        return `****${this.iban}`;
+    get last4numbers(): string {
+        return FormatManager.getLast4numbers(this.iban);
     }
 
     fromJSON(data: any) {

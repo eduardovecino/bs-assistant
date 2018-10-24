@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const format_manager_1 = require("../managers/format.manager");
 class AccountModel {
     constructor(data) {
         this.fromJSON(data);
@@ -58,8 +59,8 @@ class AccountModel {
     set currency(value) {
         this._currency = value;
     }
-    get formattedIban() {
-        return `****${this.iban}`;
+    get last4numbers() {
+        return format_manager_1.FormatManager.getLast4numbers(this.iban);
     }
     fromJSON(data) {
         this._owner = data.propietario;

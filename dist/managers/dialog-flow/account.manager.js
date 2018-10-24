@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
-const format_manager_1 = require("../../managers/format.manager");
 const translate_manager_1 = require("../translate.manager");
 class AccountDFManager {
     static generateAccountsSimpleResponse(accounts) {
         let response = ' ';
         accounts.forEach(account => {
-            response = response + format_manager_1.FormatManager.getLast4numbers(account.iban) + ", ";
+            response = response + account.last4Numbers + ", ";
         });
         return this.translateManager.translate('intent.account.simple_response_%number%_%accounts%', [accounts.length, response]);
     }
@@ -19,10 +18,9 @@ class AccountDFManager {
                 items: {}
             };
             accounts.forEach((account) => {
-                const last4Numbers = format_manager_1.FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
                     title: account.description,
-                    description: `ES••••••••••••••••${last4Numbers}`,
+                    description: `ES••••••••••••••••${account.last4Numbers}`,
                     image: {
                         url: accountImage,
                         accessibilityText: account.description

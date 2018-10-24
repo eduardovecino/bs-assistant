@@ -1,3 +1,5 @@
+import { FormatManager } from '../managers/format.manager';
+
 
 export class CardModel {
     constructor(data: any) {
@@ -159,6 +161,10 @@ export class CardModel {
     }
     set currentMonthDetail(value) {
         this._currentMonthDetail = value;
+    }
+
+    get last4numbers(): string {
+        return FormatManager.getLast4numbers(this.relatedAccount);
     }
 
     fromJSON(data: any) {
