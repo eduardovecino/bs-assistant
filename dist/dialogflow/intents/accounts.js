@@ -94,8 +94,8 @@ class AccountIntents {
         //     const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
         //     conv.ask(accountMovementsTable);
         // }
-        console.log("ENTRO 0", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
-        if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+        console.log("ENTRO 0", !conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+        if (!conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
             console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
             if (movements.length > 1) {
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
