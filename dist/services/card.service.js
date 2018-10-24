@@ -42,7 +42,7 @@ class CardService extends rest_manager_1.RestManager {
         return __awaiter(this, void 0, void 0, function* () {
             const cards = yield this.getCards();
             console.log("CARD0", cards);
-            const card = new card_model_1.CardModel(card_manager_1.CardManager.getCardByLast4(cards, last4));
+            const card = card_manager_1.CardManager.getCardByLast4(cards, last4);
             console.log("CARD1", card);
             return card;
         });
