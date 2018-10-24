@@ -89,6 +89,7 @@ class AccountIntents {
     }
     accountMovements(movements, conv) {
         if (conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
+            console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
             if (movements.length > 1) {
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
                 conv.ask(accountMovementsTable);
@@ -99,6 +100,7 @@ class AccountIntents {
             }
         }
         else {
+            console.log("ENTRO NO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
             const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
             conv.ask(accountMovementsSimpleResponse);
         }
