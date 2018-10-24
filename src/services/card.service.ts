@@ -10,7 +10,7 @@ export class CardService extends RestManager {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
-            console.log("CARDS", data);
+            console.log("CARDS", jsonData);
             resolve(jsonData.data);
         });      
     }
