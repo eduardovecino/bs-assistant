@@ -6,7 +6,7 @@ import * as fs from "fs";
 
 export class CardService extends RestManager {
 
-    public getCards(): Promise<any> {
+    public getCards2(): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
@@ -24,13 +24,14 @@ export class CardService extends RestManager {
         });
     }
 
-    public getCards2(): Promise<any> {
+    public getCards(): Promise<any> {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
+            console.log("CARDS0", jsonData.data);
             const cards: Array<CardModel> = [];
-            jsonData.forEach(card => cards.push(new CardModel(card)));
-            console.log("CARDS", cards);
+            jsonData.data.forEach(card => cards.push(new CardModel(card)));
+            console.log("CARDS1", cards);
             resolve(cards);
         });
     }

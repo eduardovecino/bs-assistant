@@ -5,7 +5,7 @@ const card_manager_1 = require("../managers/data/card.manager");
 const card_model_1 = require("../models/card.model");
 const fs = require("fs");
 class CardService extends rest_manager_1.RestManager {
-    getCards() {
+    getCards2() {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
@@ -21,13 +21,14 @@ class CardService extends rest_manager_1.RestManager {
             resolve(card);
         });
     }
-    getCards2() {
+    getCards() {
         return new Promise((resolve, reject) => {
             const data = fs.readFileSync('mock/card/get-cards.json');
             const jsonData = JSON.parse(data.toString());
+            console.log("CARDS0", jsonData.data);
             const cards = [];
-            jsonData.forEach(card => cards.push(new card_model_1.CardModel(card)));
-            console.log("CARDS", cards);
+            jsonData.data.forEach(card => cards.push(new card_model_1.CardModel(card)));
+            console.log("CARDS1", cards);
             resolve(cards);
         });
     }
