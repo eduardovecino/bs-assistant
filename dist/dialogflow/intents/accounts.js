@@ -94,11 +94,12 @@ class AccountIntents {
         //     const accountMovementsTable = AccountDFManager.generateMovementsAccountTable(movements);
         //     conv.ask(accountMovementsTable);
         // }
-        console.log("ENTRO 0", !conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
-        if (!conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
-            console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+        console.log("ENTRO 0", conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT'));
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            console.log("ENTRO MEDIA", conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT'));
             if (movements.length > 1) {
                 const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+                conv.ask("SIIIIIIIII");
                 conv.ask(accountMovementsTable);
             }
             else {
@@ -107,7 +108,7 @@ class AccountIntents {
             }
         }
         else {
-            console.log("ENTRO NO MEDIA", conv.surface.capabilities.has('actions.capability.MEDIA_RESPONSE_AUDIO'));
+            console.log("ENTRO NO MEDIA", conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT'));
             const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
             conv.ask(accountMovementsSimpleResponse);
         }
