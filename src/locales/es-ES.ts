@@ -24,6 +24,7 @@ export const SPANISH_TRANSLATIONS = {
     'intent.account.balance_%account%_%balance%': `El saldo  de tu {{ account }} es de {{ balance }} €. ¿Qué más quieres saber acerca de tu cuenta?`,
     'intent.account.movements.simple_response.pre_%concept%_%import%': `{{ concept }} con un importe de {{ import }} €, `,
     'intent.account.movements.simple_response_%number%_%movements%': `Este mes tienes {{ number }} movimientos: {{ movements }} ¿Qué más quieres saber acerca de tu cuenta?`,
+    'intent.account.movements.table.simple_response_%number%': `Este mes tienes {{ number }} movimientos: `,
     'intent.account.movements.no_movements': `No hay movimientos recientes en esta cuenta`,
     'intent.account.movements.table.column.first': 'Concepto',
     'intent.account.movements.table.column.second': 'Fecha',

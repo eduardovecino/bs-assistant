@@ -65,6 +65,9 @@ export class AccountDFManager {
             return this.translateManager.translate('intent.account.movements.no_movements');
         }
     }
+    public static generateMovementsAccountTableSimpleResponse(movements) {
+        return this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length]);
+    }
 
     public static generateMovementsAccountTable(movements) {
         const tmp: TableOptions = {
