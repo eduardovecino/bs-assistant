@@ -17,7 +17,7 @@ class StartIntents /*extends BaseIntent*/ {
             }));
         });
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            console.log("AQUIIIII", JSON.parse(conv.toString()));
+            console.log("AQUIIIII", conv.toString());
             const name = conv.user.name.given;
             const permissionSimpleResponse = start_manager_1.StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
             conv.ask(permissionSimpleResponse);
