@@ -79,13 +79,10 @@ class CardDFManager {
         let response = ' ';
         let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
-            console.log("ENTROOOO");
             for (let i = 0; i < length; i++) {
                 response = response + this.translateManager.translate('intent.card.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount]);
-                console.log("ENTROOOO", response);
             }
             ;
-            console.log("SURTOOOOO");
             return this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response]);
         }
         else {

@@ -57,7 +57,7 @@ export class AccountDFManager {
 
     public static generateMovementsAccountSimpleResponse(movements) {
         let response = ' ';
-        let length = (movements.length > 3) ? 3 : movements.length + 1;
+        let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
             for (let i = 0; i < length; i++) {
                 response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])

@@ -151,8 +151,8 @@ export class CardIntents {
 
     private cardMovements(movements, conv) {
         const cardMovementsSimpleResponse = CardDFManager.generateMovementsCardSimpleResponse(movements);
-        // const cardMovementsTable = CardDFManager.generateMovementsCardTable(movements);
+        const cardMovementsTable = CardDFManager.generateMovementsCardTable(movements);
         conv.ask(cardMovementsSimpleResponse);
-        // conv.ask(cardMovementsTable);
+        conv.ask(cardMovementsTable);
     }    
 }

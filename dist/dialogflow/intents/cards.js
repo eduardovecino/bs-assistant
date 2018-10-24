@@ -147,9 +147,9 @@ class CardIntents {
     }
     cardMovements(movements, conv) {
         const cardMovementsSimpleResponse = card_manager_2.CardDFManager.generateMovementsCardSimpleResponse(movements);
-        // const cardMovementsTable = CardDFManager.generateMovementsCardTable(movements);
+        const cardMovementsTable = card_manager_2.CardDFManager.generateMovementsCardTable(movements);
         conv.ask(cardMovementsSimpleResponse);
-        // conv.ask(cardMovementsTable);
+        conv.ask(cardMovementsTable);
     }
 }
 exports.CardIntents = CardIntents;
