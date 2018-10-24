@@ -21,15 +21,15 @@
             "totalOperProximLiquidacion": "0,00",
             "detalleMesActual": [
                 {
-                    "concepto": "TXOKOA",
-                    "fecha": "2013-12-02 00:00:00",
-                    "importe": "12,25",
+                    "concepto": "VODAFONE",
+                    "fecha": "2018-10-12 00:00:00",
+                    "importe": "34,25",
                     "poblacion": "OFICINA 0901"
                 },
                 {
                     "concepto": "ZARA HOME",
-                    "fecha": "2013-11-29 00:00:00",
-                    "importe": "88,00",
+                    "fecha": "2018-10-03 00:00:00",
+                    "importe": "83,00",
                     "poblacion": "OFICINA 0901"
                 }
             ]
@@ -55,15 +55,15 @@
             "totalOperProximLiquidacion": "0,00",
             "detalleMesActual": [
                 {
-                    "concepto": "XXXXXXXXXXXXX",
-                    "fecha": "2013-12-02 00:00:00",
-                    "importe": "12,25",
+                    "concepto": "FNAC",
+                    "fecha": "2018-10-24 00:00:00",
+                    "importe": "34,25",
                     "poblacion": "OFICINA 0901"
                 },
                 {
-                    "concepto": "XXXXXXXXXXXXX",
-                    "fecha": "2013-11-29 00:00:00",
-                    "importe": "88,00",
+                    "concepto": "SORIANO",
+                    "fecha": "2018-09-23 00:00:00",
+                    "importe": "89,00",
                     "poblacion": "OFICINA 0901"
                 }
             ]
@@ -89,15 +89,15 @@
                     "totalOperProximLiquidacion": "0,00",
                     "detalleMesActual": [
                         {
-                            "concepto": "XXXXXXXXXXXXX",
-                            "fecha": "2013-12-02 00:00:00",
+                            "concepto": "TXOKOA",
+                            "fecha": "2018-10-20 00:00:00",
                             "importe": "12,25",
                             "poblacion": "OFICINA 0901"
                         },
                         {
-                            "concepto": "XXXXXXXXXXXXX",
-                            "fecha": "2013-11-29 00:00:00",
-                            "importe": "88,00",
+                            "concepto": "NONP",
+                            "fecha": "2018-10-01 00:00:00",
+                            "importe": "155,00",
                             "poblacion": "OFICINA 0901"
                         }
                     ]

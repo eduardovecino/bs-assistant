@@ -73,7 +73,7 @@ class AccountDFManager {
         };
         movements.forEach((movement) => {
             tmp.rows.push({
-                cells: [movement.concept, movement.operationDate, movement.amount],
+                cells: [movement.concept, movement.operationDate, movement.amount + ' €'],
                 dividerAfter: true
             });
         });

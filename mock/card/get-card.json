@@ -1,7 +1,7 @@
 {
     "data": {
         "contrato": "00000000000009",
-        "cuentaRelacionada": "00810000000000001234",
+        "cuentaRelacionada": "00810000000000001111",
         "estado": "",
         "fechaLiquiActual": "2014-02-14 00:00:00",
         "fechaProxiLiquidacion": "2014-04-05 00:00:00",
@@ -21,14 +21,14 @@
         "detalleMesActual": [
             {
                 "concepto": "TXOKOA",
-                "fecha": "2013-12-02 00:00:00",
+                "fecha": "2018-10-20 00:00:00",
                 "importe": "12,25",
                 "poblacion": "OFICINA 0901"
             },
             {
-                "concepto": "ZARA HOME",
-                "fecha": "2013-11-29 00:00:00",
-                "importe": "88,00",
+                "concepto": "NONP",
+                "fecha": "2018-10-01 00:00:00",
+                "importe": "155,00",
                 "poblacion": "OFICINA 0901"
             }
         ]

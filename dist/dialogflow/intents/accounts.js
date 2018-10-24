@@ -89,9 +89,11 @@ class AccountIntents {
     }
     accountMovements(movements, conv) {
         const accountMovementsSimpleResponse = account_manager_2.AccountDFManager.generateMovementsAccountSimpleResponse(movements);
-        const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
         conv.ask(accountMovementsSimpleResponse);
-        conv.ask(accountMovementsTable);
+        if (movements.length > 1) {
+            const accountMovementsTable = account_manager_2.AccountDFManager.generateMovementsAccountTable(movements);
+            conv.ask(accountMovementsTable);
+        }
     }
     accountBalance(account, conv) {
         const response = account_manager_2.AccountDFManager.generateBalanceAccountResponse(account);

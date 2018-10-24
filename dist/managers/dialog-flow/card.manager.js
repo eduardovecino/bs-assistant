@@ -97,7 +97,7 @@ class CardDFManager {
         };
         movements.forEach((detail) => {
             tmp.rows.push({
-                cells: [detail.concept, detail.date, detail.amount],
+                cells: [detail.concept, detail.date, detail.amount + ' €'],
                 dividerAfter: true
             });
         });
