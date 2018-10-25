@@ -23,10 +23,16 @@ class InfoIntents {
             const longitude = conv.device.location.coordinates.longitude;
             let offices = yield this.informationService.getOffices(latitude, longitude);
             if (offices) {
-                const officesSimpleResponse = information_manager_1.InformationDFManager.generateOfficesSimpleResponse(offices);
-                const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
-                conv.ask(officesSimpleResponse);
-                conv.ask(carouselOfOffices);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
+                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
+                    conv.ask(officesSimpleResponseScreen);
+                    conv.ask(carouselOfOffices);
+                }
+                else {
+                    const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                    conv.ask(officesSimpleResponseNoScreen);
+                }
             }
             else {
                 conv.ask(this.translateManager.translate('intent.service.failure'));

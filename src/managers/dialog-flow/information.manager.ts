@@ -6,13 +6,17 @@ export class InformationDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
-    public static generateOfficesSimpleResponse(offices) {
+    public static generateOfficesSimpleResponseScreen() {
+        return this.translateManager.translate('intent.information.offices.simple_response.screen');
+    };
+
+    public static generateOfficesSimpleResponseNoScreen(offices) {
         let response = ' ';
         let length = (offices.length > 3) ? 3 : offices.length + 1;
         for (let i=0 ; i<length; i++){
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate('intent.information.offices.simple_response_%offices%', [response]);
+        return this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response]);
     };
 
     public static generateOfficesBrowseCarousel(offices) {

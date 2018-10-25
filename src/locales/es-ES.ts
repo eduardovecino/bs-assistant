@@ -15,7 +15,6 @@ export const SPANISH_TRANSLATIONS = {
     'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas más cercanas o contacto. ¿Qué deseas hacer?`,
     'intent.start.help.screen': `Selecciona una de las siguientes opciones:`,
 
-
     //ACCOUNTS
     'intent.account.null_response': `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
     'intent.account.help': `Puedes preguntarme por el saldo o los movimientos de una cuenta`,
@@ -52,7 +51,8 @@ export const SPANISH_TRANSLATIONS = {
     'intent.card.movements.table.column.third': 'Importe',
 
     //INFORMATION
-    'intent.information.offices.simple_response_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}. ¿Cúal quieres seleccionar?`,
+    'intent.information.offices.simple_response.screen': `Oficinas cercanas a tu posición:`,
+    'intent.information.offices.simple_response.no_screen_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}.`,
     'intent.information.open_app.simple_response.screen': `Descargate la app, para más información`,
     'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca la aplicación App Banco Sabadell. Tu banca móvil`,
     'intent.information.open_app.basic_card.title': `Abrir App`,

@@ -18,10 +18,15 @@ export class InfoIntents {
 
             let offices = await this.informationService.getOffices(latitude, longitude);
             if (offices){
-                const officesSimpleResponse = InformationDFManager.generateOfficesSimpleResponse(offices);
-                const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
-                conv.ask(officesSimpleResponse);
-                conv.ask(carouselOfOffices);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const officesSimpleResponseScreen = InformationDFManager.generateOfficesSimpleResponseScreen();
+                    const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
+                    conv.ask(officesSimpleResponseScreen);
+                    conv.ask(carouselOfOffices);
+                } else {
+                    const officesSimpleResponseNoScreen = InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                    conv.ask(officesSimpleResponseNoScreen);
+                }
             } else {
                 conv.ask(this.translateManager.translate('intent.service.failure')); 
             }
