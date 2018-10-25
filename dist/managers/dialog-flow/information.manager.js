@@ -47,6 +47,9 @@ class InformationDFManager {
             })
         });
     }
+    static generateContactSimpleResponseScreen() {
+        return this.translateManager.translate('intent.information.contact.simple_response.screen');
+    }
 }
 InformationDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.InformationDFManager = InformationDFManager;

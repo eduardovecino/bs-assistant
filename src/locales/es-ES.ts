@@ -52,10 +52,9 @@ export const SPANISH_TRANSLATIONS = {
     //INFORMATION
     'intent.information.offices.simple_response_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}. ¿Cúal quieres seleccionar?`,
     'intent.information.open_app.simple_response.screen': `Descargate la app, para más información`,
-    'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca banco sabadell`,
+    'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca la aplicación App Banco Sabadell. Tu banca móvil`,
     'intent.information.open_app.basic_card.title': `Abrir App`,
-    
-
+    'intent.information.contact.simple_response.screen': `Puedes contactarnos, cualquier día y a cualquier hora, a través del teléfono: 902 323 000`,
 }
 
 

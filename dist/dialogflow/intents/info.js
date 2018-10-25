@@ -36,9 +36,7 @@ class InfoIntents {
         app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const openAppSimpleResponseScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
-                console.log("INFO1" + openAppSimpleResponseScreen);
                 const openAppBasicCard = information_manager_1.InformationDFManager.generateOpenAppBasicCard();
-                console.log("INFO2" + openAppBasicCard);
                 conv.ask(openAppSimpleResponseScreen);
                 conv.ask(openAppBasicCard);
             }
@@ -46,6 +44,17 @@ class InfoIntents {
                 const openAppSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseNoScreen();
                 conv.ask(openAppSimpleResponseNoScreen);
             }
+        });
+        //CONTACTO
+        app.intent('Contacto', (conv) => {
+            // if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            const contactSimpleResponseScreen = information_manager_1.InformationDFManager.generateContactSimpleResponseScreen();
+            console.log("INFO1" + contactSimpleResponseScreen);
+            conv.ask(contactSimpleResponseScreen);
+            // } else {
+            //     const openAppSimpleResponseNoScreen = InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+            //     conv.ask(openAppSimpleResponseNoScreen);
+            // }
         });
     }
 }
