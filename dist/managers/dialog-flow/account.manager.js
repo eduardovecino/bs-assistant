@@ -4,7 +4,7 @@ const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
 class AccountDFManager {
     static generateAccountsSimpleResponseScreen(accounts) {
-        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%', [accounts.length]);
+        return this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length]);
     }
     static generateAccountsSimpleResponseNoScreen(accounts) {
         let response = ' ';

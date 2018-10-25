@@ -7,7 +7,7 @@ export class AccountDFManager {
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateAccountsSimpleResponseScreen(accounts) {
-        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%', [accounts.length]);
+        return this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length]);
     }
 
     public static generateAccountsSimpleResponseNoScreen(accounts) {
