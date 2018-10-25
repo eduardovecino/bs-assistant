@@ -28,10 +28,16 @@ class CardIntents {
             let cards = yield this.cardService.getCards();
             conv.contexts.delete(Contexts.selected_account);
             if (cards) {
-                const cardsSimpleResponse = card_manager_2.CardDFManager.generateCardsSimpleResponse(cards);
-                const cardsCarousel = card_manager_2.CardDFManager.generateCardsCarousel(cards);
-                conv.ask(cardsSimpleResponse);
-                conv.ask(cardsCarousel);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const cardsSimpleResponseScreen = card_manager_2.CardDFManager.generateCardsSimpleResponseScreen(cards);
+                    const cardsCarousel = card_manager_2.CardDFManager.generateCardsCarousel(cards);
+                    conv.ask(cardsSimpleResponseScreen);
+                    conv.ask(cardsCarousel);
+                }
+                else {
+                    const cardsSimpleResponseNoScreen = card_manager_2.CardDFManager.generateCardsSimpleResponseNoScreen(cards);
+                    conv.ask(cardsSimpleResponseNoScreen);
+                }
             }
             else {
                 conv.ask(this.translateManager.translate('intent.card.null_response'));

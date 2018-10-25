@@ -22,10 +22,15 @@ export class CardIntents {
             let cards = await this.cardService.getCards();
             conv.contexts.delete(Contexts.selected_account);
             if(cards) {
-                const cardsSimpleResponse = CardDFManager.generateCardsSimpleResponse(cards);
-                const cardsCarousel = CardDFManager.generateCardsCarousel(cards);
-                conv.ask(cardsSimpleResponse);
-                conv.ask(cardsCarousel);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const cardsSimpleResponseScreen = CardDFManager.generateCardsSimpleResponseScreen(cards);
+                    const cardsCarousel = CardDFManager.generateCardsCarousel(cards);
+                    conv.ask(cardsSimpleResponseScreen);
+                    conv.ask(cardsCarousel);
+                } else {
+                    const cardsSimpleResponseNoScreen = CardDFManager.generateCardsSimpleResponseNoScreen(cards);
+                    conv.ask(cardsSimpleResponseNoScreen);
+                }
             } else {
                 conv.ask(this.translateManager.translate('intent.card.null_response'));
             }

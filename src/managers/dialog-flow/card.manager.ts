@@ -8,12 +8,16 @@ export class CardDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
-    public static generateCardsSimpleResponse(cards) {
+    public static generateCardsSimpleResponseScreen(cards) {
+        return this.translateManager.translate('intent.card.simple_response.screen_%number%', [cards.length]);
+    }
+
+    public static generateCardsSimpleResponseNoScreen(cards) {
         let response = ' ';
         cards.forEach(card => {
             response = response + card.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.card.simple_response_%number%_%cards%', [cards.length, response]);
+        return this.translateManager.translate('intent.card.simple_response.no_screen_%number%_%cards%', [cards.length, response]);
     }
 
     public static generateCardsCarousel(cards) {

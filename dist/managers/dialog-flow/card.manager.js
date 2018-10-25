@@ -4,12 +4,15 @@ const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
 const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardDFManager {
-    static generateCardsSimpleResponse(cards) {
+    static generateCardsSimpleResponseScreen(cards) {
+        return this.translateManager.translate('intent.card.simple_response.screen_%number%', [cards.length]);
+    }
+    static generateCardsSimpleResponseNoScreen(cards) {
         let response = ' ';
         cards.forEach(card => {
             response = response + card.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.card.simple_response_%number%_%cards%', [cards.length, response]);
+        return this.translateManager.translate('intent.card.simple_response.no_screen_%number%_%cards%', [cards.length, response]);
     }
     static generateCardsCarousel(cards) {
         if (cards.length > 1) {
