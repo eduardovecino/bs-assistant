@@ -41,8 +41,8 @@ class StartIntents /*extends BaseIntent*/ {
         });
         //HELP
         app.intent('Ayuda', (conv) => {
-            const helpSimpleResponse = start_manager_1.StartDFManager.generateHelpSimpleResponse();
-            conv.ask(helpSimpleResponse);
+            // const helpSimpleResponse = StartDFManager.generateHelpSimpleResponse();
+            // conv.ask(helpSimpleResponse);
             conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
     }

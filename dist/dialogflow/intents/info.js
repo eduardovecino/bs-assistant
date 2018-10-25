@@ -47,14 +47,8 @@ class InfoIntents {
         });
         //CONTACTO
         app.intent('Contacto', (conv) => {
-            // if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             const contactSimpleResponseScreen = information_manager_1.InformationDFManager.generateContactSimpleResponseScreen();
-            console.log("INFO1" + contactSimpleResponseScreen);
             conv.ask(contactSimpleResponseScreen);
-            // } else {
-            //     const openAppSimpleResponseNoScreen = InformationDFManager.generateOpenAppSimpleResponseNoScreen();
-            //     conv.ask(openAppSimpleResponseNoScreen);
-            // }
         });
     }
 }

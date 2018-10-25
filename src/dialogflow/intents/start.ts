@@ -48,8 +48,8 @@ export class StartIntents /*extends BaseIntent*/ {
 
         //HELP
         app.intent('Ayuda', (conv) => {
-            const helpSimpleResponse = StartDFManager.generateHelpSimpleResponse();
-            conv.ask(helpSimpleResponse);
+            // const helpSimpleResponse = StartDFManager.generateHelpSimpleResponse();
+            // conv.ask(helpSimpleResponse);
             conv.ask(SuggestionDFManager.generateSuggestions());
         });
     }

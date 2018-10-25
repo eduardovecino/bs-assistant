@@ -3,8 +3,7 @@ export const SUGGESTIONS = {
         'Iniciar Sesión',
         'Oficinas Cercanas',
         'Abrir App',
-        'Contacto',
-        'tel: 902323000'],
+        'Contacto'],
     LOGGED_SUGGESTIONS: [
         'Cuentas',
         'Tarjetas',
@@ -18,8 +17,5 @@ export const SUGGESTIONS = {
         'Bloquear Tarjeta',
         'Límites',
         'Fecha de Liquidación',
-        'Saldo de Tarjeta'],
-
-
-        
+        'Saldo de Tarjeta'], 
 }

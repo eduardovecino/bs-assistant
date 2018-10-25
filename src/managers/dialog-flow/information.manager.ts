@@ -60,6 +60,6 @@ export class InformationDFManager {
     }
 
     public static generateContactSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.contact.simple_response.screen');
+        return this.translateManager.translate('intent.information.contact.simple_response');
     }
 }
