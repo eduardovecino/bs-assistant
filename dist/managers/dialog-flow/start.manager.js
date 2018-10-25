@@ -27,8 +27,11 @@ class StartDFManager {
     static generateCancelSimpleResponse() {
         return this.translateManager.translate('intent.start.cancel');
     }
-    static generateHelpSimpleResponse() {
-        return this.translateManager.translate('intent.start.help');
+    static generateHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.start.help.screen');
+    }
+    static generateHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.start.help.no_screen');
     }
 }
 StartDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();

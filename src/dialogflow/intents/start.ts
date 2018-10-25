@@ -21,7 +21,6 @@ export class StartIntents /*extends BaseIntent*/ {
             }));
         });
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            console.log("AQUIIIII", JSON.stringify(conv));
             const name = conv.user.name.given;
             const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
             conv.ask(permissionSimpleResponse);
@@ -48,9 +47,14 @@ export class StartIntents /*extends BaseIntent*/ {
 
         //HELP
         app.intent('Ayuda', (conv) => {
-            // const helpSimpleResponse = StartDFManager.generateHelpSimpleResponse();
-            // conv.ask(helpSimpleResponse);
-            conv.ask(SuggestionDFManager.generateSuggestions());
+            if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                const helpSimpleResponseScreen = StartDFManager.generateHelpSimpleResponseScreen();
+                conv.ask(helpSimpleResponseScreen);
+                conv.ask(SuggestionDFManager.generateSuggestions());
+            } else {
+                const helpSimpleResponseNoScreen = StartDFManager.generateHelpSimpleResponseNoScreen();
+                conv.ask(helpSimpleResponseNoScreen);
+            }
         });
     }
 }

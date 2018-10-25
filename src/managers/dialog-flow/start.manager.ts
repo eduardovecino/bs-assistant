@@ -35,8 +35,12 @@ export class StartDFManager {
         return this.translateManager.translate('intent.start.cancel');
     }
 
-    public static generateHelpSimpleResponse() {
-        return this.translateManager.translate('intent.start.help');
+    public static generateHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.start.help.screen');
+    }
+
+    public static generateHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.start.help.no_screen');
     }
     
 }
