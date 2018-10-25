@@ -16,8 +16,7 @@ export class InfoIntents {
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;
 
-            let offices;
-            offices = await this.informationService.getOffices(latitude, longitude);
+            let offices = await this.informationService.getOffices(latitude, longitude);
             if (offices){
                 const officesSimpleResponse = InformationDFManager.generateOfficesSimpleResponse(offices);
                 const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
@@ -28,11 +27,13 @@ export class InfoIntents {
             }
         });
 
-        //Abrir App
+        //ABRIR APP
         app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const openAppSimpleResponseScreen = InformationDFManager.generateOpenAppSimpleResponseScreen();
+                console.log("INFO1" +openAppSimpleResponseScreen);
                 const openAppBasicCard = InformationDFManager.generateOpenAppBasicCard();
+                console.log("INFO2" + openAppBasicCard);
                 conv.ask(openAppSimpleResponseScreen);
                 conv.ask(openAppBasicCard);
             } else {

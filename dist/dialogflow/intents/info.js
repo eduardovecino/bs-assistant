@@ -21,8 +21,7 @@ class InfoIntents {
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;
-            let offices;
-            offices = yield this.informationService.getOffices(latitude, longitude);
+            let offices = yield this.informationService.getOffices(latitude, longitude);
             if (offices) {
                 const officesSimpleResponse = information_manager_1.InformationDFManager.generateOfficesSimpleResponse(offices);
                 const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
@@ -33,11 +32,13 @@ class InfoIntents {
                 conv.ask(this.translateManager.translate('intent.service.failure'));
             }
         }));
-        //Abrir App
+        //ABRIR APP
         app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const openAppSimpleResponseScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
+                console.log("INFO1" + openAppSimpleResponseScreen);
                 const openAppBasicCard = information_manager_1.InformationDFManager.generateOpenAppBasicCard();
+                console.log("INFO2" + openAppBasicCard);
                 conv.ask(openAppSimpleResponseScreen);
                 conv.ask(openAppBasicCard);
             }
