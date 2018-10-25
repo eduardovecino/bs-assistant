@@ -5,7 +5,8 @@ exports.SUGGESTIONS = {
         'Iniciar Sesión',
         'Oficinas Cercanas',
         'Abrir App',
-        'Contacto'
+        'Contacto',
+        'tel: 902323000'
     ],
     LOGGED_SUGGESTIONS: [
         'Cuentas',

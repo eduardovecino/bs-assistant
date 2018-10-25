@@ -43,8 +43,7 @@ class InformationDFManager {
             text: '',
             buttons: new actions_on_google_1.Button({
                 title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
-                // url: 'http://eduvecino.com/GA_BMA/app_saba.php',
-                url: 'tel:902323000',
+                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
             })
         });
     }
