@@ -85,4 +85,12 @@ export class AccountDFManager {
         });
         return new Table(tmp);
     }
+
+    public static generateAccountHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.account.help.screen');
+    }
+
+    public static generateAccountHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.account.help.no_screen');
+    }
 }

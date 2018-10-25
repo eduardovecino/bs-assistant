@@ -44,7 +44,8 @@ class AccountIntents {
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
                 const response = account_manager_2.AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
-                conv.ask(response + this.translateManager.translate('intent.account.help'));
+                // + this.translateManager.translate('intent.account.help')
+                conv.ask(response);
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             }
             else {
@@ -61,8 +62,15 @@ class AccountIntents {
             }));
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
-                conv.ask(this.translateManager.translate('intent.account.help'));
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const accountHelpSimpleResponseScreen = account_manager_2.AccountDFManager.generateAccountHelpSimpleResponseScreen();
+                    conv.ask(accountHelpSimpleResponseScreen);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
+                }
+                else {
+                    const accountHelpSimpleResponseNoScreen = account_manager_2.AccountDFManager.generateAccountHelpSimpleResponseNoScreen();
+                    conv.ask(accountHelpSimpleResponseNoScreen);
+                }
             });
         }));
         // SALDO CUENTA

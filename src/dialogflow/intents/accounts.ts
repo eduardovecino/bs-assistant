@@ -39,7 +39,8 @@ export class AccountIntents {
             conv.contexts.set(Contexts.selected_account, 5)
             if (selectedAccount) {
                 const response = AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
-                conv.ask(response + this.translateManager.translate('intent.account.help'));
+                // + this.translateManager.translate('intent.account.help')
+                conv.ask(response);
                 conv.ask(SuggestionDFManager.generateAccountSuggestions());
             } else {
                 conv.ask(this.translateManager.translate('intent.account.selected_account.failure_%account%', option));
@@ -58,8 +59,14 @@ export class AccountIntents {
 
             // AYUDA CUENTAS
             app.intent('ayuda - cuentas', (conv) => {
-                conv.ask(this.translateManager.translate('intent.account.help'));
-                conv.ask(SuggestionDFManager.generateAccountSuggestions());
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const accountHelpSimpleResponseScreen = AccountDFManager.generateAccountHelpSimpleResponseScreen();
+                    conv.ask(accountHelpSimpleResponseScreen);
+                    conv.ask(SuggestionDFManager.generateAccountSuggestions());
+                } else {
+                    const accountHelpSimpleResponseNoScreen = AccountDFManager.generateAccountHelpSimpleResponseNoScreen();
+                    conv.ask(accountHelpSimpleResponseNoScreen);
+                }
             });
         })
         

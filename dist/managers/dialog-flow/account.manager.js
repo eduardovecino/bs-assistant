@@ -80,6 +80,12 @@ class AccountDFManager {
         });
         return new actions_on_google_1.Table(tmp);
     }
+    static generateAccountHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.account.help.screen');
+    }
+    static generateAccountHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.account.help.no_screen');
+    }
 }
 AccountDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.AccountDFManager = AccountDFManager;
