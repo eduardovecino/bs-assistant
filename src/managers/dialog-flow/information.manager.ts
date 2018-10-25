@@ -37,11 +37,11 @@ export class InformationDFManager {
     };
 
     public static generateOpenAppSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response_screen');
+        return this.translateManager.translate('intent.information.open_app.simple_response.screen');
     }
 
     public static generateOpenAppSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response_no_screen');
+        return this.translateManager.translate('intent.information.open_app.simple_response.no_screen');
     }
 
     public static generateOpenAppBasicCard() {

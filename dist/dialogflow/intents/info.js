@@ -33,7 +33,7 @@ class InfoIntents {
             }
         }));
         //ABRIR APP
-        app.intent('Abrir App', (conv) => {
+        app.intent('Abrir App', (conv) => __awaiter(this, void 0, void 0, function* () {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const openAppSimpleResponseScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
                 console.log("INFO1" + openAppSimpleResponseScreen);
@@ -46,7 +46,7 @@ class InfoIntents {
                 const openAppSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseNoScreen();
                 conv.ask(openAppSimpleResponseNoScreen);
             }
-        });
+        }));
     }
 }
 exports.InfoIntents = InfoIntents;

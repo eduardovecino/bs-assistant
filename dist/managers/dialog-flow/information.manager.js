@@ -28,10 +28,10 @@ class InformationDFManager {
     }
     ;
     static generateOpenAppSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response_screen');
+        return this.translateManager.translate('intent.information.open_app.simple_response.screen');
     }
     static generateOpenAppSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response_no_screen');
+        return this.translateManager.translate('intent.information.open_app.simple_response.no_screen');
     }
     static generateOpenAppBasicCard() {
         return new actions_on_google_1.BasicCard({
