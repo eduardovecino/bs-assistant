@@ -9,7 +9,7 @@ class InformationDFManager {
         for (let i = 0; i < length; i++) {
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate('intent.information.simple_response_%offices%', [response]);
+        return this.translateManager.translate('intent.information.offices.simple_response_%offices%', [response]);
     }
     ;
     static generateOfficesBrowseCarousel(offices) {
@@ -27,6 +27,26 @@ class InformationDFManager {
         return (new actions_on_google_1.BrowseCarousel(tmp));
     }
     ;
+    static generateOpenAppSimpleResponseScreen() {
+        return this.translateManager.translate('intent.information.open_app.simple_response_screen');
+    }
+    static generateOpenAppSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.information.open_app.simple_response_no_screen');
+    }
+    static generateOpenAppBasicCard() {
+        return new actions_on_google_1.BasicCard({
+            title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+            image: {
+                url: 'http://www.guiaactiva.com/imagenes/logos/bancosabadell.gif',
+                accessibilityText: this.translateManager.translate('intent.information.open_app.basic_card.title')
+            },
+            text: '',
+            buttons: new actions_on_google_1.Button({
+                title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+            })
+        });
+    }
 }
 InformationDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.InformationDFManager = InformationDFManager;

@@ -33,6 +33,18 @@ class InfoIntents {
                 conv.ask(this.translateManager.translate('intent.service.failure'));
             }
         }));
+        //Abrir App
+        app.intent('Abrir App', (conv) => {
+            if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                const openAppSimpleResponseSreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
+                const openAppBasicCard = information_manager_1.InformationDFManager.generateOpenAppBasicCard();
+                conv.ask(openAppSimpleResponseSreen);
+                conv.ask(openAppBasicCard);
+            }
+            else {
+                const openAppSimpleResponseNoSreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+            }
+        });
     }
 }
 exports.InfoIntents = InfoIntents;

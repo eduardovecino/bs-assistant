@@ -1,4 +1,4 @@
-import { BrowseCarousel, Image, BrowseCarouselItem} from "actions-on-google";
+import { BrowseCarousel, Image, BrowseCarouselItem, BasicCard, Button} from "actions-on-google";
 import { TranslateManager } from "../translate.manager";
 
 
@@ -12,7 +12,7 @@ export class InformationDFManager {
         for (let i=0 ; i<length; i++){
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate('intent.information.simple_response_%offices%', [response]);
+        return this.translateManager.translate('intent.information.offices.simple_response_%offices%', [response]);
     };
 
     public static generateOfficesBrowseCarousel(offices) {
@@ -35,4 +35,27 @@ export class InformationDFManager {
         });
         return (new BrowseCarousel(tmp));
     };
+
+    public static generateOpenAppSimpleResponseScreen() {
+        return this.translateManager.translate('intent.information.open_app.simple_response_screen');
+    }
+
+    public static generateOpenAppSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.information.open_app.simple_response_no_screen');
+    }
+
+    public static generateOpenAppBasicCard() {
+        return new BasicCard({
+            title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+            image: {
+                url: 'http://www.guiaactiva.com/imagenes/logos/bancosabadell.gif',
+                accessibilityText: this.translateManager.translate('intent.information.open_app.basic_card.title')
+            },
+            text: '',
+            buttons: new Button({
+                title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+            })
+        })
+    }
 }
