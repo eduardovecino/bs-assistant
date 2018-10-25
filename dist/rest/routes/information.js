@@ -15,7 +15,7 @@ class InformationRoutes {
             this.informationService.getOffices(latitude, longitude).then(offices => {
                 if (offices) {
                     res.status(200).send(offices);
-                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
+                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
                     res.status(200).send(carouselOfOffices);
                 }
                 else {

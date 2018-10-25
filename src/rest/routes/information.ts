@@ -20,7 +20,7 @@ export class InformationRoutes {
                 this.informationService.getOffices(latitude, longitude).then(offices => {
                     if (offices) {
                         res.status(200).send(offices);
-                        const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices);
+                        const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
 
                         res.status(200).send(carouselOfOffices);
 
