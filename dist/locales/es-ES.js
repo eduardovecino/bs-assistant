@@ -12,7 +12,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.start.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
     'intent.start.get_signin.failure': `No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`,
     'intent.start.cancel': `Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!`,
-    'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas más cercanas o contacto. ¿Qué deseas hacer?`,
+    'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas cercanas o contacto. ¿Qué deseas hacer?`,
     'intent.start.help.screen': `Selecciona una de las siguientes opciones:`,
     //ACCOUNTS
     'intent.account.null_response': `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,

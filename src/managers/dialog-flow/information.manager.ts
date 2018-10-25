@@ -19,12 +19,14 @@ export class InformationDFManager {
         return this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response]);
     };
 
-    public static generateOfficesBrowseCarousel(offices) {
+    public static generateOfficesBrowseCarousel(offices, latitude, longitude) {
         const tmp =  {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.point.lat},${office.point.lng}`;
+            // const mapUrl = `https://maps.google.com/?q=${office.point.lat},${office.point.lng}`;
+            const mapUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${office.point.lat},${office.point.lng}&travelmode=walking`;
+
             tmp.items.push( new BrowseCarouselItem(
                 {
                     title: office.name,

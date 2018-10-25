@@ -25,7 +25,7 @@ class InfoIntents {
             if (offices) {
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                     const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
-                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices);
+                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
                     conv.ask(officesSimpleResponseScreen);
                     conv.ask(carouselOfOffices);
                 }
