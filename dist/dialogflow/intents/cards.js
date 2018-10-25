@@ -44,7 +44,7 @@ class CardIntents {
             conv.contexts.set(Contexts.selected_card, 5);
             if (cardSelected) {
                 const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
-                conv.ask(response + this.translateManager.translate('intent.card.help'));
+                conv.ask(response);
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
             }
             else {

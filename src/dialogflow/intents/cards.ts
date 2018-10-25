@@ -38,7 +38,7 @@ export class CardIntents {
             conv.contexts.set(Contexts.selected_card, 5);        
             if (cardSelected) {
                 const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
-                conv.ask(response + this.translateManager.translate('intent.card.help'));
+                conv.ask(response);
                 conv.ask(SuggestionDFManager.generateCardSuggestions());
             } else {
                 conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', option));
