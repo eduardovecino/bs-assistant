@@ -31,12 +31,14 @@ export class InfoIntents {
         //Abrir App
         app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-                const openAppSimpleResponseSreen = InformationDFManager.generateOpenAppSimpleResponseScreen();
+                const openAppSimpleResponseScreen = InformationDFManager.generateOpenAppSimpleResponseScreen();
                 const openAppBasicCard = InformationDFManager.generateOpenAppBasicCard();
-                conv.ask(openAppSimpleResponseSreen);
+                conv.ask(openAppSimpleResponseScreen);
                 conv.ask(openAppBasicCard);
             } else {
-                const openAppSimpleResponseNoSreen = InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+                const openAppSimpleResponseNoScreen = InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+                conv.ask(openAppSimpleResponseNoScreen);
+
             }
             
         });

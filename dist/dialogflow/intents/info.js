@@ -36,13 +36,14 @@ class InfoIntents {
         //Abrir App
         app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-                const openAppSimpleResponseSreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
+                const openAppSimpleResponseScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseScreen();
                 const openAppBasicCard = information_manager_1.InformationDFManager.generateOpenAppBasicCard();
-                conv.ask(openAppSimpleResponseSreen);
+                conv.ask(openAppSimpleResponseScreen);
                 conv.ask(openAppBasicCard);
             }
             else {
-                const openAppSimpleResponseNoSreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+                const openAppSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOpenAppSimpleResponseNoScreen();
+                conv.ask(openAppSimpleResponseNoScreen);
             }
         });
     }
