@@ -6,12 +6,16 @@ export class AccountDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
-    public static generateAccountsSimpleResponse(accounts) {
-        let response= ' ';
+    public static generateAccountsSimpleResponseScreen(accounts) {
+        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%', [accounts.length]);
+    }
+
+    public static generateAccountsSimpleResponseNoScreen(accounts) {
+        let response = ' ';
         accounts.forEach(account => {
             response = response + account.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.account.simple_response_%number%_%accounts%', [accounts.length,response]);
+        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response]);
     }
     
     public static generateAccountsList(accounts) {

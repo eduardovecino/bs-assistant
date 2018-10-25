@@ -28,10 +28,16 @@ class AccountIntents {
             let accounts = yield this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                const accountsSimpleResponse = account_manager_2.AccountDFManager.generateAccountsSimpleResponse(accounts);
-                const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
-                conv.ask(accountsSimpleResponse);
-                conv.ask(accountsList);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const accountsSimpleResponseScreen = account_manager_2.AccountDFManager.generateAccountsSimpleResponseScreen(accounts);
+                    const accountsList = account_manager_2.AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(accountsSimpleResponseScreen);
+                    conv.ask(accountsList);
+                }
+                else {
+                    const accountsSimpleResponseNoScreen = account_manager_2.AccountDFManager.generateAccountsSimpleResponseNoScreen(accounts);
+                    conv.ask(accountsSimpleResponseNoScreen);
+                }
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));

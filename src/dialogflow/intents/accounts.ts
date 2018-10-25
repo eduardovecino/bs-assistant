@@ -23,10 +23,15 @@ export class AccountIntents {
             let accounts = await this.accountService.getAccounts();
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
-                const accountsSimpleResponse = AccountDFManager.generateAccountsSimpleResponse(accounts);
-                const accountsList = AccountDFManager.generateAccountsList(accounts);
-                conv.ask(accountsSimpleResponse);
-                conv.ask(accountsList);
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const accountsSimpleResponseScreen = AccountDFManager.generateAccountsSimpleResponseScreen(accounts);
+                    const accountsList = AccountDFManager.generateAccountsList(accounts);
+                    conv.ask(accountsSimpleResponseScreen);
+                    conv.ask(accountsList);
+                } else {
+                    const accountsSimpleResponseNoScreen = AccountDFManager.generateAccountsSimpleResponseNoScreen(accounts);
+                    conv.ask(accountsSimpleResponseNoScreen);
+                }
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
