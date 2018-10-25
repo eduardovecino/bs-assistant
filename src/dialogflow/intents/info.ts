@@ -28,7 +28,7 @@ export class InfoIntents {
         });
 
         //ABRIR APP
-        app.intent('Abrir App', async (conv) => {
+        app.intent('Abrir App', (conv) => {
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const openAppSimpleResponseScreen = InformationDFManager.generateOpenAppSimpleResponseScreen();
                 console.log("INFO1" +openAppSimpleResponseScreen);

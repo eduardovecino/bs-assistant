@@ -46,9 +46,9 @@ export class InformationDFManager {
 
     public static generateOpenAppBasicCard() {
         return new BasicCard({
-            title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+            title: '',
             image: {
-                url: 'http://www.guiaactiva.com/imagenes/logos/bancosabadell.gif',
+                url: 'https://farm8.staticflickr.com/7428/9357809422_cfd8088a54.jpg',
                 accessibilityText: this.translateManager.translate('intent.information.open_app.basic_card.title')
             },
             text: '',
