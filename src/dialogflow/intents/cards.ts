@@ -72,8 +72,14 @@ export class CardIntents {
 
             //AYUDA TARJETAS
             app.intent('ayuda - tarjetas', (conv) => {
-                conv.ask(this.translateManager.translate('intent.card.help'));
-                conv.ask(SuggestionDFManager.generateCardSuggestions());
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const cardHelpSimpleResponseScreen = CardDFManager.generateCardHelpSimpleResponseScreen();
+                    conv.ask(cardHelpSimpleResponseScreen);
+                    conv.ask(SuggestionDFManager.generateCardSuggestions());
+                } else {
+                    const cardHelpSimpleResponseNoScreen = CardDFManager.generateCardHelpSimpleResponseNoScreen();
+                    conv.ask(cardHelpSimpleResponseNoScreen);
+                }
             });
         })
 

@@ -101,6 +101,12 @@ class CardDFManager {
         });
         return new actions_on_google_1.Table(tmp);
     }
+    static generateCardHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.card.help.screen');
+    }
+    static generateCardHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.card.help.no_screen');
+    }
 }
 CardDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.CardDFManager = CardDFManager;

@@ -44,7 +44,6 @@ class AccountIntents {
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
                 const response = account_manager_2.AccountDFManager.generateSelectedAccountSimpleResponse(selectedAccount);
-                // + this.translateManager.translate('intent.account.help')
                 conv.ask(response);
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateAccountSuggestions());
             }

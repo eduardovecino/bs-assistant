@@ -73,8 +73,15 @@ class CardIntents {
             });
             //AYUDA TARJETAS
             app.intent('ayuda - tarjetas', (conv) => {
-                conv.ask(this.translateManager.translate('intent.card.help'));
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
+                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                    const cardHelpSimpleResponseScreen = card_manager_2.CardDFManager.generateCardHelpSimpleResponseScreen();
+                    conv.ask(cardHelpSimpleResponseScreen);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
+                }
+                else {
+                    const cardHelpSimpleResponseNoScreen = card_manager_2.CardDFManager.generateCardHelpSimpleResponseNoScreen();
+                    conv.ask(cardHelpSimpleResponseNoScreen);
+                }
             });
         }));
         //BLOQUEAR TARJETA

@@ -107,4 +107,12 @@ export class CardDFManager {
         });
         return new Table(tmp);
     }
+
+    public static generateCardHelpSimpleResponseScreen() {
+        return this.translateManager.translate('intent.card.help.screen');
+    }
+
+    public static generateCardHelpSimpleResponseNoScreen() {
+        return this.translateManager.translate('intent.card.help.no_screen');
+    }
 }
