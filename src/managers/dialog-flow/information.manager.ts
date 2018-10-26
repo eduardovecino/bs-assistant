@@ -69,4 +69,4 @@ export class InformationDFManager {
     public static generateContactSimpleResponseScreen() {
         return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.contact.simple_response')]);
     }
-} 
+}
