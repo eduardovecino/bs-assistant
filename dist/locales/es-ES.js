@@ -56,6 +56,6 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.information.open_app.simple_response.screen': `Descargate la app, para más información`,
     'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca la aplicación App Banco Sabadell. Tu banca móvil`,
     'intent.information.open_app.basic_card.title': `Abrir App`,
-    'intent.information.contact.simple_response': `Puedes contactarnos, cualquier día y a cualquier hora, a través del teléfono: ${ssml_gib_1.Ssml.sayAs({ text: "902323000", interpret: ssml_gib_1.As.telephone })} `,
+    'intent.information.contact.simple_response': `Puedes contactarnos, cualquier día y a cualquier hora, a través del teléfono: ${ssml_gib_1.Ssml.sayAs({ text: "902 323 000", interpret: ssml_gib_1.As.characters })} `,
 };
 //# sourceMappingURL=es-ES.js.map
