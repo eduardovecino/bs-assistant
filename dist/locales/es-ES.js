@@ -6,7 +6,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.service.failure': `No ha funcionado, vuelve a intentarlo`,
     //START
     'intent.start.welcome.permission': ` para dirigirme a usted por su nombre y conocer su ubicación`,
-    'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell, strong")}, ${ssml_gib_1.Ssml.break({ ms: 500 })} {{ name }}`,
+    'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}, ${ssml_gib_1.Ssml.break({ ms: 500 })} {{ name }}`,
     'intent.start.get_permission.failure': `¡No puedo leer tu mente ahora mismo! ¡Mis poderes místicos han fallado!`,
     'intent.start.login': `Vamos a iniciar sesión`,
     'intent.start.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
