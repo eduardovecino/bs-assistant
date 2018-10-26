@@ -1,5 +1,6 @@
 import { Table, TableOptions, Carousel } from "actions-on-google";
 import { TranslateManager } from "../translate.manager";
+import { Ssml } from 'ssml-gib';
 
 
 const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg'
@@ -9,7 +10,7 @@ export class CardDFManager {
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateCardsSimpleResponseScreen(cards) {
-        return this.translateManager.translate('intent.card.simple_response.screen_%number%', [cards.length]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.simple_response.screen_%number%', [cards.length])]);
     }
 
     public static generateCardsSimpleResponseNoScreen(cards) {
@@ -17,7 +18,7 @@ export class CardDFManager {
         cards.forEach(card => {
             response = response + card.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.card.simple_response.no_screen_%number%_%cards%', [cards.length, response]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.simple_response.no_screen_%number%_%cards%', [cards.length, response])]);
     }
 
     public static generateCardsCarousel(cards) {
@@ -38,47 +39,47 @@ export class CardDFManager {
             });
             return (new Carousel(tmp));
         } else {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].availableBalance])
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].availableBalance])])
         }
     }
 
     public static generateSelectedCardSimpleResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers])]);
         } else {
-            return this.translateManager.translate('intent.card.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
     public static generateBalanceCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance])]);
         } else {
-            return this.translateManager.translate('intent.card.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
     public static generateBlockCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers])]);
         } else {
-            return this.translateManager.translate('intent.card.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
     public static generateSettlementCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate])]);
         } else {
-            return this.translateManager.translate('intent.card.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
     public static generateLimitsCardResponse(card) {
         if (card) {
-            return this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit])]);
         } else {
-            return this.translateManager.translate('intent.card.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
@@ -87,11 +88,11 @@ export class CardDFManager {
         let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
             for (let i = 0; i < length; i++) {
-                response = response + this.translateManager.translate('intent.card.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])
+                response = response + Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])])
             };
-            return this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response])]);
         } else {
-            return this.translateManager.translate('intent.card.movements.no_movements');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.no_movements')]);
         }
     }
 
@@ -113,10 +114,10 @@ export class CardDFManager {
     }
 
     public static generateCardHelpSimpleResponseScreen() {
-        return this.translateManager.translate('intent.card.help.screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.help.screen')]);
     }
 
     public static generateCardHelpSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.card.help.no_screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.help.no_screen')]);
     }
 }
