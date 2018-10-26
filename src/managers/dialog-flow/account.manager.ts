@@ -1,5 +1,6 @@
 import { List, Table, TableOptions } from "actions-on-google";
 import { TranslateManager } from "../translate.manager";
+import { Ssml } from 'ssml-gib';
 
 
 export class AccountDFManager {
@@ -7,7 +8,7 @@ export class AccountDFManager {
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateAccountsSimpleResponseScreen(accounts) {
-        return this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length])]);
     }
 
     public static generateAccountsSimpleResponseNoScreen(accounts) {
@@ -15,7 +16,7 @@ export class AccountDFManager {
         accounts.forEach(account => {
             response = response + account.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response])]);
     }
     
     public static generateAccountsList(accounts) {
@@ -37,23 +38,23 @@ export class AccountDFManager {
             });
             return (new List(tmp));
         } else {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance])]);
         }
     }
 
     public static generateSelectedAccountSimpleResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.selected_account_%account%', [account.description]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.selected_account_%account%', [account.description])]);
         } else {
-            return this.translateManager.translate('intent.account.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
         }
     }
 
     public static generateBalanceAccountResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance])]);
         } else {
-            return this.translateManager.translate('intent.account.null_response');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
         }
     }
 
@@ -62,15 +63,15 @@ export class AccountDFManager {
         let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
             for (let i = 0; i < length; i++) {
-                response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])
+                response = response + Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])])
             };
-            return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response])]);
         } else {
-            return this.translateManager.translate('intent.account.movements.no_movements');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.no_movements')]);
         }
     }
     public static generateMovementsAccountTableSimpleResponse(movements) {
-        return this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length])]);
     }
 
     public static generateMovementsAccountTable(movements) {
@@ -91,10 +92,10 @@ export class AccountDFManager {
     }
 
     public static generateAccountHelpSimpleResponseScreen() {
-        return this.translateManager.translate('intent.account.help.screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.screen')]);
     }
 
     public static generateAccountHelpSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.account.help.no_screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.no_screen')]);
     }
 }

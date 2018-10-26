@@ -2,16 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
+const ssml_gib_1 = require("ssml-gib");
 class AccountDFManager {
     static generateAccountsSimpleResponseScreen(accounts) {
-        return this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length]);
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length])]);
     }
     static generateAccountsSimpleResponseNoScreen(accounts) {
         let response = ' ';
         accounts.forEach(account => {
             response = response + account.last4Numbers + ", ";
         });
-        return this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response]);
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response])]);
     }
     static generateAccountsList(accounts) {
         if (accounts.length > 1) {
@@ -33,23 +34,23 @@ class AccountDFManager {
             return (new actions_on_google_1.List(tmp));
         }
         else {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance]);
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance])]);
         }
     }
     static generateSelectedAccountSimpleResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.selected_account_%account%', [account.description]);
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.selected_account_%account%', [account.description])]);
         }
         else {
-            return this.translateManager.translate('intent.account.null_response');
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
         }
     }
     static generateBalanceAccountResponse(account) {
         if (account) {
-            return this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance]);
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance])]);
         }
         else {
-            return this.translateManager.translate('intent.account.null_response');
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
         }
     }
     static generateMovementsAccountSimpleResponse(movements) {
@@ -57,17 +58,17 @@ class AccountDFManager {
         let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
             for (let i = 0; i < length; i++) {
-                response = response + this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount]);
+                response = response + ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])]);
             }
             ;
-            return this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response]);
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response])]);
         }
         else {
-            return this.translateManager.translate('intent.account.movements.no_movements');
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.no_movements')]);
         }
     }
     static generateMovementsAccountTableSimpleResponse(movements) {
-        return this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length]);
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length])]);
     }
     static generateMovementsAccountTable(movements) {
         const tmp = {
@@ -84,10 +85,10 @@ class AccountDFManager {
         return new actions_on_google_1.Table(tmp);
     }
     static generateAccountHelpSimpleResponseScreen() {
-        return this.translateManager.translate('intent.account.help.screen');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.screen')]);
     }
     static generateAccountHelpSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.account.help.no_screen');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.no_screen')]);
     }
 }
 AccountDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
