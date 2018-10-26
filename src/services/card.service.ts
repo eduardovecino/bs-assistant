@@ -15,9 +15,7 @@ export class CardService extends RestManager {
 
     async getCard(last4) {
         const cards = await this.getCards();
-        console.log("CARD0", cards);
         const card = CardManager.getCardByLast4(cards, last4);
-        console.log("CARD1", card);
         return card;
     }
 }

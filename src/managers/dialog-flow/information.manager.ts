@@ -1,5 +1,6 @@
 import { BrowseCarousel, Image, BrowseCarouselItem, BasicCard, Button} from "actions-on-google";
 import { TranslateManager } from "../translate.manager";
+import { Ssml } from 'ssml-gib';
 
 
 export class InformationDFManager {
@@ -66,6 +67,6 @@ export class InformationDFManager {
     }
 
     public static generateContactSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.contact.simple_response');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.contact.simple_response')]);
     }
 }

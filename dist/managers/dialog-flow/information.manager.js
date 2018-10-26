@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
+const ssml_gib_1 = require("ssml-gib");
 class InformationDFManager {
     static generateOfficesSimpleResponseScreen() {
         return this.translateManager.translate('intent.information.offices.simple_response.screen');
@@ -53,7 +54,7 @@ class InformationDFManager {
         });
     }
     static generateContactSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.contact.simple_response');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.contact.simple_response')]);
     }
 }
 InformationDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
