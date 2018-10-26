@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as rp from "request-promise";
 
 const host = 'https://oauth.bancsabadell.com';
-const token = '6dd16e44-1b44-4d7e-abad-868e597af2cf92f01a24-fdd1-4384-9dcd-27d67bf18da38887191d-3572-47ec-81c5-7631b2945bc0'
+const token = 'c340d58c-8178-4a88-a7ac-7aee118887f3812dd701-d136-437f-a963-126da3ceaf2890a8b112-a06f-4d3f-9f70-0ce2c5edb92c'
 
 export class RestManager {
 
