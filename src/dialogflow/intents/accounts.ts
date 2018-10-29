@@ -78,7 +78,7 @@ export class AccountIntents {
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers);
             if (account){
-                console.log("QUEPASA: " + JSON.stringify({account}) +account.balance +account.description);
+                console.log("QUEPASA: " + JSON.stringify(account) +account.balance +account.description);
                 this.accountBalance(account, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));

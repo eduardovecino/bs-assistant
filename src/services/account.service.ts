@@ -16,7 +16,7 @@ export class AccountService extends RestManager {
 
     async getAccount(last4) {
         const accounts = await this.getAccounts();
-        const account: AccountModel = new AccountModel(AccountManager.getAccountByLast4(accounts, last4));
+        const account = AccountManager.getAccountByLast4(accounts, last4);
         return account;
     }
 

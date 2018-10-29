@@ -24,7 +24,7 @@ class AccountService extends rest_manager_1.RestManager {
     getAccount(last4) {
         return __awaiter(this, void 0, void 0, function* () {
             const accounts = yield this.getAccounts();
-            const account = new account_model_1.AccountModel(account_manager_1.AccountManager.getAccountByLast4(accounts, last4));
+            const account = account_manager_1.AccountManager.getAccountByLast4(accounts, last4);
             return account;
         });
     }
