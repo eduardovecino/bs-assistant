@@ -5,7 +5,7 @@ const translate_manager_1 = require("../translate.manager");
 const ssml_gib_1 = require("ssml-gib");
 class InformationDFManager {
     static generateOfficesSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.offices.simple_response.screen');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.screen')]);
     }
     ;
     static generateOfficesSimpleResponseNoScreen(offices) {
@@ -14,7 +14,7 @@ class InformationDFManager {
         for (let i = 0; i < length; i++) {
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response]);
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response])]);
     }
     ;
     static generateOfficesBrowseCarousel(offices, latitude, longitude) {
@@ -34,10 +34,10 @@ class InformationDFManager {
     }
     ;
     static generateOpenAppSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response.screen');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.screen')]);
     }
     static generateOpenAppSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response.no_screen');
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.no_screen')]);
     }
     static generateOpenAppBasicCard() {
         return new actions_on_google_1.BasicCard({

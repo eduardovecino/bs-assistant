@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const rp = require("request-promise");
 const host = 'https://oauth.bancsabadell.com';
-const token = 'c340d58c-8178-4a88-a7ac-7aee118887f3812dd701-d136-437f-a963-126da3ceaf2890a8b112-a06f-4d3f-9f70-0ce2c5edb92c';
+const token = '6f025f5a-59e6-4c9d-909e-399535bc79ab33fdd161-cc7c-4dd9-8b01-e1ede3d4aa5bf34af305-350c-4ab0-a071-33b36643f387';
 class RestManager {
     constructor() {
         this.isMock = process.env.MOCK;

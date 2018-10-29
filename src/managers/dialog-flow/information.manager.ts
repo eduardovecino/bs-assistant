@@ -8,7 +8,7 @@ export class InformationDFManager {
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
     public static generateOfficesSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.offices.simple_response.screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.screen')]);
     };
 
     public static generateOfficesSimpleResponseNoScreen(offices) {
@@ -17,7 +17,7 @@ export class InformationDFManager {
         for (let i=0 ; i<length; i++){
             response = response + offices[i].address + ", ";
         }
-        return this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response]);
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response])]);
     };
 
     public static generateOfficesBrowseCarousel(offices, latitude, longitude) {
@@ -44,11 +44,11 @@ export class InformationDFManager {
     };
 
     public static generateOpenAppSimpleResponseScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response.screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.screen')]);
     }
 
     public static generateOpenAppSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.information.open_app.simple_response.no_screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.no_screen')]);
     }
 
     public static generateOpenAppBasicCard() {

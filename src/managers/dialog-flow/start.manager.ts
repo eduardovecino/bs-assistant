@@ -12,34 +12,34 @@ export class StartDFManager {
                 return (Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.answer_%name%', [name])]));
             }
         } else {
-            return this.translateManager.translate('intent.start.get_permission.failure');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.failure')]);
         }
         
     }
 
     public static generateLoginSimpleResponse() {
-        return this.translateManager.translate('intent.start.login');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.login')]);
     }
 
     public static generateSigninSimpleResponse(signin) {
         if (signin.status === 'OK') {
-            return this.translateManager.translate('intent.start.get_signin.ok');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_signin.ok')]);
 
         } else {
-            return this.translateManager.translate('intent.start.get_signin.failure');
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_signin.failure')]);
         }
     }
 
     public static generateCancelSimpleResponse() {
-        return this.translateManager.translate('intent.start.cancel');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.cancel')]);
     }
 
     public static generateHelpSimpleResponseScreen() {
-        return this.translateManager.translate('intent.start.help.screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.help.screen')]);
     }
 
     public static generateHelpSimpleResponseNoScreen() {
-        return this.translateManager.translate('intent.start.help.no_screen');
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.help.no_screen')]);
     }
     
 }
