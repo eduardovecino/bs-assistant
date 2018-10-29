@@ -24,7 +24,7 @@ export const SPANISH_TRANSLATIONS = {
     'intent.account.simple_response.screen_%number%': `Tienes {{ number }} cuentas. ${Ssml.break({ ms: 500 })} ¿Cúal deseas seleccionar?`,
     'intent.account.simple_response.no_screen_%number%_%accounts%': `Tienes {{ number }} cuentas. Terminadas en: {{ accounts }} ${Ssml.break({ ms: 500 })} ¿Cúal deseas seleccionar?`,
     'intent.account.list.title': 'Mis Cuentas',
-    'intent.account.balance_%account%_%balance%': `El saldo  de tu {{ account }} es de {{ balance }} €. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu cuenta?`,
+    'intent.account.balance_%account%_%balance%': `El saldo  de tu cuenta {{ account }} es de {{ balance }} €. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu cuenta?`,
     'intent.account.movements.simple_response.pre_%concept%_%import%': `{{ concept }} con un importe de {{ import }} €, `,
     'intent.account.movements.simple_response_%number%_%movements%': `Este mes tienes {{ number }} movimientos: {{ movements }} ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu cuenta?`,
     'intent.account.movements.table.simple_response_%number%': `Este mes tienes {{ number }} movimientos: `,
