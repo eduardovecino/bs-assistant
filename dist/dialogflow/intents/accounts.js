@@ -82,7 +82,7 @@ class AccountIntents {
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account = yield this.accountService.getAccount(last4numbers);
             if (account) {
-                console.log("QUEPASA: " + JSON.stringify(account) + account.balance + account.description);
+                console.log("QUEPASA: " + JSON.stringify({ account }) + account.balance + account.description);
                 this.accountBalance(account, conv);
             }
             else {
