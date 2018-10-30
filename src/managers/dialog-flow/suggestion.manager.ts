@@ -1,6 +1,5 @@
 import { Suggestions } from "actions-on-google";
 import { SUGGESTIONS } from "../../constants/suggestions";
-import { TOKEN } from "../../constants/token";
 
 
 
@@ -11,12 +10,12 @@ export class SuggestionDFManager {
     }
 
     public static generateSuggestions() {
-        if (TOKEN.TOKEN_MOCK) {
+        // if (TOKEN.TOKEN_MOCK) {
             return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
-        } else {
+        // } else {
             //TODO NOT LOGGED SUGGESTIONS
-            return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
-        }
+            // return (new Suggestions(SUGGESTIONS.LOGGED_SUGGESTIONS));
+        // }
     }
 
     public static generateCardSuggestions() {
