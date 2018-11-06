@@ -35,6 +35,7 @@ class StartIntents /*extends BaseIntent*/ {
         //     conv.ask(signinSimpleResponse);
         // });
         app.intent('Get Signin', (conv, params, signin) => {
+            console.log("PTG", signin.status, conv.user.access.token);
             if (signin.status === 'OK') {
                 const access = conv.user.access.token; //possibly do something with access token
                 conv.ask(`¡Genial, gracias por iniciar sesión! ${access}`);
