@@ -9,23 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_manager_1 = require("../managers/data/rest.manager");
-const card_manager_1 = require("../managers/data/card.manager");
-const card_model_1 = require("../models/card.model");
-const fs = require("fs");
+const cards_model_1 = require("../models/cards.model");
 class CardService extends rest_manager_1.RestManager {
+    // async getCards() {
+    //     const data = await fs.readFileSync('mock/card/get-cards.json');
+    //     const jsonData = JSON.parse(data.toString());
+    //     const cards: Array<CardModel> = [];
+    //     jsonData.data.forEach(card => cards.push(new CardModel(card)));
+    //     return cards;
+    // }
     getCards() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield fs.readFileSync('mock/card/get-cards.json');
-            const jsonData = JSON.parse(data.toString());
+            const results = yield this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/tarjetas', 'mock/card/get-cards.json');
             const cards = [];
-            jsonData.data.forEach(card => cards.push(new card_model_1.CardModel(card)));
+            results.forEach(result => cards.push(new cards_model_1.CardsModel(result)));
             return cards;
         });
     }
-    getCard(last4) {
+    // async getCard(last4) {
+    //     const cards = await this.getCards();
+    //     const card = CardManager.getCardByLast4(cards, last4);
+    //     return card;
+    // }
+    getCard(productNumber) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cards = yield this.getCards();
-            const card = card_manager_1.CardManager.getCardByLast4(cards, last4);
+            const card = yield this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json');
             return card;
         });
     }

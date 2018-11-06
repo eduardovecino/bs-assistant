@@ -132,9 +132,5 @@
             "numeroProducto": "737",
             "numeroProductoCodificado": "4106000000003344"
         }
-    ],
-    "head": {
-        "fechaOperacion": "2018-11-05 16:13:01",
-        "codigoServicio": "SERV_CUE01"
-    }
+    ]
 }

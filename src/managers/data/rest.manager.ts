@@ -36,9 +36,6 @@ export class RestManager {
             } else {
                 rp(options)
                     .then(function (body) {
-                        console.log('body', body);
-                        console.log('body.data', body.data);
-
                         var data = body.data || null;
                         resolve(data);
                     })
