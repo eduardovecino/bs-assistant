@@ -34,7 +34,11 @@ class AccountService extends rest_manager_1.RestManager {
             // /ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos
             const results = yield this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-10-2018`, `mock/accounts/get-movements-accounts.json`);
             const movements = [];
-            results.forEach(result => movements.push(new movement_model_1.MovementModel(result)));
+            console.log('results', results);
+            if (results) {
+                results.forEach(result => movements.push(new movement_model_1.MovementModel(result)));
+            }
+            ;
             return movements;
         });
     }
