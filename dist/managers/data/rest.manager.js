@@ -30,8 +30,8 @@ class RestManager {
             else {
                 rp(options)
                     .then(function (body) {
-                    var data = body.data;
-                    console.log('success', data);
+                    console.log('body', body);
+                    var data = body.data || null;
                     resolve(data);
                 })
                     .catch(function (err) {
