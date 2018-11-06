@@ -19,7 +19,8 @@ class RestManager {
                 'headers': {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                }
+                },
+                'strictSSL': false
             };
             if (this.isMock) {
                 const data = fs.readFileSync(mock);
