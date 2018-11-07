@@ -49,7 +49,7 @@ class CardDFManager {
         console.log("PTG information card: ", informationCard);
         console.log("PTG card selected: ", cardSelected);
         if (informationCard) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.saldoDisponible])]);
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
