@@ -18,9 +18,10 @@ class CardManager {
         return null;
     }
     static getCardByOption(cards, option) {
+        console.log("PT2:", cards.length);
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].numberCodificatedProduct === option) {
-                console.log("PT2:", cards[i]);
+                console.log("PT3:", cards[i]);
                 return cards[i];
             }
         }
