@@ -17,13 +17,11 @@ class AppDialogFlow {
         this.cardIntents = new cards_1.CardIntents();
         this.infoIntents = new info_1.InfoIntents();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
-        console.log('AppDialogFlow constructor');
         this.expressApp = express();
         this.app = actions_on_google_1.dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);
         this.app.middleware(conv => {
-            console.log(conv.user.locale);
             this.translateManager.config = {
                 lang: conv.user.locale,
                 translations: {
@@ -42,7 +40,6 @@ class AppDialogFlow {
         this.expressApp.use(bodyParser.json());
     }
     initialize() {
-        console.log('initialize');
     }
 }
 exports.default = new AppDialogFlow().expressApp;

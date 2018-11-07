@@ -64,7 +64,6 @@ export class CardIntents {
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos Tarjetas - seleccionada', (conv) => {
                 let movements = informationCard.currentMonthDetail;
-                console.log("MOVEMENTS 1: " ,movements);
                 this.cardMovements(movements, conv);
             });
 

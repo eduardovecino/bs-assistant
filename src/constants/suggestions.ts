@@ -14,8 +14,10 @@ export const SUGGESTIONS = {
         'Saldo de Cuenta',
         'Movimientos'],
     CARD_SUGGESTIONS: [
-        'Bloquear Tarjeta',
+        'Saldo de Tarjeta',
+        'Movimientos Tarjeta',
         'Límites',
         'Fecha de Liquidación',
-        'Saldo de Tarjeta'], 
+        'Bloquear Tarjeta'
+        ], 
 }

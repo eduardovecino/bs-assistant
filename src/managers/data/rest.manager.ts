@@ -1,9 +1,6 @@
 import * as fs from "fs";
 import * as rp from "request-promise";
 
-// const host = 'https://oauth.bancsabadell.com';
-// const token = '87dfdac5-7ce4-4ee8-b2ab-ae621650266230493354-4ddf-4c5e-88fd-0171f55ff301f3190023-879d-4fc7-9a84-effe1775c79d'
-
 const host = 'https://developers.bancsabadell.com';
 const token = 'fb2f1a76-e0c8-4bdd-9fb3-92a922ab21cde04424c8-5d6c-4f62-83f7-2bfae526db0fb42d8b8d-179c-428c-9a2b-219067dfc9d7'
 

@@ -21,11 +21,6 @@ class CardService extends rest_manager_1.RestManager {
             return cards;
         });
     }
-    // async getCard(last4) {
-    //     const cards = await this.getCards();
-    //     const card = CardManager.getCardByLast4(cards, last4);
-    //     return card;
-    // }
     getCard(last4) {
         return __awaiter(this, void 0, void 0, function* () {
             const cards = yield this.getCards();

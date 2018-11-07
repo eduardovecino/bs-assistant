@@ -22,14 +22,12 @@ class AppDialogFlow {
     public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
-        console.log('AppDialogFlow constructor');
         this.expressApp = express();
         this.app = dialogflow({ debug: true });
         this.config();
         this.expressApp.post('', this.app);
 
         this.app.middleware(conv => {
-            console.log(conv.user.locale);
             this.translateManager.config = {
                 lang: conv.user.locale,
                 translations: {
@@ -53,7 +51,6 @@ class AppDialogFlow {
     }
 
     public initialize(): void {
-        console.log('initialize');
     }
 }
 
