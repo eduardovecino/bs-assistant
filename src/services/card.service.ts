@@ -33,8 +33,7 @@ export class CardService extends RestManager {
     async getCard(last4) {
         const cards = await this.getCards();
         const productNumber = CardManager.getCardByLast4(cards, last4).productNumber;
-        let card: CardModel = new CardModel({});
-        card = await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json');
+        let card: CardModel = new CardModel(await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json'));
         console.log("CARDMODEL: ", card);
         return card;
     }
