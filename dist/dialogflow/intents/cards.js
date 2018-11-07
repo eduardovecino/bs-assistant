@@ -45,12 +45,12 @@ class CardIntents {
         }));
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
-            let informationCard;
             let cards = yield this.cardService.getCards();
             const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            informationCard = yield this.cardService.getCard(cardSelected.last4Numbers);
+            let informationCard = yield this.cardService.getCard(cardSelected.last4Numbers);
             if (informationCard) {
+                console.log("PTG information card: ", informationCard);
                 const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
                 conv.ask(response);
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
@@ -68,7 +68,7 @@ class CardIntents {
             });
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
-                let movements = informationCard.detalleMesActual;
+                let movements = informationCard.currentMonthDetail;
                 this.cardMovements(movements, conv);
             });
             //FECHA LIQUIDACION TARJETA SELECCIONADA

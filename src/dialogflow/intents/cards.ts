@@ -3,6 +3,7 @@ import { CardManager } from '../../managers/data/card.manager';
 import { CardDFManager } from '../../managers/dialog-flow/card.manager';
 import { SuggestionDFManager } from "../../managers/dialog-flow/suggestion.manager"
 import { TranslateManager } from "../../managers/translate.manager";
+import { CardModel } from '../../models/card.model';
 
 export class CardIntents {
 
@@ -38,12 +39,12 @@ export class CardIntents {
 
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', async (conv, input, option) => {
-            let informationCard;
             let cards = await this.cardService.getCards();
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            informationCard = await this.cardService.getCard(cardSelected.last4Numbers);
+            let informationCard: CardModel = await this.cardService.getCard(cardSelected.last4Numbers);
             if (informationCard) {
+                console.log("PTG information card: ", informationCard);
                 const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
                 conv.ask(response);
                 conv.ask(SuggestionDFManager.generateCardSuggestions());
@@ -63,7 +64,7 @@ export class CardIntents {
             
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
-                let movements = informationCard.detalleMesActual;
+                let movements = informationCard.currentMonthDetail;
                 this.cardMovements(movements, conv);
             });
 
