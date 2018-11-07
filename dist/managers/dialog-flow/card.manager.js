@@ -22,12 +22,12 @@ class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                tmp.items[card.contract] = {
-                    title: card.contract,
+                tmp.items[card.numberCodificatedProduct] = {
+                    title: card.numberCodificatedProduct,
                     description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
                         url: cardUrlImage,
-                        accessibilityText: card.contract
+                        accessibilityText: card.numberCodificatedProduct
                     }
                 };
             });
