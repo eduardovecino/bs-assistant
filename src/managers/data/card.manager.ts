@@ -22,8 +22,8 @@ export class CardManager {
     public static getCardByOption(cards, option) {
         console.log("PT2:", option);
         for (let i = 0; i < cards.length; i++) {
-            console.log("PT3:", cards[i].numberCodificatedProduct);
-            if (cards[i].numberCodificatedProduct === option) {
+            console.log("PT3:", cards[i].productNumber);
+            if (cards[i].productNumber === option) {
                 console.log("PT4:", cards[i]);
                 return cards[i];
             }
