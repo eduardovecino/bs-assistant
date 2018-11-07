@@ -43,17 +43,17 @@ export class CardDFManager {
         }
     }
 
-    public static generateSelectedCardSimpleResponse(card) {
-        if (card) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers])]);
+    public static generateSelectedCardSimpleResponse(cardSelected) {
+        if (cardSelected) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [cardSelected.last4Numbers])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateBalanceCardResponse(card) {
-        if (card) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance])]);
+    public static generateBalanceCardResponse(cardSelected, informationCard) {
+        if (informationCard) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }

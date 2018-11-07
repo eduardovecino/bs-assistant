@@ -37,17 +37,17 @@ class CardDFManager {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].balance])]);
         }
     }
-    static generateSelectedCardSimpleResponse(card) {
-        if (card) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [card.last4Numbers])]);
+    static generateSelectedCardSimpleResponse(cardSelected) {
+        if (cardSelected) {
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [cardSelected.last4Numbers])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
-    static generateBalanceCardResponse(card) {
-        if (card) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [card.last4Numbers, card.availableBalance])]);
+    static generateBalanceCardResponse(cardSelected, informationCard) {
+        if (informationCard) {
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);

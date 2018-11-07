@@ -38,45 +38,43 @@ export class CardIntents {
 
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', async (conv, input, option) => {
-            let card;
+            let informationCard;
             let cards = await this.cardService.getCards();
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            if( cards){
-                card = await this.cardService.getCard(cardSelected.last4Numbers);
-                if (card) {
-                    const response = CardDFManager.generateSelectedCardSimpleResponse(card);
-                    conv.ask(response);
-                    conv.ask(SuggestionDFManager.generateCardSuggestions());
-                } else {
-                    conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.description));
-                }
+            informationCard = await this.cardService.getCard(cardSelected.last4Numbers);
+            if (informationCard) {
+                const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
+                conv.ask(response);
+                conv.ask(SuggestionDFManager.generateCardSuggestions());
+            } else {
+                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.description));
             }
             
             //BLOQUEAR TARJETA SELECCIONADA
             app.intent('Bloquear tarjeta - seleccionada', (conv) => {
-                this.cardBlock(card, conv);
+                this.cardBlock(informationCard, conv);
             });  
             
             //SALDO TARJETA SELECCIONADA
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
-                this.cardBalance(card, conv);
+                this.cardBalance(informationCard, cardSelected, conv);
             });
             
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
-                let movements = card.detalleMesActual;
+                let movements = informationCard.detalleMesActual;
                 this.cardMovements(movements, conv);
             });
 
             //FECHA LIQUIDACION TARJETA SELECCIONADA
             app.intent('Fecha liquidacion - seleccionada', (conv) => {
-                this.cardSettlement(card, conv);
+                this.cardSettlement(informationCard, conv);
             });
 
             //LIMITES TARJETA SELECCIONADA
             app.intent('Limites - seleccionada', (conv) => {
-                this.cardLimits(card, conv);
+                this.cardLimits(informationCard, conv);
             });
 
             //AYUDA TARJETAS
@@ -106,7 +104,7 @@ export class CardIntents {
         app.intent('Saldo Tarjeta', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             let card = await this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardBalance(card, conv);
+                this.cardBalance(card, card, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -144,8 +142,8 @@ export class CardIntents {
         })
     }
 
-    private cardBalance(card, conv) {
-        const response = CardDFManager.generateBalanceCardResponse(card);
+    private cardBalance(informationCard, cardSelected, conv) {
+        const response = CardDFManager.generateBalanceCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
 
