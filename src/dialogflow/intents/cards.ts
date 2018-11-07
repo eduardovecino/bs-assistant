@@ -38,6 +38,7 @@ export class CardIntents {
 
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', async (conv, input, option) => {
+            console.log("RRR", option);
             let cards = await this.cardService.getCards();
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);        

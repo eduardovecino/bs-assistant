@@ -45,6 +45,7 @@ class CardIntents {
         }));
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
+            console.log("RRR", option);
             let cards = yield this.cardService.getCards();
             const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);

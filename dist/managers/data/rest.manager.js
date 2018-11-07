@@ -5,7 +5,7 @@ const rp = require("request-promise");
 // const host = 'https://oauth.bancsabadell.com';
 // const token = '87dfdac5-7ce4-4ee8-b2ab-ae621650266230493354-4ddf-4c5e-88fd-0171f55ff301f3190023-879d-4fc7-9a84-effe1775c79d'
 const host = 'https://developers.bancsabadell.com';
-const token = 'cee04b76-de21-49c2-8518-c7f8a43364b31a15934b-45ef-48be-a6d9-d97cc988b1ceb6e6addf-5d2d-4da8-8441-e9fdf7c29e8c';
+const token = '02efff2f-51b5-4664-aae9-cac90853ef30a32913cf-0ba4-4ba4-adea-3252378905b20f87ca3a-f860-4427-bd1c-3132adaf3d48';
 class RestManager {
     constructor() {
         this.isMock = process.env.MOCK;
