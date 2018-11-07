@@ -42,7 +42,7 @@ export class CardIntents {
             let cards = await this.cardService.getCards();
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            let informationCard: CardModel = await this.cardService.getCard(cardSelected.last4Numbers);
+            let informationCard = await this.cardService.getCard(cardSelected.last4Numbers);
             if (informationCard) {
                 const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
                 conv.ask(response);
