@@ -66,7 +66,7 @@ class CardIntents {
                 this.cardBalance(informationCard, cardSelected.last4Numbers, conv);
             });
             // MOVIMIENTOS TARJETA SELECCIONADA
-            app.intent('Movimientos tarjeta - seleccionada', (conv) => {
+            app.intent('Movimientos Tarjetas - seleccionada', (conv) => {
                 let movements = informationCard.currentMonthDetail;
                 console.log("MOVEMENTS 1: ", movements);
                 this.cardMovements(movements, conv);
