@@ -28,18 +28,18 @@ export class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                tmp.items[card.numberCodificatedProduct] = {
-                    title: card.numberCodificatedProduct,
+                tmp.items[card.description] = {
+                    title: card.description,
                     description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
                         url: cardUrlImage,
-                        accessibilityText: card.numberCodificatedProduct
+                        accessibilityText: card.description
                     }
                 };
             });
             return (new Carousel(tmp));
         } else {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].availableBalance])])
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cards[0].last4Numbers, cards[0].balance])])
         }
     }
 
