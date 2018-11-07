@@ -33,22 +33,18 @@ export class StartIntents /*extends BaseIntent*/ {
             conv.ask(loginResponse);
             conv.ask(new SignIn());
         });
-        // app.intent('Get Signin', (conv, params, signin) => {
-        //     const access = conv.user.access.token;  //possibly do something with access token
-        //     console.log("token", access);
-        //     const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
-        //     conv.ask(signinSimpleResponse);
-        // });
-
         app.intent('Get Signin', (conv, params, signin) => {
-            console.log("PTG", signin.status, conv.user.access.token );
             if (signin.status === 'OK') {
                 const access = conv.user.access.token;  //possibly do something with access token
-                conv.ask(`¡Genial, gracias por iniciar sesión! ${access}`);
+                console.log("token", access);
+                const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
+                conv.ask(signinSimpleResponse);
             } else {
-                //${signin.status}
                 conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
             }
+            
+            
+            
         });
 
         //CANCEL
