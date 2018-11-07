@@ -38,7 +38,6 @@ export class CardIntents {
 
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', async (conv, input, option) => {
-            console.log("RRR", option);
             let cards = await this.cardService.getCards();
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);        
@@ -47,7 +46,7 @@ export class CardIntents {
                 conv.ask(response);
                 conv.ask(SuggestionDFManager.generateCardSuggestions());
             } else {
-                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', option));
+                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.descripcion));
             }
 
             //BLOQUEAR TARJETA SELECCIONADA

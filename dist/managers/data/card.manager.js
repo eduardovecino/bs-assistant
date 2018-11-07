@@ -19,7 +19,7 @@ class CardManager {
     }
     static getCardByOption(cards, option) {
         for (let i = 0; i < cards.length; i++) {
-            if (cards[i].contract === option) {
+            if (cards[i].numberCodificatedProduct === option) {
                 return cards[i];
             }
         }
