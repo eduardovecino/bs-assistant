@@ -55,7 +55,7 @@ export class CardDFManager {
         console.log("PTG information card: ", informationCard);
         console.log("PTG card selected: ", cardSelected);
         if (informationCard) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.saldoDisponible])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
