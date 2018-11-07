@@ -61,9 +61,9 @@ export class CardsModel {
         this._numberCodificatedProduct = value;
     }
 
-    // get last4Numbers(): string {
-    //     return FormatManager.getLast4numbers(this.relatedAccount);
-    // }
+    get last4Numbers(): string {
+        return FormatManager.getLast4numbers(this.numberCodificatedProduct);
+    }
 
     fromJSON(data: any) {
         this._owner = data.propietario;

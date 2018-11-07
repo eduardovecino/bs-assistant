@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const format_manager_1 = require("../managers/format.manager");
 class CardsModel {
     constructor(data) {
         this.fromJSON(data);
@@ -46,9 +47,9 @@ class CardsModel {
     set numberCodificatedProduct(value) {
         this._numberCodificatedProduct = value;
     }
-    // get last4Numbers(): string {
-    //     return FormatManager.getLast4numbers(this.relatedAccount);
-    // }
+    get last4Numbers() {
+        return format_manager_1.FormatManager.getLast4numbers(this.numberCodificatedProduct);
+    }
     fromJSON(data) {
         this._owner = data.propietario;
         this._description = data.descripcion;
