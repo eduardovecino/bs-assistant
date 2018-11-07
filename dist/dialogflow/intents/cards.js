@@ -63,7 +63,7 @@ class CardIntents {
             });
             //SALDO TARJETA SELECCIONADA
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
-                this.cardBalance(cardSelected, informationCard, conv);
+                this.cardBalance(informationCard, cardSelected, conv);
             });
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
