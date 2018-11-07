@@ -9,14 +9,6 @@ import * as fs from "fs";
 
 export class CardService extends RestManager {
 
-    // async getCards() {
-    //     const data = await fs.readFileSync('mock/card/get-cards.json');
-    //     const jsonData = JSON.parse(data.toString());
-    //     const cards: Array<CardModel> = [];
-    //     jsonData.data.forEach(card => cards.push(new CardModel(card)));
-    //     return cards;
-    // }
-
     async getCards() {
         const results: any = await this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/tarjetas', 'mock/card/get-cards.json');
         const cards: Array<CardsModel> = [];

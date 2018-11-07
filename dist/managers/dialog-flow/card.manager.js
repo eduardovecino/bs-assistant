@@ -96,12 +96,13 @@ class CardDFManager {
             columns: [this.translateManager.translate('intent.card.movements.table.column.first'), this.translateManager.translate('intent.card.movements.table.column.second'), this.translateManager.translate('intent.card.movements.table.column.third')],
             rows: []
         };
-        movements.forEach((detail) => {
+        let length = (movements.length > 10) ? 10 : movements.length;
+        for (let i = 0; i < length; i++) {
             tmp.rows.push({
-                cells: [detail.concept, detail.date, detail.amount + ' €'],
+                cells: [movements[i].concept, movements[i].date, movements[i].amount + ' €'],
                 dividerAfter: true
             });
-        });
+        }
         return new actions_on_google_1.Table(tmp);
     }
     static generateCardHelpSimpleResponseScreen() {
