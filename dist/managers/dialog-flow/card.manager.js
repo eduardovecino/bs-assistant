@@ -45,7 +45,7 @@ class CardDFManager {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
-    static generateBalanceCardResponse(cardSelected, informationCard) {
+    static generateBalanceCardResponse(informationCard, cardSelected) {
         if (informationCard) {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
         }

@@ -65,7 +65,7 @@ class CardIntents {
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
                 console.log("PTG information card: ", informationCard);
                 console.log("PTG card selected: ", cardSelected);
-                this.cardBalance(informationCard, cardSelected, conv);
+                this.cardBalance(cardSelected, informationCard, conv);
             });
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
