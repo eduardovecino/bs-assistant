@@ -165,7 +165,6 @@ class CardIntents {
         conv.ask(cardMovementsSimpleResponse);
         if (movements.length > 1) {
             const cardMovementsTable = card_manager_2.CardDFManager.generateMovementsCardTable(movements);
-            console.log("MOVEMENTS 2: ", cardMovementsTable);
             conv.ask(cardMovementsTable);
         }
     }
