@@ -28,7 +28,7 @@ export class CardDFManager {
                 items: {}
             };
             cards.forEach((card) => {
-                tmp.items[card.description] = {
+                tmp.items[card.numberCodificatedProduct] = {
                     title: card.description,
                     description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
