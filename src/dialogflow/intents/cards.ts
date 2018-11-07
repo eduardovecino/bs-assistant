@@ -44,7 +44,6 @@ export class CardIntents {
             conv.contexts.set(Contexts.selected_card, 5);
             let informationCard: CardModel = await this.cardService.getCard(cardSelected.last4Numbers);
             if (informationCard) {
-                console.log("PTG information card: ", informationCard);
                 const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
                 conv.ask(response);
                 conv.ask(SuggestionDFManager.generateCardSuggestions());
@@ -59,6 +58,9 @@ export class CardIntents {
             
             //SALDO TARJETA SELECCIONADA
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
+                console.log("PTG information card: ", informationCard);
+                console.log("PTG card selected: ", cardSelected);
+
                 this.cardBalance(informationCard, cardSelected, conv);
             });
             
