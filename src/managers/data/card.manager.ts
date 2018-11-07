@@ -10,7 +10,7 @@ export class CardManager {
             return cards[0];
         } else if (cards.length > 1){
             for (let i = 0; i < cards.length; i++) {
-                const card4Numbers = cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 4) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 3) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 2) + cards[i].relatedAccount.charAt(cards[i].relatedAccount.length - 1);
+                const card4Numbers = cards[i].numberCodificatedProduct.charAt(cards[i].numberCodificatedProduct.length - 4) + cards[i].numberCodificatedProduct.charAt(cards[i].numberCodificatedProduct.length - 3) + cards[i].numberCodificatedProduct.charAt(cards[i].numberCodificatedProduct.length - 2) + cards[i].numberCodificatedProduct.charAt(cards[i].numberCodificatedProduct.length - 1);
                 if (parseInt(last4) === parseInt(card4Numbers) /*|| tipo_tarjeta === cards.--- */) {
                     return cards[i];
                 }
