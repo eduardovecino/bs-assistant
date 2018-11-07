@@ -43,43 +43,43 @@ export class CardDFManager {
         }
     }
 
-    public static generateSelectedCardSimpleResponse(cardSelected) {
-        if (cardSelected) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [cardSelected.last4Numbers])]);
+    public static generateSelectedCardSimpleResponse(last4Numbers) {
+        if (last4Numbers) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.selected_card_%card%', [last4Numbers])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateBalanceCardResponse(informationCard, cardSelected) {
+    public static generateBalanceCardResponse(informationCard, last4Numbers) {
         console.log("PTG information card: ", informationCard);
         console.log("PTG card selected: ", cardSelected);
         if (informationCard) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [cardSelected.last4Numbers, informationCard.availableBalance])]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [last4Numbers, informationCard.availableBalance])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateBlockCardResponse(informationCard, cardSelected) {
+    public static generateBlockCardResponse(informationCard, last4Numbers) {
         if (informationCard) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [cardSelected.last4Numbers])]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [last4Numbers])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateSettlementCardResponse(informationCard, cardSelected) {
+    public static generateSettlementCardResponse(informationCard, last4Numbers) {
         if (informationCard) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [cardSelected.last4Numbers, informationCard.nextSettlementDate])]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [last4Numbers, informationCard.nextSettlementDate])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateLimitsCardResponse(informationCard, cardSelected) {
+    public static generateLimitsCardResponse(informationCard, last4Numbers) {
         if (informationCard) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [cardSelected.last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }

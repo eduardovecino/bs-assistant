@@ -5,7 +5,7 @@ import * as rp from "request-promise";
 // const token = '87dfdac5-7ce4-4ee8-b2ab-ae621650266230493354-4ddf-4c5e-88fd-0171f55ff301f3190023-879d-4fc7-9a84-effe1775c79d'
 
 const host = 'https://developers.bancsabadell.com';
-const token = '3839985a-cbaa-41bd-9e30-a3f23b9a08eba3309ae4-2306-4c42-971b-15ecb1458850c5d6c67b-826f-48fd-b88d-e95e0fb28ac3'
+const token = 'e1c14b9f-08ac-4ac5-b039-f6288bda1b2a2e09bca0-f097-4cc9-8ea4-7e53449c7a7a0642679c-16e4-40e3-aec9-9d25e2420d5e'
 
 export class RestManager {
 
