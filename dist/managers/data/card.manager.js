@@ -20,6 +20,7 @@ class CardManager {
     static getCardByOption(cards, option) {
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].numberCodificatedProduct === option) {
+                console.log("PT2:", cards[i]);
                 return cards[i];
             }
         }

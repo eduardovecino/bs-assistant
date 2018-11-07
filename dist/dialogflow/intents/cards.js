@@ -47,6 +47,7 @@ class CardIntents {
         app.intent('Tarjeta seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
             let cards = yield this.cardService.getCards();
             const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
+            console.log("PT1:", cardSelected);
             conv.contexts.set(Contexts.selected_card, 5);
             if (cardSelected) {
                 const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
@@ -54,7 +55,7 @@ class CardIntents {
                 conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
             }
             else {
-                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.descripcion));
+                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.description));
             }
             //BLOQUEAR TARJETA SELECCIONADA
             app.intent('Bloquear tarjeta - seleccionada', (conv) => {
