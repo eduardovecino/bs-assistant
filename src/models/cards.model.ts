@@ -65,6 +65,16 @@ export class CardsModel {
         return FormatManager.getLast4numbers(this.numberCodificatedProduct);
     }
 
+    get image(): string {
+        if (this.description === 'BSCARD MASTERCARD BS'){
+            return 'https://i.colnect.net/f/3650/980/Banco-Sabadell-empresa.jpg';
+        } else if (this.description === 'VISA BUSINESS PLATA'){
+            return 'https://i.colnect.net/f/3834/230/Banco-Sabadell.jpg';
+        } else {
+            return 'https://i.colnect.net/f/4074/261/BS-Card.jpg';
+        }
+    }
+
     fromJSON(data: any) {
         this._owner = data.propietario;
         this._description = data.descripcion;

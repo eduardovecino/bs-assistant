@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
 const translate_manager_1 = require("../translate.manager");
 const ssml_gib_1 = require("ssml-gib");
-const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg';
 class CardDFManager {
     static generateCardsSimpleResponseScreen(cards) {
         return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.simple_response.screen_%number%', [cards.length])]);
@@ -26,7 +25,7 @@ class CardDFManager {
                     title: card.description,
                     description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
-                        url: cardUrlImage,
+                        url: card.image,
                         accessibilityText: card.description
                     }
                 };

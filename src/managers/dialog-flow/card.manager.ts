@@ -3,8 +3,6 @@ import { TranslateManager } from "../translate.manager";
 import { Ssml } from 'ssml-gib';
 
 
-const cardUrlImage = 'https://www.busconomico.com/Images/Blog/BSCard.jpg'
-
 export class CardDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
@@ -32,7 +30,7 @@ export class CardDFManager {
                     title: card.description,
                     description: `**** **** **** **** ${card.last4Numbers}`,
                     image: {
-                        url: cardUrlImage,
+                        url: card.image,
                         accessibilityText: card.description
                     }
                 };
