@@ -68,6 +68,7 @@ class CardIntents {
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
                 let movements = informationCard.currentMonthDetail;
+                console.log("MOVEMENTS 1: ", movements);
                 this.cardMovements(movements, conv);
             });
             //FECHA LIQUIDACION TARJETA SELECCIONADA
@@ -164,6 +165,7 @@ class CardIntents {
         conv.ask(cardMovementsSimpleResponse);
         if (movements.length > 1) {
             const cardMovementsTable = card_manager_2.CardDFManager.generateMovementsCardTable(movements);
+            console.log("MOVEMENTS 2: ", cardMovementsTable);
             conv.ask(cardMovementsTable);
         }
     }
