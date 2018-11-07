@@ -45,38 +45,41 @@ class CardIntents {
         }));
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
+            let card;
             let cards = yield this.cardService.getCards();
             const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
-            console.log("PT1:", cardSelected);
             conv.contexts.set(Contexts.selected_card, 5);
-            if (cardSelected) {
-                const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(cardSelected);
-                conv.ask(response);
-                conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
-            }
-            else {
-                conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.description));
+            if (cards) {
+                card = yield this.cardService.getCard(cardSelected.last4Numbers);
+                if (card) {
+                    const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(card);
+                    conv.ask(response);
+                    conv.ask(suggestion_manager_1.SuggestionDFManager.generateCardSuggestions());
+                }
+                else {
+                    conv.ask(this.translateManager.translate('intent.card.selected_card.failure_%card%', cardSelected.description));
+                }
             }
             //BLOQUEAR TARJETA SELECCIONADA
             app.intent('Bloquear tarjeta - seleccionada', (conv) => {
-                this.cardBlock(cardSelected, conv);
+                this.cardBlock(card, conv);
             });
             //SALDO TARJETA SELECCIONADA
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
-                this.cardBalance(cardSelected, conv);
+                this.cardBalance(card, conv);
             });
             // MOVIMIENTOS TARJETA SELECCIONADA
             app.intent('Movimientos tarjeta - seleccionada', (conv) => {
-                let movements = cardSelected.detalleMesActual;
+                let movements = card.detalleMesActual;
                 this.cardMovements(movements, conv);
             });
             //FECHA LIQUIDACION TARJETA SELECCIONADA
             app.intent('Fecha liquidacion - seleccionada', (conv) => {
-                this.cardSettlement(cardSelected, conv);
+                this.cardSettlement(card, conv);
             });
             //LIMITES TARJETA SELECCIONADA
             app.intent('Limites - seleccionada', (conv) => {
-                this.cardLimits(cardSelected, conv);
+                this.cardLimits(card, conv);
             });
             //AYUDA TARJETAS
             app.intent('ayuda - tarjetas', (conv) => {
