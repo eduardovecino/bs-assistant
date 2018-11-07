@@ -55,25 +55,25 @@ class CardDFManager {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
-    static generateBlockCardResponse(card) {
-        if (card) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers])]);
+    static generateBlockCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [cardSelected.last4Numbers])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
-    static generateSettlementCardResponse(card) {
-        if (card) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate])]);
+    static generateSettlementCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [cardSelected.last4Numbers, informationCard.nextSettlementDate])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
-    static generateLimitsCardResponse(card) {
-        if (card) {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit])]);
+    static generateLimitsCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [cardSelected.last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
         }
         else {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);

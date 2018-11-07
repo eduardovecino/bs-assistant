@@ -59,7 +59,7 @@ class CardIntents {
             }
             //BLOQUEAR TARJETA SELECCIONADA
             app.intent('Bloquear tarjeta - seleccionada', (conv) => {
-                this.cardBlock(informationCard, conv);
+                this.cardBlock(informationCard, cardSelected, conv);
             });
             //SALDO TARJETA SELECCIONADA
             app.intent('Saldo tarjeta - seleccionada', (conv) => {
@@ -72,11 +72,11 @@ class CardIntents {
             });
             //FECHA LIQUIDACION TARJETA SELECCIONADA
             app.intent('Fecha liquidacion - seleccionada', (conv) => {
-                this.cardSettlement(informationCard, conv);
+                this.cardSettlement(informationCard, cardSelected, conv);
             });
             //LIMITES TARJETA SELECCIONADA
             app.intent('Limites - seleccionada', (conv) => {
-                this.cardLimits(informationCard, conv);
+                this.cardLimits(informationCard, cardSelected, conv);
             });
             //AYUDA TARJETAS
             app.intent('ayuda - tarjetas', (conv) => {
@@ -95,7 +95,7 @@ class CardIntents {
         app.intent('Bloquear tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardBlock(card, conv);
+                this.cardBlock(card, card, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
@@ -115,7 +115,7 @@ class CardIntents {
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardSettlement(card, conv);
+                this.cardSettlement(card, card, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
@@ -125,7 +125,7 @@ class CardIntents {
         app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardLimits(card, conv);
+                this.cardLimits(card, card, conv);
             }
             else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
@@ -147,16 +147,16 @@ class CardIntents {
         const response = card_manager_2.CardDFManager.generateBalanceCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
-    cardBlock(card, conv) {
-        const response = card_manager_2.CardDFManager.generateBlockCardResponse(card);
+    cardBlock(informationCard, cardSelected, conv) {
+        const response = card_manager_2.CardDFManager.generateBlockCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
-    cardSettlement(card, conv) {
-        const response = card_manager_2.CardDFManager.generateSettlementCardResponse(card);
+    cardSettlement(informationCard, cardSelected, conv) {
+        const response = card_manager_2.CardDFManager.generateSettlementCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
-    cardLimits(card, conv) {
-        const response = card_manager_2.CardDFManager.generateLimitsCardResponse(card);
+    cardLimits(informationCard, cardSelected, conv) {
+        const response = card_manager_2.CardDFManager.generateLimitsCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
     cardMovements(movements, conv) {

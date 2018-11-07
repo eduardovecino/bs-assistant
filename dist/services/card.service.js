@@ -38,7 +38,6 @@ class CardService extends rest_manager_1.RestManager {
             const cards = yield this.getCards();
             const productNumber = card_manager_1.CardManager.getCardByLast4(cards, last4).productNumber;
             let card = new card_model_1.CardModel(yield this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json'));
-            console.log("CARDMODEL: ", card);
             return card;
         });
     }

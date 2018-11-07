@@ -53,7 +53,7 @@ export class CardIntents {
             
             //BLOQUEAR TARJETA SELECCIONADA
             app.intent('Bloquear tarjeta - seleccionada', (conv) => {
-                this.cardBlock(informationCard, conv);
+                this.cardBlock(informationCard, cardSelected, conv);
             });  
             
             //SALDO TARJETA SELECCIONADA
@@ -69,12 +69,12 @@ export class CardIntents {
 
             //FECHA LIQUIDACION TARJETA SELECCIONADA
             app.intent('Fecha liquidacion - seleccionada', (conv) => {
-                this.cardSettlement(informationCard, conv);
+                this.cardSettlement(informationCard, cardSelected, conv);
             });
 
             //LIMITES TARJETA SELECCIONADA
             app.intent('Limites - seleccionada', (conv) => {
-                this.cardLimits(informationCard, conv);
+                this.cardLimits(informationCard, cardSelected, conv);
             });
 
             //AYUDA TARJETAS
@@ -94,7 +94,7 @@ export class CardIntents {
         app.intent('Bloquear tarjeta', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             let card = await this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardBlock(card, conv)
+                this.cardBlock(card, card, conv)
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -114,7 +114,7 @@ export class CardIntents {
         app.intent('Fecha Liquidación', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             let card = await this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardSettlement(card, conv);
+                this.cardSettlement(card, card, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -124,7 +124,7 @@ export class CardIntents {
         app.intent('Límites', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
             let card = await this.cardService.getCard(last4CardNumbers);
             if (card) {
-                this.cardLimits(card, conv);
+                this.cardLimits(card, card, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
@@ -147,18 +147,18 @@ export class CardIntents {
         conv.ask(response);
     }
 
-    private cardBlock(card, conv) {
-        const response = CardDFManager.generateBlockCardResponse(card);
+    private cardBlock(informationCard, cardSelected, conv) {
+        const response = CardDFManager.generateBlockCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
 
-    private cardSettlement(card, conv) {
-        const response = CardDFManager.generateSettlementCardResponse(card);
+    private cardSettlement(informationCard, cardSelected, conv) {
+        const response = CardDFManager.generateSettlementCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
 
-    private cardLimits(card, conv) {
-        const response = CardDFManager.generateLimitsCardResponse(card);
+    private cardLimits(informationCard, cardSelected, conv) {
+        const response = CardDFManager.generateLimitsCardResponse(informationCard, cardSelected);
         conv.ask(response);
     }
 

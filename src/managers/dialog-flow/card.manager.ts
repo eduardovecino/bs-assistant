@@ -61,25 +61,25 @@ export class CardDFManager {
         }
     }
 
-    public static generateBlockCardResponse(card) {
-        if (card) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [card.last4Numbers])]);
+    public static generateBlockCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [cardSelected.last4Numbers])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateSettlementCardResponse(card) {
-        if (card) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [card.last4Numbers, card.nextSettlementDate])]);
+    public static generateSettlementCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [cardSelected.last4Numbers, informationCard.nextSettlementDate])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
     }
 
-    public static generateLimitsCardResponse(card) {
-        if (card) {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [card.last4Numbers, card.authorizedLimit, card.creditLimit])]);
+    public static generateLimitsCardResponse(informationCard, cardSelected) {
+        if (informationCard) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [cardSelected.last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
         }
