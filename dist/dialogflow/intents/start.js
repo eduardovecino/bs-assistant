@@ -31,6 +31,7 @@ class StartIntents /*extends BaseIntent*/ {
         app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
                 const access = conv.user.access.token; //possibly do something with access token
+                console.log("TOOKEN: ", access);
                 const signinSimpleResponse = start_manager_1.StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
             }

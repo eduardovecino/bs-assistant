@@ -36,14 +36,12 @@ export class StartIntents /*extends BaseIntent*/ {
         app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
                 const access = conv.user.access.token;  //possibly do something with access token
+                console.log("TOOKEN: ", access);
                 const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
             } else {
                 conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
             }
-            
-            
-            
         });
 
         //CANCEL
