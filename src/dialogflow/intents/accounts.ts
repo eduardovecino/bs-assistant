@@ -20,7 +20,7 @@ export class AccountIntents {
 
         //LISTA CUENTAS
         app.intent('Cuentas', async (conv) => {
-            let accounts = await this.accountService.getAccounts();
+            let accounts = await this.accountService.getAccounts(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -39,7 +39,7 @@ export class AccountIntents {
 
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', async (conv, input, option) => {
-            let accounts = await this.accountService.getAccounts();
+            let accounts = await this.accountService.getAccounts(conv.user.access.token);
             const selectedAccount = AccountManager.getAccountByOption(accounts, option);
             conv.contexts.set(Contexts.selected_account, 5)
             if (selectedAccount) {
@@ -57,7 +57,7 @@ export class AccountIntents {
             
             // MOVIMIENTOS CUENTA SELECCIONADA
             app.intent('Movimientos cuenta - seleccionada', async (conv) => {
-                let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                let movements = await this.accountService.getMovementsAccounts(selectedAccount.productNumber, conv.user.access.token);
                 this.accountMovements(movements, conv);
             });
 
@@ -76,7 +76,7 @@ export class AccountIntents {
         
         // SALDO CUENTA
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
-            let account = await this.accountService.getAccount(last4numbers);
+            let account = await this.accountService.getAccount(last4numbers, conv.user.access.token);
             if (account){
                 this.accountBalance(account, conv);
             } else {
@@ -86,8 +86,8 @@ export class AccountIntents {
         
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
-            let account = await this.accountService.getAccount(last4numbers);
-            let movements = await this.accountService.getMovementsAccounts(account.productNumber);
+            let account = await this.accountService.getAccount(last4numbers, conv.user.access.token);
+            let movements = await this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
             if(account) {
                 this.accountMovements(movements, conv);
             } else {

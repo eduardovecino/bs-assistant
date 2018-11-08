@@ -9,6 +9,7 @@ class StartIntents /*extends BaseIntent*/ {
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
     }
     intents(app) {
+        let token;
         //PERMISSIONS
         app.intent('Default Welcome Intent', conv => {
             conv.ask(new actions_on_google_1.Permission({
@@ -32,6 +33,7 @@ class StartIntents /*extends BaseIntent*/ {
             if (signin.status === 'OK') {
                 const access = conv.user.access.token; //possibly do something with access token
                 console.log("TOOKEN: ", access);
+                token = access;
                 const signinSimpleResponse = start_manager_1.StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
             }

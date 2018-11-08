@@ -25,7 +25,7 @@ class AccountIntents {
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            let accounts = yield this.accountService.getAccounts();
+            let accounts = yield this.accountService.getAccounts(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -45,7 +45,7 @@ class AccountIntents {
         }));
         //CUENTA SELECCIONADA
         app.intent('Cuenta Seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
-            let accounts = yield this.accountService.getAccounts();
+            let accounts = yield this.accountService.getAccounts(conv.user.access.token);
             const selectedAccount = account_manager_1.AccountManager.getAccountByOption(accounts, option);
             conv.contexts.set(Contexts.selected_account, 5);
             if (selectedAccount) {
@@ -62,7 +62,7 @@ class AccountIntents {
             });
             // MOVIMIENTOS CUENTA SELECCIONADA
             app.intent('Movimientos cuenta - seleccionada', (conv) => __awaiter(this, void 0, void 0, function* () {
-                let movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber);
+                let movements = yield this.accountService.getMovementsAccounts(selectedAccount.productNumber, conv.user.access.token);
                 this.accountMovements(movements, conv);
             }));
             // AYUDA CUENTAS
@@ -80,7 +80,7 @@ class AccountIntents {
         }));
         // SALDO CUENTA
         app.intent('Saldo cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
-            let account = yield this.accountService.getAccount(last4numbers);
+            let account = yield this.accountService.getAccount(last4numbers, conv.user.access.token);
             if (account) {
                 this.accountBalance(account, conv);
             }
@@ -90,8 +90,8 @@ class AccountIntents {
         }));
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
-            let account = yield this.accountService.getAccount(last4numbers);
-            let movements = yield this.accountService.getMovementsAccounts(account.productNumber);
+            let account = yield this.accountService.getAccount(last4numbers, conv.user.access.token);
+            let movements = yield this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
             if (account) {
                 this.accountMovements(movements, conv);
             }

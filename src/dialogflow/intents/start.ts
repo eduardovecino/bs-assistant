@@ -12,6 +12,7 @@ export class StartIntents /*extends BaseIntent*/ {
     }
 
     public intents(app): void {
+        let token;
 
         //PERMISSIONS
         app.intent('Default Welcome Intent', conv => {
@@ -37,6 +38,7 @@ export class StartIntents /*extends BaseIntent*/ {
             if (signin.status === 'OK') {
                 const access = conv.user.access.token;  //possibly do something with access token
                 console.log("TOOKEN: ", access);
+                token = access;
                 const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
             } else {
