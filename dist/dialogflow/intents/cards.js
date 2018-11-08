@@ -25,7 +25,7 @@ class CardIntents {
         };
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            let cards = yield this.cardService.getCards();
+            let cards = yield this.cardService.getCards(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_account);
             if (cards) {
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -45,10 +45,10 @@ class CardIntents {
         }));
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', (conv, input, option) => __awaiter(this, void 0, void 0, function* () {
-            let cards = yield this.cardService.getCards();
+            let cards = yield this.cardService.getCards(conv.user.access.token);
             const cardSelected = card_manager_1.CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            let informationCard = yield this.cardService.getCard(cardSelected.last4Numbers);
+            let informationCard = yield this.cardService.getCard(cardSelected.last4Numbers, conv.user.access.token);
             if (informationCard) {
                 const response = card_manager_2.CardDFManager.generateSelectedCardSimpleResponse(cardSelected.last4Numbers);
                 conv.ask(response);
@@ -93,7 +93,7 @@ class CardIntents {
         }));
         //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
-            let card = yield this.cardService.getCard(last4CardNumbers);
+            let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardBlock(card, last4CardNumbers, conv);
             }
@@ -103,7 +103,7 @@ class CardIntents {
         }));
         //SALDO TARJETA
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
-            let card = yield this.cardService.getCard(last4CardNumbers);
+            let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardBalance(card, last4CardNumbers, conv);
             }
@@ -113,7 +113,7 @@ class CardIntents {
         }));
         //FECHA LIQUIDACION TARJETA
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
-            let card = yield this.cardService.getCard(last4CardNumbers);
+            let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardSettlement(card, last4CardNumbers, conv);
             }
@@ -123,7 +123,7 @@ class CardIntents {
         }));
         //LIMITES TARJETA
         app.intent('Límites', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
-            let card = yield this.cardService.getCard(last4CardNumbers);
+            let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardLimits(card, last4CardNumbers, conv);
             }
@@ -133,7 +133,7 @@ class CardIntents {
         }));
         //MOVIMIENTOS
         app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
-            let card = yield this.cardService.getCard(last4CardNumbers);
+            let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             let movements = card.currentMonthDetail;
             if (card) {
                 this.cardMovements(movements, conv);

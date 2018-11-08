@@ -20,7 +20,7 @@ export class CardIntents {
 
         //CARROUSEL DE TARJETAS
         app.intent('Tarjetas', async (conv) => {
-            let cards = await this.cardService.getCards();
+            let cards = await this.cardService.getCards(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_account);
             if(cards) {
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -39,10 +39,10 @@ export class CardIntents {
 
         //TARJETA SELECCIONADA
         app.intent('Tarjeta seleccionada', async (conv, input, option) => {
-            let cards = await this.cardService.getCards();
+            let cards = await this.cardService.getCards(conv.user.access.token);
             const cardSelected = CardManager.getCardByOption(cards, option);
             conv.contexts.set(Contexts.selected_card, 5);
-            let informationCard = await this.cardService.getCard(cardSelected.last4Numbers);
+            let informationCard = await this.cardService.getCard(cardSelected.last4Numbers, conv.user.access.token);
             if (informationCard) {
                 const response = CardDFManager.generateSelectedCardSimpleResponse(cardSelected.last4Numbers);
                 conv.ask(response);
@@ -92,7 +92,7 @@ export class CardIntents {
 
         //BLOQUEAR TARJETA
         app.intent('Bloquear tarjeta', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            let card = await this.cardService.getCard(last4CardNumbers);
+            let card = await this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardBlock(card, last4CardNumbers, conv)
             } else {
@@ -102,7 +102,7 @@ export class CardIntents {
 
         //SALDO TARJETA
         app.intent('Saldo Tarjeta', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            let card = await this.cardService.getCard(last4CardNumbers);
+            let card = await this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardBalance(card, last4CardNumbers, conv);
             } else {
@@ -112,7 +112,7 @@ export class CardIntents {
         
         //FECHA LIQUIDACION TARJETA
         app.intent('Fecha Liquidación', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            let card = await this.cardService.getCard(last4CardNumbers);
+            let card = await this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardSettlement(card, last4CardNumbers, conv);
             } else {
@@ -122,7 +122,7 @@ export class CardIntents {
 
         //LIMITES TARJETA
         app.intent('Límites', async (conv, { last4CardNumbers }, { tipo_tarjeta }) => {
-            let card = await this.cardService.getCard(last4CardNumbers);
+            let card = await this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
                 this.cardLimits(card, last4CardNumbers, conv);
             } else {
@@ -132,7 +132,7 @@ export class CardIntents {
 
         //MOVIMIENTOS
         app.intent('Movimientos Tarjetas', async (conv, { last4CardNumbers }, { tipo_tarjeta } ) => {
-            let card = await this.cardService.getCard(last4CardNumbers);
+            let card = await this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             let movements = card.currentMonthDetail;
             if (card) {
                 this.cardMovements(movements, conv);
