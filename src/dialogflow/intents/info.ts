@@ -34,7 +34,7 @@ export class InfoIntents {
                 }
             } else {
                 conv.ask(new Permission({
-                    context: this.translateManager.translate('intent.start.welcome.permission'),
+                    context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
                 conv.ask(new Suggestions('Oficinas Cercanas'));

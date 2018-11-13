@@ -42,7 +42,7 @@ class InfoIntents {
             }
             else {
                 conv.ask(new actions_on_google_1.Permission({
-                    context: this.translateManager.translate('intent.start.welcome.permission'),
+                    context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
                 conv.ask(new actions_on_google_1.Suggestions('Oficinas Cercanas'));
