@@ -38,10 +38,11 @@ export class StartIntents /*extends BaseIntent*/ {
             if (signin.status === 'OK') {
                 // const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
                 // conv.ask(signinSimpleResponse);
-                conv.ask(new Permission({
+                conv.ask(new Permission({ 
                     context: this.translateManager.translate('intent.start.welcome.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
+                console.log("PTG: ", conv.user.persissions);
             } else {
                 conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
             }
