@@ -8,7 +8,7 @@ class AccountRoutes {
     routes(app) {
         app.route('/accounts')
             .get((req, res) => {
-            let accounts = this.accountService.getAccounts();
+            let accounts = this.accountService.getAccounts('');
             if (accounts) {
                 res.status(200).send(accounts);
             }

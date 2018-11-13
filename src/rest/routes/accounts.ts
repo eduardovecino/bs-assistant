@@ -13,7 +13,7 @@ export class AccountRoutes {
     public routes(app): void {
         app.route('/accounts')
             .get((req: Request, res: Response) => {
-                let accounts = this.accountService.getAccounts();
+                let accounts = this.accountService.getAccounts('');
                 if (accounts) {
                     res.status(200).send(accounts);
                 } else {
