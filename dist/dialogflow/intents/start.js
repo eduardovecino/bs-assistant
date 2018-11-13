@@ -24,25 +24,24 @@ class StartIntents /*extends BaseIntent*/ {
             conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
         });
         //INICIAR SESIÓN
-        app.intent('Iniciar Sesion', (conv, signin) => {
+        app.intent('Iniciar Sesion', (conv) => {
             const loginResponse = start_manager_1.StartDFManager.generateLoginSimpleResponse();
             conv.ask(loginResponse);
             conv.ask(new actions_on_google_1.SignIn());
+        });
+        app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
+                // const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
+                // conv.ask(signinSimpleResponse);
                 conv.ask(new actions_on_google_1.Permission({
                     context: this.translateManager.translate('intent.start.welcome.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
             }
+            else {
+                conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
+            }
         });
-        // app.intent('Get Signin', (conv, params, signin) => {
-        //     if (signin.status === 'OK') {
-        //         const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
-        //         conv.ask(signinSimpleResponse);
-        //     } else {
-        //         conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
-        //     }
-        // });
         //CANCEL
         app.intent('Cancel', (conv) => {
             const cancelSimpleResponse = start_manager_1.StartDFManager.generateCancelSimpleResponse();

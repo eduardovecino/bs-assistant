@@ -29,25 +29,23 @@ export class StartIntents /*extends BaseIntent*/ {
         });
 
         //INICIAR SESIÓN
-        app.intent('Iniciar Sesion', (conv, signin) => {
+        app.intent('Iniciar Sesion', (conv) => {
             const loginResponse = StartDFManager.generateLoginSimpleResponse();
             conv.ask(loginResponse);
             conv.ask(new SignIn());
+        });
+        app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
+                // const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
+                // conv.ask(signinSimpleResponse);
                 conv.ask(new Permission({
                     context: this.translateManager.translate('intent.start.welcome.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
+            } else {
+                conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
             }
         });
-        // app.intent('Get Signin', (conv, params, signin) => {
-        //     if (signin.status === 'OK') {
-        //         const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
-        //         conv.ask(signinSimpleResponse);
-        //     } else {
-        //         conv.ask(`No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`);
-        //     }
-        // });
 
         //CANCEL
         app.intent('Cancel', (conv) => {
