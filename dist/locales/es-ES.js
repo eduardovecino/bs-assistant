@@ -7,7 +7,7 @@ exports.SPANISH_TRANSLATIONS = {
     //START
     'intent.start.welcome.permission': ` para dirigirme a usted por su nombre y conocer su ubicación`,
     'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}, ${ssml_gib_1.Ssml.break({ ms: 500 })} {{ name }}`,
-    'intent.start.get_permission.failure': `No podrás utilizar las funcionalidades que requieran de ubicación si no aceptas los permisos.`,
+    'intent.start.get_permission.failure': `Debes aceptar los permisos si quieres preguntar por las oficinas cercanas por ejemplo.`,
     'intent.start.login': `Vamos a iniciar sesión`,
     'intent.start.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
     'intent.start.get_signin.failure': `No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`,
@@ -53,7 +53,7 @@ exports.SPANISH_TRANSLATIONS = {
     //INFORMATION
     'intent.information.offices.simple_response.screen': `Oficinas cercanas a tu posición:`,
     'intent.information.offices.simple_response.no_screen_%offices%': `Las oficinas cercanas a tu posición son: {{ offices }}.`,
-    'intent.information.offices.permission': `Para consultar las oficinas cercanas debes aceptar los permisos.`,
+    'intent.information.offices.permission': `Para consultar las oficinas cercanas`,
     'intent.information.open_app.simple_response.screen': `Descargate la app, para más información`,
     'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca la aplicación App Banco Sabadell. Tu banca móvil`,
     'intent.information.open_app.basic_card.title': `Abrir App`,
