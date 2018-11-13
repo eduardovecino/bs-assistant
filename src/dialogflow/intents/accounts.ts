@@ -20,6 +20,7 @@ export class AccountIntents {
 
         //LISTA CUENTAS
         app.intent('Cuentas', async (conv) => {
+            console.log("PTG: ", conv.user.permissions);
             let accounts = await this.accountService.getAccounts(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {

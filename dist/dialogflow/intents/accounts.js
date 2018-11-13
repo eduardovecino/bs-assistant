@@ -25,6 +25,7 @@ class AccountIntents {
         };
         //LISTA CUENTAS
         app.intent('Cuentas', (conv) => __awaiter(this, void 0, void 0, function* () {
+            console.log("PTG: ", conv.user.permissions);
             let accounts = yield this.accountService.getAccounts(conv.user.access.token);
             conv.contexts.delete(Contexts.selected_card);
             if (accounts) {
