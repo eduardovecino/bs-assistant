@@ -61,6 +61,6 @@ export const SPANISH_TRANSLATIONS = {
     'intent.information.open_app.simple_response.no_screen': `Accede a la tienda de aplicaciones de tu dispositivo móvil y busca la aplicación App Banco Sabadell. Tu banca móvil`,
     'intent.information.open_app.basic_card.title': `Abrir App`,
     'intent.information.contact.simple_response': `Puedes contactarnos, cualquier día y a cualquier hora, a través del teléfono: ${Ssml.prosody(Ssml.sayAs({ text: "902", interpret: As.characters }), { rate: "slow" })} ${Ssml.break({ ms: 500 })} ${Ssml.prosody(Ssml.sayAs({ text: "323", interpret: As.characters }), { rate: "slow" })} ${Ssml.break({ ms: 500 })} ${Ssml.prosody(Ssml.sayAs({ text: "000", interpret: As.characters }), { rate: "slow" })} `,
-}
+} 
 
 
