@@ -42,7 +42,6 @@ export class StartIntents /*extends BaseIntent*/ {
                     context: this.translateManager.translate('intent.start.welcome.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
-                console.log("PTG: ", conv.user.permissions);
             } else {
                 conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
             }

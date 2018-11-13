@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const actions_on_google_1 = require("actions-on-google");
 const information_service_1 = require("../../services/information.service");
 const information_manager_1 = require("../../managers/dialog-flow/information.manager");
 const translate_manager_1 = require("../../managers/translate.manager");
@@ -19,23 +20,32 @@ class InfoIntents {
     intents(app) {
         //OFICINAS
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
-            const latitude = conv.device.location.coordinates.latitude;
-            const longitude = conv.device.location.coordinates.longitude;
-            let offices = yield this.informationService.getOffices(latitude, longitude);
-            if (offices) {
-                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-                    const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
-                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
-                    conv.ask(officesSimpleResponseScreen);
-                    conv.ask(carouselOfOffices);
+            if (conv.user.permissions.length > 0) {
+                const latitude = conv.device.location.coordinates.latitude;
+                const longitude = conv.device.location.coordinates.longitude;
+                let offices = yield this.informationService.getOffices(latitude, longitude);
+                if (offices) {
+                    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                        const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
+                        const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
+                        conv.ask(officesSimpleResponseScreen);
+                        conv.ask(carouselOfOffices);
+                    }
+                    else {
+                        const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                        conv.ask(officesSimpleResponseNoScreen);
+                    }
                 }
                 else {
-                    const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
-                    conv.ask(officesSimpleResponseNoScreen);
+                    conv.ask(this.translateManager.translate('intent.service.failure'));
                 }
             }
             else {
-                conv.ask(this.translateManager.translate('intent.service.failure'));
+                conv.ask(new actions_on_google_1.Permission({
+                    context: this.translateManager.translate('intent.start.welcome.permission'),
+                    permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+                }));
+                conv.ask(new actions_on_google_1.Suggestions('Oficinas Cercanas'));
             }
         }));
         //ABRIR APP
