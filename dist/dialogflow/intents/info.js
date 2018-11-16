@@ -37,7 +37,7 @@ class InfoIntents {
                 latitude = conv.device.location.coordinates.latitude;
                 longitude = conv.device.location.coordinates.longitude;
                 offices = yield this.informationService.getOffices(latitude, longitude);
-                this.offices(offices, conv);
+                this.offices(offices, latitude, longitude, conv);
             }
         }));
         //ABRIR APP
@@ -59,7 +59,7 @@ class InfoIntents {
             conv.ask(contactSimpleResponseScreen);
         });
     }
-    offices(offices, conv) {
+    offices(offices, latitude, longitude, conv) {
         if (offices) {
             console.log("ENTRO3");
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {

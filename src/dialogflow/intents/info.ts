@@ -30,7 +30,7 @@ export class InfoIntents {
                 latitude = conv.device.location.coordinates.latitude;
                 longitude = conv.device.location.coordinates.longitude;
                 offices = await this.informationService.getOffices(latitude, longitude);
-                this.offices(offices, conv);  
+                this.offices(offices, latitude, longitude, conv);  
             }
         });
 
@@ -55,7 +55,7 @@ export class InfoIntents {
         });
     }
 
-    private offices(offices, conv){
+    private offices(offices, latitude, longitude, conv){
         if (offices) {
             console.log("ENTRO3");
 
