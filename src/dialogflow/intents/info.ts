@@ -46,7 +46,7 @@ export class InfoIntents {
         });
     }
 
-    private offices(conv) {
+    private async offices(conv) {
         const latitude = conv.device.location.coordinates.latitude;
         const longitude = conv.device.location.coordinates.longitude;
 
