@@ -1,4 +1,4 @@
-import { Table, TableOptions, Carousel } from "actions-on-google";
+import { Table, TableOptions, Carousel, List } from "actions-on-google";
 import { TranslateManager } from "../translate.manager";
 import { Ssml } from 'ssml-gib';
 
@@ -110,6 +110,21 @@ export class CardDFManager {
             );
         }
         return new Table(tmp);
+    }
+
+    public static generateMovementsCardList(movements) {
+        const tmp = {
+            title: this.translateManager.translate('intent.card.movements.list.title'),
+            items: {}
+        };
+        let length = (movements.length > 10) ? 10 : movements.length;
+        for (let i = 0; i < length; i++) {
+            tmp.items[i] = {
+                title: movements[i].concept,
+                description: (movements[i].amount+'€', movements[i].date)
+            };
+        }
+        return (new List(tmp));
     }
 
     public static generateCardHelpSimpleResponseScreen() {

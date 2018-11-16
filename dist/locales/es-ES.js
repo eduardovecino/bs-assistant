@@ -31,6 +31,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.account.movements.table.column.first': 'Concepto',
     'intent.account.movements.table.column.second': 'Fecha',
     'intent.account.movements.table.column.third': 'Importe',
+    'intent.card.movements.list.title': 'Movimientos de tarjetas',
     //CARDS
     'intent.card.null_response': `No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
     'intent.card.help.screen': `Selecciona una de las siguientes opciones:`,

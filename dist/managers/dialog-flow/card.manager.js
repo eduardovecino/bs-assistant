@@ -105,6 +105,20 @@ class CardDFManager {
         }
         return new actions_on_google_1.Table(tmp);
     }
+    static generateMovementsCardList(movements) {
+        const tmp = {
+            title: this.translateManager.translate('intent.card.movements.list.title'),
+            items: {}
+        };
+        let length = (movements.length > 10) ? 10 : movements.length;
+        for (let i = 0; i < length; i++) {
+            tmp.items[i] = {
+                title: movements[i].concept,
+                description: (movements[i].amount + '€', movements[i].date)
+            };
+        }
+        return (new actions_on_google_1.List(tmp));
+    }
     static generateCardHelpSimpleResponseScreen() {
         return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.help.screen')]);
     }
