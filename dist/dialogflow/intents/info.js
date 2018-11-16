@@ -34,10 +34,12 @@ class InfoIntents {
                     context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
-                latitude = conv.device.location.coordinates.latitude;
-                longitude = conv.device.location.coordinates.longitude;
-                offices = yield this.informationService.getOffices(latitude, longitude);
-                this.offices(offices, latitude, longitude, conv);
+                if (conv.user.permissions.length > 0) {
+                    latitude = conv.device.location.coordinates.latitude;
+                    longitude = conv.device.location.coordinates.longitude;
+                    offices = yield this.informationService.getOffices(latitude, longitude);
+                    this.offices(offices, latitude, longitude, conv);
+                }
             }
         }));
         //ABRIR APP
