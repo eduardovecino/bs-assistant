@@ -52,10 +52,13 @@ class InfoIntents {
     }
     offices(conv) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("ENTRO1");
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;
             let offices = yield this.informationService.getOffices(latitude, longitude);
+            console.log("ENTRO2");
             if (offices) {
+                console.log("ENTRO3");
                 if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                     const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
                     const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);

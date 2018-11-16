@@ -46,12 +46,17 @@ export class InfoIntents {
         });
     }
 
-    private async offices(conv) {
+    async offices(conv) {
+        console.log("ENTRO1");
         const latitude = conv.device.location.coordinates.latitude;
         const longitude = conv.device.location.coordinates.longitude;
 
         let offices = await this.informationService.getOffices(latitude, longitude);
+        console.log("ENTRO2");
+
         if (offices) {
+            console.log("ENTRO3");
+
             if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
                 const officesSimpleResponseScreen = InformationDFManager.generateOfficesSimpleResponseScreen();
                 const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);

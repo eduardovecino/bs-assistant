@@ -35,6 +35,7 @@ export class StartIntents /*extends BaseIntent*/ {
             if (signin.status === 'OK') {
                 const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
+                conv.ask(SuggestionDFManager.generateSuggestions());
             } else {
                 conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
             }
