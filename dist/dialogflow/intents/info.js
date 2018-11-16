@@ -27,7 +27,7 @@ class InfoIntents {
                 latitude = conv.device.location.coordinates.latitude;
                 longitude = conv.device.location.coordinates.longitude;
                 offices = yield this.informationService.getOffices(latitude, longitude);
-                this.offices(offices, conv);
+                this.offices(offices, latitude, longitude, conv);
             }
             else {
                 conv.ask(new actions_on_google_1.Permission({

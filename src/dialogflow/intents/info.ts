@@ -21,7 +21,7 @@ export class InfoIntents {
                 latitude = conv.device.location.coordinates.latitude;
                 longitude = conv.device.location.coordinates.longitude;
                 offices = await this.informationService.getOffices(latitude, longitude);
-                this.offices(offices, conv);
+                this.offices(offices, latitude, longitude, conv);
             } else {
                 conv.ask(new Permission({
                     context: this.translateManager.translate('intent.information.offices.permission'),
