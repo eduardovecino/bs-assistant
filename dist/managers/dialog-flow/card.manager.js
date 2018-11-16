@@ -105,6 +105,9 @@ class CardDFManager {
         }
         return new actions_on_google_1.Table(tmp);
     }
+    static generateMovementsCardListSimpleResponse(movements) {
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.list.simple_response_%number%', [movements.length])]);
+    }
     static generateMovementsCardList(movements) {
         const tmp = {
             title: this.translateManager.translate('intent.card.movements.list.title'),
@@ -113,8 +116,8 @@ class CardDFManager {
         let length = (movements.length > 12) ? 12 : movements.length;
         for (let i = 0; i < length; i++) {
             tmp.items[i] = {
-                title: movements[i].concept,
-                description: (movements[i].amount + '€', movements[i].date)
+                title: '*' + movements[i].concept + '*',
+                description: ('*Importe:* ' + movements[i].amount + '€' + '\n' + '*Fecha:* ' + movements[i].date)
             };
         }
         return (new actions_on_google_1.List(tmp));

@@ -27,12 +27,11 @@ export const SPANISH_TRANSLATIONS = {
     'intent.account.balance_%account%_%balance%': `El saldo  de tu cuenta {{ account }} es de {{ balance }} €. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu cuenta?`,
     'intent.account.movements.simple_response.pre_%concept%_%import%': `{{ concept }} con un importe de {{ import }} €, `,
     'intent.account.movements.simple_response_%number%_%movements%': `Este mes tienes {{ number }} movimientos: {{ movements }} ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu cuenta?`,
-    'intent.account.movements.table.simple_response_%number%': `Este mes tienes {{ number }} movimientos: `,
+    'intent.account.movements.table.simple_response_%number%': `Este mes tienes {{ number }} movimientos.`,
     'intent.account.movements.no_movements': `No hay movimientos recientes en esta cuenta`,
     'intent.account.movements.table.column.first': 'Concepto',
     'intent.account.movements.table.column.second': 'Fecha',
     'intent.account.movements.table.column.third': 'Importe',
-    'intent.card.movements.list.title': 'Movimientos de tarjetas',
 
     //CARDS
     'intent.card.null_response': `No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
@@ -49,6 +48,8 @@ export const SPANISH_TRANSLATIONS = {
     'intent.card.limit%card%_%authorized_limit%_%credit_limit%': `Los límites de tu tarjeta finalizada en {{ card }} son, limite autorizado: {{ authorized_limit }} € y limite crédito: {{ credit_limit }} €. ${Ssml.break({ ms: 500 })} ¿Quieres saber algo más de la tarjeta?`,
     'intent.card.movements.simple_response.pre_%concept%_%import%': `{{ concept }} con un importe de {{ import }} €, `,
     'intent.card.movements.simple_response_%number%_%movements%': `Este mes tienes {{ number }} movimientos: {{ movements }} ${Ssml.break({ ms: 500 })} ¿Quieres saber algo más de tu tarjeta?`,
+    'intent.card.movements.list.title': 'Movimientos recientes de la tarjeta',
+    'intent.card.movements.list.simple_response_%number%': `Este mes tienes {{ number }} movimientos. `,
     'intent.card.movements.no_movements': `No hay movimientos recientes en esta tarjeta`,
     'intent.card.movements.table.column.first': 'Concepto',
     'intent.card.movements.table.column.second': 'Fecha',
