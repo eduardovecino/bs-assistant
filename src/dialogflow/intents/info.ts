@@ -47,10 +47,9 @@ export class InfoIntents {
     }
 
     async offices(conv) {
-        console.log("ENTRO1");
         const latitude = conv.device.location.coordinates.latitude;
         const longitude = conv.device.location.coordinates.longitude;
-
+        console.log("ENTRO1");
         let offices = await this.informationService.getOffices(latitude, longitude);
         console.log("ENTRO2");
 

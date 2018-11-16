@@ -12,6 +12,7 @@ class InformationService extends rest_manager_1.RestManager {
         });
     }
     getOffices(latitude, longitude) {
+        console.log("ENTRO4");
         return new Promise((resolve, reject) => {
             const options = {
                 'method': 'GET',

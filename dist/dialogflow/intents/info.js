@@ -52,9 +52,9 @@ class InfoIntents {
     }
     offices(conv) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("ENTRO1");
             const latitude = conv.device.location.coordinates.latitude;
             const longitude = conv.device.location.coordinates.longitude;
+            console.log("ENTRO1");
             let offices = yield this.informationService.getOffices(latitude, longitude);
             console.log("ENTRO2");
             if (offices) {

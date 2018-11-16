@@ -15,6 +15,7 @@ export class InformationService extends RestManager {
     }
 
     public getOffices(latitude, longitude): Promise<any> {
+        console.log("ENTRO4");
         return new Promise((resolve, reject) => {
             const options = {
                 'method': 'GET',
