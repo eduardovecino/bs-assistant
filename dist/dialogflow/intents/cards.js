@@ -176,14 +176,6 @@ class CardIntents {
             const cardMovementsSimpleResponse = card_manager_2.CardDFManager.generateMovementsCardSimpleResponse(movements);
             conv.ask(cardMovementsSimpleResponse);
         }
-        const cardMovementsSimpleResponse = card_manager_2.CardDFManager.generateMovementsCardSimpleResponse(movements);
-        conv.ask(cardMovementsSimpleResponse);
-        if (movements.length > 1) {
-            // const cardMovementsTable = CardDFManager.generateMovementsCardTable(movements);
-            // conv.ask(cardMovementsTable);
-            const cardMovementsList = card_manager_2.CardDFManager.generateMovementsCardList(movements);
-            conv.ask(cardMovementsList);
-        }
     }
 }
 exports.CardIntents = CardIntents;
