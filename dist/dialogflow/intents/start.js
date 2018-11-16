@@ -17,9 +17,10 @@ class StartIntents /*extends BaseIntent*/ {
         //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
         //     }));
         // });
-        app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            conv.ask('hooooooolaaaaaaaaaaaaa');
-        });
+        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
+        //     console.log("ENTRO 6");
+        //     conv.ask('hooooooolaaaaaaaaaaaaa');
+        // });
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
             const loginResponse = start_manager_1.StartDFManager.generateLoginSimpleResponse();
