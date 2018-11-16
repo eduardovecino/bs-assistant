@@ -15,13 +15,53 @@ export class InfoIntents {
         //OFICINAS
         app.intent('Oficinas Cercanas', async conv => {
             if (conv.user.permissions.length > 0) {
-                this.offices(conv);
+                const latitude = conv.device.location.coordinates.latitude;
+                const longitude = conv.device.location.coordinates.longitude;
+                console.log("ENTRO1");
+                let offices = await this.informationService.getOffices(latitude, longitude);
+                console.log("ENTRO2");
+
+                if (offices) {
+                    console.log("ENTRO3");
+
+                    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                        const officesSimpleResponseScreen = InformationDFManager.generateOfficesSimpleResponseScreen();
+                        const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
+                        conv.ask(officesSimpleResponseScreen);
+                        conv.ask(carouselOfOffices);
+                    } else {
+                        const officesSimpleResponseNoScreen = InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                        conv.ask(officesSimpleResponseNoScreen);
+                    }
+                } else {
+                    conv.ask(this.translateManager.translate('intent.service.failure'));
+                }
             } else {
                 conv.ask(new Permission({
                     context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
-                this.offices(conv);
+                const latitude = conv.device.location.coordinates.latitude;
+                const longitude = conv.device.location.coordinates.longitude;
+                console.log("ENTRO1");
+                let offices = await this.informationService.getOffices(latitude, longitude);
+                console.log("ENTRO2");
+
+                if (offices) {
+                    console.log("ENTRO3");
+
+                    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                        const officesSimpleResponseScreen = InformationDFManager.generateOfficesSimpleResponseScreen();
+                        const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
+                        conv.ask(officesSimpleResponseScreen);
+                        conv.ask(carouselOfOffices);
+                    } else {
+                        const officesSimpleResponseNoScreen = InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                        conv.ask(officesSimpleResponseNoScreen);
+                    }
+                } else {
+                    conv.ask(this.translateManager.translate('intent.service.failure'));
+                }
             }
         });
 
@@ -44,29 +84,5 @@ export class InfoIntents {
             const contactSimpleResponseScreen = InformationDFManager.generateContactSimpleResponseScreen();
             conv.ask(contactSimpleResponseScreen);
         });
-    }
-
-    async offices(conv) {
-        const latitude = conv.device.location.coordinates.latitude;
-        const longitude = conv.device.location.coordinates.longitude;
-        console.log("ENTRO1");
-        let offices = await this.informationService.getOffices(latitude, longitude);
-        console.log("ENTRO2");
-
-        if (offices) {
-            console.log("ENTRO3");
-
-            if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-                const officesSimpleResponseScreen = InformationDFManager.generateOfficesSimpleResponseScreen();
-                const carouselOfOffices = InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
-                conv.ask(officesSimpleResponseScreen);
-                conv.ask(carouselOfOffices);
-            } else {
-                const officesSimpleResponseNoScreen = InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
-                conv.ask(officesSimpleResponseNoScreen);
-            }
-        } else {
-            conv.ask(this.translateManager.translate('intent.service.failure'));
-        }
     }
 }

@@ -21,14 +21,54 @@ class InfoIntents {
         //OFICINAS
         app.intent('Oficinas Cercanas', (conv) => __awaiter(this, void 0, void 0, function* () {
             if (conv.user.permissions.length > 0) {
-                this.offices(conv);
+                const latitude = conv.device.location.coordinates.latitude;
+                const longitude = conv.device.location.coordinates.longitude;
+                console.log("ENTRO1");
+                let offices = yield this.informationService.getOffices(latitude, longitude);
+                console.log("ENTRO2");
+                if (offices) {
+                    console.log("ENTRO3");
+                    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                        const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
+                        const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
+                        conv.ask(officesSimpleResponseScreen);
+                        conv.ask(carouselOfOffices);
+                    }
+                    else {
+                        const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                        conv.ask(officesSimpleResponseNoScreen);
+                    }
+                }
+                else {
+                    conv.ask(this.translateManager.translate('intent.service.failure'));
+                }
             }
             else {
                 conv.ask(new actions_on_google_1.Permission({
                     context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
-                this.offices(conv);
+                const latitude = conv.device.location.coordinates.latitude;
+                const longitude = conv.device.location.coordinates.longitude;
+                console.log("ENTRO1");
+                let offices = yield this.informationService.getOffices(latitude, longitude);
+                console.log("ENTRO2");
+                if (offices) {
+                    console.log("ENTRO3");
+                    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+                        const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
+                        const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
+                        conv.ask(officesSimpleResponseScreen);
+                        conv.ask(carouselOfOffices);
+                    }
+                    else {
+                        const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
+                        conv.ask(officesSimpleResponseNoScreen);
+                    }
+                }
+                else {
+                    conv.ask(this.translateManager.translate('intent.service.failure'));
+                }
             }
         }));
         //ABRIR APP
@@ -48,31 +88,6 @@ class InfoIntents {
         app.intent('Contacto', (conv) => {
             const contactSimpleResponseScreen = information_manager_1.InformationDFManager.generateContactSimpleResponseScreen();
             conv.ask(contactSimpleResponseScreen);
-        });
-    }
-    offices(conv) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const latitude = conv.device.location.coordinates.latitude;
-            const longitude = conv.device.location.coordinates.longitude;
-            console.log("ENTRO1");
-            let offices = yield this.informationService.getOffices(latitude, longitude);
-            console.log("ENTRO2");
-            if (offices) {
-                console.log("ENTRO3");
-                if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-                    const officesSimpleResponseScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseScreen();
-                    const carouselOfOffices = information_manager_1.InformationDFManager.generateOfficesBrowseCarousel(offices, latitude, longitude);
-                    conv.ask(officesSimpleResponseScreen);
-                    conv.ask(carouselOfOffices);
-                }
-                else {
-                    const officesSimpleResponseNoScreen = information_manager_1.InformationDFManager.generateOfficesSimpleResponseNoScreen(offices);
-                    conv.ask(officesSimpleResponseNoScreen);
-                }
-            }
-            else {
-                conv.ask(this.translateManager.translate('intent.service.failure'));
-            }
         });
     }
 }
