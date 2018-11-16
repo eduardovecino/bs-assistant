@@ -23,8 +23,8 @@ class AccountDFManager {
             };
             accounts.forEach((account) => {
                 tmp.items[account.iban] = {
-                    title: account.description,
-                    description: `ES••••••••••••••••${account.last4Numbers}`,
+                    title: `ES••••••••••••••••${account.last4Numbers}`,
+                    description: account.description,
                     image: {
                         url: accountImage,
                         accessibilityText: account.description

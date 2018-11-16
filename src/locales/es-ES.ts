@@ -43,7 +43,7 @@ export const SPANISH_TRANSLATIONS = {
     'intent.card.selected_card.failure_%card%': `No podemos mostrar la tarjeta terminada en {{ card }}.`,
     'intent.card.list.title': 'Mis Tarjetas',
     'intent.card.balance_%card%_%balance%': `El saldo  de tu tarjeta {{ card }} es de {{ balance }} €. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu tarjeta?`,
-    'intent.card.block_%card%': `Tu tarjeta finalizada en: {{ card }}. Ha sido bloqueada exitosamente, para desbloquearla deberás utilizar la APP del Banco Sabadell. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu tarjeta?`,
+    'intent.card.block_%card%': `Tu tarjeta finalizada en: {{ card }} ha sido bloqueada exitosamente. Para desbloquearla deberás utilizar la APP del Banco Sabadell. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu tarjeta?`,
     'intent.card.settlement%card%_%date%': `La fecha próxima de liquidación de tu tarjeta finalizada en {{ card }} es de {{ date }}. ${Ssml.break({ ms: 500 })} ¿Qué más quieres saber acerca de tu tarjeta?`,
     'intent.card.limit%card%_%authorized_limit%_%credit_limit%': `Los límites de tu tarjeta finalizada en {{ card }} son, limite autorizado: {{ authorized_limit }} € y limite crédito: {{ credit_limit }} €. ${Ssml.break({ ms: 500 })} ¿Quieres saber algo más de la tarjeta?`,
     'intent.card.movements.simple_response.pre_%concept%_%import%': `{{ concept }} con un importe de {{ import }} €, `,
