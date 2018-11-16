@@ -6,7 +6,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.service.failure': `No ha funcionado, vuelve a intentarlo`,
     //START
     'intent.start.welcome.permission': ` para dirigirme a usted por su nombre y conocer su ubicación`,
-    'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}, ${ssml_gib_1.Ssml.break({ ms: 500 })} {{ name }}`,
+    'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}`,
     'intent.start.get_permission.failure': `Debes aceptar los permisos si quieres preguntar por las oficinas cercanas por ejemplo.`,
     'intent.start.login': `Vamos a iniciar sesión`,
     'intent.start.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
@@ -48,7 +48,7 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.card.movements.simple_response_%number%_%movements%': `Este mes tienes {{ number }} movimientos: {{ movements }} ${ssml_gib_1.Ssml.break({ ms: 500 })} ¿Quieres saber algo más de tu tarjeta?`,
     'intent.card.movements.list.title': 'Movimientos recientes de la tarjeta',
     'intent.card.movements.list.simple_response_%number%': `Este mes tienes {{ number }} movimientos. `,
-    'intent.card.movements.no_movements': `No hay movimientos recientes en esta tarjeta`,
+    'intent.card.movements.no_movements': `No hay movimientos recientes`,
     'intent.card.movements.table.column.first': 'Concepto',
     'intent.card.movements.table.column.second': 'Fecha',
     'intent.card.movements.table.column.third': 'Importe',

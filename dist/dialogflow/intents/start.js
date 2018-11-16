@@ -11,18 +11,18 @@ class StartIntents /*extends BaseIntent*/ {
     intents(app) {
         let token;
         //PERMISSIONS
-        app.intent('Default Welcome Intent', conv => {
-            conv.ask(new actions_on_google_1.Permission({
-                context: this.translateManager.translate('intent.start.welcome.permission'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
-        });
-        app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            const name = conv.user.name.given;
-            const permissionSimpleResponse = start_manager_1.StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
-            conv.ask(permissionSimpleResponse);
-            conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
-        });
+        // app.intent('Default Welcome Intent', conv => {
+        //     conv.ask(new Permission({ 
+        //         context: this.translateManager.translate('intent.start.welcome.permission'),
+        //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+        //     }));
+        // });
+        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
+        //     const name = conv.user.name.given;
+        //     const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
+        //     conv.ask(permissionSimpleResponse);
+        //     conv.ask(SuggestionDFManager.generateSuggestions());
+        // });
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
             const loginResponse = start_manager_1.StartDFManager.generateLoginSimpleResponse();
@@ -31,12 +31,8 @@ class StartIntents /*extends BaseIntent*/ {
         });
         app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
-                // const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
-                // conv.ask(signinSimpleResponse);
-                conv.ask(new actions_on_google_1.Permission({
-                    context: this.translateManager.translate('intent.start.welcome.permission'),
-                    permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-                }));
+                const signinSimpleResponse = start_manager_1.StartDFManager.generateSigninSimpleResponse(signin);
+                conv.ask(signinSimpleResponse);
             }
             else {
                 conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);

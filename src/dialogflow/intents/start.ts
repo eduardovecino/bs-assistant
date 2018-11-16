@@ -15,18 +15,18 @@ export class StartIntents /*extends BaseIntent*/ {
         let token;
 
         //PERMISSIONS
-        app.intent('Default Welcome Intent', conv => {
-            conv.ask(new Permission({ 
-                context: this.translateManager.translate('intent.start.welcome.permission'),
-                permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-            }));
-        });
-        app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            const name = conv.user.name.given;
-            const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
-            conv.ask(permissionSimpleResponse);
-            conv.ask(SuggestionDFManager.generateSuggestions());
-        });
+        // app.intent('Default Welcome Intent', conv => {
+        //     conv.ask(new Permission({ 
+        //         context: this.translateManager.translate('intent.start.welcome.permission'),
+        //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
+        //     }));
+        // });
+        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
+        //     const name = conv.user.name.given;
+        //     const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
+        //     conv.ask(permissionSimpleResponse);
+        //     conv.ask(SuggestionDFManager.generateSuggestions());
+        // });
 
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
@@ -36,12 +36,8 @@ export class StartIntents /*extends BaseIntent*/ {
         });
         app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
-                // const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
-                // conv.ask(signinSimpleResponse);
-                conv.ask(new Permission({ 
-                    context: this.translateManager.translate('intent.start.welcome.permission'),
-                    permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
-                }));
+                const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
+                conv.ask(signinSimpleResponse);
             } else {
                 conv.close(`No se ha podido iniciar sesión, vuelvelo a intentar`);
             }
@@ -64,5 +60,7 @@ export class StartIntents /*extends BaseIntent*/ {
                 conv.ask(helpSimpleResponseNoScreen);
             }
         });
+
+        
     }
 }
