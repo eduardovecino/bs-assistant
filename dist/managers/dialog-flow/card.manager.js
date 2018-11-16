@@ -116,8 +116,8 @@ class CardDFManager {
         let length = (movements.length > 12) ? 12 : movements.length;
         for (let i = 0; i < length; i++) {
             tmp.items[i] = {
-                title: '**' + movements[i].concept + '**',
-                description: ('**Importe:** ' + movements[i].amount + '€' + '\n' + '**Fecha:** ' + movements[i].date)
+                title: movements[i].concept,
+                description: ('Importe: ' + movements[i].amount + '€' + '\n' + 'Fecha: ' + movements[i].date)
             };
         }
         return (new actions_on_google_1.List(tmp));
