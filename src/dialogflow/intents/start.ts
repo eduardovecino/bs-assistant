@@ -21,12 +21,9 @@ export class StartIntents /*extends BaseIntent*/ {
         //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
         //     }));
         // });
-        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
-        //     const name = conv.user.name.given;
-        //     const permissionSimpleResponse = StartDFManager.generatePermissionSimpleResponse(confirmationGranted, name);
-        //     conv.ask(permissionSimpleResponse);
-        //     conv.ask(SuggestionDFManager.generateSuggestions());
-        // });
+        app.intent('Get Permission', (conv, params, confirmationGranted) => {
+            conv.ask(SuggestionDFManager.generateSuggestions());
+        });
 
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
@@ -61,6 +58,6 @@ export class StartIntents /*extends BaseIntent*/ {
             }
         });
 
-        
+
     }
 }

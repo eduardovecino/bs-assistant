@@ -3,16 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const translate_manager_1 = require("../translate.manager");
 const ssml_gib_1 = require("ssml-gib");
 class StartDFManager {
-    static generatePermissionSimpleResponse(confirmationGranted, name) {
-        if (confirmationGranted) {
-            if (name) {
-                return (ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.answer_%name%', [name])]));
-            }
-        }
-        else {
-            return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.failure')]);
-        }
-    }
     static generateLoginSimpleResponse() {
         return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.login')]);
     }

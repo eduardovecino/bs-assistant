@@ -6,10 +6,9 @@ exports.SPANISH_TRANSLATIONS = {
     'intent.service.failure': `No ha funcionado, vuelve a intentarlo`,
     //START
     'intent.start.welcome.permission': ` para dirigirme a usted por su nombre y conocer su ubicación`,
-    'intent.start.get_permission.answer_%name%': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}`,
+    'intent.start.get_signin.ok': `Bienvenido a ${ssml_gib_1.Ssml.emphasis("Banco Sabadell", "strong")}`,
     'intent.start.get_permission.failure': `Debes aceptar los permisos si quieres preguntar por las oficinas cercanas por ejemplo.`,
     'intent.start.login': `Vamos a iniciar sesión`,
-    'intent.start.get_signin.ok': `¡Genial, gracias por iniciar sesión!`,
     'intent.start.get_signin.failure': `No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`,
     'intent.start.cancel': `Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!`,
     'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas cercanas o contacto. ¿Qué deseas hacer?`,

@@ -6,16 +6,6 @@ export class StartDFManager {
 
     public static translateManager: TranslateManager = TranslateManager.getInstance();
 
-    public static generatePermissionSimpleResponse(confirmationGranted, name) {
-        if (confirmationGranted) {
-            if (name) {
-                return (Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.answer_%name%', [name])]));
-            }
-        } else {
-            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_permission.failure')]);
-        }
-        
-    }
 
     public static generateLoginSimpleResponse() {
         return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.login')]);
