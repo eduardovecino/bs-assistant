@@ -21,8 +21,9 @@ export class StartIntents /*extends BaseIntent*/ {
         //         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
         //     }));
         // });
+
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            conv.ask(SuggestionDFManager.generateSuggestions());
+            conv.ask('hooooooolaaaaaaaaaaaaa');
         });
 
         //INICIAR SESIÓN

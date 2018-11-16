@@ -18,7 +18,7 @@ class StartIntents /*extends BaseIntent*/ {
         //     }));
         // });
         app.intent('Get Permission', (conv, params, confirmationGranted) => {
-            conv.ask(suggestion_manager_1.SuggestionDFManager.generateSuggestions());
+            conv.ask('hooooooolaaaaaaaaaaaaa');
         });
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
