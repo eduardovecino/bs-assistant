@@ -163,6 +163,20 @@ export class CardIntents {
     }
 
     private cardMovements(movements, conv) {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            if (movements.length > 1) {
+                // const cardMovementsTable = CardDFManager.generateMovementsCardTable(movements);
+                // conv.ask(cardMovementsTable);
+                const cardMovementsList = CardDFManager.generateMovementsCardList(movements);
+                conv.ask(cardMovementsList);
+            } else {
+                const cardMovementsSimpleResponse = CardDFManager.generateMovementsCardSimpleResponse(movements);
+                conv.ask(cardMovementsSimpleResponse); 
+            }
+        } else {
+            const cardMovementsSimpleResponse = CardDFManager.generateMovementsCardSimpleResponse(movements);
+            conv.ask(cardMovementsSimpleResponse); 
+        }
         const cardMovementsSimpleResponse = CardDFManager.generateMovementsCardSimpleResponse(movements);
         conv.ask(cardMovementsSimpleResponse);
         if (movements.length > 1){

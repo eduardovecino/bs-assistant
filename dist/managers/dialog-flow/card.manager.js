@@ -110,7 +110,7 @@ class CardDFManager {
             title: this.translateManager.translate('intent.card.movements.list.title'),
             items: {}
         };
-        let length = (movements.length > 10) ? 10 : movements.length;
+        let length = (movements.length > 12) ? 12 : movements.length;
         for (let i = 0; i < length; i++) {
             tmp.items[i] = {
                 title: movements[i].concept,
