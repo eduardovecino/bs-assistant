@@ -22,11 +22,6 @@ export class StartIntents /*extends BaseIntent*/ {
         //     }));
         // });
 
-        // app.intent('Get Permission', (conv, params, confirmationGranted) => {
-        //     console.log("ENTRO 6");
-        //     conv.ask('hooooooolaaaaaaaaaaaaa');
-        // });
-
         //INICIAR SESIÓN
         app.intent('Iniciar Sesion', (conv) => {
             const loginResponse = StartDFManager.generateLoginSimpleResponse();

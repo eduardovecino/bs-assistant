@@ -27,13 +27,22 @@ export class InfoIntents {
                     context: this.translateManager.translate('intent.information.offices.permission'),
                     permissions: ['DEVICE_PRECISE_LOCATION', 'DEVICE_COARSE_LOCATION'],
                 }));
-                if (conv.user.permissions.length > 0) {
-                    latitude = conv.device.location.coordinates.latitude;
-                    longitude = conv.device.location.coordinates.longitude;
-                    offices = await this.informationService.getOffices(latitude, longitude);
-                    this.offices(offices, latitude, longitude, conv); 
-                }
+                
             }
+        });
+
+        app.intent('Get Permission', async (conv, params, confirmationGranted) => {
+            console.log("ENTRO 6");
+            let latitude;
+            let longitude;
+            let offices;
+            if (conv.user.permissions.length > 0) {
+                latitude = conv.device.location.coordinates.latitude;
+                longitude = conv.device.location.coordinates.longitude;
+                offices = await this.informationService.getOffices(latitude, longitude);
+                this.offices(offices, latitude, longitude, conv);
+            }
+
         });
 
         //ABRIR APP
