@@ -22,16 +22,7 @@ export class CardService extends RestManager {
         let card: CardModel;
         if (productNumber) {
             card = new CardModel(await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber.productNumber}/movimientos?order=A`, 'mock/card/get-card.json', token));
-            return card;
-        } else {
-            console.log("PTG NULL");
-            return null;
         }
-        // if (card) {
-        //     return card
-        // } else {
-        //     console.log("PTG NULL")
-        //     return null
-        // }
+        return card;
     }
 }
