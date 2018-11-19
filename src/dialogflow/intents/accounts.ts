@@ -87,8 +87,8 @@ export class AccountIntents {
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers, conv.user.access.token);
-            let movements = await this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
             if(account) {
+                let movements = await this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
                 this.accountMovements(movements, conv);
             } else {
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
