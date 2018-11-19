@@ -96,7 +96,7 @@ export class CardIntents {
             if (card) {
                 this.cardBlock(card, last4CardNumbers, conv)
             } else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         });
 
@@ -106,7 +106,7 @@ export class CardIntents {
             if (card) {
                 this.cardBalance(card, last4CardNumbers, conv);
             } else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         });
         
@@ -116,7 +116,7 @@ export class CardIntents {
             if (card) {
                 this.cardSettlement(card, last4CardNumbers, conv);
             } else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         });
 
@@ -126,7 +126,7 @@ export class CardIntents {
             if (card) {
                 this.cardLimits(card, last4CardNumbers, conv);
             } else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         });
 
@@ -137,7 +137,7 @@ export class CardIntents {
             if (card) {
                 this.cardMovements(movements, conv);
             } else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         })
     }

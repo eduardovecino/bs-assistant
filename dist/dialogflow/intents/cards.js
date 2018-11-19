@@ -98,7 +98,7 @@ class CardIntents {
                 this.cardBlock(card, last4CardNumbers, conv);
             }
             else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
         //SALDO TARJETA
@@ -108,7 +108,7 @@ class CardIntents {
                 this.cardBalance(card, last4CardNumbers, conv);
             }
             else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
         //FECHA LIQUIDACION TARJETA
@@ -118,7 +118,7 @@ class CardIntents {
                 this.cardSettlement(card, last4CardNumbers, conv);
             }
             else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
         //LIMITES TARJETA
@@ -128,7 +128,7 @@ class CardIntents {
                 this.cardLimits(card, last4CardNumbers, conv);
             }
             else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
         //MOVIMIENTOS
@@ -139,7 +139,7 @@ class CardIntents {
                 this.cardMovements(movements, conv);
             }
             else {
-                conv.ask(this.translateManager.translate('intent.account.null_response'));
+                conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
     }
