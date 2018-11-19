@@ -90,6 +90,7 @@ export class CardDFManager {
             };
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response])]);
         } else {
+            console.log("ENTRO324");
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.no_movements')]);
         }
     }

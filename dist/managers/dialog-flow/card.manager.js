@@ -87,6 +87,7 @@ class CardDFManager {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.simple_response_%number%_%movements%', [movements.length, response])]);
         }
         else {
+            console.log("ENTRO324");
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.movements.no_movements')]);
         }
     }
