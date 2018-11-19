@@ -115,9 +115,11 @@ class CardIntents {
         app.intent('Fecha Liquidación', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
+                console.log("PTG IF");
                 this.cardSettlement(card, last4CardNumbers, conv);
             }
             else {
+                console.log("PTG ELSE");
                 conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
