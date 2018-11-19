@@ -105,11 +105,9 @@ class CardIntents {
         app.intent('Saldo Tarjeta', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
             if (card) {
-                console.log("PTG IF");
                 this.cardBalance(card, last4CardNumbers, conv);
             }
             else {
-                console.log("PTG ELSE");
                 conv.ask(this.translateManager.translate('intent.card.null_response'));
             }
         }));
@@ -136,8 +134,8 @@ class CardIntents {
         //MOVIMIENTOS
         app.intent('Movimientos Tarjetas', (conv, { last4CardNumbers }, { tipo_tarjeta }) => __awaiter(this, void 0, void 0, function* () {
             let card = yield this.cardService.getCard(last4CardNumbers, conv.user.access.token);
-            let movements = card.currentMonthDetail;
             if (card) {
+                let movements = card.currentMonthDetail;
                 this.cardMovements(movements, conv);
             }
             else {

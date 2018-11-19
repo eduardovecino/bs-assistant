@@ -78,10 +78,8 @@ export class AccountIntents {
         app.intent('Saldo cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers, conv.user.access.token);
             if (account){
-                console.log("PTG SALDO CUENTA IF");
                 this.accountBalance(account, conv);
             } else {
-                console.log("PTG SALDO CUENTA ELSE");
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         });
