@@ -91,7 +91,7 @@ class AccountIntents {
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', (conv, { last4numbers }, { tipo_cuenta }) => __awaiter(this, void 0, void 0, function* () {
             let account = yield this.accountService.getAccount(last4numbers, conv.user.access.token);
-            if (account) {
+            if (account.productNumber) {
                 let movements = yield this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
                 this.accountMovements(movements, conv);
             }

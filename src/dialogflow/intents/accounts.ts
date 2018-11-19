@@ -87,7 +87,7 @@ export class AccountIntents {
         //MOVIMIENTOS CUENTA
         app.intent('Movimientos cuenta', async (conv, { last4numbers }, { tipo_cuenta }) => {
             let account = await this.accountService.getAccount(last4numbers, conv.user.access.token);
-            if(account) {
+            if (account.productNumber) {
                 let movements = await this.accountService.getMovementsAccounts(account.productNumber, conv.user.access.token);
                 this.accountMovements(movements, conv);
             } else {
