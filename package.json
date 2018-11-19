@@ -7,6 +7,7 @@
     "@types/mocha": "^5.2.5",
     "@types/request-promise": "^4.1.42",
     "actions-on-google": "^2.3.0",
+    "ask-sdk": "^2.3.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "immutable": "^3.8.2",
@@ -16,7 +17,7 @@
     "ts-translate": "^4.2.1"
   },
   "scripts": {
-    "start": "node dist/index-dialogflow.js"
+  "start": "node dist/index-alexa.js"
   },
   "author": "",
   "license": "ISC",
