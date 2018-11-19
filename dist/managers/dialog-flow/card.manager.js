@@ -77,6 +77,7 @@ class CardDFManager {
         }
     }
     static generateMovementsCardSimpleResponse(movements) {
+        console.log("PTG");
         let response = ' ';
         let length = (movements.length > 3) ? 3 : movements.length;
         if (movements) {
