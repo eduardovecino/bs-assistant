@@ -28,8 +28,12 @@ class CardService extends rest_manager_1.RestManager {
             let card;
             if (productNumber) {
                 card = new card_model_1.CardModel(yield this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json', token));
+                return card;
             }
-            return card;
+            else {
+                console.log("PTG NULL");
+                return null;
+            }
             // if (card) {
             //     return card
             // } else {
