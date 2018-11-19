@@ -80,6 +80,7 @@ export class AccountIntents {
             if (account){
                 this.accountBalance(account, conv);
             } else {
+                console.log("PTG SALDO CUENTA ELSE");
                 conv.ask(this.translateManager.translate('intent.account.null_response'));
             }
         });

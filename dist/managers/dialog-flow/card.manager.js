@@ -45,7 +45,7 @@ class CardDFManager {
         }
     }
     static generateBalanceCardResponse(informationCard, last4Numbers) {
-        if (last4Numbers) {
+        if (informationCard) {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [last4Numbers, informationCard.availableBalance])]);
         }
         else {
@@ -53,7 +53,7 @@ class CardDFManager {
         }
     }
     static generateBlockCardResponse(informationCard, last4Numbers) {
-        if (last4Numbers) {
+        if (informationCard) {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [last4Numbers])]);
         }
         else {
@@ -61,7 +61,7 @@ class CardDFManager {
         }
     }
     static generateSettlementCardResponse(informationCard, last4Numbers) {
-        if (last4Numbers) {
+        if (informationCard) {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [last4Numbers, informationCard.nextSettlementDate])]);
         }
         else {
@@ -69,7 +69,7 @@ class CardDFManager {
         }
     }
     static generateLimitsCardResponse(informationCard, last4Numbers) {
-        if (last4Numbers) {
+        if (informationCard) {
             return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
         }
         else {
