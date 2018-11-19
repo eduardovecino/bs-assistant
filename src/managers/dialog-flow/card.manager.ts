@@ -50,7 +50,7 @@ export class CardDFManager {
     }
 
     public static generateBalanceCardResponse(informationCard, last4Numbers) {
-        if (informationCard) {
+        if (last4Numbers) {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.balance_%card%_%balance%', [last4Numbers, informationCard.availableBalance])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
@@ -58,7 +58,7 @@ export class CardDFManager {
     }
 
     public static generateBlockCardResponse(informationCard, last4Numbers) {
-        if (informationCard) {
+        if (last4Numbers) {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.block_%card%', [last4Numbers])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
@@ -66,7 +66,7 @@ export class CardDFManager {
     }
 
     public static generateSettlementCardResponse(informationCard, last4Numbers) {
-        if (informationCard) {
+        if (last4Numbers) {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.settlement%card%_%date%', [last4Numbers, informationCard.nextSettlementDate])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);
@@ -74,7 +74,7 @@ export class CardDFManager {
     }
 
     public static generateLimitsCardResponse(informationCard, last4Numbers) {
-        if (informationCard) {
+        if (last4Numbers) {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.limit%card%_%authorized_limit%_%credit_limit%', [last4Numbers, informationCard.authorizedLimit, informationCard.creditLimit])]);
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.card.null_response')]);

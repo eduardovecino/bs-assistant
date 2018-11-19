@@ -33,7 +33,7 @@ export const SPANISH_TRANSLATIONS = {
     'intent.account.movements.table.column.third': 'Importe',
 
     //CARDS
-    'intent.card.null_response': `No se ha encontrado ninguna tarjeta, prueba en decir el tipo de cuenta o los 4 últimos numeros`,
+    'intent.card.null_response': `No se ha encontrado ninguna tarjeta, prueba en decir los 4 últimos numeros`,
     'intent.card.help.screen': `Selecciona una de las siguientes opciones:`,
     'intent.card.help.no_screen': `Puedes preguntame por el saldo, últimos movimientos, fecha liquidación, limites o bloquear tarjeta`,
     'intent.card.simple_response.screen_%number%': `Tienes {{ number }} tarjetas. ${Ssml.break({ ms: 500 })} ¿Cúal deseas seleccionar?`,
