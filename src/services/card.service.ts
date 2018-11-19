@@ -18,14 +18,14 @@ export class CardService extends RestManager {
 
     async getCard(last4, token) {
         const cards = await this.getCards(token);
-        const productNumber = CardManager.getCardByLast4(cards, last4).productNumber;
+        const productNumber = CardManager.getCardByLast4(cards, last4);
         let card: CardModel;
         if (productNumber) {
-            card = new CardModel(await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber}/movimientos?order=A`, 'mock/card/get-card.json', token));
+            card = new CardModel(await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/tarjetas/${productNumber.productNumber}/movimientos?order=A`, 'mock/card/get-card.json', token));
             return card;
         } else {
             console.log("PTG NULL");
-            return null
+            return null;
         }
         // if (card) {
         //     return card
