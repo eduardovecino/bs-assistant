@@ -23,6 +23,7 @@ export class CardService extends RestManager {
         if (card) {
             return card
         } else {
+            console.log("PTG NULL")
             return null
         }
     }

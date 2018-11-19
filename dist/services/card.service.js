@@ -30,6 +30,7 @@ class CardService extends rest_manager_1.RestManager {
                 return card;
             }
             else {
+                console.log("PTG NULL");
                 return null;
             }
         });
