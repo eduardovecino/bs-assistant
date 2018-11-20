@@ -17,7 +17,7 @@
     "ts-translate": "^4.2.1"
   },
   "scripts": {
-  "start": "node dist/index-alexa.js"
+  "start": "node dist/index-dialogflow.js"
   },
   "author": "",
   "license": "ISC",
