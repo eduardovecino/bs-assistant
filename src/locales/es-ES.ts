@@ -11,7 +11,7 @@ export const SPANISH_TRANSLATIONS = {
     'intent.start.login': `Vamos a iniciar sesión`,
     'intent.start.get_signin.failure': `No podré guardar tus datos, pero ¿qué quieres hacer a continuación?`,
     'intent.start.cancel': `Gracias por Contactar con Banco Sabadell, ¡Te esperamos pronto!`,
-    'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas cercanas o información. ¿Qué deseas hacer?`,
+    'intent.start.help.no_screen': `Puedes preguntar sobre tus tarjetas, tus cuentas, oficinas cercanas o contacto. ¿Qué deseas hacer?`,
     'intent.start.help.screen': `Selecciona una de las siguientes opciones:`,
 
     //ACCOUNTS

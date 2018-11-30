@@ -30,6 +30,7 @@ export class StartIntents /*extends BaseIntent*/ {
         });
         app.intent('Get Signin', (conv, params, signin) => {
             if (signin.status === 'OK') {
+                console.log("PTG ENTROOOOO");
                 const signinSimpleResponse = StartDFManager.generateSigninSimpleResponse(signin);
                 conv.ask(signinSimpleResponse);
                 conv.ask(SuggestionDFManager.generateSuggestions());

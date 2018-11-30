@@ -14,7 +14,6 @@ export class StartDFManager {
     public static generateSigninSimpleResponse(signin) {
         if (signin.status === 'OK') {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_signin.ok')]);
-
         } else {
             return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.start.get_signin.failure')]);
         }
