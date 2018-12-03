@@ -1,27 +1,62 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_on_google_1 = require("actions-on-google");
+const translate_manager_1 = require("../translate.manager");
+const ssml_gib_1 = require("ssml-gib");
 class InformationDFManager {
-    constructor() {
+    static generateOfficesSimpleResponseScreen() {
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.screen')]);
     }
-    static generateOfficesBrowseCarousel(offices) {
+    ;
+    static generateOfficesSimpleResponseNoScreen(offices) {
+        let response = ' ';
+        let length = (offices.length > 3) ? 3 : offices.length + 1;
+        for (let i = 0; i < length; i++) {
+            response = response + offices[i].address + ", ";
+        }
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.offices.simple_response.no_screen_%offices%', [response])]);
+    }
+    ;
+    static generateOfficesBrowseCarousel(offices, latitude, longitude) {
         const tmp = {
             items: []
         };
         offices.forEach((office) => {
-            const mapUrl = `https://maps.google.com/?q=${office.latitude},${office.longitude}`;
+            // const mapUrl = `https://maps.google.com/?q=${office.point.lat},${office.point.lng}`;
+            const mapUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${office.point.lat},${office.point.lng}&travelmode=walking`;
             tmp.items.push(new actions_on_google_1.BrowseCarouselItem({
-                title: office.id,
+                title: office.name,
                 url: mapUrl,
                 description: office.address,
-                image: new actions_on_google_1.Image({
-                    url: office.image,
-                    alt: office.id
-                })
             }));
         });
         return (new actions_on_google_1.BrowseCarousel(tmp));
     }
+    ;
+    static generateOpenAppSimpleResponseScreen() {
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.screen')]);
+    }
+    static generateOpenAppSimpleResponseNoScreen() {
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.open_app.simple_response.no_screen')]);
+    }
+    static generateOpenAppBasicCard() {
+        return new actions_on_google_1.BasicCard({
+            title: '',
+            image: {
+                url: 'https://farm8.staticflickr.com/7428/9357809422_cfd8088a54.jpg',
+                accessibilityText: this.translateManager.translate('intent.information.open_app.basic_card.title')
+            },
+            text: '',
+            buttons: new actions_on_google_1.Button({
+                title: this.translateManager.translate('intent.information.open_app.basic_card.title'),
+                url: 'http://eduvecino.com/GA_BMA/app_saba.php',
+            })
+        });
+    }
+    static generateContactSimpleResponseScreen() {
+        return ssml_gib_1.Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.information.contact.simple_response')]);
+    }
 }
+InformationDFManager.translateManager = translate_manager_1.TranslateManager.getInstance();
 exports.InformationDFManager = InformationDFManager;
 //# sourceMappingURL=information.manager.js.map

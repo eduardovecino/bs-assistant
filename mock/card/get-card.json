@@ -1,35 +1,326 @@
 {
     "data": {
-        "contrato": "00000000000009",
-        "cuentaRelacionada": "00810000000000001234",
-        "estado": "",
-        "fechaLiquiActual": "2014-02-14 00:00:00",
-        "fechaProxiLiquidacion": "2014-04-05 00:00:00",
-        "formaPargoMensual": "03",
+        "contrato": "000000000003759",
+        "cuentaRelacionada": "00810000000000003402",
         "ibanBic": " / ",
-        "importeTotal": "1.647,62",
-        "importeTotalLiquidar": "1.647,62",
-        "limiteAutorizado": "300,00",
         "limiteCredito": "1.700,00",
-        "operPeriodActual": "1.647,62",
-        "saldoAplazadoAnterior": "0,00",
-        "saldoDisponible": "1.674,75",
-        "saldoDispuesto": "325,25",
+        "limiteAutorizado": "300,00",
+        "formaPagoMensual": "03",
         "totalOperPendLiquiActual": "1.647,62",
+        "fechaLiquiActual": "2014-02-14 01:00:00",
         "totalOperPendProxiLiquidacion": "0,00",
+        "fechaProxiLiquidacion": "2014-04-05 02:00:00",
+        "saldoDispuesto": "325,25",
+        "saldoDisponible": "1.674,75",
+        "operPeriodActual": "1.647,62",
+        "importeTotal": "1.647,62",
+        "saldoAplazadoAnterior": "0,00",
+        "importeTotalLiquidar": "1.647,62",
         "totalOperProximLiquidacion": "0,00",
         "detalleMesActual": [
             {
-                "concepto": "TXOKOA",
-                "fecha": "2013-12-02 00:00:00",
-                "importe": "12,25",
-                "poblacion": "OFICINA 0901"
+                "fecha": "2016-07-20 02:00:00",
+                "concepto": "rclwzHCkktFjhAyunKbRX",
+                "poblacion": "TRPANJ",
+                "importe": "29,93",
+                "divisa": "EUR",
+                "divisaOriginal": "HRK",
+                "importeOriginal": "218,00"
             },
             {
-                "concepto": "ZARA HOME",
-                "fecha": "2013-11-29 00:00:00",
+                "fecha": "2016-07-20 02:00:00",
+                "concepto": "mNsmrnxnPvkHWEDlgmtEV",
+                "poblacion": "ZAGVOZD",
+                "importe": "2,75",
+                "divisa": "EUR",
+                "divisaOriginal": "HRK",
+                "importeOriginal": "20,00"
+            },
+            {
+                "fecha": "2016-07-19 02:00:00",
+                "concepto": "fUksWtUCpVhiBVYQshwuH",
+                "poblacion": "20250 OREBIC",
+                "importe": "45,62",
+                "divisa": "EUR",
+                "divisaOriginal": "HRK",
+                "importeOriginal": "332,72"
+            },
+            {
+                "fecha": "2016-07-16 02:00:00",
+                "concepto": "MKvObNEesroMKHJaVKwcE",
+                "poblacion": "DUBROVNIK",
+                "importe": "39,51",
+                "divisa": "EUR",
+                "divisaOriginal": "HRK",
+                "importeOriginal": "290,00"
+            },
+            {
+                "fecha": "2016-07-16 02:00:00",
+                "concepto": "EvFGbwNeNxzMRpFiYvLWa",
+                "poblacion": "DUBROVNIK",
+                "importe": "47,68",
+                "divisa": "EUR",
+                "divisaOriginal": "HRK",
+                "importeOriginal": "350,00"
+            },
+            {
+                "fecha": "2013-12-02 01:00:00",
+                "concepto": "DQggsqgNeDCsLDceP",
+                "poblacion": "OFICINA 0901",
+                "importe": "12,25",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-11-29 01:00:00",
+                "concepto": "lqSeByomsTPORnTqT",
+                "poblacion": "OFICINA 0901",
                 "importe": "88,00",
-                "poblacion": "OFICINA 0901"
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-11-28 01:00:00",
+                "concepto": "ODaZlRdzSTCIbjmJK",
+                "poblacion": "OFICINA 0901",
+                "importe": "100,00",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-11-28 01:00:00",
+                "concepto": "cbiHqIzvGIUhUXRwl",
+                "poblacion": "OFICINA 0901",
+                "importe": "125,00",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-10 01:00:00",
+                "concepto": "espAvJzTKJi",
+                "poblacion": "SABADELL",
+                "importe": "67,82",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-10 01:00:00",
+                "concepto": "tSlAQOEfWXcXSwKlJfPKdov",
+                "poblacion": "SABADELL",
+                "importe": "-0,72",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-10 01:00:00",
+                "concepto": "JPrTqbFUWggtCXqMgxAwUaC",
+                "poblacion": "SABADELL",
+                "importe": "19,04",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-10 01:00:00",
+                "concepto": "dNvtlIlhJaXYB",
+                "poblacion": "SABADELL",
+                "importe": "16,88",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-09 01:00:00",
+                "concepto": "rUYCCEWZpmWRG",
+                "poblacion": "SABADELL",
+                "importe": "15,13",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-09 01:00:00",
+                "concepto": "bKaYKwyFsJJEq",
+                "poblacion": "SABADELL",
+                "importe": "6,49",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-08 01:00:00",
+                "concepto": "PPiBWWJNZsRHkpBpb",
+                "poblacion": "SABADELL",
+                "importe": "24,40",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-08 01:00:00",
+                "concepto": "dnZKMgqlkur",
+                "poblacion": "SABADELL",
+                "importe": "10,71",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-08 01:00:00",
+                "concepto": "ErWTqQ",
+                "poblacion": "MONTCADA I RE",
+                "importe": "12,81",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-08 01:00:00",
+                "concepto": "gLf",
+                "poblacion": "SABADELL",
+                "importe": "159,00",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-07 01:00:00",
+                "concepto": "MzZidRelitpGUhC",
+                "poblacion": "SABADELL",
+                "importe": "12,52",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-06 01:00:00",
+                "concepto": "mAIDhoRQPlxASoPmYfQUOL",
+                "poblacion": "SABADELL",
+                "importe": "57,80",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-05 01:00:00",
+                "concepto": "KMlByV",
+                "poblacion": "MONTCADA I RE",
+                "importe": "49,34",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-05 01:00:00",
+                "concepto": "dVcqUgso",
+                "poblacion": "SABADELL",
+                "importe": "30,94",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-05 01:00:00",
+                "concepto": "KUfECkcAgXghcILHSwHV",
+                "poblacion": "SABADELL",
+                "importe": "78,59",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-05 01:00:00",
+                "concepto": "ZKRdTGrxxaASgRJOJ",
+                "poblacion": "SABADELL",
+                "importe": "40,00",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-05 01:00:00",
+                "concepto": "WAybrdqrPLs",
+                "poblacion": "SABADELL",
+                "importe": "25,59",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-04 01:00:00",
+                "concepto": "pKAizIEsxZCvfrA",
+                "poblacion": "SABADELL",
+                "importe": "8,80",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-04 01:00:00",
+                "concepto": "vSvVaq",
+                "poblacion": "MONTCADA I RE",
+                "importe": "15,68",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-03 01:00:00",
+                "concepto": "zYdlyHGHEdehjSGvjpDlgAu",
+                "poblacion": "SABADELL",
+                "importe": "64,55",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-03 01:00:00",
+                "concepto": "eBYsMwNBftb",
+                "poblacion": "SABADELL",
+                "importe": "19,99",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-03 01:00:00",
+                "concepto": "nesibWjl",
+                "poblacion": "SABADELL",
+                "importe": "34,63",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2013-01-02 01:00:00",
+                "concepto": "zGctDADhHYJZjwITbCAzifnPd",
+                "poblacion": "TARRAGONA",
+                "importe": "171,32",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-31 01:00:00",
+                "concepto": "wWjBdULoBfK",
+                "poblacion": "SABADELL",
+                "importe": "42,00",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-31 01:00:00",
+                "concepto": "GXrwpTdhJTS",
+                "poblacion": "SABADELL",
+                "importe": "99,90",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-31 01:00:00",
+                "concepto": "HzdVdINPgtiKBWBdXo",
+                "poblacion": "SABADELL",
+                "importe": "25,80",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-31 01:00:00",
+                "concepto": "QMMUrsHLFXkkVoC",
+                "poblacion": "SABADELL",
+                "importe": "26,47",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-28 01:00:00",
+                "concepto": "CYLSvkbsVjQJHtletgws",
+                "poblacion": "SABADELL",
+                "importe": "20,57",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-28 01:00:00",
+                "concepto": "pXgohidtFqb",
+                "poblacion": "SABADELL",
+                "importe": "22,63",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-28 01:00:00",
+                "concepto": "SeVlhnpwFjziWCV",
+                "poblacion": "SABADELL",
+                "importe": "15,79",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-28 01:00:00",
+                "concepto": "JuXWNuljudIb",
+                "poblacion": "SBADELL",
+                "importe": "15,18",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-27 01:00:00",
+                "concepto": "YJsFkggcVRnMdjILhNfWFrR",
+                "poblacion": "SABADELL",
+                "importe": "41,98",
+                "divisa": "EUR"
+            },
+            {
+                "fecha": "2012-12-27 01:00:00",
+                "concepto": "LlaZQcHBhIF",
+                "poblacion": "SABADELL",
+                "importe": "55,22",
+                "divisa": "EUR"
             }
         ]
     }

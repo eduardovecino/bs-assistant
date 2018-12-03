@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import * as rp from "request-promise";
 
-const host = 'https://oauth.bancsabadell.com';
-const token = '07b85d58-1e37-4cf3-9f2f-b4c3d753f3a08203d205-3975-41ee-9058-ee0843c8c1475136a6f7-ec9d-40c1-8285-45a34ea9dae8'
+const host = 'https://developers.bancsabadell.com';
+// const token = 'fb2f1a76-e0c8-4bdd-9fb3-92a922ab21cde04424c8-5d6c-4f62-83f7-2bfae526db0fb42d8b8d-179c-428c-9a2b-219067dfc9d7'
 
 export class RestManager {
 
@@ -13,11 +13,8 @@ export class RestManager {
         this.isMock = process.env.MOCK;
     }
 
-    public getApiBSabadell(path, mock): Promise<any> {
-        console.log('Before promise');
+    public getApiBSabadell(path, mock, token): Promise<any> {
         return new Promise((resolve, reject) => {
-            console.log('After promise - before timeout');
- 
             const options = {
                 'method': 'GET',
                 'uri': host + path,
@@ -25,25 +22,18 @@ export class RestManager {
                 'headers': {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                }
+                },
+                'strictSSL': false
             };
-
             if (this.isMock) {
                 const data = fs.readFileSync(mock);
                 const jsonData = JSON.parse(data.toString());
                 resolve(jsonData.data);
 
             } else {
-                // rp(options, (err, res, body) => {
-                //     if (!!err) { return console.log(err); }
-                //     resolve(body.data);
-                //     console.log(body.data);
-                // });
-
                 rp(options)
                     .then(function (body) {
-                        var data = body.data;
-                        console.log('success', data);
+                        var data = body.data || null;
                         resolve(data);
                     })
                     .catch(function (err) {
@@ -53,12 +43,4 @@ export class RestManager {
             }
         })  
     }
-
-    // constructor() {
-    //     this.isMock = process.env.MOCK;
-    // }
-
-    // public get(): any {
-    //     return { num: 21 };
-    // }
 }

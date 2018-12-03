@@ -1,60 +1,101 @@
 import { List, Table, TableOptions } from "actions-on-google";
-import { FormatManager } from '../../managers/format.manager';
+import { TranslateManager } from "../translate.manager";
+import { Ssml } from 'ssml-gib';
 
 
 export class AccountDFManager {
 
+    public static translateManager: TranslateManager = TranslateManager.getInstance();
 
-
-    constructor() {
+    public static generateAccountsSimpleResponseScreen(accounts) {
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.screen_%number%', [accounts.length])]);
     }
 
+    public static generateAccountsSimpleResponseNoScreen(accounts) {
+        let response = ' ';
+        accounts.forEach(account => {
+            response = response + account.last4Numbers + ", ";
+        });
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.simple_response.no_screen_%number%_%accounts%', [accounts.length, response])]);
+    }
+    
     public static generateAccountsList(accounts) {
         if (accounts.length > 1) {
             const accountImage = 'https://es.banqueando.com/wp-content/uploads/2012/05/logotipo_sabadell_creditos_banco11.gif';
             const tmp = {
-                title: 'Mis Cuentas' + ' ',
+                title: this.translateManager.translate('intent.account.list.title'),
                 items: {}
             };
             accounts.forEach((account) => {
-                const last4Numbers = FormatManager.getLast4numbers(account.iban);
                 tmp.items[account.iban] = {
-                    title: account.descripcion,
-                    description: `ES••••••••••••••••${last4Numbers}`,
+                    title: `ES••••••••••••••••${account.last4Numbers}`,
+                    description: account.description,
                     image: {
                         url: accountImage,
-                        accessibilityText: account.descripcion
+                        accessibilityText: account.description
                     }
                 };
             });
             return (new List(tmp));
         } else {
-            return 'El saldo  de tu ' + accounts[0].descripcion + ' es de ' + accounts[0].balance + ' €';
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [accounts[0].description, accounts[0].balance])]);
         }
     }
 
-    public static saldoAccount(account) {
+    public static generateSelectedAccountSimpleResponse(account) {
         if (account) {
-            return `El saldo  de tu ${account.descripcion} es de ${account.balance} €. ¿Qué más quieres saber acerca de tu cuenta?`;
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.selected_account_%account%', [account.description])]);
         } else {
-            return `No se ha encontrado ninguna cuenta, prueba en decir el tipo de cuenta o los 4 últimos numeros`
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
         }
     }
 
-    public static generateMovementsTable(movements) {
+    public static generateBalanceAccountResponse(account) {
+        if (account) {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.balance_%account%_%balance%', [account.description, account.balance])]);
+        } else {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.null_response')]);
+        }
+    }
+
+    public static generateMovementsAccountSimpleResponse(movements) {
+        let response = ' ';
+        let length = (movements.length > 3) ? 3 : movements.length;
+        if (movements) {
+            for (let i = 0; i < length; i++) {
+                response = response + Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response.pre_%concept%_%import%', [movements[i].concept, movements[i].amount])])
+            };
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.simple_response_%number%_%movements%', [movements.length, response])]);
+        } else {
+            return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.no_movements')]);
+        }
+    }
+    public static generateMovementsAccountTableSimpleResponse(movements) {
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.movements.table.simple_response_%number%', [movements.length])]);
+    }
+
+    public static generateMovementsAccountTable(movements) {
         const tmp: TableOptions = {
             dividers: true,
-            columns: ['Concepto', 'Fecha', 'Importe'],
+            columns: [this.translateManager.translate('intent.account.movements.table.column.first'), this.translateManager.translate('intent.account.movements.table.column.second'), this.translateManager.translate('intent.account.movements.table.column.third')],
             rows: []
         };
         movements.forEach((movement) => {
             tmp.rows.push(
                 {
-                    cells: [movement.concepto, movement.fechaOperacion, movement.importe],
+                    cells: [movement.concept, movement.operationDate, movement.amount + ' €'],
                     dividerAfter: true
                 }
             );
         });
         return new Table(tmp);
+    }
+
+    public static generateAccountHelpSimpleResponseScreen() {
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.screen')]);
+    }
+
+    public static generateAccountHelpSimpleResponseNoScreen() {
+        return Ssml.wrapSsmlSpeak([this.translateManager.translate('intent.account.help.no_screen')]);
     }
 }

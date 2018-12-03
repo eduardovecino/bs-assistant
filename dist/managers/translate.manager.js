@@ -16,8 +16,12 @@ class TranslateManager {
         return this._config;
     }
     translate(key, params) {
-        const literal = this._config.translations[this._config.lang][key];
-        // Welcome to Banco Sabadell, {{ name }}
+        let literal = this._config.translations[this._config.lang][key];
+        if (params) {
+            for (let i = 0; i < params.length; i++) {
+                literal = literal.replace(/\{{.*?\}}/, params[i]);
+            }
+        }
         return literal;
     }
 }

@@ -18,7 +18,6 @@ class AppRest {
     public translateManager: TranslateManager = TranslateManager.getInstance();
 
     constructor() {
-        console.log('AppRest Constructor');
         this.app = express();
         this.config();
         this.productRoutes.routes(this.app);

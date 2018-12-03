@@ -14,7 +14,6 @@ class AppRest {
         this.accountRoutes = new accounts_1.AccountRoutes();
         this.informationRoutes = new information_1.InformationRoutes();
         this.translateManager = translate_manager_1.TranslateManager.getInstance();
-        console.log('AppRest Constructor');
         this.app = express();
         this.config();
         this.productRoutes.routes(this.app);

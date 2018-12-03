@@ -1,37 +1,194 @@
 {
-    "data": [
+    "offices": [
         {
-            "id": "Oficina Diagonal",
-            "latitude": "41.38564",
-            "longitude": "2.114931",
-            "type": "DA",
-            "address": "Avinguda Diagonal, 644",
+            "distToPoint": 0.13,
+            "num": "0230",
+            "name": "Barcelona, L'Illa Diagonal",
+            "address": "AV DIAGONAL, 644",
+            "location": "BARCELONA",
             "postalCode": "08017",
-            "city": "BARCELONA",
-            "phoneNumber": "932 387 260",
-            "image": "http://estaticos.expansion.com/assets/multimedia/imagenes/2017/11/16/15108492323795.jpg"
+            "director": "-",
+            "phone": "932803733",
+            "fax": "932803260",
+            "type": 1,
+            "point": {
+                "lat": 41.390614,
+                "lng": 2.134829,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
         },
         {
-            "id": "Oficina Av. de Sarrià",
-            "latitude": "41.389414",
-            "longitude": "2.135101",
-            "type": "DC",
-            "address": "Av. de Sarrià, 146",
-            "postalCode": "08017",
-            "city": "BARCELONA",
-            "phoneNumber": "932 800 664",
-            "image": "http://blog.bancosabadell.com/.a/6a00e009801040883301b8d299c272970c-500wi"
-        },
-        {
-            "id": "Oficina Travessera de les Corts",
-            "latitude": "41.386201",
-            "longitude": "2.133968",
-            "type": "OF",
-            "address": "Travessera de les Corts, 375",
+            "distToPoint": 0.48,
+            "num": "7012",
+            "name": "Barcelona, Travessera de les Corts - Av.Sarrià",
+            "address": "TRAVESSERA DE LES CORTS, 375",
+            "location": "BARCELONA",
             "postalCode": "08029",
-            "city": "BARCELONA",
-            "phoneNumber": "932 535 400",
-            "image": "http://s.libertaddigital.com/2015/09/21/banco-sabadell-wikimedia-1.jpg"
+            "director": "-",
+            "phone": "933224811",
+            "fax": "934100826",
+            "type": 1,
+            "point": {
+                "lat": 41.390124,
+                "lng": 2.140761,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.51,
+            "num": "7019",
+            "name": "Barcelona, Av. Sarrià - General Mitre",
+            "address": "AV SARRIA, 146",
+            "location": "BARCELONA",
+            "postalCode": "08017",
+            "director": "-",
+            "phone": "932031650",
+            "fax": "932045063",
+            "type": 1,
+            "point": {
+                "lat": 41.392528,
+                "lng": 2.130438,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.52,
+            "num": "0425",
+            "name": "Barcelona, Numància",
+            "address": "C  NUMANCIA, 84",
+            "location": "BARCELONA",
+            "postalCode": "08029",
+            "director": "-",
+            "phone": "934193434",
+            "fax": "934199057",
+            "type": 1,
+            "point": {
+                "lat": 41.385066,
+                "lng": 2.137145,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.58,
+            "num": "0356",
+            "name": "Barcelona, Ganduxer",
+            "address": "PZ SANT GREGORI TAUMATURG 6-7",
+            "location": "BARCELONA",
+            "postalCode": "08021",
+            "director": "-",
+            "phone": "934140280",
+            "fax": "932000383",
+            "type": 1,
+            "point": {
+                "lat": 41.3942528,
+                "lng": 2.138006,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.63,
+            "num": "0129",
+            "name": "Barcelona, Les Corts",
+            "address": "TRAVESSERA DE LES CORTS, 237",
+            "location": "BARCELONA",
+            "postalCode": "08028",
+            "director": "-",
+            "phone": "933216649",
+            "fax": "934190646",
+            "type": 1,
+            "point": {
+                "lat": 41.384508,
+                "lng": 2.131385,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.63,
+            "num": "0566",
+            "name": "Barcelona, Beethoven",
+            "address": "C  BEETHOVEN, 9",
+            "location": "BARCELONA",
+            "postalCode": "08021",
+            "director": "-",
+            "phone": "932012859",
+            "fax": "932014499",
+            "type": 1,
+            "point": {
+                "lat": 41.393065,
+                "lng": 2.140875,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.72,
+            "num": "0172",
+            "name": "Barcelona, Josep Tarradellas - Berlin",
+            "address": "C  JOSEP TARRADELLAS, 89",
+            "location": "BARCELONA",
+            "postalCode": "08029",
+            "director": "-",
+            "phone": "934051114",
+            "fax": "934190586",
+            "type": 1,
+            "point": {
+                "lat": 41.386237,
+                "lng": 2.142539,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.78,
+            "num": "0053",
+            "name": "Barcelona, Capità Arenas",
+            "address": "C  CAPITA ARENAS, 26",
+            "location": "BARCELONA",
+            "postalCode": "08034",
+            "director": "-",
+            "phone": "932042404",
+            "fax": "932055605",
+            "type": 1,
+            "point": {
+                "lat": 41.3908348,
+                "lng": 2.1258719,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
+        },
+        {
+            "distToPoint": 0.88,
+            "num": "0208",
+            "name": "Barcelona, Pl. del Centre",
+            "address": "AV MADRID, 211",
+            "location": "BARCELONA",
+            "postalCode": "08014",
+            "director": "-",
+            "phone": "934907189",
+            "fax": "934914872",
+            "type": 1,
+            "point": {
+                "lat": 41.381587,
+                "lng": 2.134953,
+                "description": ""
+            },
+            "country": "ES",
+            "geoaddress": ""
         }
     ]
 }

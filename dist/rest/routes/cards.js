@@ -9,9 +9,9 @@ class CardRoutes {
     routes(app) {
         app.route('/cards')
             .get((req, res) => {
-            this.cardService.getCards().then(cards => {
+            this.cardService.getCards('').then(cards => {
                 if (cards) {
-                    const carouselOfCards = card_manager_1.CardDFManager.cardsCarousel(cards);
+                    const carouselOfCards = card_manager_1.CardDFManager.generateCardsCarousel(cards);
                     res.status(200).send(carouselOfCards);
                 }
                 else {
@@ -21,9 +21,9 @@ class CardRoutes {
         });
         app.route('/cards/:last4/movements')
             .get((req, res) => {
-            this.cardService.getCardByInputs(req.params.last4).then(card => {
+            this.cardService.getCard(req.params.last4, '').then(card => {
                 if (card) {
-                    const movementsTable = card_manager_1.CardDFManager.generateMovementsTable(card);
+                    const movementsTable = card_manager_1.CardDFManager.generateMovementsCardTable(card);
                     res.status(200).send(movementsTable);
                 }
                 else {

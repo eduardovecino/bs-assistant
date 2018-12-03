@@ -1,35 +1,34 @@
 import { RestManager } from "../managers/data/rest.manager";
 import { AccountManager } from "../managers/data/account.manager";
 
-import * as fs from "fs";
-import { setTimeout } from "timers";
+import { AccountModel } from "../models/account.model";
+import { MovementModel } from "../models/movement.model";
 
 
 export class AccountService extends RestManager {
 
-    public getAccounts() {
-        return this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/productos', 'mock/accounts/get-accounts.json');
-        // return new Promise((resolve, reject) => {
-        //     const data = fs.readFileSync('mock/accounts/get-accounts.json');
-        //     const jsonData = JSON.parse(data.toString());
-        //     resolve(jsonData.data);
-        // });        
+    async getAccounts(token) {
+        const results: any = await this.getApiBSabadell('/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista', 'mock/accounts/get-accounts.json', token);
+        const accounts: Array<AccountModel> = [];
+        results.forEach(result => accounts.push(new AccountModel(result)));
+        return accounts;        
     }
 
-    public getAccount(last4): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const data = fs.readFileSync('mock/accounts/get-accounts.json');
-            const jsonData = JSON.parse(data.toString());
-            const account = AccountManager.getAccountByLast4(jsonData.data, last4);
-            resolve(account);
-        });
+    async getAccount(last4, token) {
+        const accounts = await this.getAccounts(token);
+        const account = AccountManager.getAccountByLast4(accounts, last4);
+        return account;
     }
 
-    public getMovementsAccounts(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const data = fs.readFileSync('mock/accounts/get-movements-accounts.json');
-            const jsonData = JSON.parse(data.toString());
-            resolve(jsonData.data);
-        });
+    async getMovementsAccounts(account, token) {
+        //TODO Quitar los limites de la fecha para mostrar los últimos movimientos
+        // /ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos
+        const results: any = await this.getApiBSabadell(`/ResourcesServerBS/oauthservices/v1.0.0/cuentasvista/${account}/movimientos?fechaDesde=01-01-2016&fechaHasta=01-10-2018`, `mock/accounts/get-movements-accounts.json`, token);
+        const movements: Array<MovementModel> = [];
+        if(results) {
+            results.forEach(result => movements.push(new MovementModel(result)));
+        };
+        return movements;
+
     }
 }
